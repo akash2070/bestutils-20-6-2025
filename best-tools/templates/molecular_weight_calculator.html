@@ -1,0 +1,563 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molecular Weight Calculator - Calculate Molar Mass from Chemical Formula | BestUtils</title>
+    <meta name="description" content="Free online molecular weight calculator. Calculate molar mass from chemical formulas instantly. Perfect for chemistry students and professionals. Supports complex compounds and hydrates.">
+    <meta name="keywords" content="molecular weight calculator, molar mass calculator, chemical formula calculator, chemistry tools, atomic weight, molecular mass">
+    <meta name="author" content="BestUtils">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/molecular-weight-calculator.html">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Molecular Weight Calculator - Calculate Molar Mass from Chemical Formula">
+    <meta property="og:description" content="Free online molecular weight calculator for chemistry calculations. Calculate molar mass from chemical formulas instantly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/molecular-weight-calculator.html">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Molecular Weight Calculator - BestUtils">
+    <meta name="twitter:description" content="Calculate molecular weight and molar mass from chemical formulas with our free calculator.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-group {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            color: #374151;
+            font-weight: 500;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+        }
+        .input-field:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #3B82F6;
+            background: white;
+        }
+        .result-card {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            color: white;
+            margin-top: 1rem;
+        }
+        .breakdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .calculator-card {
+                padding: 1.5rem;
+            }
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .info-section {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .example-formula {
+            background: #f8f9fa;
+            border-left: 4px solid #3B82F6;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            font-family: 'Courier New', monospace;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="calculator-card">
+            <h1 class="text-3xl font-bold text-center mb-2">Molecular Weight Calculator</h1>
+            <p class="text-center text-blue-100 mb-6">Calculate molar mass from chemical formulas</p>
+            <div class="input-group">
+                <label class="block text-sm font-medium mb-2">Chemical Formula</label>
+                <input type="text" id="formula" class="input-field" placeholder="Enter chemical formula (e.g., H2SO4, Ca(OH)2, CuSO4·5H2O)" autocomplete="off">
+                <div class="text-xs text-blue-100 mt-2">
+                    Use standard chemical notation. Examples: H2O, NaCl, Ca(OH)2, CuSO4·5H2O
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <button onclick="calculateMolecularWeight()" class="btn-primary mr-4">Calculate</button>
+                <button onclick="clearAll()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md font-semibold">Clear</button>
+            </div>
+            <div id="results" class="hidden">
+                <div class="result-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">What is Molecular Weight?</h3>
+            <p class="text-gray-600 mb-4">
+                Molecular weight (also called molar mass) is the mass of one mole of a substance, expressed in grams per mole (g/mol). It's calculated by summing the atomic weights of all atoms in a molecule, multiplied by their respective quantities in the chemical formula.
+            </p>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">How to Use This Calculator</h3>
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                    <li><strong>Enter Formula:</strong> Type the chemical formula using standard notation</li>
+                    <li><strong>Use Proper Format:</strong> Follow chemical naming conventions (see examples below)</li>
+                    <li><strong>Calculate:</strong> Click "Calculate" to get the molecular weight</li>
+                    <li><strong>View Breakdown:</strong> See detailed analysis of each element's contribution</li>
+                    <li><strong>Quick Examples:</strong> Use the example buttons for common compounds</li>
+                </ol>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Formula Format Guidelines</h3>
+            <div class="space-y-3 mb-4">
+                <div class="example-formula">
+                    <strong>Simple compounds:</strong> H2O, NaCl, CO2
+                </div>
+                <div class="example-formula">
+                    <strong>With parentheses:</strong> Ca(OH)2, Al2(SO4)3, Mg(NO3)2
+                </div>
+                <div class="example-formula">
+                    <strong>Hydrates:</strong> CuSO4·5H2O, CaCl2·2H2O
+                </div>
+                <div class="example-formula">
+                    <strong>Complex compounds:</strong> K4[Fe(CN)6], [Cu(NH3)4]SO4
+                </div>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Features</h3>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-800 mb-2">✓ Comprehensive Database</h4>
+                    <p class="text-sm text-green-700">Includes atomic weights for all elements</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">✓ Complex Formulas</h4>
+                    <p class="text-sm text-blue-700">Handles parentheses, hydrates, and complex compounds</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">✓ Detailed Breakdown</h4>
+                    <p class="text-sm text-purple-700">Shows contribution of each element</p>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-orange-800 mb-2">✓ Instant Results</h4>
+                    <p class="text-sm text-orange-700">Real-time calculations with high precision</p>
+                </div>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Common Applications</h3>
+            <ul class="list-disc list-inside space-y-1 text-gray-600 mb-4">
+                <li>Stoichiometric calculations in chemical reactions</li>
+                <li>Determining empirical and molecular formulas</li>
+                <li>Converting between moles and grams</li>
+                <li>Quality control in pharmaceutical manufacturing</li>
+                <li>Research and development in chemistry</li>
+                <li>Educational purposes in chemistry courses</li>
+            </ul>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4">
+                <div class="flex">
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700">
+                            <strong>Note:</strong> This calculator uses standard atomic weights as defined by IUPAC. For isotopes or elements with variable atomic weights, the most common values are used. Always verify critical calculations with current literature values.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Atomic weights database (simplified - major elements)
+        const atomicWeights = {
+            'H': 1.008, 'He': 4.003, 'Li': 6.941, 'Be': 9.012, 'B': 10.811, 'C': 12.011,
+            'N': 14.007, 'O': 15.999, 'F': 18.998, 'Ne': 20.180, 'Na': 22.990, 'Mg': 24.305,
+            'Al': 26.982, 'Si': 28.086, 'P': 30.974, 'S': 32.065, 'Cl': 35.453, 'Ar': 39.948,
+            'K': 39.098, 'Ca': 40.078, 'Sc': 44.956, 'Ti': 47.867, 'V': 50.942, 'Cr': 51.996,
+            'Mn': 54.938, 'Fe': 55.845, 'Co': 58.933, 'Ni': 58.693, 'Cu': 63.546, 'Zn': 65.380,
+            'Ga': 69.723, 'Ge': 72.640, 'As': 74.922, 'Se': 78.960, 'Br': 79.904, 'Kr': 83.798,
+            'Rb': 85.468, 'Sr': 87.620, 'Y': 88.906, 'Zr': 91.224, 'Nb': 92.906, 'Mo': 95.960,
+            'Tc': 98.000, 'Ru': 101.070, 'Rh': 102.906, 'Pd': 106.420, 'Ag': 107.868, 'Cd': 112.411,
+            'In': 114.818, 'Sn': 118.710, 'Sb': 121.760, 'Te': 127.600, 'I': 126.904, 'Xe': 131.293,
+            'Cs': 132.905, 'Ba': 137.327, 'La': 138.905, 'Ce': 140.116, 'Pr': 140.908, 'Nd': 144.242,
+            'Pm': 145.000, 'Sm': 150.360, 'Eu': 151.964, 'Gd': 157.250, 'Tb': 158.925, 'Dy': 162.500,
+            'Ho': 164.930, 'Er': 167.259, 'Tm': 168.934, 'Yb': 173.054, 'Lu': 174.967, 'Hf': 178.490,
+            'Ta': 180.948, 'W': 183.840, 'Re': 186.207, 'Os': 190.230, 'Ir': 192.217, 'Pt': 195.084,
+            'Au': 196.967, 'Hg': 200.590, 'Tl': 204.383, 'Pb': 207.200, 'Bi': 208.980, 'Po': 209.000,
+            'At': 210.000, 'Rn': 222.000, 'Fr': 223.000, 'Ra': 226.000, 'Ac': 227.000, 'Th': 232.038,
+            'Pa': 231.036, 'U': 238.029
+        };
+        function parseFormula(formula) {
+            // Remove spaces and handle hydrates
+            formula = formula.replace(/\s/g, '').replace(/·/g, '.');
+            const elements = {};
+            let i = 0;
+            function parseGroup(multiplier = 1) {
+                while (i < formula.length) {
+                    const char = formula[i];
+                    if (char === '(') {
+                        i++; // skip '('
+                        const groupStart = i;
+                        let parenthesesCount = 1;
+                        // Find matching closing parenthesis
+                        while (parenthesesCount > 0 && i < formula.length) {
+                            if (formula[i] === '(') parenthesesCount++;
+                            if (formula[i] === ')') parenthesesCount--;
+                            i++;
+                        }
+                        // Parse the number after parentheses
+                        let groupMultiplier = '';
+                        while (i < formula.length && /\d/.test(formula[i])) {
+                            groupMultiplier += formula[i];
+                            i++;
+                        }
+                        const groupMult = parseInt(groupMultiplier) || 1;
+                        const groupFormula = formula.substring(groupStart, i - groupMultiplier.length - 1);
+                        // Recursively parse the group
+                        const savedI = i;
+                        i = 0;
+                        const groupElements = parseFormula(groupFormula);
+                        i = savedI;
+                        // Add group elements with multiplier
+                        for (const [element, count] of Object.entries(groupElements)) {
+                            elements[element] = (elements[element] || 0) + count * groupMult * multiplier;
+                        }
+                    } else if (char === ')') {
+                        return elements;
+                    } else if (char === '.') {
+                        i++;
+                        // Handle hydrates - everything after the dot
+                        const remainingFormula = formula.substring(i);
+                        const hydrateElements = parseFormula(remainingFormula);
+                        for (const [element, count] of Object.entries(hydrateElements)) {
+                            elements[element] = (elements[element] || 0) + count * multiplier;
+                        }
+                        break;
+                    } else if (/[A-Z]/.test(char)) {
+                        // Parse element
+                        let element = char;
+                        i++;
+                        // Check for lowercase letters (part of element symbol)
+                        while (i < formula.length && /[a-z]/.test(formula[i])) {
+                            element += formula[i];
+                            i++;
+                        }
+                        // Parse number
+                        let number = '';
+                        while (i < formula.length && /\d/.test(formula[i])) {
+                            number += formula[i];
+                            i++;
+                        }
+                        const count = parseInt(number) || 1;
+                        elements[element] = (elements[element] || 0) + count * multiplier;
+                    } else {
+                        i++;
+                    }
+                }
+                return elements;
+            }
+            return parseGroup();
+        }
+        function calculateMolecularWeight() {
+            const formula = document.getElementById('formula').value.trim();
+            if (!formula) {
+                alert('Please enter a chemical formula.');
+                return;
+            }
+            try {
+                const elements = parseFormula(formula);
+                let totalWeight = 0;
+                const breakdown = [];
+                for (const [element, count] of Object.entries(elements)) {
+                    if (atomicWeights[element]) {
+                        const weight = atomicWeights[element] * count;
+                        totalWeight += weight;
+                        breakdown.push({
+                            element: element,
+                            count: count,
+                            atomicWeight: atomicWeights[element],
+                            totalWeight: weight
+                        });
+                    } else {
+                        throw new Error(`Unknown element: ${element}`);
+                    }
+                }
+                // Sort breakdown by element symbol
+                breakdown.sort((a, b) => a.element.localeCompare(b.element));
+                // Display results
+                displayResults(formula, totalWeight, breakdown);
+            } catch (error) {
+                alert(`Error parsing formula: ${error.message}\nPlease check your formula format.`);
+            }
+        }
+        function displayResults(formula, totalWeight, breakdown) {
+            const resultDiv = document.getElementById('results');
+            const resultContent = document.getElementById('resultContent');
+            let html = `
+                <div class="text-center mb-4">
+                    <div class="text-3xl font-bold">${totalWeight.toFixed(4)} g/mol</div>
+                    <div class="text-lg opacity-90">Molecular Weight of ${formula}</div>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-lg font-semibold mb-3">Element Breakdown:</h4>
+            `;
+            breakdown.forEach(item => {
+                html += `
+                    <div class="breakdown-item">
+                        <div>
+                            <span class="font-semibold">${item.element}</span>
+                            ${item.count > 1 ? ` × ${item.count}` : ''}
+                        </div>
+                        <div class="text-right">
+                            <div>${item.atomicWeight} × ${item.count} = ${item.totalWeight.toFixed(4)} g/mol</div>
+                            <div class="text-sm opacity-75">${((item.totalWeight / totalWeight) * 100).toFixed(1)}%</div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            resultContent.innerHTML = html;
+            resultDiv.classList.remove('hidden');
+            // Scroll to results
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        function setFormula(formula) {
+            document.getElementById('formula').value = formula;
+            calculateMolecularWeight();
+        }
+        function clearAll() {
+            document.getElementById('formula').value = '';
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('formula').focus();
+        }
+        // Allow Enter key to trigger calculation
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateMolecularWeight();
+            }
+        });
+        // Focus on input field when page loads
+        window.onload = function() {
+            document.getElementById('formula').focus();
+        };
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧪</span>
+                Related Chemistry Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="molarity_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧪</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Molarity Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate molarity</div></div>
+                </a>
+                <a href="half-life-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚛️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Half Life Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate half-life</div></div>
+                </a>
+                <a href="mass_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Mass Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate mass</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="log_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Log Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Logarithm calculations</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>bold mb-3 text-center">Results</h3>
+                    <div id="resultContent" class="space-y-3"></div>
+                </div>
+            </div>
+            <!-- Quick Examples -->
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold mb-3">Quick Examples</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    <button onclick="setFormula('H2O')" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-2 rounded text-sm transition-colors">H₂O</button>
+                    <button onclick="setFormula('NaCl')" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-2 rounded text-sm transition-colors">NaCl</button>
+                    <button onclick="setFormula('H2SO4')" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-2 rounded text-sm transition-colors">H₂SO₄</button>
+                    <button onclick="setFormula('Ca(OH)2')" class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-2 rounded text-sm transition-colors">Ca(OH)₂</button>
+                </div>
+            </div>
+        </div>
+        <!-- Information Section -->
+        <div class="info-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About Molecular Weight Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Our molecular weight calculator is an essential tool for chemistry students, researchers, and professionals. It calculates the molar mass of chemical compounds from their molecular formulas, providing detailed breakdowns of each element's contribution to the total molecular weight.
+            </p>
+            <h3 class="text-xl font-

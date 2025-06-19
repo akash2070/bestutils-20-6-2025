@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - BestUtils | Free Online Tools & Calculators</title>
+    <meta name="description" content="Complete sitemap of BestUtils - Browse all free online calculators and tools organized by categories including Finance, Health, Math, and more.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: #f5f7fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .main-pages {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .main-pages h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .main-pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .page-link {
+            display: block;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+
+        .page-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .category-count {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .tools-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .tool-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            border-left: 2px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tool-link:hover {
+            background: #e2e8f0;
+            border-left-color: #667eea;
+            transform: translateX(2px);
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile-first responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+            
+            .header {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .tools-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 0.4rem;
+            }
+            
+            .tool-link {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.6rem;
+            }
+            
+            .main-pages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tools-list {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .tool-link {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ BestUtils Sitemap</h1>
+            <p>Complete directory of all free online tools and calculators</p>
+        </div>
+
+        <!-- Main Pages -->
+        <div class="main-pages">
+            <h2>📋 Main Pages</h2>
+            <div class="main-pages-grid">
+                <a href="index.html" class="page-link">🏠 Home - All Tools</a>
+                <a href="sitemap.html" class="page-link">🗺️ Sitemap</a>
+                <a href="privacy-policy.html" class="page-link">🔒 Privacy Policy</a>
+                <a href="terms-of-use.html" class="page-link">📋 Terms of Use</a>
+                <a href="templates/about-us.html" class="page-link">ℹ️ About Us</a>
+                <a href="templates/contact-us.html" class="page-link">📧 Contact Us</a>
+            </div>
+        </div>
+
+        <!-- Categories and Tools -->
+        <div class="categories-grid">
+            <!-- Finance Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">💰</div>
+                    <div>
+                        <div class="category-title">Finance & Investment</div>
+                        <div class="category-count">40+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/401k-calculator.html" class="tool-link">401k Calculator</a>
+                    <a href="templates/amortization-calculator.html" class="tool-link">Amortization</a>
+                    <a href="templates/annuity-calculator.html" class="tool-link">Annuity Calculator</a>
+                    <a href="templates/annuity-payout-calculator.html" class="tool-link">Annuity Payout</a>
+                    <a href="templates/apr-calculator.html" class="tool-link">APR Calculator</a>
+                    <a href="templates/auto-loan-calculator.html" class="tool-link">Auto Loan</a>
+                    <a href="templates/auto_lease_calculator.html" class="tool-link">Auto Lease</a>
+                    <a href="templates/budget_calculator.html" class="tool-link">Budget Calculator</a>
+                    <a href="templates/business_loan_calculator.html" class="tool-link">Business Loan</a>
+                    <a href="templates/college_cost_calculator.html" class="tool-link">College Cost</a>
+                    <a href="templates/commission_calculator.html" class="tool-link">Commission</a>
+                    <a href="templates/compound-interest-calculator.html" class="tool-link">Compound Interest</a>
+                    <a href="templates/finance-calculator.html" class="tool-link">Finance Calculator</a>
+                    <a href="templates/future_value_calculator.html" class="tool-link">Future Value</a>
+                    <a href="templates/gst-calculator.html" class="tool-link">GST Calculator</a>
+                    <a href="templates/house_affordability_calculator.html" class="tool-link">House Affordability</a>
+                    <a href="templates/income-tax-calculator.html" class="tool-link">Income Tax</a>
+                    <a href="templates/income-tax-estimator.html" class="tool-link">Income Tax Estimator</a>
+                    <a href="templates/inflation-calculator.html" class="tool-link">Inflation</a>
+                    <a href="templates/interest-calculator.html" class="tool-link">Interest Calculator</a>
+                    <a href="templates/interest-rate-calculator.html" class="tool-link">Interest Rate</a>
+                    <a href="templates/investment-calculator.html" class="tool-link">Investment</a>
+                    <a href="templates/ira-calculator.html" class="tool-link">IRA Calculator</a>
+                    <a href="templates/irr_calculator.html" class="tool-link">IRR Calculator</a>
+                    <a href="templates/lease-calculator.html" class="tool-link">Lease Calculator</a>
+                    <a href="templates/loan-calculator.html" class="tool-link">Loan Calculator</a>
+                    <a href="templates/loan-emi-calculator.html" class="tool-link">Loan EMI</a>
+                    <a href="templates/margin_calculator.html" class="tool-link">Margin Calculator</a>
+                    <a href="templates/marriage_tax_calculator.html" class="tool-link">Marriage Tax</a>
+                    <a href="templates/mortgage-amortization-calculator.html" class="tool-link">Mortgage Amortization</a>
+                    <a href="templates/mortgage-calculator.html" class="tool-link">Mortgage Calculator</a>
+                    <a href="templates/mortgage-calculator-uk.html" class="tool-link">Mortgage UK</a>
+                    <a href="templates/mortgage_payoff_calculator.html" class="tool-link">Mortgage Payoff</a>
+                    <a href="templates/payment-calculator.html" class="tool-link">Payment Calculator</a>
+                    <a href="templates/payback_period_calculator.html" class="tool-link">Payback Period</a>
+                    <a href="templates/pension_calculator.html" class="tool-link">Pension Calculator</a>
+                    <a href="templates/personal-loan-calculator.html" class="tool-link">Personal Loan</a>
+                    <a href="templates/real-estate-calculator.html" class="tool-link">Real Estate</a>
+                    <a href="templates/refinance-calculator.html" class="tool-link">Refinance</a>
+                    <a href="templates/rental-property-calculator.html" class="tool-link">Rental Property</a>
+                    <a href="templates/rent-calculator.html" class="tool-link">Rent Calculator</a>
+                    <a href="templates/rent-vs-buy-calculator.html" class="tool-link">Rent vs Buy</a>
+                    <a href="templates/repayment-calculator.html" class="tool-link">Repayment</a>
+                    <a href="templates/retirement-calculator.html" class="tool-link">Retirement</a>
+                    <a href="templates/rmd-calculator.html" class="tool-link">RMD Calculator</a>
+                    <a href="templates/roi-calculator.html" class="tool-link">ROI Calculator</a>
+                    <a href="templates/roth_ira_calculator.html" class="tool-link">Roth IRA</a>
+                    <a href="templates/salary-calculator.html" class="tool-link">Salary Calculator</a>
+                    <a href="templates/sales-tax-calculator.html" class="tool-link">Sales Tax</a>
+                    <a href="templates/savings_calculator.html" class="tool-link">Savings Calculator</a>
+                    <a href="templates/simple_interest_calculator.html" class="tool-link">Simple Interest</a>
+                    <a href="templates/sip-calculator.html" class="tool-link">SIP Calculator</a>
+                    <a href="templates/social_security_calculator.html" class="tool-link">Social Security</a>
+                    <a href="templates/student_loan_calculator.html" class="tool-link">Student Loan</a>
+                    <a href="templates/take_home_calculator.html" class="tool-link">Take Home Pay</a>
+                    <a href="templates/tip_calculator.html" class="tool-link">Tip Calculator</a>
+                    <a href="templates/va-mortgage-calculator.html" class="tool-link">VA Mortgage</a>
+                    <a href="templates/vat-calculator.html" class="tool-link">VAT Calculator</a>
+                </div>
+            </div>
+
+            <!-- Health Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🏥</div>
+                    <div>
+                        <div class="category-title">Health & Fitness</div>
+                        <div class="category-count">25+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/age-calculator.html" class="tool-link">Age Calculator</a>
+                    <a href="templates/anorexic-bmi-calculator.html" class="tool-link">Anorexic BMI</a>
+                    <a href="templates/army_body_fat_calculator.html" class="tool-link">Army Body Fat</a>
+                    <a href="templates/bac_calculator.html" class="tool-link">BAC Calculator</a>
+                    <a href="templates/bmi-calculator.html" class="tool-link">BMI Calculator</a>
+                    <a href="templates/bmr-calculator.html" class="tool-link">BMR Calculator</a>
+                    <a href="templates/body-fat-calculator.html" class="tool-link">Body Fat</a>
+                    <a href="templates/body-surface-area-calculator.html" class="tool-link">Body Surface Area</a>
+                    <a href="templates/body-type-calculator.html" class="tool-link">Body Type</a>
+                    <a href="templates/calorie-calculator.html" class="tool-link">Calorie Calculator</a>
+                    <a href="templates/gfr_calculator.html" class="tool-link">GFR Calculator</a>
+                    <a href="templates/golf_handicap_calculator.html" class="tool-link">Golf Handicap</a>
+                    <a href="templates/healthy_weight_calculator.html" class="tool-link">Healthy Weight</a>
+                    <a href="templates/heart_rate_calculator.html" class="tool-link">Heart Rate</a>
+                    <a href="templates/height_calculator.html" class="tool-link">Height Calculator</a>
+                    <a href="templates/ideal-weight-calculator.html" class="tool-link">Ideal Weight</a>
+                    <a href="templates/lean_body_mass_calculator.html" class="tool-link">Lean Body Mass</a>
+                    <a href="templates/love_calculator.html" class="tool-link">Love Calculator</a>
+                    <a href="templates/macro_calculator.html" class="tool-link">Macro Calculator</a>
+                    <a href="templates/one_rep_max_calculator.html" class="tool-link">One Rep Max</a>
+                    <a href="templates/overweight_calculator.html" class="tool-link">Overweight</a>
+                    <a href="templates/ovulation_calculator.html" class="tool-link">Ovulation</a>
+                    <a href="templates/period_calculator.html" class="tool-link">Period Calculator</a>
+                    <a href="templates/pregnancy-calculator.html" class="tool-link">Pregnancy</a>
+                    <a href="templates/pregnancy-conception-calculator.html" class="tool-link">Pregnancy Conception</a>
+                    <a href="templates/pregnancy_weight_calculator.html" class="tool-link">Pregnancy Weight</a>
+                    <a href="templates/sleep_calculator.html" class="tool-link">Sleep Calculator</a>
+                    <a href="templates/tdee_calculator.html" class="tool-link">TDEE Calculator</a>
+                    <a href="templates/weight_calculator.html" class="tool-link">Weight Calculator</a>
+                    <a href="templates/weight_watchers_calculator.html" class="tool-link">Weight Watchers</a>
+                </div>
+            </div>
+
+            <!-- Math Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🧮</div>
+                    <div>
+                        <div class="category-title">Math & Science</div>
+                        <div class="category-count">35+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/average_calculator.html" class="tool-link">Average Calculator</a>
+                    <a href="templates/basic-calculator.html" class="tool-link">Basic Calculator</a>
+                    <a href="templates/cgpa-to-percentage.html" class="tool-link">CGPA to Percentage</a>
+                    <a href="templates/common_factor_calculator.html" class="tool-link">Common Factor</a>
+                    <a href="templates/density_calculator.html" class="tool-link">Density Calculator</a>
+                    <a href="templates/depricialtion-calculator.html" class="tool-link">Depreciation</a>
+                    <a href="templates/fraction-calculator.html" class="tool-link">Fraction Calculator</a>
+                    <a href="templates/gcf-calculator.html" class="tool-link">GCF Calculator</a>
+                    <a href="templates/gpa-calculator.html" class="tool-link">GPA Calculator</a>
+                    <a href="templates/grade-calculator.html" class="tool-link">Grade Calculator</a>
+                    <a href="templates/half-life-calculator.html" class="tool-link">Half Life</a>
+                    <a href="templates/hex_calculator.html" class="tool-link">Hex Calculator</a>
+                    <a href="templates/horsepower_calculator.html" class="tool-link">Horsepower</a>
+                    <a href="templates/lcm-calculator.html" class="tool-link">LCM Calculator</a>
+                    <a href="templates/log_calculator.html" class="tool-link">Log Calculator</a>
+                    <a href="templates/long_division_calculator.html" class="tool-link">Long Division</a>
+                    <a href="templates/mass_calculator.html" class="tool-link">Mass Calculator</a>
+                    <a href="templates/matrix_calculator.html" class="tool-link">Matrix Calculator</a>
+                    <a href="templates/mean_median_mode_range_calculator.html" class="tool-link">Mean Median Mode</a>
+                    <a href="templates/molarity_calculator.html" class="tool-link">Molarity</a>
+                    <a href="templates/molecular_weight_calculator.html" class="tool-link">Molecular Weight</a>
+                    <a href="templates/percentage-calculator.html" class="tool-link">Percentage</a>
+                    <a href="templates/percent_error_calculator.html" class="tool-link">Percent Error</a>
+                    <a href="templates/percent_off_calculator.html" class="tool-link">Percent Off</a>
+                    <a href="templates/permutation-combination-calculator.html" class="tool-link">Permutation Combination</a>
+                    <a href="templates/pvalue_calculator.html" class="tool-link">P-Value Calculator</a>
+                    <a href="templates/random-number-generator.html" class="tool-link">Random Number</a>
+                    <a href="templates/root_calculator.html" class="tool-link">Root Calculator</a>
+                    <a href="templates/rounding_calculator.html" class="tool-link">Rounding</a>
+                    <a href="templates/sample_size_calculator.html" class="tool-link">Sample Size</a>
+                    <a href="templates/scientific-calculator.html" class="tool-link">Scientific Calculator</a>
+                    <a href="templates/scientific_notation_calculator.html" class="tool-link">Scientific Notation</a>
+                    <a href="templates/slope_calculator.html" class="tool-link">Slope Calculator</a>
+                    <a href="templates/standard-deviation-calculator.html" class="tool-link">Standard Deviation</a>
+                    <a href="templates/statistics_calculator.html" class="tool-link">Statistics</a>
+                    <a href="templates/surface_area_calculator.html" class="tool-link">Surface Area</a>
+                    <a href="templates/triangle-calculator.html" class="tool-link">Triangle</a>
+                    <a href="templates/volume_calculator.html" class="tool-link">Volume Calculator</a>
+                    <a href="templates/z-score-calculator.html" class="tool-link">Z-Score</a>
+                </div>
+            </div>
+
+            <!-- Conversion Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🔄</div>
+                    <div>
+                        <div class="category-title">Conversion Tools</div>
+                        <div class="category-count">20+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/archive_converter.html" class="tool-link">Archive Converter</a>
+                    <a href="templates/audio_converter.html" class="tool-link">Audio Converter</a>
+                    <a href="templates/conversion-calculator.html" class="tool-link">Conversion Calculator</a>
+                    <a href="templates/currency-converter.html" class="tool-link">Currency Converter</a>
+                    <a href="templates/document-converter.html" class="tool-link">Document Converter</a>
+                    <a href="templates/heic_converter.html" class="tool-link">HEIC Converter</a>
+                    <a href="templates/image_converter_tool.html" class="tool-link">Image Converter</a>
+                    <a href="templates/image_pdf_converter.html" class="tool-link">Image to PDF</a>
+                    <a href="templates/image_svg_converter.html" class="tool-link">Image to SVG</a>
+                    <a href="templates/image-converter.html" class="tool-link">Image Converter</a>
+                    <a href="templates/image-to-base64.html" class="tool-link">Image to Base64</a>
+                    <a href="templates/json-to-xml-converter.html" class="tool-link">JSON to XML</a>
+                    <a href="templates/markdown-to-html-converter.html" class="tool-link">Markdown to HTML</a>
+                    <a href="templates/pdf_converter.html" class="tool-link">PDF Converter</a>
+                    <a href="templates/pdf_excel_converter.html" class="tool-link">PDF to Excel</a>
+                    <a href="templates/pdf-to-image-converter.html" class="tool-link">PDF to Image</a>
+                    <a href="templates/pdf-to-ppt-converter.html" class="tool-link">PDF to PPT</a>
+                    <a href="templates/pdf-to-word-converter.html" class="tool-link">PDF to Word</a>
+                    <a href="templates/ppt-to-pdf-converter.html" class="tool-link">PPT to PDF</a>
+                    <a href="templates/raw_image_converter.html" class="tool-link">Raw Image Converter</a>
+                    <a href="templates/resolution_converter.html" class="tool-link">Resolution Converter</a>
+                    <a href="templates/roman-numeral-converter.html" class="tool-link">Roman Numeral</a>
+                    <a href="templates/unit-converter.html" class="tool-link">Unit Converter</a>
+                    <a href="templates/video_converter.html" class="tool-link">Video Converter</a>
+                    <a href="templates/video-converter.html" class="tool-link">Video Converter</a>
+                    <a href="templates/video-to-audio-converter.html" class="tool-link">Video to Audio</a>
+                    <a href="templates/video-to-gif-converter.html" class="tool-link">Video to GIF</a>
+                    <a href="templates/word-to-pdf-converter.html" class="tool-link">Word to PDF</a>
+                    <a href="templates/xml-to-json-converter.html" class="tool-link">XML to JSON</a>
+                </div>
+            </div>
+
+            <!-- Text & File Tools Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">📝</div>
+                    <div>
+                        <div class="category-title">Text & File Tools</div>
+                        <div class="category-count">25+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/base64-encoder-decoder.html" class="tool-link">Base64 Encoder</a>
+                    <a href="templates/essay-word-density-checker.html" class="tool-link">Essay Word Density</a>
+                    <a href="templates/file-hash-generator.html" class="tool-link">File Hash</a>
+                    <a href="templates/file-size-estimator.html" class="tool-link">File Size Estimator</a>
+                    <a href="templates/html-beautifier.html" class="tool-link">HTML Beautifier</a>
+                    <a href="templates/html-minifier.html" class="tool-link">HTML Minifier</a>
+                    <a href="templates/html-to-markdown.html" class="tool-link">HTML to Markdown</a>
+                    <a href="templates/json_minifier.html" class="tool-link">JSON Minifier</a>
+                    <a href="templates/jwt_debugger.html" class="tool-link">JWT Debugger</a>
+                    <a href="templates/online-signature-pad.html" class="tool-link">Online Signature</a>
+                    <a href="templates/password-generator.html" class="tool-link">Password Generator</a>
+                    <a href="templates/pdf_compressor.html" class="tool-link">PDF Compressor</a>
+                    <a href="templates/qr-code-generator.html" class="tool-link">QR Code Generator</a>
+                    <a href="templates/regex-tester.html" class="tool-link">Regex Tester</a>
+                    <a href="templates/resume_builder.html" class="tool-link">Resume Builder</a>
+                    <a href="templates/resume_score_checker.html" class="tool-link">Resume Score</a>
+                    <a href="templates/sql_beautifier.html" class="tool-link">SQL Beautifier</a>
+                    <a href="templates/sql_minifier.html" class="tool-link">SQL Minifier</a>
+                    <a href="templates/text_analyzer.html" class="tool-link">Text Analyzer</a>
+                    <a href="templates/text-case-converter.html" class="tool-link">Text Case Converter</a>
+                    <a href="templates/typing-speed-test.html" class="tool-link">Typing Speed Test</a>
+                    <a href="templates/url-encoder-decoder.html" class="tool-link">URL Encoder</a>
+                    <a href="templates/uuid-generator.html" class="tool-link">UUID Generator</a>
+                    <a href="templates/voice-recorder-tool.html" class="tool-link">Voice Recorder</a>
+                    <a href="templates/word-counter.html" class="tool-link">Word Counter</a>
+                    <a href="templates/xml-beautifier.html" class="tool-link">XML Beautifier</a>
+                    <a href="templates/xml-minifier.html" class="tool-link">XML Minifier</a>
+                </div>
+            </div>
+
+            <!-- Time & Date Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">⏰</div>
+                    <div>
+                        <div class="category-title">Time & Date Tools</div>
+                        <div class="category-count">10+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/date-calculator.html" class="tool-link">Date Calculator</a>
+                    <a href="templates/date-difference-calculator.html" class="tool-link">Date Difference</a>
+                    <a href="templates/due-date-calculator.html" class="tool-link">Due Date</a>
+                    <a href="templates/hours-calculator.html" class="tool-link">Hours Calculator</a>
+                    <a href="templates/pace-calculator.html" class="tool-link">Pace Calculator</a>
+                    <a href="templates/stopwatch.html" class="tool-link">Stopwatch</a>
+                    <a href="templates/time-calculator.html" class="tool-link">Time Calculator</a>
+                    <a href="templates/time-duration-calculator.html" class="tool-link">Time Duration</a>
+                    <a href="templates/time-zone-converter.html" class="tool-link">Time Zone</a>
+                </div>
+            </div>
+
+            <!-- Construction & Home Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🏗️</div>
+                    <div>
+                        <div class="category-title">Construction & Home</div>
+                        <div class="category-count">8+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/concrete-calculator.html" class="tool-link">Concrete</a>
+                    <a href="templates/gravel_calculator.html" class="tool-link">Gravel</a>
+                    <a href="templates/mulch_calculator.html" class="tool-link">Mulch</a>
+                    <a href="templates/ohms-law-calculator.html" class="tool-link">Ohm's Law</a>
+                    <a href="templates/resistor-calculator.html" class="tool-link">Resistor</a>
+                    <a href="templates/roofing-calculator.html" class="tool-link">Roofing</a>
+                    <a href="templates/square_footage_calculator.html" class="tool-link">Square Footage</a>
+                    <a href="templates/stair_calculator.html" class="tool-link">Stair</a>
+                    <a href="templates/tile_calculator.html" class="tool-link">Tile</a>
+                    <a href="templates/voltage_drop_calculator.html" class="tool-link">Voltage Drop</a>
+                </div>
+            </div>
+
+            <!-- Automotive & Travel Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">🚗</div>
+                    <div>
+                        <div class="category-title">Automotive & Travel</div>
+                        <div class="category-count">6+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/boat-loan-calculator.html" class="tool-link">Boat Loan</a>
+                    <a href="templates/fuel_cost_calculator.html" class="tool-link">Fuel Cost</a>
+                    <a href="templates/gas_mileage_calculator.html" class="tool-link">Gas Mileage</a>
+                    <a href="templates/mileage_calculator.html" class="tool-link">Mileage</a>
+                    <a href="templates/speed_calculator.html" class="tool-link">Speed Calculator</a>
+                    <a href="templates/tire-size-calculator.html" class="tool-link">Tire Size</a>
+                </div>
+            </div>
+
+            <!-- Utility Tools Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">⚙️</div>
+                    <div>
+                        <div class="category-title">Utility Tools</div>
+                        <div class="category-count">15+ tools</div>
+                    </div>
+                </div>
+                <div class="tools-list">
+                    <a href="templates/bandwidth_calculator.html" class="tool-link">Bandwidth</a>
+                    <a href="templates/color-picker.html" class="tool-link">Color Picker</a>
+                    <a href="templates/dew_point_calculator.html" class="tool-link">Dew Point</a>
+                    <a href="templates/electricity_calculator.html" class="tool-link">Electricity</a>
+                    <a href="templates/heat_index_calculator.html" class="tool-link">Heat Index</a>
+                    <a href="templates/ip-lookup.html" class="tool-link">IP Lookup</a>
+                    <a href="templates/mp3_volume_booster.html" class="tool-link">MP3 Volume Booster</a>
+                    <a href="templates/speed-test.html" class="tool-link">Speed Test</a>
+                    <a href="templates/subnet-calculator.html" class="tool-link">Subnet</a>
+                    <a href="templates/wind-chill-calculator.html" class="tool-link">Wind Chill</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 BestUtils. All rights reserved. | Free Tools & Calculators</p>
+        </div>
+    </div>
+</body>
+</html>
+
+

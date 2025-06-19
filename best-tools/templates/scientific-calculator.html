@@ -1,0 +1,665 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary SEO Meta Tags -->
+    <title>Scientific Calculator - Advanced Math Functions | BestUtils</title>
+    <meta name="title" content="Scientific Calculator - Advanced Math Functions | BestUtils">
+    <meta name="description" content="Free online scientific calculator with trigonometry, logarithms, powers, roots & more. Perfect for students, engineers & advanced math calculations.">
+    <meta name="keywords" content="scientific calculator, free scientific calculator online, online scientific calculator, trigonometry calculator, logarithm calculator, advanced math calculator, engineering calculator, sin cos tan calculator, square root calculator, scientific calculator with functions, math calculator advanced, scientific calculator free, calculator with trigonometry, scientific calculator tool, bestutils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/scientific-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/scientific-calculator.html">
+    <meta property="og:title" content="Scientific Calculator - Advanced Math Functions | BestUtils">
+    <meta property="og:description" content="Free online scientific calculator with trigonometry, logarithms, powers, roots & more. Perfect for students, engineers & advanced math calculations.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/scientific-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/scientific-calculator.html">
+    <meta name="twitter:title" content="Scientific Calculator - Advanced Math Functions | BestUtils">
+    <meta name="twitter:description" content="Free online scientific calculator with trigonometry, logarithms, powers, roots & more. Perfect for students, engineers & advanced math calculations.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/scientific-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Scientific Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="BestUtils">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Scientific Calculator",
+        "description": "Free online scientific calculator with advanced mathematical functions including trigonometry, logarithms, powers, roots and more.",
+        "url": "https://bestutils.com/templates/scientific-calculator.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and general layout */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            display: flex;
+            flex-direction: column; /* Stack logo and calculator vertically */
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .logo-section {
+            margin-bottom: 30px; /* Space between logo and calculator */
+            padding: 15px 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px; /* Match calculator width */
+            width: 100%;
+            justify-content: center; /* Center content horizontally */
+        }
+        .logo-main-line {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Smaller gap for top placement */
+        }
+        .logo-text-best {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #0F172A;
+            letter-spacing: -1px;
+        }
+        .logo-text-utils {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #2563EB;
+            letter-spacing: -1px;
+        }
+        .gear-icon {
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .display {
+            background-color: #e2e8f0; /* Slate-200 */
+            color: #1e293b; /* Slate-800 */
+            font-size: 2.5rem;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: right;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            word-wrap: break-word;
+            overflow-x: auto;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns for numbers and functions */
+            gap: 10px;
+        }
+        .btn-calc {
+            padding: 15px 10px;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            outline: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .btn-calc:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-number, .btn-decimal {
+            background-color: #f1f5f9; /* Slate-100 */
+            color: #334155; /* Slate-700 */
+        }
+        .btn-number:hover, .btn-decimal:hover {
+            background-color: #e2e8f0; /* Slate-200 */
+        }
+        .btn-operator {
+            background-color: #bfdbfe; /* Blue-200 */
+            color: #1e40af; /* Blue-800 */
+        }
+        .btn-operator:hover {
+            background-color: #93c5fd; /* Blue-300 */
+        }
+        .btn-clear, .btn-equals {
+            background-color: #2563eb; /* Blue-600 */
+            color: #ffffff;
+            grid-column: span 2; /* Span two columns for larger buttons */
+        }
+        .btn-clear:hover, .btn-equals:hover {
+            background-color: #1d4ed8; /* Blue-700 */
+        }
+        .btn-function {
+            background-color: #dbeafe; /* Blue-100 */
+            color: #1e40af; /* Blue-800 */
+            font-size: 1rem; /* Smaller font for functions */
+        }
+        .btn-function:hover {
+            background-color: #bfdbfe; /* Blue-200 */
+        }
+        /* Specific button sizing */
+        .btn-zero {
+            grid-column: span 2;
+        }
+        .btn-equals {
+            grid-column: span 2;
+        }
+        .error-message {
+            color: #ef4444; /* Red-500 */
+            font-size: 0.875rem;
+            margin-top: 8px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="logo-section">
+        <div class="logo-main-line">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g class="gear-icon" transform="translate(50, 50) scale(0.6)">
+                    <circle cx="0" cy="0" r="30" fill="#2563EB"/>
+                    <circle cx="0" cy="0" r="12" fill="#ffffff"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(0)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(60)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(120)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(180)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(240)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(300)"/>
+                </g>
+            </svg>
+            <span class="logo-text-best">Best</span>
+            <span class="logo-text-utils">Utils</span>
+        </div>
+    </div>
+    <div class="calculator-container">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Scientific Calculator</h1>
+        <p class="text-center text-gray-600 mb-4">Perform complex calculations with our online Scientific Calculator. Features include basic arithmetic, trigonometry (sin, cos, tan), logarithms, powers, roots, and more. Perfect for students, engineers, and anyone needing advanced mathematical functions.</p>
+        <div id="display" class="display">0</div>
+        <p id="error-message" class="error-message hidden"></p>
+        <div class="buttons-grid">
+            <button class="btn-calc btn-function" data-value="deg">DEG</button>
+            <button class="btn-calc btn-function" data-value="rad">RAD</button>
+            <button class="btn-calc btn-function" data-value="sin">sin</button>
+            <button class="btn-calc btn-function" data-value="cos">cos</button>
+            <button class="btn-calc btn-function" data-value="tan">tan</button>
+            <button class="btn-calc btn-function" data-value="log">log</button>
+            <button class="btn-calc btn-function" data-value="ln">ln</button>
+            <button class="btn-calc btn-function" data-value="pow">x<sup>y</sup></button>
+            <button class="btn-calc btn-function" data-value="sqrt">&radic;x</button>
+            <button class="btn-calc btn-function" data-value="pi">&pi;</button>
+            <button class="btn-calc btn-function" data-value="clearEntry">CE</button>
+            <button class="btn-calc btn-clear" data-value="clear">C</button>
+            <button class="btn-calc btn-operator" data-value="/">&divide;</button>
+            <button class="btn-calc btn-operator" data-value="*">&times;</button>
+            <button class="btn-calc btn-function" data-value="neg">+/-</button>
+            <button class="btn-calc btn-number" data-value="7">7</button>
+            <button class="btn-calc btn-number" data-value="8">8</button>
+            <button class="btn-calc btn-number" data-value="9">9</button>
+            <button class="btn-calc btn-operator" data-value="-">-</button>
+            <button class="btn-calc btn-function" data-value="fact">x!</button>
+            <button class="btn-calc btn-number" data-value="4">4</button>
+            <button class="btn-calc btn-number" data-value="5">5</button>
+            <button class="btn-calc btn-number" data-value="6">6</button>
+            <button class="btn-calc btn-operator" data-value="+">+</button>
+            <button class="btn-calc btn-function" data-value="exp">e<sup>x</sup></button>
+            <button class="btn-calc btn-number" data-value="1">1</button>
+            <button class="btn-calc btn-number" data-value="2">2</button>
+            <button class="btn-calc btn-number" data-value="3">3</button>
+            <button class="btn-calc btn-decimal" data-value=".">.</button>
+            <button class="btn-calc btn-function" data-value="e">e</button>
+            <button class="btn-calc btn-zero" data-value="0">0</button>
+            <button class="btn-calc btn-equals" data-value="=">=</button>
+        </div>
+        <script>
+            // Get references to elements
+            const display = document.getElementById('display');
+            const errorMessage = document.getElementById('error-message');
+            const buttons = document.querySelectorAll('.btn-calc');
+            let currentInput = '0';
+            let operator = null;
+            let previousInput = '';
+            let calculationDone = false;
+            let angleMode = 'deg'; // 'deg' for degrees, 'rad' for radians
+            /**
+             * Shows an error message on the display and error element.
+             * @param {string} message - The error message to display.
+             */
+            const showError = (message) => {
+                display.textContent = 'Error';
+                errorMessage.textContent = message;
+                errorMessage.classList.remove('hidden');
+                currentInput = '0';
+                operator = null;
+                previousInput = '';
+                calculationDone = false;
+            };
+            /**
+             * Hides the error message.
+             */
+            const hideError = () => {
+                errorMessage.classList.add('hidden');
+                errorMessage.textContent = '';
+            };
+            /**
+             * Updates the calculator display.
+             */
+            const updateDisplay = () => {
+                display.textContent = currentInput;
+                hideError();
+            };
+            /**
+             * Appends a number or decimal to the current input.
+             * @param {string} value - The number or decimal string.
+             */
+            const appendNumber = (value) => {
+                if (calculationDone) {
+                    currentInput = '0';
+                    calculationDone = false;
+                }
+                if (currentInput === '0' && value !== '.') {
+                    currentInput = value;
+                } else if (value === '.' && currentInput.includes('.')) {
+                    return; // Prevent multiple decimals
+                } else {
+                    currentInput += value;
+                }
+                updateDisplay();
+            };
+            /**
+             * Handles operator clicks (+, -, *, /).
+             * @param {string} op - The operator.
+             */
+            const chooseOperator = (op) => {
+                if (currentInput === 'Error') return;
+                if (previousInput === '') {
+                    previousInput = currentInput;
+                } else if (operator) {
+                    // If an operator was already selected, calculate intermediate result
+                    performCalculation();
+                    previousInput = currentInput; // Update previous with new result
+                }
+                operator = op;
+                currentInput = '0'; // Reset current input for next number
+                calculationDone = false;
+            };
+            /**
+             * Performs the calculation based on the stored operator and inputs.
+             */
+            const performCalculation = () => {
+                if (previousInput === '' || operator === null) return;
+                let result = 0;
+                const prev = parseFloat(previousInput);
+                const current = parseFloat(currentInput);
+                if (isNaN(prev) || isNaN(current)) {
+                    showError('Invalid number input.');
+                    return;
+                }
+                try {
+                    switch (operator) {
+                        case '+':
+                            result = prev + current;
+                            break;
+                        case '-':
+                            result = prev - current;
+                            break;
+                        case '*':
+                            result = prev * current;
+                            break;
+                        case '/':
+                            if (current === 0) {
+                                showError('Division by zero!');
+                                return;
+                            }
+                            result = prev / current;
+                            break;
+                        case 'pow': // For x^y
+                            result = Math.pow(prev, current);
+                            break;
+                        default:
+                            return;
+                    }
+                    currentInput = result.toString();
+                    previousInput = '';
+                    operator = null;
+                    calculationDone = true;
+                    updateDisplay();
+                } catch (e) {
+                    showError('Calculation Error.');
+                }
+            };
+            /**
+             * Clears the current input (CE) or all (C).
+             * @param {string} type - 'clear' for all, 'clearEntry' for current input.
+             */
+            const clearDisplay = (type) => {
+                if (type === 'clear') {
+                    currentInput = '0';
+                    operator = null;
+                    previousInput = '';
+                    calculationDone = false;
+                } else if (type === 'clearEntry') {
+                    currentInput = '0';
+                }
+                updateDisplay();
+            };
+            /**
+             * Handles scientific functions.
+             * @param {string} func - The function name (e.g., 'sin', 'log').
+             */
+            const handleFunction = (func) => {
+                if (currentInput === 'Error') return;
+                let value = parseFloat(currentInput);
+                if (isNaN(value)) {
+                    showError('Invalid number for function.');
+                    return;
+                }
+                try {
+                    switch (func) {
+                        case 'sin':
+                            value = (angleMode === 'deg') ? value * (Math.PI / 180) : value;
+                            currentInput = Math.sin(value).toString();
+                            break;
+                        case 'cos':
+                            value = (angleMode === 'deg') ? value * (Math.PI / 180) : value;
+                            currentInput = Math.cos(value).toString();
+                            break;
+                        case 'tan':
+                            value = (angleMode === 'deg') ? value * (Math.PI / 180) : value;
+                            if (Math.abs(Math.cos(value)) < 1e-9) { // Check for tan(90) or tan(270)
+                                showError('Tangent undefined.');
+                                return;
+                            }
+                            currentInput = Math.tan(value).toString();
+                            break;
+                        case 'log':
+                            if (value <= 0) {
+                                showError('Log of non-positive number.');
+                                return;
+                            }
+                            currentInput = Math.log10(value).toString();
+                            break;
+                        case 'ln':
+                            if (value <= 0) {
+                                showError('Ln of non-positive number.');
+                                return;
+                            }
+                            currentInput = Math.log(value).toString();
+                            break;
+                        case 'sqrt':
+                            if (value < 0) {
+                                showError('Square root of negative number.');
+                                return;
+                            }
+                            currentInput = Math.sqrt(value).toString();
+                            break;
+                        case 'pow': // This will be handled by chooseOperator for x^y
+                            // This case is for the button itself, not the calculation
+                            chooseOperator('pow');
+                            return;
+                        case 'fact': // Factorial
+                            if (value < 0 || !Number.isInteger(value)) {
+                                showError('Factorial of non-integer or negative number.');
+                                return;
+                            }
+                            let factorialResult = 1;
+                            for (let i = 2; i <= value; i++) {
+                                factorialResult *= i;
+                            }
+                            currentInput = factorialResult.toString();
+                            break;
+                        case 'exp': // e^x
+                            currentInput = Math.exp(value).toString();
+                            break;
+                        case 'pi':
+                            currentInput = Math.PI.toString();
+                            break;
+                        case 'e':
+                            currentInput = Math.E.toString();
+                            break;
+                        case 'neg': // Toggle negative/positive
+                            currentInput = (parseFloat(currentInput) * -1).toString();
+                            break;
+                        case 'deg':
+                            angleMode = 'deg';
+                            // Optional: Update button text or indicator
+                            break;
+                        case 'rad':
+                            angleMode = 'rad';
+                            // Optional: Update button text or indicator
+                            break;
+                        default:
+                            break;
+                    }
+                    calculationDone = true; // Mark as done after a single function
+                    updateDisplay();
+                } catch (e) {
+                    showError('Function Error.');
+                }
+            };
+            // Add event listeners to all calculator buttons
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const value = button.dataset.value;
+                    if (!isNaN(value) || value === '.') {
+                        appendNumber(value);
+                    } else if (['+', '-', '*', '/'].includes(value)) {
+                        chooseOperator(value);
+                    } else if (value === '=') {
+                        performCalculation();
+                    } else if (value === 'clear' || value === 'clearEntry') {
+                        clearDisplay(value);
+                    } else { // Scientific functions
+                        handleFunction(value);
+                    }
+                });
+            });
+            // Optional: Keyboard support
+            document.addEventListener('keydown', (e) => {
+                const key = e.key;
+                if (!isNaN(key) || key === '.') {
+                    appendNumber(key);
+                } else if (['+', '-', '*', '/'].includes(key)) {
+                    chooseOperator(key);
+                } else if (key === 'Enter' || key === '=') {
+                    e.preventDefault(); // Prevent default Enter key behavior (e.g., form submission)
+                    performCalculation();
+                } else if (key === 'Backspace') {
+                    e.preventDefault(); // Prevent browser back navigation
+                    if (currentInput.length > 1) {
+                        currentInput = currentInput.slice(0, -1);
+                    } else {
+                        currentInput = '0';
+                    }
+                    updateDisplay();
+                } else if (key === 'c' || key === 'C') {
+                    clearDisplay('clear');
+                }
+                // Add more keyboard shortcuts for scientific functions if desired
+            });
+            // Initial display update
+            updateDisplay();
+        </script>
+        <!-- Internal Linking Section -->
+        <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔢</span>
+                    Related Math Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🔢</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Simple arithmetic operations</div></div>
+                    </a>
+                    <a href="hex_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🔣</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Hex Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Hexadecimal calculations</div></div>
+                    </a>
+                    <a href="log_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Log Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Logarithmic calculations</div></div>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                    Popular Math Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                    </a>
+                    <a href="fraction-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🔢</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Fraction Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate with fractions</div></div>
+                    </a>
+                    <a href="matrix_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🔢</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Matrix Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Matrix operations</div></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

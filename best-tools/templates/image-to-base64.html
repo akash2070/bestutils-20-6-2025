@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Base64 Converter - Convert Images to Base64 Encoding Online | BestUtils</title>
+    <meta name="description" content="Free image to Base64 converter tool. Convert JPG, PNG, GIF images to Base64 encoding instantly. Perfect for embedding images in CSS, HTML, or JSON.">
+    <meta name="keywords" content="image to base64 converter, free image to base64 converter online, base64 image encoder, image base64 generator, convert image to base64, base64 encoder, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/image-to-base64.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/image-to-base64.html">
+    <meta property="og:title" content="Image to Base64 Converter - Convert Images to Base64 Encoding Online | BestUtils">
+    <meta property="og:description" content="Free image to Base64 converter tool. Convert JPG, PNG, GIF images to Base64 encoding instantly. Perfect for embedding images in CSS, HTML, or JSON.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/image-to-base64-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/image-to-base64.html">
+    <meta name="twitter:title" content="Image to Base64 Converter - Convert Images to Base64 Encoding Online | BestUtils">
+    <meta name="twitter:description" content="Free image to Base64 converter tool. Convert JPG, PNG, GIF images to Base64 encoding instantly. Perfect for embedding images in CSS, HTML, or JSON.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/image-to-base64-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Image to Base64 Converter">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image to Base64 Converter",
+        "description": "Free image to Base64 converter tool for converting images to Base64 encoding format, perfect for embedding images in web development projects.",
+        "url": "https://bestutils.com/templates/image-to-base64.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="multi-calc-container">
+        <h1>Image to Base64 Converter</h1>
+        <div class="multi-calc-tool">
+            <div class="multi-calc-description">
+                <p>Our Image to Base64 converter helps you convert image files into Base64 encoded strings. Base64 encoding allows you to embed images directly in your HTML, CSS, or JavaScript files without requiring separate image files. This is useful for small images, icons, or when you want to reduce HTTP requests. Simply upload an image and get the Base64 encoded data URI string.</p>
+            </div>
+            <!-- Ad placeholder -->
+            <div id="ads">Advertisement Space</div>
+            <div class="multi-calc-form">
+                <div class="multi-calc-form-group">
+                    <label for="image-upload">Select Image:</label>
+                    <input type="file" id="image-upload" accept="image/*" class="multi-calc-input">
+                </div>
+                <div style="margin-top: 15px;">
+                    <label>Maximum file size: 5MB</label>
+                    <div style="font-size: 0.9em; color: #666; margin-top: 5px;">
+                        Supported formats: PNG, JPEG, GIF, SVG, WebP
+                    </div>
+                </div>
+                <div id="image-preview-container" style="margin-top: 20px; display: none;">
+                    <label>Image Preview:</label>
+                    <div style="margin-top: 10px; text-align: center; background-color: #f5f5f5; padding: 15px; border-radius: 6px;">
+                        <img id="image-preview" style="max-width: 100%; max-height: 300px; display: block; margin: 0 auto;">
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.9em;">
+                        <span>File name: <span id="image-name"></span></span>
+                        <span style="margin-left: 15px;">Size: <span id="image-size"></span></span>
+                        <span style="margin-left: 15px;">Dimensions: <span id="image-dimensions"></span></span>
+                    </div>
+                </div>
+                <div id="image-converter-error" style="color: red; display: none; margin: 15px 0;"></div>
+                <div id="base64-result-container" style="margin-top: 20px; display: none;">
+                    <div class="multi-calc-form-group">
+                        <label for="base64-output">Base64 Data URI:</label>
+                        <textarea id="base64-output" class="multi-calc-input" style="min-height: 100px; width: 100%; resize: vertical; font-family: monospace; font-size: 0.8em;" readonly></textarea>
+                    </div>
+                    <div style="margin-top: 15px; display: flex; justify-content: space-between;">
+                        <div>
+                            <button id="copy-base64-btn" class="multi-calc-button">Copy Base64</button>
+                            <button id="copy-data-uri-btn" class="multi-calc-button" style="margin-left: 10px;">Copy Data URI</button>
+                        </div>
+                        <button id="clear-image-btn" class="multi-calc-button secondary">Clear Image</button>
+                    </div>
+                </div>
+            </div>
+            <div id="copy-notification" style="display: none; background-color: #2ecc71; color: white; padding: 10px; text-align: center; margin-top: 10px; border-radius: 4px;">
+                Copied to clipboard!
+            </div>
+            <div style="margin-top: 20px; background-color: #f5f5f5; padding: 15px; border-radius: 6px;">
+                <h4>How to Use Base64 Images:</h4>
+                <div style="margin-top: 10px;">
+                    <h5>In HTML:</h5>
+                    <pre style="background-color: #f9f9f9; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.9em;"><code>&lt;img src="data:image/png;base64,YOUR_BASE64_STRING" alt="Image"&gt;</code></pre>
+                </div>
+                <div style="margin-top: 15px;">
+                    <h5>In CSS:</h5>
+                    <pre style="background-color: #f9f9f9; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.9em;"><code>.element {
+  background-image: url('data:image/png;base64,YOUR_BASE64_STRING');
+}</code></pre>
+                </div>
+                <div style="margin-top: 15px;">
+                    <h5>Notes:</h5>
+                    <ul style="margin-top: 5px; padding-left: 20px;">
+                        <li>Base64 encoding increases file size by approximately 33%</li>
+                        <li>Best for small images (icons, small graphics)</li>
+                        <li>Eliminates extra HTTP requests for images</li>
+                        <li>Not recommended for large images due to increased file size</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageUpload = document.getElementById('image-upload');
+        const imagePreviewContainer = document.getElementById('image-preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const imageName = document.getElementById('image-name');
+        const imageSize = document.getElementById('image-size');
+        const imageDimensions = document.getElementById('image-dimensions');
+        const base64ResultContainer = document.getElementById('base64-result-container');
+        const base64Output = document.getElementById('base64-output');
+        const copyBase64Btn = document.getElementById('copy-base64-btn');
+        const copyDataUriBtn = document.getElementById('copy-data-uri-btn');
+        const clearImageBtn = document.getElementById('clear-image-btn');
+        const imageConverterError = document.getElementById('image-converter-error');
+        const copyNotification = document.getElementById('copy-notification');
+        if (!imageUpload) return;
+        // Handle image upload
+        imageUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            // Check file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showError('File size exceeds the 5MB limit. Please choose a smaller image.');
+                resetForm();
+                return;
+            }
+            // Check file type
+            const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/svg+xml', 'image/webp'];
+            if (!validTypes.includes(file.type)) {
+                showError('Invalid file type. Please select PNG, JPEG, GIF, SVG, or WebP image.');
+                resetForm();
+                return;
+            }
+            hideError();
+            // Read the file
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Show image preview
+                imagePreview.src = event.target.result;
+                imagePreviewContainer.style.display = 'block';
+                // Update file info
+                imageName.textContent = file.name;
+                imageSize.textContent = formatFileSize(file.size);
+                // Get image dimensions
+                const img = new Image();
+                img.onload = function() {
+                    imageDimensions.textContent = this.width + ' x ' + this.height + ' px';
+                };
+                img.src = event.target.result;
+                // Extract base64 data
+                const dataUri = event.target.result;
+                const base64String = dataUri.split(',')[1];
+                // Show base64 result
+                base64Output.value = base64String;
+                base64ResultContainer.style.display = 'block';
+            };
+            reader.onerror = function() {
+                showError('Error reading the file. Please try again.');
+                resetForm();
+            };
+            reader.readAsDataURL(file);
+        });
+        // Copy base64 string (without data URI prefix)
+        copyBase64Btn.addEventListener('click', function() {
+            const base64String = base64Output.value;
+            if (!base64String) {
+                showError('No Base64 data to copy.');
+                return;
+            }
+            copyToClipboard(base64String, 'Base64 string');
+        });
+        // Copy full data URI
+        copyDataUriBtn.addEventListener('click', function() {
+            const base64String = base64Output.value;
+            if (!base64String) {
+                showError('No Base64 data to copy.');
+                return;
+            }
+            // Get mime type from preview src
+            const mimeType = imagePreview.src.split(';')[0].split(':')[1];
+            const dataUri = `data:${mimeType};base64,${base64String}`;
+            copyToClipboard(dataUri, 'Data URI');
+        });
+        // Clear image and form
+        clearImageBtn.addEventListener('click', function() {
+            resetForm();
+        });
+        // Function to format file size
+        function formatFileSize(bytes) {
+            if (bytes < 1024) {
+                return bytes + ' bytes';
+            } else if (bytes < 1024 * 1024) {
+                return (bytes / 1024).toFixed(2) + ' KB';
+            } else {
+                return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+            }
+        }
+        // Function to copy text to clipboard
+        function copyToClipboard(text, type) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            // Show notification
+            copyNotification.textContent = `${type} copied to clipboard!`;
+            copyNotification.style.display = 'block';
+            // Hide notification after 2 seconds
+            setTimeout(() => {
+                copyNotification.style.display = 'none';
+            }, 2000);
+        }
+        // Function to reset the form
+        function resetForm() {
+            imageUpload.value = '';
+            imagePreviewContainer.style.display = 'none';
+            base64ResultContainer.style.display = 'none';
+            base64Output.value = '';
+            hideError();
+        }
+        // Show error message
+        function showError(message) {
+            imageConverterError.textContent = message;
+            imageConverterError.style.display = 'block';
+        }
+        // Hide error message
+        function hideError() {
+            imageConverterError.textContent = '';
+            imageConverterError.style.display = 'none';
+        }
+    });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔄</span>
+                Related Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="base64-encoder-decoder.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Base64 Encoder Decoder</div><div style="font-size: 0.85rem; color: #6b7280;">Encode/decode Base64</div></div>
+                </a>
+                <a href="image-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🖼️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Image Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert image formats</div></div>
+                </a>
+                <a href="url-encoder-decoder.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🌐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">URL Encoder Decoder</div><div style="font-size: 0.85rem; color: #6b7280;">Encode/decode URLs</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert all units</div></div>
+                </a>
+                <a href="currency-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💱</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Currency Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert currencies</div></div>
+                </a>
+                <a href="text-case-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔤</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Text Case Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert text cases</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

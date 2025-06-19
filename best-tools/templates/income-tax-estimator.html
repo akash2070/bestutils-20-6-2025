@@ -1,0 +1,396 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary SEO Meta Tags -->
+    <title>Income Tax Estimator - Calculate Your Income Tax | BestUtils</title>
+    <meta name="title" content="Income Tax Estimator - Calculate Your Income Tax | BestUtils">
+    <meta name="description" content="Free income tax estimator to calculate tax liability based on income brackets and filing status. Estimate federal taxes with detailed bracket breakdown.">
+    <meta name="keywords" content="income tax estimator, tax calculator, tax brackets, federal tax, tax liability, filing status, tax planning, effective tax rate">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/income-tax-estimator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/income-tax-estimator.html">
+    <meta property="og:title" content="Income Tax Estimator - Calculate Your Income Tax | BestUtils">
+    <meta property="og:description" content="Free income tax estimator to calculate tax liability based on income brackets and filing status. Estimate federal taxes with detailed bracket breakdown.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/income-tax-estimator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/income-tax-estimator.html">
+    <meta name="twitter:title" content="Income Tax Estimator - Calculate Your Income Tax | BestUtils">
+    <meta name="twitter:description" content="Free income tax estimator to calculate tax liability based on income brackets and filing status. Estimate federal taxes with detailed bracket breakdown.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/income-tax-estimator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Income Tax Estimator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="BestUtils">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Income Tax Estimator",
+        "description": "Free income tax estimator to calculate federal tax liability based on current tax brackets, filing status, and annual income with detailed breakdown.",
+        "url": "https://bestutils.com/templates/income-tax-estimator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="multi-calc-container">
+        <h1>Income Tax Estimator</h1>
+        <div class="multi-calc-tool">
+            <div class="multi-calc-description">
+                <p>Our Income Tax Estimator helps you calculate an approximate income tax liability based on your income and tax filing status. This tool provides a simplified tax calculation based on common income tax brackets. Remember that actual tax calculations may vary based on deductions, credits, and other factors specific to your tax situation. For precise tax planning, please consult a tax professional.</p>
+            </div>
+            <!-- Ad placeholder -->
+            <div id="ads">Advertisement Space</div>
+            <div class="multi-calc-form">
+                <div class="multi-calc-form-group">
+                    <label for="tax-year">Tax Year:</label>
+                    <select id="tax-year" class="multi-calc-input">
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+                <div class="multi-calc-form-group">
+                    <label for="filing-status">Filing Status:</label>
+                    <select id="filing-status" class="multi-calc-input">
+                        <option value="single">Single</option>
+                        <option value="married-joint">Married Filing Jointly</option>
+                        <option value="married-separate">Married Filing Separately</option>
+                        <option value="head">Head of Household</option>
+                    </select>
+                </div>
+                <div class="multi-calc-form-group">
+                    <label for="annual-income">Annual Income:</label>
+                    <input type="number" id="annual-income" min="0" step="1000" class="multi-calc-input">
+                </div>
+                <div id="tax-estimator-error" style="color: red; display: none;"></div>
+                <button id="calculate-tax-btn" class="multi-calc-button">Estimate Tax</button>
+            </div>
+            <div id="tax-result" class="multi-calc-result">
+                <h3>Income Tax Estimate:</h3>
+                <div style="margin-top: 15px;">
+                    <p>Annual Income: <strong id="result-annual-income">0</strong></p>
+                    <p>Estimated Tax: <strong id="estimated-tax">0</strong></p>
+                    <p>Effective Tax Rate: <strong id="effective-tax-rate">0%</strong></p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h4>Tax Brackets Breakdown:</h4>
+                    <div id="tax-brackets-breakdown"></div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.9em; font-style: italic;">
+                    <p>Note: This is a simplified estimate. Actual tax may vary based on deductions, credits, and other factors. Consult a tax professional for accurate tax planning.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const calculateTaxBtn = document.getElementById('calculate-tax-btn');
+        if (!calculateTaxBtn) return;
+        // Define tax brackets for different years and filing statuses
+        const taxBrackets = {
+            "2023": {
+                "single": [
+                    { rate: 0.10, upto: 11000 },
+                    { rate: 0.12, upto: 44725 },
+                    { rate: 0.22, upto: 95375 },
+                    { rate: 0.24, upto: 182100 },
+                    { rate: 0.32, upto: 231250 },
+                    { rate: 0.35, upto: 578125 },
+                    { rate: 0.37, upto: Infinity }
+                ],
+                "married-joint": [
+                    { rate: 0.10, upto: 22000 },
+                    { rate: 0.12, upto: 89450 },
+                    { rate: 0.22, upto: 190750 },
+                    { rate: 0.24, upto: 364200 },
+                    { rate: 0.32, upto: 462500 },
+                    { rate: 0.35, upto: 693750 },
+                    { rate: 0.37, upto: Infinity }
+                ],
+                "married-separate": [
+                    { rate: 0.10, upto: 11000 },
+                    { rate: 0.12, upto: 44725 },
+                    { rate: 0.22, upto: 95375 },
+                    { rate: 0.24, upto: 182100 },
+                    { rate: 0.32, upto: 231250 },
+                    { rate: 0.35, upto: 346875 },
+                    { rate: 0.37, upto: Infinity }
+                ],
+                "head": [
+                    { rate: 0.10, upto: 15700 },
+                    { rate: 0.12, upto: 59850 },
+                    { rate: 0.22, upto: 95350 },
+                    { rate: 0.24, upto: 182100 },
+                    { rate: 0.32, upto: 231250 },
+                    { rate: 0.35, upto: 578100 },
+                    { rate: 0.37, upto: Infinity }
+                ]
+            },
+            "2022": {
+                "single": [
+                    { rate: 0.10, upto: 10275 },
+                    { rate: 0.12, upto: 41775 },
+                    { rate: 0.22, upto: 89075 },
+                    { rate: 0.24, upto: 170050 },
+                    { rate: 0.32, upto: 215950 },
+                    { rate: 0.35, upto: 539900 },
+                    { rate: 0.37, upto: Infinity }
+                ],
+                "married-joint": [
+                    { rate: 0.10, upto: 20550 },
+                    { rate: 0.12, upto: 83550 },
+                    { rate: 0.22, upto: 178150 },
+                    { rate: 0.24, upto: 340100 },
+                    { rate: 0.32, upto: 431900 },
+                    { rate: 0.35, upto: 647850 },
+                    { rate: 0.37, upto: Infinity }
+                ],
+                "married-separate": [
+                    { rate: 0.10, upto: 10275 },
+                    { rate: 0.12, upto: 41775 },
+                    { rate: 0.22, upto: 89075 },
+                    { rate: 0.24, upto: 170050 },
+                    { rate: 0.32, upto: 215950 },
+                    { rate: 0.35, upto: 323925 },
+                    { rate: 0.37, upto: Infinity }
+                ],
+                "head": [
+                    { rate: 0.10, upto: 14650 },
+                    { rate: 0.12, upto: 55900 },
+                    { rate: 0.22, upto: 89050 },
+                    { rate: 0.24, upto: 170050 },
+                    { rate: 0.32, upto: 215950 },
+                    { rate: 0.35, upto: 539900 },
+                    { rate: 0.37, upto: Infinity }
+                ]
+            }
+        };
+        calculateTaxBtn.addEventListener('click', function() {
+            const annualIncome = parseFloat(document.getElementById('annual-income').value);
+            const taxYear = document.getElementById('tax-year').value;
+            const filingStatus = document.getElementById('filing-status').value;
+            const errorElement = document.getElementById('tax-estimator-error');
+            // Validate inputs
+            if (isNaN(annualIncome) || annualIncome < 0) {
+                errorElement.textContent = 'Please enter a valid income amount';
+                errorElement.style.display = 'block';
+                return;
+            }
+            errorElement.style.display = 'none';
+            // Get appropriate tax brackets
+            const brackets = taxBrackets[taxYear][filingStatus];
+            // Calculate tax
+            let taxAmount = 0;
+            let previousBracket = 0;
+            let breakdownHTML = '<table style="width: 100%; border-collapse: collapse; margin-top: 10px;">';
+            breakdownHTML += '<tr><th style="text-align: left; border-bottom: 1px solid #ddd; padding: 5px;">Rate</th><th style="text-align: right; border-bottom: 1px solid #ddd; padding: 5px;">Income in Bracket</th><th style="text-align: right; border-bottom: 1px solid #ddd; padding: 5px;">Tax in Bracket</th></tr>';
+            for (let i = 0; i < brackets.length; i++) {
+                const bracket = brackets[i];
+                // Calculate income in this bracket
+                let incomeInBracket;
+                if (annualIncome > bracket.upto) {
+                    incomeInBracket = bracket.upto - previousBracket;
+                } else if (annualIncome > previousBracket) {
+                    incomeInBracket = annualIncome - previousBracket;
+                } else {
+                    incomeInBracket = 0;
+                }
+                // Calculate tax for this bracket
+                const taxInBracket = incomeInBracket * bracket.rate;
+                taxAmount += taxInBracket;
+                // Update for next iteration
+                previousBracket = bracket.upto;
+                // Add to breakdown
+                if (incomeInBracket > 0) {
+                    breakdownHTML += `<tr>
+                        <td style="padding: 5px;">${(bracket.rate * 100).toFixed(0)}%</td>
+                        <td style="text-align: right; padding: 5px;">$${Math.round(incomeInBracket).toLocaleString()}</td>
+                        <td style="text-align: right; padding: 5px;">$${Math.round(taxInBracket).toLocaleString()}</td>
+                    </tr>`;
+                }
+                // If we've processed all income, break out
+                if (annualIncome <= bracket.upto) {
+                    break;
+                }
+            }
+            breakdownHTML += '</table>';
+            // Calculate effective tax rate
+            const effectiveTaxRate = (taxAmount / annualIncome) * 100;
+            // Format currency
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+            document.getElementById('result-annual-income').textContent = formatter.format(annualIncome);
+            document.getElementById('estimated-tax').textContent = formatter.format(taxAmount);
+            document.getElementById('effective-tax-rate').textContent = effectiveTaxRate.toFixed(2) + '%';
+            document.getElementById('tax-brackets-breakdown').innerHTML = breakdownHTML;
+            const resultElement = document.getElementById('tax-result');
+            resultElement.style.display = 'block';
+            resultElement.classList.add('visible');
+            // Smooth scroll to result
+            resultElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="income-tax-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧾</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Income Tax Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate income tax</div></div>
+                </a>
+                <a href="salary-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Salary Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate salary conversions</div></div>
+                </a>
+                <a href="take_home_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Take Home Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate net salary</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Famous Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+                <a href="401k-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">401k Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan 401k contributions</div></div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,690 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mileage Calculator - Calculate Fuel Efficiency & Gas Mileage | BESTUTILS</title>
+    <meta name="description" content="Free online mileage calculator to determine your vehicle's fuel efficiency, gas mileage (MPG), fuel cost, and trip expenses. Calculate miles per gallon and kilometers per liter easily.">
+    <meta name="keywords" content="mileage calculator, mpg calculator, fuel efficiency, gas mileage, fuel cost calculator, miles per gallon, kilometers per liter, trip cost">
+    <meta name="author" content="BESTUTILS">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/mileage-calculator">
+    <meta property="og:title" content="Mileage Calculator - Calculate Fuel Efficiency & Gas Mileage">
+    <meta property="og:description" content="Calculate your vehicle's fuel efficiency, gas mileage, and trip costs with our free online mileage calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/mileage-calculator">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mileage Calculator - BESTUTILS">
+    <meta name="twitter:description" content="Free online mileage and fuel efficiency calculator for vehicles.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Calculator specific styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .calculator-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        .result-box:hover {
+            transform: translateY(-2px);
+        }
+        .input-field {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+        }
+        .input-field:focus {
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #374151;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        /* Animation for results */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="p-4">
+    <div class="max-w-4xl mx-auto">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <div class="calculator-container p-6 md:p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">Mileage Calculator</h1>
+                <p class="text-gray-600 text-lg">Calculate fuel efficiency, gas mileage, and trip costs</p>
+            </div>
+            <div class="flex flex-wrap justify-center mb-8 border-b">
+                <button onclick="showTab('mileage')" id="mileageTab" class="tab-button active px-6 py-3 font-semibold rounded-t-lg mr-2 mb-2">
+                    Fuel Efficiency
+                </button>
+                <button onclick="showTab('cost')" id="costTab" class="tab-button px-6 py-3 font-semibold rounded-t-lg mr-2 mb-2 bg-gray-100 text-gray-700">
+                    Trip Cost
+                </button>
+                <button onclick="showTab('compare')" id="compareTab" class="tab-button px-6 py-3 font-semibold rounded-t-lg mr-2 mb-2 bg-gray-100 text-gray-700">
+                    Compare Vehicles
+                </button>
+            </div>
+            <div id="mileageCalculator" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-2">Distance Traveled</label>
+                        <div class="flex">
+                            <input type="number" id="distance" class="input-field flex-1 p-3 border rounded-l-lg focus:outline-none" placeholder="Enter distance" step="0.1">
+                            <select id="distanceUnit" class="input-field border-l-0 p-3 border rounded-r-lg focus:outline-none bg-white">
+                                <option value="miles">Miles</option>
+                                <option value="km">Kilometers</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-2">Fuel Used</label>
+                        <div class="flex">
+                            <input type="number" id="fuel" class="input-field flex-1 p-3 border rounded-l-lg focus:outline-none" placeholder="Enter fuel amount" step="0.01">
+                            <select id="fuelUnit" class="input-field border-l-0 p-3 border rounded-r-lg focus:outline-none bg-white">
+                                <option value="gallons">Gallons</option>
+                                <option value="liters">Liters</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <button onclick="calculateMileage()" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex-1 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                        Calculate Mileage
+                    </button>
+                    <button onclick="clearMileage()" class="btn-secondary px-6 py-3 rounded-lg font-semibold flex-1 focus:outline-none focus:ring-4 focus:ring-orange-300">
+                        Clear
+                    </button>
+                </div>
+                <div id="mileageResults" class="hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="result-box fade-in">
+                            <h3 class="text-xl font-semibold mb-2">Miles Per Gallon (MPG)</h3>
+                            <p id="mpgResult" class="text-3xl font-bold"></p>
+                        </div>
+                        <div class="result-box fade-in">
+                            <h3 class="text-xl font-semibold mb-2">Kilometers Per Liter (KM/L)</h3>
+                            <p id="kmlResult" class="text-3xl font-bold"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="costCalculator" class="tab-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-2">Trip Distance</label>
+                        <div class="flex">
+                            <input type="number" id="tripDistance" class="input-field flex-1 p-3 border rounded-l-lg focus:outline-none" placeholder="Enter distance" step="0.1">
+                            <select id="tripDistanceUnit" class="input-field border-l-0 p-3 border rounded-r-lg focus:outline-none bg-white">
+                                <option value="miles">Miles</option>
+                                <option value="km">Kilometers</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-2">Vehicle Mileage</label>
+                        <div class="flex">
+                            <input type="number" id="vehicleMileage" class="input-field flex-1 p-3 border rounded-l-lg focus:outline-none" placeholder="Enter MPG/KM/L" step="0.1">
+                            <select id="mileageUnit" class="input-field border-l-0 p-3 border rounded-r-lg focus:outline-none bg-white">
+                                <option value="mpg">MPG</option>
+                                <option value="kml">KM/L</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-2">Fuel Price</label>
+                        <div class="flex">
+                            <span class="input-field border-r-0 p-3 border rounded-l-lg bg-gray-50 text-gray-600">$</span>
+                            <input type="number" id="fuelPrice" class="input-field flex-1 p-3 border rounded-r-lg focus:outline-none" placeholder="Price per gallon/liter" step="0.01">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-2">Trip Type</label>
+                        <select id="tripType" class="input-field w-full p-3 border rounded-lg focus:outline-none bg-white">
+                            <option value="oneway">One Way</option>
+                            <option value="roundtrip">Round Trip</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <button onclick="calculateCost()" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex-1 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                        Calculate Cost
+                    </button>
+                    <button onclick="clearCost()" class="btn-secondary px-6 py-3 rounded-lg font-semibold flex-1 focus:outline-none focus:ring-4 focus:ring-orange-300">
+                        Clear
+                    </button>
+                </div>
+                <div id="costResults" class="hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="result-box fade-in">
+                            <h3 class="text-lg font-semibold mb-2">Fuel Needed</h3>
+                            <p id="fuelNeeded" class="text-2xl font-bold"></p>
+                        </div>
+                        <div class="result-box fade-in">
+                            <h3 class="text-lg font-semibold mb-2">Fuel Cost</h3>
+                            <p id="fuelCost" class="text-2xl font-bold"></p>
+                        </div>
+                        <div class="result-box fade-in">
+                            <h3 class="text-lg font-semibold mb-2">Cost per Mile/KM</h3>
+                            <p id="costPerUnit" class="text-2xl font-bold"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="compareCalculator" class="tab-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Vehicle 1</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Vehicle Name (Optional)</label>
+                                <input type="text" id="vehicle1Name" class="input-field w-full p-3 border rounded-lg focus:outline-none" placeholder="e.g., Honda Civic">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Mileage</label>
+                                <div class="flex">
+                                    <input type="number" id="vehicle1Mileage" class="input-field flex-1 p-3 border rounded-l-lg focus:outline-none" placeholder="Enter MPG" step="0.1">
+                                    <span class="input-field border-l-0 p-3 border rounded-r-lg bg-gray-50 text-gray-600">MPG</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Fuel Price</label>
+                                <div class="flex">
+                                    <span class="input-field border-r-0 p-3 border rounded-l-lg bg-gray-50 text-gray-600">$</span>
+                                    <input type="number" id="vehicle1Price" class="input-field flex-1 p-3 border rounded-r-lg focus:outline-none" placeholder="Per gallon" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-800 mb-4">Vehicle 2</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Vehicle Name (Optional)</label>
+                                <input type="text" id="vehicle2Name" class="input-field w-full p-3 border rounded-lg focus:outline-none" placeholder="e.g., Toyota Prius">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Mileage</label>
+                                <div class="flex">
+                                    <input type="number" id="vehicle2Mileage" class="input-field flex-1 p-3 border rounded-l-lg focus:outline-none" placeholder="Enter MPG" step="0.1">
+                                    <span class="input-field border-l-0 p-3 border rounded-r-lg bg-gray-50 text-gray-600">MPG</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Fuel Price</label>
+                                <div class="flex">
+                                    <span class="input-field border-r-0 p-3 border rounded-l-lg bg-gray-50 text-gray-600">$</span>
+                                    <input type="number" id="vehicle2Price" class="input-field flex-1 p-3 border rounded-r-lg focus:outline-none" placeholder="Per gallon" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <label class="block text-lg font-semibold text-gray-700 mb-2">Annual Distance (for comparison)</label>
+                    <div class="flex max-w-md">
+                        <input type="number" id="annualDistance" class="input-field flex-1 p-3 border rounded-l-lg focus:outline-none" placeholder="Enter annual miles" step="100" value="12000">
+                        <span class="input-field border-l-0 p-3 border rounded-r-lg bg-gray-50 text-gray-600">Miles</span>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mt-6 mb-6">
+                    <button onclick="compareVehicles()" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex-1 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                        Compare Vehicles
+                    </button>
+                    <button onclick="clearComparison()" class="btn-secondary px-6 py-3 rounded-lg font-semibold flex-1 focus:outline-none focus:ring-4 focus:ring-orange-300">
+                        Clear
+                    </button>
+                </div>
+                <div id="comparisonResults" class="hidden">
+                    <div class="bg-white rounded-lg p-6 border fade-in">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Annual Fuel Cost Comparison</h3>
+                        <div id="comparisonTable"></div>
+                        <div id="savings" class="mt-4 text-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 calculator-container p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About This Mileage Calculator</h2>
+            <div class="prose prose-gray max-w-none">
+                <p class="text-gray-600 mb-4">
+                    Our comprehensive mileage calculator helps you determine fuel efficiency, calculate trip costs, and compare vehicles. Whether you're planning a road trip, monitoring your vehicle's performance, or shopping for a new car, this tool provides accurate calculations for better financial planning.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Features:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2">Fuel Efficiency Calculator</h4>
+                        <p class="text-gray-700 text-sm">Calculate your vehicle's miles per gallon (MPG) or kilometers per liter (KM/L) based on distance traveled and fuel consumed.</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2">Trip Cost Calculator</h4>
+                        <p class="text-gray-700 text-sm">Estimate fuel costs for your trips based on distance, vehicle mileage, and current fuel prices. Supports both one-way and round trips.</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-800 mb-2">Vehicle Comparison</h4>
+                        <p class="text-gray-700 text-sm">Compare annual fuel costs between two vehicles to make informed purchasing decisions and understand potential savings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 calculator-container p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use This Calculator</h2>
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3 text-blue-600">📊 Fuel Efficiency Calculator</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">1</div>
+                        <p class="text-gray-600 text-sm">Enter the distance you've traveled and select the unit (miles or kilometers)</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">2</div>
+                        <p class="text-gray-600 text-sm">Enter the amount of fuel used and select the unit (gallons or liters)</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">3</div>
+                        <p class="text-gray-600 text-sm">Click "Calculate Mileage" to see your vehicle's fuel efficiency in both MPG and KM/L</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3 text-green-600">💰 Trip Cost Calculator</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">1</div>
+                        <p class="text-gray-600 text-sm">Enter your trip distance and select the appropriate unit</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">2</div>
+                        <p class="text-gray-600 text-sm">Input your vehicle's mileage (MPG or KM/L) and current fuel price</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">3</div>
+                        <p class="text-gray-600 text-sm">Select trip type (one-way or round trip) and calculate to see fuel costs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3 text-purple-600">🚗 Vehicle Comparison</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">1</div>
+                        <p class="text-gray-600 text-sm">Enter details for both vehicles including mileage and fuel prices</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">2</div>
+                        <p class="text-gray-600 text-sm">Set annual driving distance (default is 12,000 miles)</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">3</div>
+                        <p class="text-gray-600 text-sm">Compare to see annual fuel cost difference and potential savings</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700"><strong>Tips:</strong> For accurate fuel efficiency calculations, use data from a full tank to full tank measurement. Reset your trip odometer when you fill up, then calculate after your next fill-up.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">📏</span>
+                Related Distance & Travel Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="fuel_cost_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🚗</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Fuel Cost Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate fuel expenses</div></div>
+                </a>
+                <a href="gas_mileage_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⛽</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Gas Mileage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate fuel efficiency</div></div>
+                </a>
+                <a href="speed_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏃</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Speed Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate speed & time</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Measurement & Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert units</div></div>
+                </a>
+                <a href="surface_area_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Area Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate areas</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+    <script>
+        // Tab Management
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active', 'bg-white', 'text-gray-800');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            document.getElementById(tabName + 'Calculator').classList.remove('hidden');
+            const activeTab = document.getElementById(tabName + 'Tab');
+            activeTab.classList.add('active');
+            activeTab.classList.remove('bg-gray-100', 'text-gray-700');
+        }
+        // Mileage Calculator Functions
+        function calculateMileage() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const fuel = parseFloat(document.getElementById('fuel').value);
+            const distanceUnit = document.getElementById('distanceUnit').value;
+            const fuelUnit = document.getElementById('fuelUnit').value;
+            if (!distance || !fuel || distance <= 0 || fuel <= 0) {
+                alert('Please enter valid positive numbers for distance and fuel!');
+                return;
+            }
+            let distanceInMiles = (distanceUnit === 'km') ? distance * 0.621371 : distance;
+            let fuelInGallons = (fuelUnit === 'liters') ? fuel * 0.264172 : fuel;
+            const mpg = distanceInMiles / fuelInGallons;
+            let distanceInKm = (distanceUnit === 'miles') ? distance * 1.60934 : distance;
+            let fuelInLiters = (fuelUnit === 'gallons') ? fuel * 3.78541 : fuel;
+            const kml = distanceInKm / fuelInLiters;
+            document.getElementById('mpgResult').textContent = mpg.toFixed(2);
+            document.getElementById('kmlResult').textContent = kml.toFixed(2);
+            document.getElementById('mileageResults').classList.remove('hidden');
+            document.getElementById('mileageResults').scrollIntoView({ behavior: 'smooth' });
+        }
+        function clearMileage() {
+            document.getElementById('distance').value = '';
+            document.getElementById('fuel').value = '';
+            document.getElementById('mileageResults').classList.add('hidden');
+        }
+        // Trip Cost Calculator Functions
+        function calculateCost() {
+            const tripDistance = parseFloat(document.getElementById('tripDistance').value);
+            const vehicleMileage = parseFloat(document.getElementById('vehicleMileage').value);
+            const fuelPrice = parseFloat(document.getElementById('fuelPrice').value);
+            const tripDistanceUnit = document.getElementById('tripDistanceUnit').value;
+            const mileageUnit = document.getElementById('mileageUnit').value;
+            const tripType = document.getElementById('tripType').value;
+            if (!tripDistance || !vehicleMileage || !fuelPrice || tripDistance <= 0 || vehicleMileage <= 0 || fuelPrice <= 0) {
+                alert('Please enter valid positive numbers for all fields!');
+                return;
+            }
+            let totalDistance = (tripType === 'roundtrip') ? tripDistance * 2 : tripDistance;
+            let mileageInMpg = (mileageUnit === 'kml') ? vehicleMileage * 2.35214 : vehicleMileage;
+            let distanceInMiles = (tripDistanceUnit === 'km') ? totalDistance * 0.621371 : totalDistance;
+            let fuelNeededGallons = distanceInMiles / mileageInMpg;
+            let totalCost = fuelNeededGallons * fuelPrice;
+            let costPerUnit = totalCost / totalDistance;
+            let fuelNeededDisplay, fuelUnitDisplay, distanceUnitDisplay;
+            if (mileageUnit === 'mpg') {
+                fuelNeededDisplay = fuelNeededGallons;
+                fuelUnitDisplay = 'gallons';
+            } else { // kml
+                fuelNeededDisplay = fuelNeededGallons * 3.78541; // convert to liters
+                fuelUnitDisplay = 'liters';
+            }
+            distanceUnitDisplay = (tripDistanceUnit === 'miles') ? 'mile' : 'km';
+            document.getElementById('fuelNeeded').textContent = `${fuelNeededDisplay.toFixed(2)} ${fuelUnitDisplay}`;
+            document.getElementById('fuelCost').textContent = `$${totalCost.toFixed(2)}`;
+            document.getElementById('costPerUnit').textContent = `$${costPerUnit.toFixed(3)} /${distanceUnitDisplay}`;
+            document.getElementById('costResults').classList.remove('hidden');
+            document.getElementById('costResults').scrollIntoView({ behavior: 'smooth' });
+        }
+        function clearCost() {
+            document.getElementById('tripDistance').value = '';
+            document.getElementById('vehicleMileage').value = '';
+            document.getElementById('fuelPrice').value = '';
+            document.getElementById('costResults').classList.add('hidden');
+        }
+        // Vehicle Comparison Functions
+        function compareVehicles() {
+            const vehicle1Name = document.getElementById('vehicle1Name').value || 'Vehicle 1';
+            const vehicle1Mileage = parseFloat(document.getElementById('vehicle1Mileage').value);
+            const vehicle1Price = parseFloat(document.getElementById('vehicle1Price').value);
+            const vehicle2Name = document.getElementById('vehicle2Name').value || 'Vehicle 2';
+            const vehicle2Mileage = parseFloat(document.getElementById('vehicle2Mileage').value);
+            const vehicle2Price = parseFloat(document.getElementById('vehicle2Price').value);
+            const annualDistance = parseFloat(document.getElementById('annualDistance').value);
+            if (!vehicle1Mileage || !vehicle1Price || !vehicle2Mileage || !vehicle2Price || vehicle1Mileage <= 0 || vehicle1Price <= 0 || vehicle2Mileage <= 0 || vehicle2Price <= 0 || !annualDistance || annualDistance <= 0) {
+                alert('Please enter valid positive numbers for all vehicle and distance details!');
+                return;
+            }
+            const vehicle1AnnualCost = (annualDistance / vehicle1Mileage) * vehicle1Price;
+            const vehicle2AnnualCost = (annualDistance / vehicle2Mileage) * vehicle2Price;
+            const savings = Math.abs(vehicle1AnnualCost - vehicle2AnnualCost);
+            const betterVehicle = vehicle1AnnualCost < vehicle2AnnualCost ? vehicle1Name : vehicle2Name;
+            const worseVehicle = vehicle1AnnualCost > vehicle2AnnualCost ? vehicle1Name : vehicle2Name;
+            const tableContainer = document.getElementById('comparisonTable');
+            tableContainer.innerHTML = `
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-3 font-semibold text-gray-700">Metric</th>
+                                <th class="p-3 font-semibold text-blue-800">${vehicle1Name}</th>
+                                <th class="p-3 font-semibold text-green-800">${vehicle2Name}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t">
+                                <td class="p-3 font-medium text-gray-600">Mileage</td>
+                                <td class="p-3">${vehicle1Mileage} MPG</td>
+                                <td class="p-3">${vehicle2Mileage} MPG</td>
+                            </tr>
+                            <tr class="border-t bg-gray-50">
+                                <td class="p-3 font-medium text-gray-600">Fuel Price</td>
+                                <td class="p-3">$${vehicle1Price.toFixed(2)} / gallon</td>
+                                <td class="p-3">$${vehicle2Price.toFixed(2)} / gallon</td>
+                            </tr>
+                            <tr class="border-t">
+                                <td class="p-3 font-medium text-gray-600">Annual Fuel Cost</td>
+                                <td class="p-3 font-bold text-lg">$${vehicle1AnnualCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                                <td class="p-3 font-bold text-lg">$${vehicle2AnnualCost.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>`;
+            const savingsContainer = document.getElementById('savings');
+            if (savings > 0) {
+                 savingsContainer.innerHTML = `<p class="text-lg mt-4">Based on an annual distance of <strong>${annualDistance.toLocaleString()} miles</strong>, <strong>${betterVehicle}</strong> is more efficient, saving you approximately <span class="font-bold text-green-600 text-xl">$${savings.toFixed(2)}</span> per year compared to <strong>${worseVehicle}</strong>.</p>`;
+            } else {
+                 savingsContainer.innerHTML = `<p class="text-lg mt-4">Based on your inputs, both vehicles have the same annual fuel cost.</p>`;
+            }
+            document.getElementById('comparisonResults').classList.remove('hidden');
+            document.getElementById('comparisonResults').scrollIntoView({ behavior: 'smooth' });
+        }
+        function clearComparison() {
+            document.getElementById('vehicle1Name').value = '';
+            document.getElementById('vehicle1Mileage').value = '';
+            document.getElementById('vehicle1Price').value = '';
+            document.getElementById('vehicle2Name').value = '';
+            document.getElementById('vehicle2Mileage').value = '';
+            document.getElementById('vehicle2Price').value = '';
+            document.getElementById('annualDistance').value = '12000';
+            document.getElementById('comparisonResults').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

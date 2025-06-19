@@ -1,0 +1,604 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hours Calculator - Calculate Time Durations & Shifts</title>
+
+    <meta name="description" content="Our free online Hours Calculator helps you compute the duration between two times or add/subtract hours and minutes from a specific time. Ideal for tracking work shifts, calculating project hours, or managing personal schedules. This accurate tool simplifies complex time calculations, making it easy to manage your daily and weekly time commitments efficiently.">
+    <meta name="keywords" content="hours calculator, free hours calculator online, time duration, calculate hours, add hours, subtract hours, shift calculator, work hours, payroll calculator, bestutils">
+    <meta name="author" content="BestUtils">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/hours-calculator.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/hours-calculator.html">
+    <meta property="og:title" content="Hours Calculator - Calculate Time Durations & Shifts | BestUtils">
+    <meta property="og:description" content="Free online Hours Calculator to compute duration between times or add/subtract hours and minutes. Perfect for tracking work shifts and calculating project hours.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/hours-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/hours-calculator.html">
+    <meta name="twitter:title" content="Hours Calculator - Calculate Time Durations & Shifts | BestUtils">
+    <meta name="twitter:description" content="Free online Hours Calculator to compute duration between times or add/subtract hours and minutes. Perfect for tracking work shifts and calculating project hours.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/hours-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Hours Calculator">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Hours Calculator",
+        "description": "Free hours calculator for computing time durations between two times and adding or subtracting hours and minutes for work shift tracking and project management.",
+        "url": "https://bestutils.com/templates/hours-calculator.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        /* CSS Variables for theme consistency */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6C757D;
+            --accent-color: #28A745;
+            --background-color: #F8F9FA;
+            --text-color: #343A40;
+            --card-bg: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        /* Basic body styling */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* Container for the main content */
+        .tool-container {
+            max-width: 700px;
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+        }
+
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+
+        /* Tool specific header styling */
+        .tool-container h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-top: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left; /* Align labels to the left */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .form-group input[type="time"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #D6DCE0;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .form-group button {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultOutput {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #D6DCE0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        #resultOutput h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: 1.5rem;
+        }
+
+        #resultOutput strong {
+            color: var(--accent-color);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Ad placeholder */
+        #ads {
+            background-color: #E9ECEF;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 20px;
+            }
+
+            .tool-container h1 {
+                font-size: 2rem;
+            }
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <div class="site-logo-container">
+             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                 <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+             </svg>
+             <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+
+        <h1>Hours Calculator</h1>
+        <p class="text-center text-gray-600 mb-6">
+            Our free online Hours Calculator helps you compute the duration between two times or add/subtract hours and minutes from a specific time. Ideal for tracking work shifts, calculating project hours, or managing personal schedules. This accurate tool simplifies complex time calculations, making it easy to manage your daily and weekly time commitments efficiently.
+        </p>
+
+        <div id="ads">Advertisement Space</div>
+
+        <div class="form-group">
+            <label for="calculationType">Calculation Type:</label>
+            <select id="calculationType" onchange="toggleHoursInputs()">
+                <option value="duration">Calculate Duration Between Two Times</option>
+                <option value="add_subtract">Add/Subtract Hours & Minutes</option>
+            </select>
+        </div>
+
+        <div id="durationInputs">
+            <div class="form-group">
+                <label for="startTime">Start Time:</label>
+                <input type="time" id="startTime" value="09:00">
+            </div>
+            <div class="form-group">
+                <label for="endTime">End Time:</label>
+                <input type="time" id="endTime" value="17:00">
+            </div>
+        </div>
+
+        <div id="addSubtractInputs" style="display: none;">
+            <div class="form-group">
+                <label for="baseTimeAddSubtract">Base Time:</label>
+                <input type="time" id="baseTimeAddSubtract" value="12:00">
+            </div>
+            <div class="form-group">
+                <label for="operationType">Operation:</label>
+                <select id="operationType">
+                    <option value="add">Add</option>
+                    <option value="subtract">Subtract</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hoursValue">Hours:</label>
+                <input type="number" id="hoursValue" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label for="minutesValue">Minutes:</label>
+                <input type="number" id="minutesValue" min="0" value="0">
+            </div>
+        </div>
+
+        <p id="hoursCalcError" class="error-message" style="display: none;"></p>
+
+        <div class="form-group mt-8">
+            <button onclick="performHoursCalculation()">Calculate</button>
+        </div>
+
+        <div id="resultOutput" style="display: none;">
+            <h3>Calculation Result:</h3>
+            <div id="durationResult">
+                <p>Total Duration: <strong id="totalHoursDuration">0 hours</strong> and <strong id="totalMinutesDuration">0 minutes</strong></p>
+            </div>
+            <div id="addSubtractResult" style="display: none;">
+                <p>Resulting Time: <strong id="resultingHoursTime"></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const calculationTypeSelect = document.getElementById('calculationType');
+        const durationInputsDiv = document.getElementById('durationInputs');
+        const addSubtractInputsDiv = document.getElementById('addSubtractInputs');
+        const startTimeInput = document.getElementById('startTime');
+        const endTimeInput = document.getElementById('endTime');
+        const baseTimeAddSubtractInput = document.getElementById('baseTimeAddSubtract');
+        const operationTypeSelect = document.getElementById('operationType');
+        const hoursValueInput = document.getElementById('hoursValue');
+        const minutesValueInput = document.getElementById('minutesValue');
+        const hoursCalcErrorDiv = document.getElementById('hoursCalcError');
+        const resultOutputDiv = document.getElementById('resultOutput');
+        const durationResultDiv = document.getElementById('durationResult');
+        const addSubtractResultDiv = document.getElementById('addSubtractResult');
+
+        // Set default times to current time on load for add/subtract, and a common range for duration
+        window.onload = function() {
+            const now = new Date();
+            const currentHours = String(now.getHours()).padStart(2, '0');
+            const currentMinutes = String(now.getMinutes()).padStart(2, '0');
+            baseTimeAddSubtractInput.value = `${currentHours}:${currentMinutes}`;
+
+            // Trigger initial display based on default selection
+            toggleHoursInputs();
+        };
+
+        function toggleHoursInputs() {
+            const type = calculationTypeSelect.value;
+            if (type === 'duration') {
+                durationInputsDiv.style.display = 'block';
+                addSubtractInputsDiv.style.display = 'none';
+                durationResultDiv.style.display = 'block';
+                addSubtractResultDiv.style.display = 'none';
+            } else { // add_subtract
+                durationInputsDiv.style.display = 'none';
+                addSubtractInputsDiv.style.display = 'block';
+                durationResultDiv.style.display = 'none';
+                addSubtractResultDiv.style.display = 'block';
+            }
+            resultOutputDiv.style.display = 'none'; // Hide results on type change
+            hoursCalcErrorDiv.style.display = 'none'; // Clear errors
+        }
+
+        function performHoursCalculation() {
+            const type = calculationTypeSelect.value;
+            hoursCalcErrorDiv.style.display = 'none'; // Clear previous errors
+            resultOutputDiv.style.display = 'none'; // Hide previous results
+
+            if (type === 'duration') {
+                calculateTimeDuration();
+            } else {
+                addSubtractHoursMinutes();
+            }
+        }
+
+        function calculateTimeDuration() {
+            const startTimeValue = startTimeInput.value;
+            const endTimeValue = endTimeInput.value;
+
+            if (!startTimeValue || !endTimeValue) {
+                hoursCalcErrorDiv.textContent = 'Please enter both start and end times.';
+                hoursCalcErrorDiv.style.display = 'block';
+                return;
+            }
+
+            // Create dummy Date objects for calculation
+            const [startHours, startMinutes] = startTimeValue.split(':').map(Number);
+            const [endHours, endMinutes] = endTimeValue.split(':').map(Number);
+
+            const startDate = new Date();
+            startDate.setHours(startHours, startMinutes, 0, 0);
+
+            const endDate = new Date();
+            endDate.setHours(endHours, endMinutes, 0, 0);
+
+            // If end time is earlier than start time, assume it's the next day
+            if (endDate < startDate) {
+                endDate.setDate(endDate.getDate() + 1);
+            }
+
+            const diffMilliseconds = endDate.getTime() - startDate.getTime();
+            const totalMinutes = Math.floor(diffMilliseconds / (1000 * 60));
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+
+            document.getElementById('totalHoursDuration').textContent = `${hours} hours`;
+            document.getElementById('totalMinutesDuration').textContent = `${minutes} minutes`;
+
+            resultOutputDiv.style.display = 'block';
+            resultOutputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function addSubtractHoursMinutes() {
+            const baseTimeValue = baseTimeAddSubtractInput.value;
+            const operation = operationTypeSelect.value;
+            const hoursToAddSubtract = parseInt(hoursValueInput.value) || 0;
+            const minutesToAddSubtract = parseInt(minutesValueInput.value) || 0;
+
+            if (!baseTimeValue) {
+                hoursCalcErrorDiv.textContent = 'Please enter a base time.';
+                hoursCalcErrorDiv.style.display = 'block';
+                return;
+            }
+
+            if (isNaN(hoursToAddSubtract) || hoursToAddSubtract < 0 ||
+                isNaN(minutesToAddSubtract) || minutesToAddSubtract < 0) {
+                hoursCalcErrorDiv.textContent = 'Please enter valid non-negative numbers for hours and minutes.';
+                hoursCalcErrorDiv.style.display = 'block';
+                return;
+            }
+
+            // Parse base time
+            const [baseHours, baseMinutes] = baseTimeValue.split(':').map(Number);
+            const baseDate = new Date(); // Use a dummy date to work with time
+            baseDate.setHours(baseHours, baseMinutes, 0, 0); // Set seconds and milliseconds to 0
+
+            let totalMilliseconds = baseDate.getTime();
+            const millisecondsToAddSubtract = (hoursToAddSubtract * 3600 + minutesToAddSubtract * 60) * 1000;
+
+            if (operation === 'add') {
+                totalMilliseconds += millisecondsToAddSubtract;
+            } else { // subtract
+                totalMilliseconds -= millisecondsToAddSubtract;
+            }
+
+            const resultingDate = new Date(totalMilliseconds);
+
+            const resultHours = String(resultingDate.getHours()).padStart(2, '0');
+            const resultMinutes = String(resultingDate.getMinutes()).padStart(2, '0');
+
+            document.getElementById('resultingHoursTime').textContent = `${resultHours}:${resultMinutes}`;
+
+            resultOutputDiv.style.display = 'block';
+            resultOutputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🕐</span>
+                Related Time & Work Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="time-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⏱️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Time Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Add/subtract time</div></div>
+                </a>
+                <a href="time-duration-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⏲️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Time Duration Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate time durations</div></div>
+                </a>
+                <a href="stopwatch.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⏰</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Stopwatch</div><div style="font-size: 0.85rem; color: #6b7280;">Precise timing tool</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Productivity Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="salary-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Salary Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate hourly/annual pay</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+                <a href="date-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📅</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Date Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Add/subtract dates</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+

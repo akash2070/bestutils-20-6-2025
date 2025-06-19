@@ -1,0 +1,546 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Weight Gain Calculator - Track Healthy Weight During Pregnancy | BESTUTILS</title>
+    <meta name="description" content="Free pregnancy weight gain calculator to track healthy weight gain during pregnancy based on pre-pregnancy BMI. Get personalized recommendations for each trimester.">
+    <meta name="keywords" content="pregnancy weight gain calculator, free pregnancy weight calculator online, healthy pregnancy weight gain, pregnancy weight tracker, pregnancy bmi calculator, weight gain during pregnancy calculator, trimester weight gain calculator, pregnancy weight chart, pregnancy weight gain by week, pregnancy weight gain guidelines, pregnancy weight monitoring, pregnancy health calculator, bestutils">
+    <meta name="author" content="BESTUTILS">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/pregnancy_weight_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/pregnancy_weight_calculator.html">
+    <meta property="og:title" content="Pregnancy Weight Gain Calculator - Track Healthy Weight During Pregnancy | BestUtils">
+    <meta property="og:description" content="Calculate healthy weight gain during pregnancy based on your BMI. Get trimester-by-trimester recommendations for healthy pregnancy weight management.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/pregnancy-weight-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/pregnancy_weight_calculator.html">
+    <meta name="twitter:title" content="Pregnancy Weight Gain Calculator - Track Healthy Weight During Pregnancy | BestUtils">
+    <meta name="twitter:description" content="Calculate healthy weight gain during pregnancy based on your BMI. Get trimester-by-trimester recommendations for healthy pregnancy weight management.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/pregnancy-weight-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Pregnancy Weight Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Pregnancy Weight Calculator",
+        "description": "Free pregnancy weight gain calculator to track healthy weight gain during pregnancy by trimester with personalized recommendations based on pre-pregnancy BMI.",
+        "url": "https://bestutils.com/templates/pregnancy_weight_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-group {
+            transition: all 0.3s ease;
+        }
+        .input-group:focus-within {
+            transform: translateY(-2px);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .recommendation-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg">
+    <div class="container mx-auto px-4 py-6">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Pregnancy Weight Gain Calculator
+            </h1>
+            <p class="text-xl text-white opacity-90 max-w-2xl mx-auto">
+                Track healthy weight gain during pregnancy based on your pre-pregnancy BMI and get personalized recommendations
+            </p>
+        </div>
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="calculator-card rounded-2xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    </svg>
+                    Calculate Weight Gain
+                </h2>
+                <form id="pregnancyForm" class="space-y-6">
+                    <div class="input-group">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Pre-pregnancy Weight</label>
+                        <div class="flex">
+                            <input type="number" id="preWeight" step="0.1" class="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter weight" required>
+                            <select id="weightUnit" class="px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="lbs">lbs</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Height</label>
+                        <div class="grid grid-cols-2 gap-4" id="heightInputs">
+                            <div>
+                                <input type="number" id="heightFeet" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Feet" required>
+                                <label class="text-xs text-gray-500 mt-1">Feet</label>
+                            </div>
+                            <div>
+                                <input type="number" id="heightInches" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Inches" required>
+                                <label class="text-xs text-gray-500 mt-1">Inches</label>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <select id="heightUnit" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="ft">Feet & Inches</option>
+                                <option value="cm">Centimeters</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Current Week of Pregnancy</label>
+                        <input type="number" id="currentWeek" min="1" max="42" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter week (1-42)" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Current Weight (Optional)</label>
+                        <input type="number" id="currentWeight" step="0.1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter current weight">
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Pregnancy Type</label>
+                        <select id="pregnancyType" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="single">Single Baby</option>
+                            <option value="twins">Twins</option>
+                            <option value="triplets">Triplets or More</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-4 px-6 rounded-lg hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        Calculate Weight Gain
+                    </button>
+                </form>
+            </div>
+            <!-- Results -->
+            <div class="space-y-6">
+                <div id="results" class="hidden">
+                    <!-- BMI Result -->
+                    <div class="result-card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 00-2 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                            Your Pre-pregnancy BMI
+                        </h3>
+                        <div class="text-3xl font-bold" id="bmiValue"></div>
+                        <div class="text-lg opacity-90" id="bmiCategory"></div>
+                    </div>
+                    <!-- Weight Gain Recommendations -->
+                    <div class="recommendation-card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                            Recommended Weight Gain
+                        </h3>
+                        <div id="recommendedGain" class="text-2xl font-bold mb-2"></div>
+                        <div id="currentProgress" class="text-lg opacity-90 mb-4"></div>
+                        <div id="weeklyGain" class="text-sm opacity-80"></div>
+                    </div>
+                    <!-- Trimester Breakdown -->
+                    <div class="bg-white rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                            Trimester Breakdown
+                        </h3>
+                        <div id="trimesterBreakdown" class="space-y-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="max-w-4xl mx-auto mt-12 bg-white rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About the Pregnancy Weight Gain Calculator</h2>
+            <div class="prose max-w-none text-gray-600 space-y-4">
+                <p class="text-lg leading-relaxed">
+                    Our pregnancy weight gain calculator helps expectant mothers track healthy weight gain throughout pregnancy based on pre-pregnancy BMI and medical guidelines from the Institute of Medicine (IOM) and American College of Obstetricians and Gynecologists (ACOG).
+                </p>
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">How to Use This Calculator</h3>
+                <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                    <li><strong>Enter your pre-pregnancy weight</strong> - This is your weight before conception</li>
+                    <li><strong>Input your height</strong> - Choose between feet/inches or centimeters</li>
+                    <li><strong>Specify current week of pregnancy</strong> - Enter your current gestational week</li>
+                    <li><strong>Add current weight (optional)</strong> - To track your progress</li>
+                    <li><strong>Select pregnancy type</strong> - Single baby, twins, or multiples</li>
+                    <li><strong>Click "Calculate Weight Gain"</strong> - Get personalized recommendations</li>
+                </ol>
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Understanding Your Results</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-600">
+                    <li><strong>Pre-pregnancy BMI:</strong> Categorizes your weight status before pregnancy</li>
+                    <li><strong>Total Recommended Gain:</strong> Evidence-based weight gain range for your entire pregnancy</li>
+                    <li><strong>Weekly Gain:</strong> Recommended weekly weight gain for second and third trimesters</li>
+                    <li><strong>Current Progress:</strong> How your current weight gain compares to recommendations</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Weight Gain Guidelines by BMI</h3>
+                <div class="bg-gray-50 rounded-lg p-4 mt-4">
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><strong>Underweight (BMI < 18.5):</strong> 28-40 lbs total gain</li>
+                        <li><strong>Normal weight (BMI 18.5-24.9):</strong> 25-35 lbs total gain</li>
+                        <li><strong>Overweight (BMI 25.0-29.9):</strong> 15-25 lbs total gain</li>
+                        <li><strong>Obese (BMI ≥ 30.0):</strong> 11-20 lbs total gain</li>
+                    </ul>
+                </div>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-6">
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-yellow-600 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-yellow-800">Important Note</h4>
+                            <p class="text-yellow-700 text-sm mt-1">
+                                This calculator provides general guidelines based on medical recommendations. Always consult with your healthcare provider for personalized advice about weight gain during pregnancy, especially if you have specific health conditions or concerns.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('heightUnit').addEventListener('change', function() {
+            const heightInputs = document.getElementById('heightInputs');
+            if (this.value === 'cm') {
+                heightInputs.innerHTML = `
+                    <div class="col-span-2">
+                        <input type="number" id="heightCm" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Height in cm" required>
+                        <label class="text-xs text-gray-500 mt-1">Centimeters</label>
+                    </div>
+                `;
+            } else {
+                heightInputs.innerHTML = `
+                    <div>
+                        <input type="number" id="heightFeet" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Feet" required>
+                        <label class="text-xs text-gray-500 mt-1">Feet</label>
+                    </div>
+                    <div>
+                        <input type="number" id="heightInches" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Inches" required>
+                        <label class="text-xs text-gray-500 mt-1">Inches</label>
+                    </div>
+                `;
+            }
+        });
+        document.getElementById('pregnancyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateWeightGain();
+        });
+        function calculateWeightGain() {
+            // Get form values
+            const preWeight = parseFloat(document.getElementById('preWeight').value);
+            const weightUnit = document.getElementById('weightUnit').value;
+            const heightUnit = document.getElementById('heightUnit').value;
+            const currentWeek = parseInt(document.getElementById('currentWeek').value);
+            const currentWeight = parseFloat(document.getElementById('currentWeight').value) || null;
+            const pregnancyType = document.getElementById('pregnancyType').value;
+            // Convert weight to lbs if needed
+            const preWeightLbs = weightUnit === 'kg' ? preWeight * 2.20462 : preWeight;
+            const currentWeightLbs = currentWeight ? (weightUnit === 'kg' ? currentWeight * 2.20462 : currentWeight) : null;
+            // Get height in inches
+            let heightInches;
+            if (heightUnit === 'cm') {
+                const heightCm = parseFloat(document.getElementById('heightCm').value);
+                heightInches = heightCm / 2.54;
+            } else {
+                const feet = parseFloat(document.getElementById('heightFeet').value);
+                const inches = parseFloat(document.getElementById('heightInches').value);
+                heightInches = (feet * 12) + inches;
+            }
+            // Calculate BMI
+            const bmi = (preWeightLbs / (heightInches * heightInches)) * 703;
+            // Determine BMI category and weight gain recommendations
+            let bmiCategory, totalGainRange, weeklyGain;
+            if (bmi < 18.5) {
+                bmiCategory = 'Underweight';
+                totalGainRange = pregnancyType === 'twins' ? '50-62 lbs' : '28-40 lbs';
+                weeklyGain = pregnancyType === 'twins' ? '1.25-1.75 lbs' : '1-1.3 lbs';
+            } else if (bmi < 25) {
+                bmiCategory = 'Normal weight';
+                totalGainRange = pregnancyType === 'twins' ? '37-54 lbs' : '25-35 lbs';
+                weeklyGain = pregnancyType === 'twins' ? '1-1.25 lbs' : '0.8-1 lb';
+            } else if (bmi < 30) {
+                bmiCategory = 'Overweight';
+                totalGainRange = pregnancyType === 'twins' ? '31-50 lbs' : '15-25 lbs';
+                weeklyGain = pregnancyType === 'twins' ? '0.75-1 lb' : '0.5-0.7 lbs';
+            } else {
+                bmiCategory = 'Obese';
+                totalGainRange = pregnancyType === 'twins' ? '25-42 lbs' : '11-20 lbs';
+                weeklyGain = pregnancyType === 'twins' ? '0.5-0.75 lbs' : '0.4-0.6 lbs';
+            }
+            // Calculate current progress if current weight is provided
+            let progressText = '';
+            if (currentWeightLbs) {
+                const currentGain = currentWeightLbs - preWeightLbs;
+                const unit = weightUnit === 'kg' ? 'kg' : 'lbs';
+                const displayGain = weightUnit === 'kg' ? (currentGain / 2.20462).toFixed(1) : currentGain.toFixed(1);
+                progressText = `Current gain: ${displayGain} ${unit} (Week ${currentWeek})`;
+            }
+            // Create trimester breakdown
+            const trimesterData = [
+                { trimester: '1st Trimester (1-12 weeks)', gain: '1-4 lbs total', note: 'Minimal weight gain expected' },
+                { trimester: '2nd Trimester (13-27 weeks)', gain: weeklyGain + ' per week', note: 'Steady weight gain begins' },
+                { trimester: '3rd Trimester (28-40 weeks)', gain: weeklyGain + ' per week', note: 'Continued steady gain' }
+            ];
+            // Display results
+            document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+            document.getElementById('bmiCategory').textContent = bmiCategory;
+            document.getElementById('recommendedGain').textContent = totalGainRange;
+            document.getElementById('currentProgress').textContent = progressText;
+            document.getElementById('weeklyGain').textContent = `Recommended weekly gain (after 1st trimester): ${weeklyGain}`;
+            // Create trimester breakdown HTML
+            const trimesterHTML = trimesterData.map(data => `
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h4 class="font-semibold text-gray-800">${data.trimester}</h4>
+                    <p class="text-blue-600 font-medium">${data.gain}</p>
+                    <p class="text-sm text-gray-600">${data.note}</p>
+                </div>
+            `).join('');
+            document.getElementById('trimesterBreakdown').innerHTML = trimesterHTML;
+            document.getElementById('results').classList.remove('hidden');
+            // Scroll to results
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="pregnancy-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🤰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Pregnancy Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate due date</div>
+                    </div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+                <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔥</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

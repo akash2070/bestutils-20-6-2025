@@ -1,0 +1,691 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideal Weight Calculator - BestUtils.com | Find Your Healthy Weight Range</title>
+    <meta name="description" content="Discover your ideal body weight range with our comprehensive Ideal Weight Calculator. Based on your height and gender, it uses multiple popular formulas (Devine, Robinson, Miller, Hamwi) to provide a healthy target. Perfect for setting personal health and fitness goals.">
+    <meta name="keywords" content="ideal weight calculator, healthy weight, weight range, target weight, BMI, body mass index, fitness goals, health, bestutils, weight management">
+    <meta name="author" content="BestUtils.com">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/ideal-weight-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/ideal-weight-calculator.html">
+    <meta property="og:title" content="Ideal Weight Calculator - Find Your Healthy Weight Range | BestUtils">
+    <meta property="og:description" content="Discover your ideal body weight range with our comprehensive Ideal Weight Calculator. Based on your height and gender, it uses multiple popular formulas (Devine, Robinson, Miller, Hamwi) to provide a healthy target.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/ideal-weight-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/ideal-weight-calculator.html">
+    <meta name="twitter:title" content="Ideal Weight Calculator - Find Your Healthy Weight Range | BestUtils">
+    <meta name="twitter:description" content="Discover your ideal body weight range with our comprehensive Ideal Weight Calculator. Based on your height and gender, it uses multiple popular formulas (Devine, Robinson, Miller, Hamwi) to provide a healthy target.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/ideal-weight-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Ideal Weight Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ideal Weight Calculator",
+        "description": "Free ideal weight calculator using multiple formulas including Devine, Robinson, Miller, and Hamwi to determine optimal body weight.",
+        "url": "https://bestutils.com/templates/ideal-weight-calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and general layout */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            display: flex;
+            flex-direction: column; /* Stack logo and calculator vertically */
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .logo-section {
+            margin-bottom: 30px; /* Space between logo and calculator */
+            padding: 15px 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px; /* Match calculator width */
+            width: 100%;
+            justify-content: center; /* Center content horizontally */
+        }
+        .logo-main-line {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Smaller gap for top placement */
+        }
+        .logo-text-best {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #0F172A;
+            letter-spacing: -1px;
+        }
+        .logo-text-utils {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #2563EB;
+            letter-spacing: -1px;
+        }
+        .gear-icon {
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .input-group label {
+            font-weight: 600;
+            color: #334155; /* Slate-700 */
+            margin-bottom: 8px;
+            display: block;
+        }
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1; /* Slate-300 */
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #1e293b; /* Slate-800 */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #3b82f6; /* Blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Blue-500 with transparency */
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #2563eb; /* Blue-600 */
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8; /* Blue-700 */
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background-color: #e2e8f0; /* Slate-200 */
+            color: #475569; /* Slate-600 */
+            border: 1px solid #cbd5e1; /* Slate-300 */
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e1; /* Slate-300 */
+            transform: translateY(-1px);
+        }
+        .result-box {
+            background-color: #eff6ff; /* Blue-50 */
+            border: 1px solid #bfdbfe; /* Blue-200 */
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.125rem;
+            color: #1e40af; /* Blue-800 */
+            font-weight: 600;
+            word-wrap: break-word; /* Ensure long results wrap */
+        }
+        .error-message {
+            color: #ef4444; /* Red-500 */
+            font-size: 0.875rem;
+            margin-top: 8px;
+            text-align: center;
+        }
+        /* Responsive adjustments */
+        @media (min-width: 640px) {
+            .btn-group {
+                display: flex;
+                gap: 16px;
+            }
+            .btn {
+                width: auto; /* Allow buttons to size naturally in a row */
+                flex-grow: 1; /* Distribute space evenly */
+            }
+        }
+        .unit-selection {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        .unit-selection label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+            color: #475569;
+        }
+        .unit-selection input[type="radio"] {
+            width: auto; /* Override 100% width for radio buttons */
+            margin-right: 5px;
+        }
+        .height-inputs {
+            display: flex;
+            gap: 10px;
+        }
+        .height-inputs > div {
+            flex: 1;
+        }
+        .result-item {
+            margin-bottom: 10px;
+        }
+        .result-item:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-section">
+        <div class="logo-main-line">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500 gear-icon">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text-best">BEST</span><span class="logo-text-utils">UTILS</span>
+        </div>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-center">Ideal Weight Calculator</h1>
+    <div class="calculator-container">
+        <h1 class="text-3xl font-bold text-center text-gray-800">Ideal Weight Calculator</h1>
+        <p class="text-center text-gray-600 mb-4">Discover your ideal body weight range with our comprehensive Ideal Weight Calculator. Based on your height and gender, it uses multiple popular formulas (Devine, Robinson, Miller, Hamwi) to provide a healthy target. Perfect for setting personal health and fitness goals.</p>
+        <div class="input-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Units:</label>
+            <div class="unit-selection">
+                <label><input type="radio" name="units" value="metric" id="metricUnits" checked> Metric (cm)</label>
+                <label><input type="radio" name="units" value="imperial" id="imperialUnits"> Imperial (ft/in)</label>
+            </div>
+        </div>
+        <div class="input-group" id="heightMetricGroup">
+            <label for="heightCm">Height (cm):</label>
+            <input type="number" id="heightCm" placeholder="e.g., 175" step="0.1" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Height in Centimeters">
+            <p id="heightCm-error" class="error-message hidden">Please enter a valid height in cm.</p>
+        </div>
+        <div class="input-group hidden" id="heightImperialGroup">
+            <label>Height (ft/in):</label>
+            <div class="height-inputs">
+                <div>
+                    <input type="number" id="heightFt" placeholder="Feet" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Height in Feet">
+                    <p id="heightFt-error" class="error-message hidden"></p>
+                </div>
+                <div>
+                    <input type="number" id="heightIn" placeholder="Inches" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Height in Inches">
+                    <p id="heightIn-error" class="error-message hidden"></p>
+                </div>
+            </div>
+            <p id="heightImperial-error" class="error-message hidden">Please enter valid height in feet and inches.</p>
+        </div>
+        <div class="btn-group">
+            <button id="calculateBtn" class="btn btn-primary">Calculate Ideal Weight</button>
+            <button id="clearBtn" class="btn btn-secondary">Clear</button>
+        </div>
+        <div id="result" class="result-box hidden">
+            </div>
+        <!-- How to Use Section -->
+        <div style="margin-top: 30px; padding: 20px; background: #e6f3ff; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">How to Use the Ideal Weight Calculator</h2>
+            <ol style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Select Gender:</strong> Choose male or female (affects calculation formulas)</li>
+                <li><strong>Choose Units:</strong> Select metric (cm) or imperial (ft/in) for height input</li>
+                <li><strong>Enter Height:</strong> Input your height in the selected unit system</li>
+                <li><strong>Calculate:</strong> Click "Calculate Ideal Weight" to see results from multiple formulas</li>
+                <li><strong>Review Results:</strong> Compare ideal weights from Devine, Robinson, Miller, and Hamwi formulas</li>
+                <li><strong>Clear:</strong> Use "Clear" button to reset all fields for new calculations</li>
+            </ol>
+        </div>
+        <!-- Tips Section -->
+        <div style="margin-top: 20px; padding: 20px; background: #f0fff4; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">Ideal Weight Tips & Health Information</h2>
+            <ul style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Multiple Formulas:</strong> Different formulas provide a range - your ideal weight may fall anywhere within this range</li>
+                <li><strong>Individual Variation:</strong> Ideal weight varies based on body composition, muscle mass, and bone density</li>
+                <li><strong>Health Goals:</strong> Use as a general guideline for setting realistic weight management goals</li>
+                <li><strong>Body Composition:</strong> Athletes may weigh more due to muscle mass while still being healthy</li>
+                <li><strong>Age Considerations:</strong> Ideal weight ranges may vary slightly with age and life stage</li>
+                <li><strong>Professional Guidance:</strong> Consult healthcare providers for personalized weight recommendations</li>
+                <li><strong>Holistic Health:</strong> Focus on overall health, not just reaching a specific number</li>
+            </ul>
+        </div>
+        <!-- Additional Information -->
+        <div style="margin-top: 20px; padding: 20px; background: #fff5f5; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">Understanding the Formulas</h2>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Devine Formula:</strong> Most commonly used in medical settings, developed for drug dosage calculations.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Robinson Formula:</strong> Modification of Devine formula, often used in clinical practice.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Miller Formula:</strong> Another clinical variation providing slightly different weight estimates.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Hamwi Formula:</strong> Originally developed for diabetic patients, widely used in nutrition counseling.
+            </p>
+            <p style="line-height: 1.6; color: #555;">
+                <strong>Important Note:</strong> These are estimates for general guidance. Individual health needs may vary significantly.
+            </p>
+        </div>
+        <script>
+            // Function to get element by ID
+            const getById = (id) => document.getElementById(id);
+            // Get references to elements
+            const genderSelect = getById('gender');
+            const metricUnitsRadio = getById('metricUnits');
+            const imperialUnitsRadio = getById('imperialUnits');
+            const heightCmInput = getById('heightCm');
+            const heightFtInput = getById('heightFt');
+            const heightInInput = getById('heightIn');
+            const calculateBtn = getById('calculateBtn');
+            const clearBtn = getById('clearBtn');
+            const resultDiv = getById('result');
+            // Error message elements
+            const heightCmError = getById('heightCm-error');
+            const heightFtError = getById('heightFt-error');
+            const heightInError = getById('heightIn-error');
+            const heightImperialError = getById('heightImperial-error'); // Combined error for imperial height
+            // Unit group containers
+            const heightMetricGroup = getById('heightMetricGroup');
+            const heightImperialGroup = getById('heightImperialGroup');
+            /**
+             * Shows an error message for a given input field.
+             * @param {HTMLElement} errorElement - The paragraph element for the error message.
+             * @param {string} message - The error message to display.
+             */
+            const showError = (errorElement, message) => {
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            };
+            /**
+             * Hides an error message for a given input field.
+             * @param {HTMLElement} errorElement - The paragraph element for the error message.
+             */
+            const hideError = (errorElement) => {
+                errorElement.classList.add('hidden');
+                errorElement.textContent = '';
+            };
+            /**
+             * Validates a numeric input field.
+             * @param {HTMLInputElement} inputElement - The input element to validate.
+             * @param {HTMLElement} errorElement - The paragraph element for the error message.
+             * @param {string} errorMessage - The error message to display if invalid.
+             * @param {number} min - Minimum allowed value.
+             * @param {number} max - Maximum allowed value.
+             * @returns {number | null} The parsed number if valid and within range, otherwise null.
+             */
+            const validateInput = (inputElement, errorElement, errorMessage, min = 0, max = Infinity) => {
+                const value = parseFloat(inputElement.value);
+                if (isNaN(value) || value < min || value > max) {
+                    showError(errorElement, errorMessage);
+                    return null;
+                }
+                hideError(errorElement);
+                return value;
+            };
+            /**
+             * Toggles visibility of height input groups based on unit selection.
+             */
+            const toggleUnitInputs = () => {
+                const isMetric = metricUnitsRadio.checked;
+                if (isMetric) {
+                    heightMetricGroup.classList.remove('hidden');
+                    heightImperialGroup.classList.add('hidden');
+                    // Clear imperial inputs when switching to metric
+                    heightFtInput.value = '';
+                    heightInInput.value = '';
+                    hideError(heightFtError);
+                    hideError(heightInError);
+                    hideError(heightImperialError);
+                } else {
+                    heightMetricGroup.classList.add('hidden');
+                    heightImperialGroup.classList.remove('hidden');
+                    // Clear metric inputs when switching to imperial
+                    heightCmInput.value = '';
+                    hideError(heightCmError);
+                }
+            };
+            // Add event listeners for unit radio buttons
+            metricUnitsRadio.addEventListener('change', toggleUnitInputs);
+            imperialUnitsRadio.addEventListener('change', toggleUnitInputs);
+            // Initial call to set correct input visibility on load
+            toggleUnitInputs();
+            /**
+             * Converts inches to centimeters.
+             * @param {number} inches - Value in inches.
+             * @returns {number} Value in centimeters.
+             */
+            const inchesToCm = (inches) => inches * 2.54;
+            /**
+             * Converts centimeters to inches.
+             * @param {number} cm - Value in centimeters.
+             * @returns {number} Value in inches.
+             */
+            const cmToInches = (cm) => cm / 2.54;
+            /**
+             * Converts pounds to kilograms.
+             * @param {number} lbs - Value in pounds.
+             * @returns {number} Value in kilograms.
+             */
+            const lbsToKg = (lbs) => lbs * 0.453592;
+            /**
+             * Converts kilograms to pounds.
+             * @param {number} kg - Value in kilograms.
+             * @returns {number} Value in pounds.
+             */
+            const kgToLbs = (kg) => kg / 0.453592;
+            /**
+             * Calculates ideal body weight using various formulas.
+             * All calculations are done using height in inches.
+             * Results are returned in kg and lbs.
+             * @param {string} gender - 'male' or 'female'.
+             * @param {number} heightInches - Height in inches.
+             * @returns {object} An object containing ideal weights by formula in kg and lbs.
+             */
+            const calculateIdealWeight = (gender, heightInches) => {
+                const results = {};
+                const baseHeightInches = 60; // 5 feet in inches
+                if (gender === 'male') {
+                    // Devine Formula: 50 kg + 2.3 kg for each inch over 5 feet
+                    results.devineKg = 50 + (2.3 * Math.max(0, heightInches - baseHeightInches));
+                    results.devineLbs = kgToLbs(results.devineKg);
+                    // Robinson Formula: 52 kg + 1.9 kg for each inch over 5 feet
+                    results.robinsonKg = 52 + (1.9 * Math.max(0, heightInches - baseHeightInches));
+                    results.robinsonLbs = kgToLbs(results.robinsonKg);
+                    // Miller Formula: 56.2 kg + 1.41 kg for each inch over 5 feet
+                    results.millerKg = 56.2 + (1.41 * Math.max(0, heightInches - baseHeightInches));
+                    results.millerLbs = kgToLbs(results.millerKg);
+                    // Hamwi Formula: 48 kg + 2.7 kg for each inch over 5 feet
+                    results.hamwiKg = 48 + (2.7 * Math.max(0, heightInches - baseHeightInches));
+                    results.hamwiLbs = kgToLbs(results.hamwiKg);
+                } else { // female
+                    // Devine Formula: 45.5 kg + 2.3 kg for each inch over 5 feet
+                    results.devineKg = 45.5 + (2.3 * Math.max(0, heightInches - baseHeightInches));
+                    results.devineLbs = kgToLbs(results.devineKg);
+                    // Robinson Formula: 49 kg + 1.7 kg for each inch over 5 feet
+                    results.robinsonKg = 49 + (1.7 * Math.max(0, heightInches - baseHeightInches));
+                    results.robinsonLbs = kgToLbs(results.robinsonKg);
+                    // Miller Formula: 53.1 kg + 1.36 kg for each inch over 5 feet
+                    results.millerKg = 53.1 + (1.36 * Math.max(0, heightInches - baseHeightInches));
+                    results.millerLbs = kgToLbs(results.millerKg);
+                    // Hamwi Formula: 45.5 kg + 2.2 kg for each inch over 5 feet
+                    results.hamwiKg = 45.5 + (2.2 * Math.max(0, heightInches - baseHeightInches));
+                    results.hamwiLbs = kgToLbs(results.hamwiKg);
+                }
+                return results;
+            };
+            /**
+             * Handles the calculation logic when the calculate button is clicked.
+             */
+            const handleCalculate = () => {
+                // Clear previous errors and results
+                hideError(heightCmError);
+                hideError(heightFtError);
+                hideError(heightInError);
+                hideError(heightImperialError);
+                resultDiv.classList.add('hidden');
+                resultDiv.textContent = '';
+                let heightInches = null;
+                const gender = genderSelect.value;
+                const isMetric = metricUnitsRadio.checked;
+                if (isMetric) {
+                    const heightCm = validateInput(heightCmInput, heightCmError, 'Please enter a valid height in cm (e.g., 175).', 50, 250);
+                    if (heightCm === null) return;
+                    heightInches = cmToInches(heightCm);
+                } else { // Imperial
+                    const heightFt = validateInput(heightFtInput, heightFtError, 'Invalid feet (1-8 ft).', 1, 8);
+                    const heightIn = validateInput(heightInInput, heightInError, 'Invalid inches (0-11 in).', 0, 11);
+                    if (heightFt === null || heightIn === null) {
+                        showError(heightImperialError, 'Please enter valid height in feet and inches.');
+                        return;
+                    } else {
+                        hideError(heightImperialError);
+                        heightInches = (heightFt * 12) + heightIn; // Convert feet to inches and add remaining inches
+                    }
+                }
+                if (heightInches === null) {
+                    return;
+                }
+                // Calculate ideal weights
+                const idealWeights = calculateIdealWeight(gender, heightInches);
+                // Display results
+                let resultsHtml = '';
+                resultsHtml += `<div class="result-item"><strong>Devine Formula:</strong> ${idealWeights.devineKg.toFixed(1)} kg / ${idealWeights.devineLbs.toFixed(1)} lbs</div>`;
+                resultsHtml += `<div class="result-item"><strong>Robinson Formula:</strong> ${idealWeights.robinsonKg.toFixed(1)} kg / ${idealWeights.robinsonLbs.toFixed(1)} lbs</div>`;
+                resultsHtml += `<div class="result-item"><strong>Miller Formula:</strong> ${idealWeights.millerKg.toFixed(1)} kg / ${idealWeights.millerLbs.toFixed(1)} lbs</div>`;
+                resultsHtml += `<div class="result-item"><strong>Hamwi Formula:</strong> ${idealWeights.hamwiKg.toFixed(1)} kg / ${idealWeights.hamwiLbs.toFixed(1)} lbs</div>`;
+                resultDiv.innerHTML = resultsHtml;
+                resultDiv.classList.remove('hidden');
+            };
+            /**
+             * Clears all input fields and hides results/errors.
+             */
+            const handleClear = () => {
+                genderSelect.value = 'male';
+                metricUnitsRadio.checked = true; // Reset to metric
+                toggleUnitInputs(); // Update visibility
+                heightCmInput.value = '';
+                heightFtInput.value = '';
+                heightInInput.value = '';
+                resultDiv.classList.add('hidden');
+                resultDiv.textContent = '';
+                hideError(heightCmError);
+                hideError(heightFtError);
+                hideError(heightInError);
+                hideError(heightImperialError);
+            };
+            // Add event listeners to buttons
+            calculateBtn.addEventListener('click', handleCalculate);
+            clearBtn.addEventListener('click', handleClear);
+            // Add input event listeners to clear errors as user types
+            heightCmInput.addEventListener('input', () => hideError(heightCmError));
+            heightFtInput.addEventListener('input', () => hideError(heightFtError));
+            heightInInput.addEventListener('input', () => hideError(heightInError));
+        </script>
+        <!-- Internal Linking Section -->
+        <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+            <!-- Related Health Tools -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                    Related Health Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">⚖️</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                        </div>
+                    </a>
+                    <a href="healthy_weight_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🎯</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Healthy Weight Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate healthy weight range</div>
+                        </div>
+                    </a>
+                    <a href="body-fat-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Body Fat Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate body fat percentage</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- You Might Also Like -->
+            <div>
+                <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                    You Might Also Like
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">💰</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                        </div>
+                    </a>
+                    <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                        </div>
+                    </a>
+                    <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🔄</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

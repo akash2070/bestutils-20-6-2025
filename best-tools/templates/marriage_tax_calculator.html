@@ -1,0 +1,731 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marriage Tax Calculator - Calculate Tax Savings | BESTUTILS</title>
+    <meta name="description" content="Free marriage tax calculator to compare tax liability before and after marriage. Calculate marriage penalty or bonus with our easy-to-use tool for tax planning.">
+    <meta name="keywords" content="marriage tax calculator, marriage penalty, marriage bonus, tax calculator, married filing jointly, tax planning, IRS calculator">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Marriage Tax Calculator - Calculate Tax Savings | BESTUTILS">
+    <meta property="og:description" content="Compare tax liability before and after marriage. Calculate marriage penalty or bonus for better tax planning.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/marriage-tax-calculator">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Marriage Tax Calculator - BESTUTILS">
+    <meta name="twitter:description" content="Calculate marriage tax penalty or bonus with our free online calculator.">
+    <link rel="canonical" href="https://bestutils.com/marriage-tax-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-field, .select-field {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+        .input-field:focus, .select-field:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        .result-card {
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .result-positive {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border: 2px solid #10b981;
+        }
+        .result-negative {
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+            border: 2px solid #ef4444;
+        }
+        .result-neutral {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .info-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 32px;
+        }
+        .tax-bracket {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .comparison-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="calculator-card p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-4">Marriage Tax Calculator</h1>
+                <p class="text-gray-600 text-lg">Compare your tax liability before and after marriage - Calculate marriage penalty or bonus</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6">Enter Your Information</h2>
+                    <div class="space-y-6">
+                        <!-- Tax Year -->
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tax Year</label>
+                            <select id="taxYear" class="select-field">
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <!-- Spouse 1 Information -->
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-blue-800 mb-4">Spouse 1 Information</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tax Credits ($)</label>
+                                    <input type="number" id="credits1" class="input-field" placeholder="Tax credits" step="100" min="0" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Spouse 2 Information -->
+                        <div class="bg-pink-50 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-pink-800 mb-4">Spouse 2 Information</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Annual Income ($)</label>
+                                    <input type="number" id="income2" class="input-field" placeholder="Enter annual income" step="1000" min="0">
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Filing Status (if single)</label>
+                                    <select id="status2" class="select-field">
+                                        <option value="single">Single</option>
+                                        <option value="head">Head of Household</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Standard Deduction ($)</label>
+                                    <input type="number" id="deduction2" class="input-field" placeholder="Additional deductions" step="100" min="0" value="0">
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Tax Credits ($)</label>
+                                    <input type="number" id="credits2" class="input-field" placeholder="Tax credits" step="100" min="0" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Married Filing Options -->
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-green-800 mb-4">Married Filing Options</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Combined Additional Deductions ($)</label>
+                                    <input type="number" id="marriedDeductions" class="input-field" placeholder="Combined deductions" step="100" min="0" value="0">
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Combined Tax Credits ($)</label>
+                                    <input type="number" id="marriedCredits" class="input-field" placeholder="Combined credits" step="100" min="0" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="calculateMarriageTax()" class="btn-primary mt-6">
+                        Calculate Tax Impact
+                    </button>
+                    <button onclick="clearAll()" class="w-full mt-3 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                        Clear All
+                    </button>
+                </div>
+                <!-- Results Section -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6">Tax Comparison Results</h2>
+                    <div id="results" class="text-center text-gray-500 py-8">
+                        Enter income information and click "Calculate Tax Impact" to see comparison
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tax Brackets Information -->
+        <div class="info-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">2024 Tax Brackets & Standard Deductions</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Single Filers</h3>
+                    <div class="tax-bracket">10% - $0 to $11,000</div>
+                    <div class="tax-bracket">12% - $11,001 to $44,725</div>
+                    <div class="tax-bracket">22% - $44,726 to $95,375</div>
+                    <div class="tax-bracket">24% - $95,376 to $182,050</div>
+                    <div class="tax-bracket">32% - $182,051 to $231,250</div>
+                    <div class="tax-bracket">35% - $231,251 to $578,125</div>
+                    <div class="tax-bracket">37% - $578,126+</div>
+                    <div class="mt-3 p-2 bg-blue-100 rounded text-sm">
+                        <strong>Standard Deduction:</strong> $14,600
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Married Filing Jointly</h3>
+                    <div class="tax-bracket">10% - $0 to $22,000</div>
+                    <div class="tax-bracket">12% - $22,001 to $89,450</div>
+                    <div class="tax-bracket">22% - $89,451 to $190,750</div>
+                    <div class="tax-bracket">24% - $190,751 to $364,200</div>
+                    <div class="tax-bracket">32% - $364,201 to $462,500</div>
+                    <div class="tax-bracket">35% - $462,501 to $693,750</div>
+                    <div class="tax-bracket">37% - $693,751+</div>
+                    <div class="mt-3 p-2 bg-blue-100 rounded text-sm">
+                        <strong>Standard Deduction:</strong> $29,200
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Head of Household</h3>
+                    <div class="tax-bracket">10% - $0 to $15,700</div>
+                    <div class="tax-bracket">12% - $15,701 to $59,850</div>
+                    <div class="tax-bracket">22% - $59,851 to $95,350</div>
+                    <div class="tax-bracket">24% - $95,351 to $182,050</div>
+                    <div class="tax-bracket">32% - $182,051 to $231,250</div>
+                    <div class="tax-bracket">35% - $231,251 to $578,100</div>
+                    <div class="tax-bracket">37% - $578,101+</div>
+                    <div class="mt-3 p-2 bg-blue-100 rounded text-sm">
+                        <strong>Standard Deduction:</strong> $21,900
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Information Section -->
+        <div class="info-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">About Marriage Tax Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">What is Marriage Penalty/Bonus?</h3>
+                    <p class="text-gray-600 mb-4">
+                        The marriage penalty or bonus refers to the difference in tax liability between filing as a married couple versus filing as two single individuals. Some couples pay more in taxes when married (penalty), while others pay less (bonus).
+                    </p>
+                    <h4 class="font-semibold text-gray-700 mb-2">Common Scenarios:</h4>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><strong>Marriage Bonus:</strong> When one spouse earns significantly more</li>
+                        <li><strong>Marriage Penalty:</strong> When both spouses have similar high incomes</li>
+                        <li><strong>Neutral Impact:</strong> When incomes are moderate and similar</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Filing Options for Married Couples</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border">
+                            <h4 class="font-semibold text-gray-700">Married Filing Jointly</h4>
+                            <p class="text-sm text-gray-600">Combine both incomes and deductions. Often results in lower tax liability.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border">
+                            <h4 class="font-semibold text-gray-700">Married Filing Separately</h4>
+                            <p class="text-sm text-gray-600">File separate returns. May be beneficial in specific situations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="info-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">How to Use the Marriage Tax Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Step-by-Step Instructions:</h3>
+                    <ol class="text-gray-600 space-y-3">
+                        <li><strong>1. Select Tax Year:</strong> Choose the relevant tax year for calculation</li>
+                        <li><strong>2. Enter Spouse 1 Info:</strong> Input annual income, filing status, deductions, and credits</li>
+                        <li><strong>3. Enter Spouse 2 Info:</strong> Input the same information for the second spouse</li>
+                        <li><strong>4. Combined Information:</strong> Add any additional married filing deductions/credits</li>
+                        <li><strong>5. Calculate:</strong> Click to see the comparison between single and married filing</li>
+                        <li><strong>6. Review Results:</strong> Analyze marriage penalty or bonus amount</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Tips for Tax Planning:</h3>
+                    <ul class="text-gray-600 space-y-3">
+                        <li>• <strong>Timing Matters:</strong> Consider marriage timing for tax optimization</li>
+                        <li>• <strong>Income Shifting:</strong> Balance incomes through retirement contributions</li>
+                        <li>• <strong>Deduction Strategy:</strong> Maximize combined deductions when married</li>
+                        <li>• <strong>Professional Help:</strong> Consult a tax professional for complex situations</li>
+                        <li>• <strong>Annual Review:</strong> Recalculate when income situations change</li>
+                        <li>• <strong>State Taxes:</strong> Consider state tax implications as well</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="text-center mt-12 py-8 border-t border-gray-200">
+            <p class="text-gray-600">© 2024 BESTUTILS.com - Free Online Calculators and Tools</p>
+            <p class="text-sm text-gray-500 mt-2">Calculate marriage tax impact and plan your finances better</p>
+            <p class="text-xs text-gray-400 mt-2">Disclaimer: This calculator provides estimates only. Consult a tax professional for accurate tax planning.</p>
+        </div>
+    </div>
+    <script>
+        // Tax brackets for 2024
+        const taxBrackets2024 = {
+            single: [
+                { min: 0, max: 11000, rate: 0.10 },
+                { min: 11000, max: 44725, rate: 0.12 },
+                { min: 44725, max: 95375, rate: 0.22 },
+                { min: 95375, max: 182050, rate: 0.24 },
+                { min: 182050, max: 231250, rate: 0.32 },
+                { min: 231250, max: 578125, rate: 0.35 },
+                { min: 578125, max: Infinity, rate: 0.37 }
+            ],
+            marriedJointly: [
+                { min: 0, max: 22000, rate: 0.10 },
+                { min: 22000, max: 89450, rate: 0.12 },
+                { min: 89450, max: 190750, rate: 0.22 },
+                { min: 190750, max: 364200, rate: 0.24 },
+                { min: 364200, max: 462500, rate: 0.32 },
+                { min: 462500, max: 693750, rate: 0.35 },
+                { min: 693750, max: Infinity, rate: 0.37 }
+            ],
+            headOfHousehold: [
+                { min: 0, max: 15700, rate: 0.10 },
+                { min: 15700, max: 59850, rate: 0.12 },
+                { min: 59850, max: 95350, rate: 0.22 },
+                { min: 95350, max: 182050, rate: 0.24 },
+                { min: 182050, max: 231250, rate: 0.32 },
+                { min: 231250, max: 578100, rate: 0.35 },
+                { min: 578100, max: Infinity, rate: 0.37 }
+            ]
+        };
+        const standardDeductions2024 = {
+            single: 14600,
+            marriedJointly: 29200,
+            marriedSeparately: 14600,
+            headOfHousehold: 21900
+        };
+        function calculateTax(income, filingStatus, brackets) {
+            if (income <= 0) return 0;
+            let tax = 0;
+            let remainingIncome = income;
+            for (let bracket of brackets[filingStatus]) {
+                if (remainingIncome <= 0) break;
+                const taxableInBracket = Math.min(remainingIncome, bracket.max - bracket.min);
+                tax += taxableInBracket * bracket.rate;
+                remainingIncome -= taxableInBracket;
+            }
+            return Math.max(0, tax);
+        }
+        function calculateMarriageTax() {
+            // Get input values
+            const income1 = parseFloat(document.getElementById('income1').value) || 0;
+            const income2 = parseFloat(document.getElementById('income2').value) || 0;
+            const status1 = document.getElementById('status1').value;
+            const status2 = document.getElementById('status2').value;
+            const deduction1 = parseFloat(document.getElementById('deduction1').value) || 0;
+            const deduction2 = parseFloat(document.getElementById('deduction2').value) || 0;
+            const credits1 = parseFloat(document.getElementById('credits1').value) || 0;
+            const credits2 = parseFloat(document.getElementById('credits2').value) || 0;
+            const marriedDeductions = parseFloat(document.getElementById('marriedDeductions').value) || 0;
+            const marriedCredits = parseFloat(document.getElementById('marriedCredits').value) || 0;
+            if (income1 <= 0 && income2 <= 0) {
+                document.getElementById('results').innerHTML = `
+                    <div class="text-red-500 font-medium">
+                        Please enter at least one spouse's income
+                    </div>
+                `;
+                return;
+            }
+            // Calculate taxes when filing as single/head of household
+            const taxableIncome1 = Math.max(0, income1 - standardDeductions2024[status1] - deduction1);
+            const taxableIncome2 = Math.max(0, income2 - standardDeductions2024[status2] - deduction2);
+            const tax1Single = calculateTax(taxableIncome1, status1, taxBrackets2024) - credits1;
+            const tax2Single = calculateTax(taxableIncome2, status2, taxBrackets2024) - credits2;
+            const totalSingleTax = Math.max(0, tax1Single) + Math.max(0, tax2Single);
+            // Calculate taxes when married filing jointly
+            const combinedIncome = income1 + income2;
+            const marriedTaxableIncome = Math.max(0, combinedIncome - standardDeductions2024.marriedJointly - marriedDeductions);
+            const marriedTax = Math.max(0, calculateTax(marriedTaxableIncome, 'marriedJointly', taxBrackets2024) - marriedCredits);
+            // Calculate taxes when married filing separately
+            const taxableIncome1Separate = Math.max(0, income1 - standardDeductions2024.marriedSeparately - (deduction1 + marriedDeductions/2));
+            const taxableIncome2Separate = Math.max(0, income2 - standardDeductions2024.marriedSeparately - (deduction2 + marriedDeductions/2));
+            const tax1Separate = calculateTax(taxableIncome1Separate, 'single', taxBrackets2024) - (credits1 + marriedCredits/2);
+            const tax2Separate = calculateTax(taxableIncome2Separate, 'single', taxBrackets2024) - (credits2 + marriedCredits/2);
+            const totalSeparateTax = Math.max(0, tax1Separate) + Math.max(0, tax2Separate);
+            // Determine the best married filing option
+            const bestMarriedTax = Math.min(marriedTax, totalSeparateTax);
+            const bestFilingStatus = marriedTax <= totalSeparateTax ? 'Married Filing Jointly' : 'Married Filing Separately';
+            // Calculate marriage penalty/bonus
+            const marriageDifference = bestMarriedTax - totalSingleTax;
+            const isBonus = marriageDifference < 0;
+            const penaltyBonusAmount = Math.abs(marriageDifference);
+            // Determine result card class
+            let resultClass = 'result-neutral';
+            let resultIcon = '💡';
+            let resultTitle = 'Tax Impact Analysis';
+            if (isBonus) {
+                resultClass = 'result-positive';
+                resultIcon = '💰';
+                resultTitle = 'Marriage Tax Bonus!';
+            } else if (marriageDifference > 0) {
+                resultClass = 'result-negative';
+                resultIcon = '⚠️';
+                resultTitle = 'Marriage Tax Penalty';
+            }
+            document.getElementById('results').innerHTML = `
+                <div class="result-card ${resultClass}">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center gap-2">
+                        <span>${resultIcon}</span>
+                        ${resultTitle}
+                    </h3>
+                    <div class="result-item">
+                        <span class="font-medium">Filing as Single/HOH:</span>
+                        <span class="text-xl font-bold">${totalSingleTax.toLocaleString()}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="font-medium">Best Married Filing Option:</span>
+                        <span class="text-lg font-semibold">${bestFilingStatus}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="font-medium">Married Tax Liability:</span>
+                        <span class="text-xl font-bold">${bestMarriedTax.toLocaleString()}</span>
+                    </div>
+                    <div class="result-item border-t-2 pt-3 mt-3">
+                        <span class="font-medium text-lg">
+                            ${isBonus ? 'Marriage Bonus:' : marriageDifference === 0 ? 'No Tax Impact:' : 'Marriage Penalty:'}
+                        </span>
+                        <span class="text-2xl font-bold ${isBonus ? 'text-green-600' : marriageDifference === 0 ? 'text-blue-600' : 'text-red-600'}">
+                            ${isBonus ? '-' : marriageDifference === 0 ? '' : '+'}${penaltyBonusAmount.toLocaleString()}
+                        </span>
+                    </div>
+                    <div class="mt-4 p-3 bg-white bg-opacity-50 rounded-lg">
+                        <p class="text-sm">
+                            <strong>Interpretation:</strong> 
+                            ${isBonus ? 
+                                `You save ${penaltyBonusAmount.toLocaleString()} per year by filing as married. This typically happens when one spouse earns significantly more than the other.` :
+                                marriageDifference === 0 ? 
+                                'Marriage has no significant impact on your tax liability.' :
+                                `Marriage costs you an additional ${penaltyBonusAmount.toLocaleString()} per year in taxes. This often occurs when both spouses have similar high incomes.`
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4 class="font-semibold text-gray-700 mb-3">Filing Separately Analysis</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Spouse 1 Tax:</span>
+                                <span>${Math.max(0, tax1Single).toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Spouse 2 Tax:</span>
+                                <span>${Math.max(0, tax2Single).toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between font-semibold border-t pt-2">
+                                <span>Total:</span>
+                                <span>${totalSingleTax.toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <h4 class="font-semibold text-gray-700 mb-3">Filing Options Comparison</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Married Filing Jointly:</span>
+                                <span>${marriedTax.toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Married Filing Separately:</span>
+                                <span>${totalSeparateTax.toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between font-semibold border-t pt-2 text-green-600">
+                                <span>Best Option:</span>
+                                <span>${bestFilingStatus === 'Married Filing Jointly' ? 'Jointly' : 'Separately'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    <h4 class="font-semibold text-gray-700 mb-2">Tax Planning Insights:</h4>
+                    <div class="text-sm text-gray-600 space-y-1">
+                        <p>• Effective Tax Rate (Single): ${((totalSingleTax / (income1 + income2)) * 100).toFixed(2)}%</p>
+                        <p>• Effective Tax Rate (Married): ${((bestMarriedTax / (income1 + income2)) * 100).toFixed(2)}%</p>
+                        <p>• Combined Income: ${(income1 + income2).toLocaleString()}</p>
+                        <p>• Tax Savings from Standard Deduction: ${((standardDeductions2024.marriedJointly - standardDeductions2024[status1] - standardDeductions2024[status2]) * 0.22).toFixed(0)}</p>
+                    </div>
+                </div>
+            `;
+        }
+        function clearAll() {
+            document.getElementById('income1').value = '';
+            document.getElementById('income2').value = '';
+            document.getElementById('deduction1').value = '0';
+            document.getElementById('deduction2').value = '0';
+            document.getElementById('credits1').value = '0';
+            document.getElementById('credits2').value = '0';
+            document.getElementById('marriedDeductions').value = '0';
+            document.getElementById('marriedCredits').value = '0';
+            document.getElementById('status1').value = 'single';
+            document.getElementById('status2').value = 'single';
+            document.getElementById('taxYear').value = '2024';
+            document.getElementById('results').innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                    Enter income information and click "Calculate Tax Impact" to see comparison
+                </div>
+            `;
+        }
+        // Add input event listeners for real-time calculation
+        ['income1', 'income2', 'deduction1', 'deduction2', 'credits1', 'credits2', 'marriedDeductions', 'marriedCredits'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                if ((document.getElementById('income1').value || document.getElementById('income2').value)) {
+                    calculateMarriageTax();
+                }
+            });
+        });
+        ['status1', 'status2', 'taxYear'].forEach(id => {
+            document.getElementById(id).addEventListener('change', function() {
+                if ((document.getElementById('income1').value || document.getElementById('income2').value)) {
+                    calculateMarriageTax();
+                }
+            });
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="income-tax-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧾</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Income Tax Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate income tax</div></div>
+                </a>
+                <a href="salary-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Salary Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate salary conversions</div></div>
+                </a>
+                <a href="take_home_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Take Home Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate net salary</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Famous Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+                <a href="401k-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">401k Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan 401k contributions</div></div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>gray-700 mb-2">Annual Income ($)</label>
+                                    <input type="number" id="income1" class="input-field" placeholder="Enter annual income" step="1000" min="0">
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Filing Status (if single)</label>
+                                    <select id="status1" class="select-field">
+                                        <option value="single">Single</option>
+                                        <option value="head">Head of Household</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Standard Deduction ($)</label>
+                                    <input type="number" id="deduction1" class="input-field" placeholder="Additional deductions" step="100" min="0" value="0">
+                                </div>
+                                <div class="input-group">
+                                    <label class="block text-sm font-medium text-

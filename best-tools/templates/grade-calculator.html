@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator - Calculate Your Course Grades Online</title>
+    <meta name="description" content="Calculate your current or final course grade with our free online Grade Calculator. Input your assignments, quizzes, exams, and their respective weights or scores to determine your overall grade. Perfect for students to track academic progress.">
+    <meta name="keywords" content="grade calculator, free grade calculator online, test grade calculator, final grade calculator, weighted grade calculator, academic calculator, student grade calculator, class grade calculator, course grade calculator, percentage grade calculator, letter grade calculator, assignment calculator, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/grade-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/grade-calculator.html">
+    <meta property="og:title" content="Grade Calculator - Calculate Your Course Grades Online | BestUtils">
+    <meta property="og:description" content="Calculate your current or final course grade with our free online Grade Calculator. Input your assignments, quizzes, exams, and their respective weights or scores to determine your overall grade.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/grade-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/grade-calculator.html">
+    <meta name="twitter:title" content="Grade Calculator - Calculate Your Course Grades Online | BestUtils">
+    <meta name="twitter:description" content="Calculate your current or final course grade with our free online Grade Calculator. Input your assignments, quizzes, exams, and their respective weights or scores to determine your overall grade.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/grade-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Grade Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Grade Calculator",
+        "description": "Free grade calculator for students to calculate current or final course grades with weighted assignments, quizzes, and exams. Track academic progress and plan for upcoming assessments.",
+        "url": "https://bestutils.com/templates/grade-calculator.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS Variables for theme consistency */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6C757D;
+            --accent-color: #28A745;
+            --background-color: #F8F9FA;
+            --text-color: #343A40;
+            --card-bg: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        /* Basic body styling */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        /* Container for the main content */
+        .tool-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Tool specific header styling */
+        .tool-container h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-top: 1rem;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left; /* Align labels to the left */
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #D6DCE0;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .form-group button {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        #assignmentEntries {
+            margin-bottom: 20px;
+        }
+        .assignment-entry {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto; /* Name, Score, Max Score, Remove button */
+            gap: 10px;
+            align-items: end;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px dashed #cccccc;
+            border-radius: 5px;
+            background-color: #fdfdff;
+        }
+        .assignment-entry input {
+            margin-bottom: 0; /* Remove default margin from form-group for these inputs */
+        }
+        .remove-button {
+            background-color: #dc3545; /* Red color for remove */
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .remove-button:hover {
+            background-color: #c82333;
+        }
+        .add-assignment-button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .add-assignment-button:hover {
+            background-color: #218838;
+        }
+        #gradeResult {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #D6DCE0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            text-align: left;
+            font-size: 1.2rem;
+        }
+        #gradeResult h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: 1.5rem;
+        }
+        #gradeResult strong {
+            color: var(--accent-color);
+        }
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 20px;
+            }
+            .tool-container h1 {
+                font-size: 2rem;
+            }
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .assignment-entry {
+                grid-template-columns: 1fr; /* Stack columns on small screens */
+                gap: 5px;
+            }
+            .assignment-entry label {
+                margin-bottom: 2px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="tool-container">
+        <div class="site-logo-container">
+             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                 <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+             </svg>
+             <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <h1>Grade Calculator</h1>
+        <p class="text-center text-gray-600 mb-6">
+            Our free online Grade Calculator is an indispensable tool for students to accurately determine their current or final course grades. This utility allows you to input individual assignment scores, quizzes, exams, and their corresponding maximum scores or weights. It then calculates your overall percentage, providing a clear understanding of your academic standing. Whether you're tracking progress throughout a semester, planning how to achieve a target grade, or simply want to see the impact of each assessment, our Grade Calculator simplifies complex calculations, helping you stay informed and motivated in your studies.
+        </p>
+        <div class="form-group">
+            <label for="calculationMethod">Calculation Method:</label>
+            <select id="calculationMethod">
+                <option value="points">Points-Based (Score / Max Score)</option>
+                <option value="weighted">Weighted (Score % * Weight %)</option>
+            </select>
+        </div>
+        <h2>Assignment Entries:</h2>
+        <div id="assignmentEntries">
+            </div>
+        <button class="add-assignment-button" onclick="addAssignmentEntry()">+ Add Assignment</button>
+        <p id="gradeError" class="error-message" style="display: none;"></p>
+        <div class="form-group mt-8">
+            <button onclick="calculateGrade()">Calculate Grade</button>
+        </div>
+        <div id="gradeResult" style="display: none;">
+            <h3>Your Calculated Grade:</h3>
+            <p>Overall Percentage: <strong id="calculatedPercentage">0.00%</strong></p>
+            <p>Letter Grade: <strong id="letterGrade">N/A</strong></p>
+        </div>
+    </div>
+    <script>
+        const calculationMethodSelect = document.getElementById('calculationMethod');
+        const assignmentEntriesDiv = document.getElementById('assignmentEntries');
+        const gradeErrorDiv = document.getElementById('gradeError');
+        const gradeResultDiv = document.getElementById('gradeResult');
+        // Initial assignment entry
+        window.onload = function() {
+            addAssignmentEntry();
+            // Trigger change to set default input fields
+            calculationMethodSelect.dispatchEvent(new Event('change'));
+        };
+        calculationMethodSelect.addEventListener('change', function() {
+            const method = this.value;
+            document.querySelectorAll('.assignment-entry').forEach(entry => {
+                const scoreInput = entry.querySelector('.assignment-score');
+                const maxScoreInput = entry.querySelector('.assignment-max-score');
+                const weightInput = entry.querySelector('.assignment-weight');
+                if (method === 'points') {
+                    if (maxScoreInput) maxScoreInput.style.display = 'block';
+                    if (weightInput) weightInput.style.display = 'none';
+                } else { // weighted
+                    if (maxScoreInput) maxScoreInput.style.display = 'none';
+                    if (weightInput) weightInput.style.display = 'block';
+                }
+            });
+        });
+        function addAssignmentEntry() {
+            const entryDiv = document.createElement('div');
+            entryDiv.classList.add('assignment-entry');
+            const method = calculationMethodSelect.value;
+            entryDiv.innerHTML = `
+                <div class="form-group">
+                    <label>Assignment Name:</label>
+                    <input type="text" class="assignment-name" placeholder="e.g., Midterm Exam">
+                </div>
+                <div class="form-group">
+                    <label>Score:</label>
+                    <input type="number" class="assignment-score" min="0" step="0.01" value="0">
+                </div>
+                <div class="form-group">
+                    <label class="max-score-label" style="display: ${method === 'points' ? 'block' : 'none'};">Max Score:</label>
+                    <input type="number" class="assignment-max-score" min="0.01" step="0.01" value="100" style="display: ${method === 'points' ? 'block' : 'none'};">
+                    <label class="weight-label" style="display: ${method === 'weighted' ? 'block' : 'none'};">Weight (%):</label>
+                    <input type="number" class="assignment-weight" min="0" max="100" step="0.01" value="25" style="display: ${method === 'weighted' ? 'block' : 'none'};">
+                </div>
+                <button class="remove-button" onclick="this.closest('.assignment-entry').remove()">Remove</button>
+            `;
+            assignmentEntriesDiv.appendChild(entryDiv);
+        }
+        function getLetterGrade(percentage) {
+            if (percentage >= 90) return 'A';
+            if (percentage >= 80) return 'B';
+            if (percentage >= 70) return 'C';
+            if (percentage >= 60) return 'D';
+            return 'F';
+        }
+        function calculateGrade() {
+            let totalScore = 0;
+            let totalMaxScore = 0;
+            let totalWeight = 0;
+            let hasError = false;
+            const method = calculationMethodSelect.value;
+            const assignmentEntries = document.querySelectorAll('.assignment-entry');
+            if (assignmentEntries.length === 0) {
+                gradeErrorDiv.textContent = 'Please add at least one assignment entry.';
+                gradeErrorDiv.style.display = 'block';
+                gradeResultDiv.style.display = 'none';
+                return;
+            }
+            assignmentEntries.forEach(entry => {
+                const score = parseFloat(entry.querySelector('.assignment-score').value);
+                if (isNaN(score) || score < 0) {
+                    hasError = true;
+                    return;
+                }
+                if (method === 'points') {
+                    const maxScore = parseFloat(entry.querySelector('.assignment-max-score').value);
+                    if (isNaN(maxScore) || maxScore <= 0) {
+                        hasError = true;
+                        return;
+                    }
+                    totalScore += score;
+                    totalMaxScore += maxScore;
+                } else { // weighted
+                    const weight = parseFloat(entry.querySelector('.assignment-weight').value);
+                    if (isNaN(weight) || weight < 0 || weight > 100) {
+                        hasError = true;
+                        return;
+                    }
+                    totalScore += (score * (weight / 100)); // Score * weight as a decimal
+                    totalWeight += weight;
+                }
+            });
+            if (hasError) {
+                gradeErrorDiv.textContent = 'Please ensure all scores, max scores, and weights are valid non-negative numbers.';
+                gradeErrorDiv.style.display = 'block';
+                gradeResultDiv.style.display = 'none';
+                return;
+            }
+            let calculatedPercentage = 0;
+            if (method === 'points') {
+                if (totalMaxScore === 0) {
+                    gradeErrorDiv.textContent = 'Total maximum score cannot be zero. Please check your entries.';
+                    gradeErrorDiv.style.display = 'block';
+                    gradeResultDiv.style.display = 'none';
+                    return;
+                }
+                calculatedPercentage = (totalScore / totalMaxScore) * 100;
+            } else { // weighted
+                if (totalWeight === 0) {
+                    gradeErrorDiv.textContent = 'Total weight cannot be zero. Please check your entries.';
+                    gradeErrorDiv.style.display = 'block';
+                    gradeResultDiv.style.display = 'none';
+                    return;
+                }
+                // If totalWeight is not 100, normalize the percentage
+                calculatedPercentage = (totalScore / (totalWeight / 100));
+            }
+            gradeErrorDiv.style.display = 'none'; // Hide any previous errors
+            document.getElementById('calculatedPercentage').textContent = calculatedPercentage.toFixed(2) + '%';
+            document.getElementById('letterGrade').textContent = getLetterGrade(calculatedPercentage);
+            gradeResultDiv.style.display = 'block';
+            gradeResultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🎓</span>
+                Related Academic Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="gpa-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🎓</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">GPA Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate GPA</div></div>
+                </a>
+                <a href="cgpa-to-percentage.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">CGPA to Percentage</div><div style="font-size: 0.85rem; color: #6b7280;">Convert CGPA to percentage</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="average_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Average Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate averages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

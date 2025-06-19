@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roofing Calculator - Estimate Shingles & Costs | BESTUTILS</title>
+    <meta name="description" content="Estimate roofing materials, shingles, and project costs with our easy-to-use Roofing Calculator. Plan your roofing project accurately.">
+    <meta name="keywords" content="roofing calculator, roof cost estimate, shingles calculator, roofing materials, roof square footage, roof pitch, bestutils">
+    <link rel="canonical" href="https://bestutils.com/roofing-calculator.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Logo styling from your provided code */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        /* General Body and Calculator Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .calculator-container {
+            background-color: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #343A40;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            color: #343A40;
+            background-color: #F9FAFB;
+        }
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+        button {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background-color: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        button:hover {
+            background-color: #2563EB;
+        }
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #ECFDF5;
+            border: 1px solid #A7F3D0;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #065F46;
+        }
+        .description-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: 800px;
+            width: 100%;
+            line-height: 1.6;
+        }
+        .description-section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #343A40;
+            margin-bottom: 1rem;
+        }
+        .description-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #343A40;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .description-section p, .description-section ul {
+            color: #4B5563;
+            margin-bottom: 1rem;
+        }
+        .description-section ul {
+            list-style-type: disc;
+            margin-left: 1.25rem;
+            padding-left: 0.5rem;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="site-logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+        </svg>
+        <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+    </div>
+    <div class="calculator-container">
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Roofing Calculator</h1>
+        <div class="form-group">
+            <label for="roofLength">Roof Length (feet):</label>
+            <input type="number" id="roofLength" placeholder="e.g., 40" min="1">
+        </div>
+        <div class="form-group">
+            <label for="roofWidth">Roof Width (feet):</label>
+            <input type="number" id="roofWidth" placeholder="e.g., 30" min="1">
+        </div>
+        <div class="form-group">
+            <label for="pitchFactor">Roof Pitch Factor (Approximate):</label>
+            <select id="pitchFactor">
+                <option value="1.0">Flat / Low Slope (1.0)</option>
+                <option value="1.03">4/12 (1.03)</option>
+                <option value="1.08">6/12 (1.08)</option>
+                <option value="1.12">7/12 (1.12)</option>
+                <option value="1.15">8/12 (1.15)</option>
+                <option value="1.2">9/12 (1.2)</option>
+                <option value="1.25">10/12 (1.25)</option>
+                <option value="1.3">12/12 (1.3)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="shingleCostPerSquare">Shingle Cost per Square ($) (1 Square = 100 sq ft):</label>
+            <input type="number" id="shingleCostPerSquare" placeholder="e.g., 100" min="0">
+        </div>
+        <button onclick="calculateRoofing()">Calculate Roofing</button>
+        <div id="roofingResult" class="result hidden"></div>
+    </div>
+    <div class="description-section">
+        <h2>About the Roofing Calculator</h2>
+        <p>The **Roofing Calculator** is designed to help homeowners, contractors, and DIY enthusiasts estimate the amount of roofing materials needed and the associated costs for a project. Accurate estimation is crucial to avoid overspending or running short on materials during a roofing job.</p>
+        <p>This calculator considers the basic dimensions of your roof and an approximate pitch factor to give you an idea of the square footage and the number of "squares" of shingles required. (A "square" of roofing typically covers 100 square feet).</p>
+        <h3>How to Use the Roofing Calculator</h3>
+        <ul>
+            <li><strong>Roof Length (feet):</strong> Enter the total length of your roof in feet.</li>
+            <li><strong>Roof Width (feet):</strong> Enter the total width of your roof in feet.</li>
+            <li><strong>Roof Pitch Factor:</strong> Select the closest approximation of your roof's pitch. This factor accounts for the increased surface area of pitched roofs compared to their flat footprint. If unsure, a professional can help determine this.</li>
+            <li><strong>Shingle Cost per Square ($):</strong> Input the average cost of one "square" of shingles in your area. (Remember, 1 square = 100 sq ft).</li>
+            <li><strong>Click "Calculate Roofing":</strong> The calculator will provide the estimated roof area, number of squares needed, and the total estimated shingle cost.</li>
+        </ul>
+        <p><strong>Disclaimer:</strong> This roofing calculator provides an estimate for general planning purposes only. It does not account for waste, specific roof complexities (e.g., dormers, valleys, hips), additional materials (underlayment, nails, flashing, vents), labor costs, or local building codes. Always consult with a qualified roofing professional for a precise quote and detailed project plan.</p>
+        <h3>Roofing Tips & Best Practices</h3>
+        <ul>
+            <li><strong>Material Selection:</strong> Choose shingles based on climate, durability needs, and aesthetic preferences</li>
+            <li><strong>Waste Factor:</strong> Always order 10-15% extra materials to account for cuts, mistakes, and future repairs</li>
+            <li><strong>Pitch Considerations:</strong> Steeper roofs require more materials and specialized installation techniques</li>
+            <li><strong>Weather Planning:</strong> Schedule roofing work during dry seasons for safety and quality</li>
+            <li><strong>Professional Inspection:</strong> Have roof structure inspected before material installation</li>
+            <li><strong>Local Codes:</strong> Check building codes for material requirements and permit needs</li>
+            <li><strong>Safety First:</strong> Use proper safety equipment and consider professional installation</li>
+        </ul>
+        <h3>Additional Cost Considerations</h3>
+        <ul>
+            <li><strong>Underlayment:</strong> Waterproof barrier beneath shingles (typically $0.50-$1.50 per sq ft)</li>
+            <li><strong>Flashing:</strong> Metal pieces for roof joints and penetrations ($5-$15 per linear foot)</li>
+            <li><strong>Ventilation:</strong> Ridge vents, soffit vents for proper airflow ($3-$10 per linear foot)</li>
+            <li><strong>Labor Costs:</strong> Professional installation typically $3-$8 per square foot</li>
+            <li><strong>Disposal:</strong> Old shingle removal and disposal ($1-$3 per square foot)</li>
+            <li><strong>Permits:</strong> Building permits may be required ($100-$500 depending on location)</li>
+        </ul>
+        <h3>Roof Pitch Guide</h3>
+        <ul>
+            <li><strong>Low Pitch (1:12 to 4:12):</strong> Factor 1.0-1.06 - Requires special low-slope materials</li>
+            <li><strong>Medium Pitch (5:12 to 8:12):</strong> Factor 1.08-1.20 - Most common residential pitch</li>
+            <li><strong>High Pitch (9:12 to 12:12):</strong> Factor 1.25-1.41 - Steep roofs, more complex installation</li>
+            <li><strong>Very High Pitch (over 12:12):</strong> Factor 1.41+ - Requires specialized techniques and safety measures</li>
+        </ul>
+    </div>
+    <script>
+        function calculateRoofing() {
+            const roofLength = parseFloat(document.getElementById('roofLength').value);
+            const roofWidth = parseFloat(document.getElementById('roofWidth').value);
+            const pitchFactor = parseFloat(document.getElementById('pitchFactor').value);
+            const shingleCostPerSquare = parseFloat(document.getElementById('shingleCostPerSquare').value);
+            const roofingResultDiv = document.getElementById('roofingResult');
+            if (isNaN(roofLength) || isNaN(roofWidth) || isNaN(pitchFactor) || isNaN(shingleCostPerSquare) ||
+                roofLength <= 0 || roofWidth <= 0 || shingleCostPerSquare < 0) {
+                roofingResultDiv.innerHTML = 'Please enter valid positive numbers for all fields.';
+                roofingResultDiv.classList.remove('hidden');
+                roofingResultDiv.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                roofingResultDiv.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                return;
+            }
+            const roofArea = roofLength * roofWidth * pitchFactor;
+            const squaresNeeded = roofArea / 100; // 1 square = 100 sq ft
+            // Add a small waste factor (e.g., 10%)
+            const totalSquaresIncludingWaste = squaresNeeded * 1.10;
+            const estimatedShingleCost = totalSquaresIncludingWaste * shingleCostPerSquare;
+            roofingResultDiv.innerHTML = `
+                Estimated Roof Area: <span class="font-extrabold text-blue-800">${roofArea.toFixed(2)} sq ft</span><br>
+                Squares Needed (approx, with waste): <span class="font-extrabold text-blue-800">${totalSquaresIncludingWaste.toFixed(2)} squares</span><br>
+                Estimated Shingle Cost: <span class="font-extrabold text-blue-800">$${estimatedShingleCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            `;
+            roofingResultDiv.classList.remove('hidden');
+            roofingResultDiv.classList.add('bg-green-100', 'border-green-400', 'text-green-700');
+            roofingResultDiv.classList.remove('bg-red-100', 'border-red-400', 'text-red-700');
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏠</span>
+                Related Roofing & Construction Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="concrete-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏗️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Concrete Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate concrete needed</div></div>
+                </a>
+                <a href="square_footage_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Square Footage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate area measurements</div></div>
+                </a>
+                <a href="stair_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🪜</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Stair Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate stair dimensions</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Home Improvement Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="tile_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔲</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Tile Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate tiles needed</div></div>
+                </a>
+                <a href="gravel_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🪨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Gravel Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate gravel needed</div></div>
+                </a>
+                <a href="area_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📏</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Area Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate areas</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

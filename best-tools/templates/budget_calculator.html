@@ -1,0 +1,469 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator - Plan Your Finances | BESTUTILS</title>
+    <meta name="description" content="Free budget calculator to track income, expenses, and savings. Plan your monthly budget effectively with our easy-to-use financial planning tool.">
+    <meta name="keywords" content="budget calculator, monthly budget, financial planning, expense tracker, income calculator, savings planner">
+    <meta name="author" content="BESTUTILS">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/budget_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/budget_calculator.html">
+    <meta property="og:title" content="Budget Calculator - Plan Your Finances | BestUtils">
+    <meta property="og:description" content="Free budget calculator to track income, expenses, and savings. Plan your monthly budget effectively with our comprehensive financial planning tool.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/budget-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/budget_calculator.html">
+    <meta name="twitter:title" content="Budget Calculator - Plan Your Finances | BestUtils">
+    <meta name="twitter:description" content="Free budget calculator to track income, expenses, and savings. Plan your monthly budget effectively with our comprehensive financial planning tool.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/budget-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Budget Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Budget Calculator",
+        "description": "Free monthly budget calculator to track income sources, categorize expenses, and calculate savings with visual charts and financial planning recommendations.",
+        "url": "https://bestutils.com/templates/budget_calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight { color: #3B82F6; }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text { font-size: 1.5rem; }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .input-group { margin-bottom: 1rem; }
+        .result-positive { color: #10B981; }
+        .result-negative { color: #EF4444; }
+        .chart-container { 
+            position: relative; 
+            height: 400px; 
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Budget Calculator</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Take control of your finances with our comprehensive budget calculator. Track your income, expenses, and savings to create a balanced financial plan.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800">Monthly Budget Planner</h2>
+                <!-- Income Section -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium mb-4 text-green-600">Income Sources</h3>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Primary Income</label>
+                        <input type="number" id="primaryIncome" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Secondary Income</label>
+                        <input type="number" id="secondaryIncome" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Other Income</label>
+                        <input type="number" id="otherIncome" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                    </div>
+                </div>
+                <!-- Expenses Section -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium mb-4 text-red-600">Monthly Expenses</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Housing/Rent</label>
+                            <input type="number" id="housing" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Food & Groceries</label>
+                            <input type="number" id="food" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Transportation</label>
+                            <input type="number" id="transportation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Utilities</label>
+                            <input type="number" id="utilities" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Insurance</label>
+                            <input type="number" id="insurance" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Entertainment</label>
+                            <input type="number" id="entertainment" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Healthcare</label>
+                            <input type="number" id="healthcare" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Other Expenses</label>
+                            <input type="number" id="otherExpenses" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0.00" step="0.01">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="calculateBudget()" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-medium">
+                    Calculate Budget
+                </button>
+            </div>
+            <!-- Results -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800">Budget Summary</h2>
+                <div id="results" class="space-y-4">
+                    <div class="bg-gray-100 p-4 rounded-lg text-center">
+                        <p class="text-gray-600">Enter your income and expenses to see your budget summary</p>
+                    </div>
+                </div>
+                <!-- Budget Chart -->
+                <div id="chartContainer" class="chart-container mt-6" style="display: none;">
+                    <canvas id="budgetChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="mt-12 bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">How to Use the Budget Calculator</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-medium mb-4 text-blue-600">Step-by-Step Instructions</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>Enter all your income sources (salary, freelancing, investments, etc.)</li>
+                        <li>Fill in your monthly expenses by category</li>
+                        <li>Click "Calculate Budget" to see your financial summary</li>
+                        <li>Review the results to understand your financial position</li>
+                        <li>Adjust expenses if needed to improve your budget balance</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium mb-4 text-green-600">Budget Tips</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Follow the 50/30/20 rule: 50% needs, 30% wants, 20% savings</li>
+                        <li>Track all expenses, including small daily purchases</li>
+                        <li>Set realistic spending limits for each category</li>
+                        <li>Review and adjust your budget monthly</li>
+                        <li>Build an emergency fund with 3-6 months of expenses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- About Section -->
+        <div class="mt-8 bg-blue-50 rounded-xl p-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">About This Budget Calculator</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Our budget calculator helps you create a comprehensive monthly budget by tracking all income sources and expense categories. 
+                It provides instant calculations of your surplus or deficit, helping you make informed financial decisions. The tool includes 
+                visual charts to better understand your spending patterns and offers personalized recommendations for budget optimization.
+            </p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let budgetChart = null;
+        function calculateBudget() {
+            // Get income values
+            const primaryIncome = parseFloat(document.getElementById('primaryIncome').value) || 0;
+            const secondaryIncome = parseFloat(document.getElementById('secondaryIncome').value) || 0;
+            const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+            const totalIncome = primaryIncome + secondaryIncome + otherIncome;
+            // Get expense values
+            const housing = parseFloat(document.getElementById('housing').value) || 0;
+            const food = parseFloat(document.getElementById('food').value) || 0;
+            const transportation = parseFloat(document.getElementById('transportation').value) || 0;
+            const utilities = parseFloat(document.getElementById('utilities').value) || 0;
+            const insurance = parseFloat(document.getElementById('insurance').value) || 0;
+            const entertainment = parseFloat(document.getElementById('entertainment').value) || 0;
+            const healthcare = parseFloat(document.getElementById('healthcare').value) || 0;
+            const otherExpenses = parseFloat(document.getElementById('otherExpenses').value) || 0;
+            const totalExpenses = housing + food + transportation + utilities + insurance + entertainment + healthcare + otherExpenses;
+            const balance = totalIncome - totalExpenses;
+            // Display results
+            const resultsDiv = document.getElementById('results');
+            const balanceClass = balance >= 0 ? 'result-positive' : 'result-negative';
+            const balanceText = balance >= 0 ? 'Surplus' : 'Deficit';
+            resultsDiv.innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-green-50 border border-green-200 p-4 rounded-lg">
+                        <h3 class="font-medium text-green-800">Total Monthly Income</h3>
+                        <p class="text-2xl font-bold text-green-600">$${totalIncome.toFixed(2)}</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 p-4 rounded-lg">
+                        <h3 class="font-medium text-red-800">Total Monthly Expenses</h3>
+                        <p class="text-2xl font-bold text-red-600">$${totalExpenses.toFixed(2)}</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                        <h3 class="font-medium text-blue-800">Monthly ${balanceText}</h3>
+                        <p class="text-2xl font-bold ${balanceClass}">$${Math.abs(balance).toFixed(2)}</p>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 p-4 rounded-lg">
+                        <h3 class="font-medium text-gray-800">Savings Rate</h3>
+                        <p class="text-xl font-bold text-gray-600">${totalIncome > 0 ? ((balance / totalIncome) * 100).toFixed(1) : 0}%</p>
+                    </div>
+                </div>
+            `;
+            // Create budget chart
+            createBudgetChart(housing, food, transportation, utilities, insurance, entertainment, healthcare, otherExpenses);
+        }
+        function createBudgetChart(housing, food, transportation, utilities, insurance, entertainment, healthcare, otherExpenses) {
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            if (budgetChart) {
+                budgetChart.destroy();
+            }
+            const expenseData = [
+                { label: 'Housing/Rent', value: housing, color: '#EF4444' },
+                { label: 'Food & Groceries', value: food, color: '#F97316' },
+                { label: 'Transportation', value: transportation, color: '#EAB308' },
+                { label: 'Utilities', value: utilities, color: '#22C55E' },
+                { label: 'Insurance', value: insurance, color: '#06B6D4' },
+                { label: 'Entertainment', value: entertainment, color: '#8B5CF6' },
+                { label: 'Healthcare', value: healthcare, color: '#EC4899' },
+                { label: 'Other', value: otherExpenses, color: '#6B7280' }
+            ].filter(item => item.value > 0);
+            if (expenseData.length > 0) {
+                document.getElementById('chartContainer').style.display = 'block';
+                budgetChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: expenseData.map(item => item.label),
+                        datasets: [{
+                            data: expenseData.map(item => item.value),
+                            backgroundColor: expenseData.map(item => item.color),
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    usePointStyle: true
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        // Add input event listeners for real-time calculation
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value !== '') {
+                        calculateBudget();
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="savings_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Savings Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan your savings goals</div></div>
+                </a>
+                <a href="salary-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Salary Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate salary conversions</div></div>
+                </a>
+                <a href="take_home_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Take Home Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate net salary</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Famous Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

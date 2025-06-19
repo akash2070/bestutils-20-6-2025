@@ -1,0 +1,592 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Period Calculator - Track Your Menstrual Cycle | BestUtils</title>
+    <meta name="description" content="Free period calculator to track your menstrual cycle, predict next period, ovulation dates, and fertile window. Easy-to-use period tracker for women's health.">
+    <meta name="keywords" content="period calculator, menstrual cycle tracker, ovulation calculator, period tracker, fertility calculator, women's health">
+    <meta name="author" content="BestUtils">
+    <link rel="canonical" href="https://bestutils.com/period-calculator">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Period Calculator - Track Your Menstrual Cycle">
+    <meta property="og:description" content="Free period calculator to track your menstrual cycle and predict important dates for women's health.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/period-calculator">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Period Calculator - BestUtils">
+    <meta name="twitter:description" content="Track your menstrual cycle and predict important dates with our free period calculator.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Responsive adjustments for logo */
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        /* Calculator specific styles */
+        .calculator-input {
+            transition: all 0.2s ease;
+        }
+        .calculator-input:focus {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.15);
+        }
+        .result-card {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .period-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+        }
+        .ovulation-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        .fertile-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .calendar-day {
+            transition: all 0.2s ease;
+        }
+        .calendar-day:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen">
+    <!-- Logo -->
+    <div class="pt-6">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+    </div>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                Period Calculator
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Track your menstrual cycle, predict your next period, ovulation dates, and fertile window with our easy-to-use period calculator.
+            </p>
+        </div>
+        <!-- Calculator -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Enter Your Information</h2>
+                    <div>
+                        <label for="lastPeriodDate" class="block text-sm font-medium text-gray-700 mb-2">
+                            First Day of Last Period
+                        </label>
+                        <input 
+                            type="date" 
+                            id="lastPeriodDate" 
+                            class="calculator-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-lg"
+                        >
+                    </div>
+                    <div>
+                        <label for="cycleLength" class="block text-sm font-medium text-gray-700 mb-2">
+                            Average Cycle Length (days)
+                        </label>
+                        <input 
+                            type="number" 
+                            id="cycleLength" 
+                            placeholder="28"
+                            value="28"
+                            class="calculator-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-lg"
+                            min="21"
+                            max="40"
+                        >
+                        <p class="text-xs text-gray-500 mt-1">Typical range: 21-35 days</p>
+                    </div>
+                    <div>
+                        <label for="periodLength" class="block text-sm font-medium text-gray-700 mb-2">
+                            Period Length (days)
+                        </label>
+                        <input 
+                            type="number" 
+                            id="periodLength" 
+                            placeholder="5"
+                            value="5"
+                            class="calculator-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent text-lg"
+                            min="3"
+                            max="10"
+                        >
+                        <p class="text-xs text-gray-500 mt-1">Typical range: 3-7 days</p>
+                    </div>
+                    <button 
+                        onclick="calculatePeriod()" 
+                        class="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 transform hover:scale-105"
+                    >
+                        Calculate Period Dates
+                    </button>
+                </div>
+                <!-- Results Section -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Cycle Predictions</h2>
+                    <div id="results" class="space-y-4 opacity-0 transition-opacity duration-300">
+                        <div class="period-gradient text-white p-6 rounded-xl result-card">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+                                </svg>
+                                <span class="text-sm opacity-90">Next Period Starts</span>
+                            </div>
+                            <div class="text-2xl font-bold" id="nextPeriod">Not calculated</div>
+                        </div>
+                        <div class="ovulation-gradient text-white p-6 rounded-xl result-card">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                <span class="text-sm opacity-90">Ovulation Date</span>
+                            </div>
+                            <div class="text-2xl font-bold" id="ovulationDate">Not calculated</div>
+                        </div>
+                        <div class="fertile-gradient text-white p-6 rounded-xl result-card">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                                </svg>
+                                <span class="text-sm opacity-90">Fertile Window</span>
+                            </div>
+                            <div class="text-lg font-bold" id="fertileWindow">Not calculated</div>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600 space-y-1">
+                                <div class="flex justify-between">
+                                    <span>Cycle Length:</span>
+                                    <span id="cycleLengthDisplay">28 days</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Period Length:</span>
+                                    <span id="periodLengthDisplay">5 days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Calendar View -->
+        <div id="calendarSection" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8 opacity-0 transition-opacity duration-300">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">Your Cycle Calendar</h2>
+            <div id="calendar" class="grid grid-cols-7 gap-2 text-center">
+                <!-- Calendar will be generated here -->
+            </div>
+            <div class="mt-4 flex flex-wrap justify-center gap-4 text-sm">
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-pink-500 rounded mr-2"></div>
+                    <span>Period Days</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-purple-500 rounded mr-2"></div>
+                    <span>Ovulation</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-green-500 rounded mr-2"></div>
+                    <span>Fertile Window</span>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About the Period Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Our period calculator is a comprehensive tool designed to help women track their menstrual cycle and predict important dates for reproductive health. By entering your last period date and cycle information, you can predict your next period, ovulation date, and fertile window.
+            </p>
+            <p class="text-gray-600 mb-4">
+                This calculator uses standard calculations based on average cycle lengths and is designed for educational purposes. The menstrual cycle typically ranges from 21-35 days, with the average being 28 days. Ovulation usually occurs around day 14 of a 28-day cycle.
+            </p>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                <p class="text-sm text-yellow-800">
+                    <strong>Disclaimer:</strong> This calculator provides estimates based on average cycles. Individual cycles can vary. For medical advice or concerns about your menstrual cycle, please consult with a healthcare professional.
+                </p>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">How to Use the Period Calculator</h2>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center font-semibold">1</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Enter Last Period Date</h3>
+                        <p class="text-gray-600">Select the first day of your last menstrual period. This is the starting point for all calculations.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center font-semibold">2</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Set Cycle Length</h3>
+                        <p class="text-gray-600">Enter your average cycle length (21-40 days). If unsure, 28 days is the typical average.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center font-semibold">3</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Enter Period Length</h3>
+                        <p class="text-gray-600">Input how many days your period typically lasts (3-10 days). The average is 5 days.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-semibold">4</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">View Predictions</h3>
+                        <p class="text-gray-600">Get predictions for your next period, ovulation date, fertile window, and view the calendar visualization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Understanding Your Cycle Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Understanding Your Menstrual Cycle</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-2">Menstrual Phase</h3>
+                    <p class="text-sm text-gray-600">The period phase when the uterine lining sheds. Typically lasts 3-7 days.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-2">Ovulation</h3>
+                    <p class="text-sm text-gray-600">When an egg is released from the ovary. Usually occurs around day 14 of a 28-day cycle.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-2">Fertile Window</h3>
+                    <p class="text-sm text-gray-600">The days when pregnancy is most likely. Includes 5 days before ovulation and ovulation day.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculatePeriod() {
+            const lastPeriodInput = document.getElementById('lastPeriodDate').value;
+            const cycleLength = parseInt(document.getElementById('cycleLength').value);
+            const periodLength = parseInt(document.getElementById('periodLength').value);
+            // Validation
+            if (!lastPeriodInput) {
+                alert('Please enter the first day of your last period.');
+                return;
+            }
+            if (isNaN(cycleLength) || cycleLength < 21 || cycleLength > 40) {
+                alert('Please enter a valid cycle length (21-40 days).');
+                return;
+            }
+            if (isNaN(periodLength) || periodLength < 3 || periodLength > 10) {
+                alert('Please enter a valid period length (3-10 days).');
+                return;
+            }
+            const lastPeriodDate = new Date(lastPeriodInput);
+            // Calculations
+            const nextPeriodDate = new Date(lastPeriodDate);
+            nextPeriodDate.setDate(nextPeriodDate.getDate() + cycleLength);
+            const ovulationDate = new Date(lastPeriodDate);
+            ovulationDate.setDate(ovulationDate.getDate() + (cycleLength - 14));
+            const fertileStart = new Date(ovulationDate);
+            fertileStart.setDate(fertileStart.getDate() - 5);
+            const fertileEnd = new Date(ovulationDate);
+            fertileEnd.setDate(fertileEnd.getDate() + 1);
+            // Update results
+            document.getElementById('nextPeriod').textContent = formatDate(nextPeriodDate);
+            document.getElementById('ovulationDate').textContent = formatDate(ovulationDate);
+            document.getElementById('fertileWindow').textContent = 
+                formatDate(fertileStart) + ' - ' + formatDate(fertileEnd);
+            document.getElementById('cycleLengthDisplay').textContent = cycleLength + ' days';
+            document.getElementById('periodLengthDisplay').textContent = periodLength + ' days';
+            // Show results and calendar
+            const resultsDiv = document.getElementById('results');
+            const calendarDiv = document.getElementById('calendarSection');
+            resultsDiv.style.opacity = '1';
+            calendarDiv.style.opacity = '1';
+            // Generate calendar
+            generateCalendar(lastPeriodDate, nextPeriodDate, ovulationDate, fertileStart, fertileEnd, periodLength);
+        }
+        function formatDate(date) {
+            const options = { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            };
+            return date.toLocaleDateString('en-US', options);
+        }
+        function generateCalendar(lastPeriod, nextPeriod, ovulation, fertileStart, fertileEnd, periodLength) {
+            const calendar = document.getElementById('calendar');
+            calendar.innerHTML = '';
+            // Add day headers
+            const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayHeaders.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'font-semibold text-gray-600 py-2';
+                dayHeader.textContent = day;
+                calendar.appendChild(dayHeader);
+            });
+            // Get current month view centered around next period
+            const viewDate = new Date(nextPeriod);
+            viewDate.setDate(1);
+            const firstDayOfMonth = viewDate.getDay();
+            const daysInMonth = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0).getDate();
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyDay = document.createElement('div');
+                calendar.appendChild(emptyDay);
+            }
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const currentDate = new Date(viewDate.getFullYear(), viewDate.getMonth(), day);
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day p-2 rounded cursor-pointer h-12 flex items-center justify-center text-sm font-medium';
+                dayElement.textContent = day;
+                // Check if this date falls on special days
+                const dateString = currentDate.toDateString();
+                const lastPeriodString = lastPeriod.toDateString();
+                const nextPeriodString = nextPeriod.toDateString();
+                const ovulationString = ovulation.toDateString();
+                // Color coding
+                if (isDateInRange(currentDate, lastPeriod, periodLength) || 
+                    isDateInRange(currentDate, nextPeriod, periodLength)) {
+                    dayElement.className += ' bg-pink-500 text-white';
+                } else if (dateString === ovulationString) {
+                    dayElement.className += ' bg-purple-500 text-white';
+                } else if (currentDate >= fertileStart && currentDate <= fertileEnd) {
+                    dayElement.className += ' bg-green-500 text-white';
+                } else if (currentDate < new Date()) {
+                    dayElement.className += ' bg-gray-100 text-gray-400';
+                } else {
+                    dayElement.className += ' bg-gray-50 text-gray-700 hover:bg-gray-100';
+                }
+                calendar.appendChild(dayElement);
+            }
+        }
+        function isDateInRange(date, startDate, duration) {
+            const endDate = new Date(startDate);
+            endDate.setDate(endDate.getDate() + duration - 1);
+            return date >= startDate && date <= endDate;
+        }
+        // Set today's date as default
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const lastWeek = new Date(today);
+            lastWeek.setDate(lastWeek.getDate() - 7);
+            document.getElementById('lastPeriodDate').value = lastWeek.toISOString().split('T')[0];
+        });
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculatePeriod();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="ovulation_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🌸</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Ovulation Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate fertile days</div>
+                    </div>
+                </a>
+                <a href="pregnancy-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🤰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Pregnancy Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate due date</div>
+                    </div>
+                </a>
+                <a href="pregnancy-conception-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">👶</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Conception Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate conception date</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="age-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🎂</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Age Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate age precisely</div>
+                    </div>
+                </a>
+                <a href="date-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📅</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Date Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate date differences</div>
+                    </div>
+                </a>
+                <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔥</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

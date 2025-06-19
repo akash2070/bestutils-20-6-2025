@@ -1,0 +1,731 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lean Body Mass Calculator - Calculate LBM & Body Fat Percentage | BESTUTILS</title>
+    <meta name="description" content="Free Lean Body Mass calculator to determine your muscle mass, body fat percentage, and overall body composition. Use multiple scientific formulas for accurate results.">
+    <meta name="keywords" content="lean body mass calculator, LBM calculator, body fat percentage, muscle mass calculator, body composition, fitness calculator">
+    <meta name="author" content="BESTUTILS">
+    <meta name="robots" content="index, follow">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/lean_body_mass_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/lean_body_mass_calculator.html">
+    <meta property="og:title" content="Lean Body Mass Calculator - Calculate LBM & Body Fat Percentage | BestUtils">
+    <meta property="og:description" content="Calculate your lean body mass, muscle mass, and body fat percentage with multiple scientific formulas including Boer, James, Hume, and Peters.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/lean-body-mass-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/lean_body_mass_calculator.html">
+    <meta name="twitter:title" content="Lean Body Mass Calculator - Calculate LBM & Body Fat Percentage | BestUtils">
+    <meta name="twitter:description" content="Calculate your lean body mass, muscle mass, and body fat percentage with multiple scientific formulas including Boer, James, Hume, and Peters.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/lean-body-mass-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Lean Body Mass Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Lean Body Mass Calculator",
+        "description": "Free lean body mass (LBM) calculator to determine muscle mass and body composition for fitness tracking and health assessment.",
+        "url": "https://bestutils.com/templates/lean_body_mass_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .metric-card:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .result-highlight {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Lean Body Mass Calculator</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Calculate your lean body mass, muscle mass, and body fat percentage using scientifically proven formulas.
+            </p>
+        </div>
+        <!-- Calculator Form -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Input Section -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Your Information</h2>
+                    <div class="space-y-4">
+                        <!-- Gender -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" value="male" class="form-radio text-blue-600" checked>
+                                    <span class="ml-2 text-gray-700">Male</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" value="female" class="form-radio text-blue-600">
+                                    <span class="ml-2 text-gray-700">Female</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Weight -->
+                        <div>
+                            <label for="weight" class="block text-sm font-medium text-gray-700 mb-2">Weight</label>
+                            <div class="flex space-x-2">
+                                <input type="number" id="weight" placeholder="70" class="form-input flex-1 px-3 py-2 border border-gray-300 rounded-md">
+                                <select id="weightUnit" class="px-3 py-2 border border-gray-300 rounded-md">
+                                    <option value="kg">kg</option>
+                                    <option value="lbs">lbs</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Height -->
+                        <div>
+                            <label for="height" class="block text-sm font-medium text-gray-700 mb-2">Height</label>
+                            <div class="flex space-x-2">
+                                <input type="number" id="height" placeholder="175" class="form-input flex-1 px-3 py-2 border border-gray-300 rounded-md">
+                                <select id="heightUnit" class="px-3 py-2 border border-gray-300 rounded-md">
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft</option>
+                                </select>
+                            </div>
+                            <div id="heightInches" class="hidden mt-2">
+                                <input type="number" id="inches" placeholder="0" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <label class="block text-xs text-gray-500 mt-1">Additional inches</label>
+                            </div>
+                        </div>
+                        <!-- Age -->
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                            <input type="number" id="age" placeholder="25" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <!-- Formula Selection -->
+                        <div>
+                            <label for="formula" class="block text-sm font-medium text-gray-700 mb-2">Formula</label>
+                            <select id="formula" class="form-input w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <option value="boer">Boer Formula (Most Accurate)</option>
+                                <option value="james">James Formula</option>
+                                <option value="hume">Hume Formula</option>
+                                <option value="peters">Peters Formula</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateLBM()" class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors font-medium">
+                            Calculate Lean Body Mass
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Results Section -->
+            <div class="lg:col-span-2">
+                <div id="resultsSection" class="hidden">
+                    <!-- Main Result Card -->
+                    <div class="result-card rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold mb-4">Your Results</h2>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="result-highlight rounded-lg p-4">
+                                <h3 class="text-lg font-semibold mb-2">Lean Body Mass</h3>
+                                <p id="lbmResult" class="text-3xl font-bold"></p>
+                            </div>
+                            <div class="result-highlight rounded-lg p-4">
+                                <h3 class="text-lg font-semibold mb-2">Body Fat</h3>
+                                <p id="bodyFatResult" class="text-3xl font-bold"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Detailed Metrics -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Body Composition</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Total Weight:</span>
+                                    <span id="totalWeight" class="font-medium"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Lean Mass:</span>
+                                    <span id="leanMass" class="font-medium text-green-600"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Fat Mass:</span>
+                                    <span id="fatMass" class="font-medium text-red-600"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Body Fat %:</span>
+                                    <span id="bodyFatPercentage" class="font-medium"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Health Category</h3>
+                            <div id="healthCategory" class="text-center">
+                                <div id="categoryBadge" class="inline-block px-3 py-1 rounded-full text-sm font-medium mb-2"></div>
+                                <p id="categoryDescription" class="text-sm text-gray-600"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Formula Used -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Formula Used</h3>
+                        <div id="formulaInfo" class="bg-gray-50 p-4 rounded-lg">
+                            <p id="formulaName" class="font-medium text-gray-800 mb-2"></p>
+                            <p id="formulaDescription" class="text-sm text-gray-600"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="mt-12 bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">How to Use the Lean Body Mass Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">📋 Step-by-Step Instructions</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                        <li>Select your gender (male or female)</li>
+                        <li>Enter your current weight and select the unit (kg or lbs)</li>
+                        <li>Enter your height in centimeters or feet/inches</li>
+                        <li>Enter your age in years</li>
+                        <li>Choose a calculation formula (Boer is recommended for accuracy)</li>
+                        <li>Click "Calculate Lean Body Mass" to see your results</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">💡 Tips for Accurate Results</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><strong>Weigh yourself consistently:</strong> Use the same scale, same time of day</li>
+                        <li><strong>Measure height accurately:</strong> Stand straight against a wall</li>
+                        <li><strong>Choose the right formula:</strong> Boer formula is most accurate for general use</li>
+                        <li><strong>Track changes over time:</strong> LBM changes slowly, monitor monthly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- About LBM Section -->
+        <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">About Lean Body Mass</h2>
+            <div class="prose prose-gray max-w-none text-gray-600">
+                <p class="mb-4">
+                    Lean Body Mass (LBM) represents the weight of your body minus all the fat. It includes muscles, bones, 
+                    organs, and body water. Understanding your LBM is crucial for fitness, health monitoring, and nutrition planning.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6 mt-6">
+                    <div class="text-center p-4 bg-blue-50 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-blue-800">Muscle Mass</h3>
+                        <p class="text-sm text-blue-600">The amount of skeletal muscle in your body</p>
+                    </div>
+                    <div class="text-center p-4 bg-green-50 rounded-lg">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-green-800">Organs & Bones</h3>
+                        <p class="text-sm text-green-600">Weight of internal organs and bone structure</p>
+                    </div>
+                    <div class="text-center p-4 bg-purple-50 rounded-lg">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-purple-800">Body Water</h3>
+                        <p class="text-sm text-purple-600">Water content in muscles and organs</p>
+                    </div>
+                </div>
+                <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                <strong>Important:</strong> This calculator provides estimates based on statistical formulas. 
+                                For the most accurate body composition analysis, consider DEXA scan or professional body composition testing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Formulas Information -->
+        <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Available Formulas</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Boer Formula (Recommended)</h3>
+                    <p class="text-sm text-gray-600 mb-2">Most accurate for general population</p>
+                    <p class="text-xs text-gray-500">
+                        Male: (0.407 × weight) + (0.267 × height) - 19.2<br>
+                        Female: (0.252 × weight) + (0.473 × height) - 48.3
+                    </p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">James Formula</h3>
+                    <p class="text-sm text-gray-600 mb-2">Good for athletic populations</p>
+                    <p class="text-xs text-gray-500">
+                        Male: (1.1 × weight) - 128 × (weight/height)²<br>
+                        Female: (1.07 × weight) - 148 × (weight/height)²
+                    </p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Hume Formula</h3>
+                    <p class="text-sm text-gray-600 mb-2">Simple and reliable</p>
+                    <p class="text-xs text-gray-500">
+                        Male: (0.32810 × weight) + (0.33929 × height) - 29.5336<br>
+                        Female: (0.29569 × weight) + (0.41813 × height) - 43.2933
+                    </p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Peters Formula</h3>
+                    <p class="text-sm text-gray-600 mb-2">Considers age factor</p>
+                    <p class="text-xs text-gray-500">
+                        More complex formula that incorporates age as a variable
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Unit conversion functions
+        function convertWeight(weight, unit) {
+            return unit === 'lbs' ? weight * 0.453592 : weight;
+        }
+        function convertHeight(height, unit, inches = 0) {
+            if (unit === 'ft') {
+                return (height * 12 + inches) * 2.54;
+            }
+            return height;
+        }
+        // LBM calculation formulas
+        function calculateBoer(weight, height, gender) {
+            if (gender === 'male') {
+                return (0.407 * weight) + (0.267 * height) - 19.2;
+            } else {
+                return (0.252 * weight) + (0.473 * height) - 48.3;
+            }
+        }
+        function calculateJames(weight, height, gender) {
+            const bmi = weight / Math.pow(height / 100, 2);
+            if (gender === 'male') {
+                return (1.1 * weight) - 128 * Math.pow(weight / Math.pow(height, 2), 2);
+            } else {
+                return (1.07 * weight) - 148 * Math.pow(weight / Math.pow(height, 2), 2);
+            }
+        }
+        function calculateHume(weight, height, gender) {
+            if (gender === 'male') {
+                return (0.32810 * weight) + (0.33929 * height) - 29.5336;
+            } else {
+                return (0.29569 * weight) + (0.41813 * height) - 43.2933;
+            }
+        }
+        function calculatePeters(weight, height, gender, age) {
+            // Simplified Peters formula
+            let baseLBM = calculateBoer(weight, height, gender);
+            let ageAdjustment = (age - 25) * 0.1;
+            return baseLBM - ageAdjustment;
+        }
+        function getBodyFatCategory(bodyFatPercentage, gender) {
+            let category, description, badgeClass;
+            if (gender === 'male') {
+                if (bodyFatPercentage < 6) {
+                    category = 'Essential Fat';
+                    description = 'Very low - essential for basic physical functions';
+                    badgeClass = 'bg-red-100 text-red-800';
+                } else if (bodyFatPercentage < 14) {
+                    category = 'Athletic';
+                    description = 'Excellent for athletes and fitness enthusiasts';
+                    badgeClass = 'bg-green-100 text-green-800';
+                } else if (bodyFatPercentage < 18) {
+                    category = 'Fitness';
+                    description = 'Good fitness level, healthy range';
+                    badgeClass = 'bg-blue-100 text-blue-800';
+                } else if (bodyFatPercentage < 25) {
+                    category = 'Average';
+                    description = 'Acceptable range for general population';
+                    badgeClass = 'bg-yellow-100 text-yellow-800';
+                } else {
+                    category = 'Above Average';
+                    description = 'Consider increasing physical activity';
+                    badgeClass = 'bg-orange-100 text-orange-800';
+                }
+            } else {
+                if (bodyFatPercentage < 16) {
+                    category = 'Athletic';
+                    description = 'Excellent for female athletes';
+                    badgeClass = 'bg-green-100 text-green-800';
+                } else if (bodyFatPercentage < 20) {
+                    category = 'Fitness';
+                    description = 'Good fitness level, healthy range';
+                    badgeClass = 'bg-blue-100 text-blue-800';
+                } else if (bodyFatPercentage < 25) {
+                    category = 'Average';
+                    description = 'Acceptable range for women';
+                    badgeClass = 'bg-yellow-100 text-yellow-800';
+                } else if (bodyFatPercentage < 32) {
+                    category = 'Above Average';
+                    description = 'Consider increasing physical activity';
+                    badgeClass = 'bg-orange-100 text-orange-800';
+                } else {
+                    category = 'High';
+                    description = 'Consult healthcare provider for guidance';
+                    badgeClass = 'bg-red-100 text-red-800';
+                }
+            }
+            return { category, description, badgeClass };
+        }
+        function getFormulaInfo(formula) {
+            const formulas = {
+                'boer': {
+                    name: 'Boer Formula',
+                    description: 'Developed by P. Boer in 1984, this formula is considered one of the most accurate for general population. It takes into account gender differences in body composition.'
+                },
+                'james': {
+                    name: 'James Formula',
+                    description: 'Created by W.P.T. James, this formula works well for athletic populations and considers body mass index in its calculations.'
+                },
+                'hume': {
+                    name: 'Hume Formula',
+                    description: 'A simple and reliable formula developed by R. Hume in 1966, widely used in medical and pharmaceutical applications.'
+                },
+                'peters': {
+                    name: 'Peters Formula',
+                    description: 'An age-adjusted formula that accounts for the natural decline in lean body mass with aging.'
+                }
+            };
+            return formulas[formula];
+        }
+        function calculateLBM() {
+            // Get input values
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const weightUnit = document.getElementById('weightUnit').value;
+            const height = parseFloat(document.getElementById('height').value);
+            const heightUnit = document.getElementById('heightUnit').value;
+            const inches = parseFloat(document.getElementById('inches').value) || 0;
+            const age = parseFloat(document.getElementById('age').value);
+            const formula = document.getElementById('formula').value;
+            // Validate inputs
+            if (!weight || !height || !age) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            // Convert to metric units
+            const weightKg = convertWeight(weight, weightUnit);
+            const heightCm = convertHeight(height, heightUnit, inches);
+            // Calculate LBM based on selected formula
+            let lbm;
+            switch (formula) {
+                case 'boer':
+                    lbm = calculateBoer(weightKg, heightCm, gender);
+                    break;
+                case 'james':
+                    lbm = calculateJames(weightKg, heightCm, gender);
+                    break;
+                case 'hume':
+                    lbm = calculateHume(weightKg, heightCm, gender);
+                    break;
+                case 'peters':
+                    lbm = calculatePeters(weightKg, heightCm, gender, age);
+                    break;
+            }
+            // Calculate additional metrics
+            const fatMass = weightKg - lbm;
+            const bodyFatPercentage = (fatMass / weightKg) * 100;
+            // Get body fat category
+            const { category, description, badgeClass } = getBodyFatCategory(bodyFatPercentage, gender);
+            // Get formula info
+            const formulaInfo = getFormulaInfo(formula);
+            // Display results
+            document.getElementById('lbmResult').textContent = `${lbm.toFixed(1)} kg`;
+            document.getElementById('bodyFatResult').textContent = `${bodyFatPercentage.toFixed(1)}%`;
+            document.getElementById('totalWeight').textContent = `${weightKg.toFixed(1)} kg`;
+            document.getElementById('leanMass').textContent = `${lbm.toFixed(1)} kg`;
+            document.getElementById('fatMass').textContent = `${fatMass.toFixed(1)} kg`;
+            document.getElementById('bodyFatPercentage').textContent = `${bodyFatPercentage.toFixed(1)}%`;
+            document.getElementById('categoryBadge').textContent = category;
+            document.getElementById('categoryBadge').className = `inline-block px-3 py-1 rounded-full text-sm font-medium mb-2 ${badgeClass}`;
+            document.getElementById('categoryDescription').textContent = description;
+            document.getElementById('formulaName').textContent = formulaInfo.name;
+            document.getElementById('formulaDescription').textContent = formulaInfo.description;
+            // Show results section
+            document.getElementById('resultsSection').classList.remove('hidden');
+        }
+        // Toggle height inches input based on unit selection
+        document.getElementById('heightUnit').addEventListener('change', function() {
+            const inchesInput = document.getElementById('heightInches');
+            if (this.value === 'ft') {
+                inchesInput.classList.remove('hidden');
+            } else {
+                inchesInput.classList.add('hidden');
+            }
+        });
+        // Auto-calculate on input change
+        const inputs = ['weight', 'height', 'inches', 'age'];
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                if (this.value && document.getElementById('weight').value && document.getElementById('height').value && document.getElementById('age').value) {
+                    setTimeout(calculateLBM, 500); // Debounce calculation
+                }
+            });
+        });
+        document.querySelectorAll('input[name="gender"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (document.getElementById('weight').value && document.getElementById('height').value && document.getElementById('age').value) {
+                    calculateLBM();
+                }
+            });
+        });
+        document.getElementById('formula').addEventListener('change', function() {
+            if (document.getElementById('weight').value && document.getElementById('height').value && document.getElementById('age').value) {
+                calculateLBM();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="body-fat-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Body Fat Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body fat percentage</div>
+                    </div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+                <a href="one_rep_max_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💪</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">One Rep Max Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate maximum lift</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,570 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macro Calculator - Calculate Daily Macronutrients | BestUtils.com</title>
+    <meta name="description" content="Free macro calculator to determine your daily protein, carbs, and fat requirements. Calculate macronutrients based on your goals - weight loss, muscle gain, or maintenance.">
+    <meta name="keywords" content="macro calculator, macronutrient calculator, protein calculator, carbs calculator, fat calculator, fitness nutrition, diet calculator">
+    <meta name="robots" content="index, follow">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/macro_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/macro_calculator.html">
+    <meta property="og:title" content="Macro Calculator - Calculate Daily Macronutrients | BestUtils">
+    <meta property="og:description" content="Calculate your daily protein, carbs, and fat requirements with our free macro calculator for weight loss, muscle gain, or maintenance.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/macro-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/macro_calculator.html">
+    <meta name="twitter:title" content="Macro Calculator - Calculate Daily Macronutrients | BestUtils">
+    <meta name="twitter:description" content="Calculate your daily protein, carbs, and fat requirements with our free macro calculator for weight loss, muscle gain, or maintenance.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/macro-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Macro Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Macro Calculator",
+        "description": "Free macronutrient calculator to determine daily protein, carbohydrate, and fat needs for weight loss, muscle gain, or maintenance goals.",
+        "url": "https://bestutils.com/templates/macro_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .result-animation {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #10B981, #34D399, #6EE7B7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .macro-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .macro-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container mx-auto max-w-6xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator Card -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8">
+            <div class="text-center mb-8">
+                <div class="flex justify-center mb-4">
+                    <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-bold gradient-text mb-2 md:text-5xl">Macro Calculator</h1>
+                <p class="text-gray-600 text-lg">Calculate your daily macronutrient requirements</p>
+            </div>
+            <!-- Calculator Form -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Personal Information</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="age" class="block text-sm font-semibold text-gray-700 mb-2">Age</label>
+                            <input type="number" id="age" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus:outline-none transition-colors" placeholder="25" required>
+                        </div>
+                        <div>
+                            <label for="gender" class="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
+                            <select id="gender" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus:outline-none transition-colors">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="weight" class="block text-sm font-semibold text-gray-700 mb-2">Weight (kg)</label>
+                            <input type="number" id="weight" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus:outline-none transition-colors" placeholder="70" step="0.1" required>
+                        </div>
+                        <div>
+                            <label for="height" class="block text-sm font-semibold text-gray-700 mb-2">Height (cm)</label>
+                            <input type="number" id="height" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus:outline-none transition-colors" placeholder="175" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="activity" class="block text-sm font-semibold text-gray-700 mb-2">Activity Level</label>
+                        <select id="activity" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus:outline-none transition-colors">
+                            <option value="1.2">Sedentary (little/no exercise)</option>
+                            <option value="1.375">Light (light exercise 1-3 days/week)</option>
+                            <option value="1.55" selected>Moderate (moderate exercise 3-5 days/week)</option>
+                            <option value="1.725">Active (hard exercise 6-7 days/week)</option>
+                            <option value="1.9">Very Active (very hard exercise, physical job)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="goal" class="block text-sm font-semibold text-gray-700 mb-2">Goal</label>
+                        <select id="goal" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-400 focus:outline-none transition-colors">
+                            <option value="lose">Weight Loss (-20% calories)</option>
+                            <option value="maintain" selected>Maintain Weight</option>
+                            <option value="gain">Weight Gain (+20% calories)</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateMacros()" class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white font-bold py-4 px-6 rounded-lg hover:from-green-600 hover:to-teal-600 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                        Calculate Macros 📊
+                    </button>
+                </div>
+                <!-- Result Display -->
+                <div id="result" class="hidden result-animation">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Daily Macros</h3>
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-6 border border-blue-200">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gray-800 mb-2" id="totalCalories">0</div>
+                            <div class="text-gray-600">Total Daily Calories</div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="macro-card bg-red-50 rounded-lg p-4 border border-red-200">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <div class="font-semibold text-red-700">Protein</div>
+                                    <div class="text-sm text-red-600">4 cal/gram</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xl font-bold text-red-800" id="proteinGrams">0g</div>
+                                    <div class="text-sm text-red-600" id="proteinCals">0 cal</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="macro-card bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <div class="font-semibold text-yellow-700">Carbohydrates</div>
+                                    <div class="text-sm text-yellow-600">4 cal/gram</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xl font-bold text-yellow-800" id="carbsGrams">0g</div>
+                                    <div class="text-sm text-yellow-600" id="carbsCals">0 cal</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="macro-card bg-green-50 rounded-lg p-4 border border-green-200">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <div class="font-semibold text-green-700">Fats</div>
+                                    <div class="text-sm text-green-600">9 cal/gram</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xl font-bold text-green-800" id="fatsGrams">0g</div>
+                                    <div class="text-sm text-green-600" id="fatsCals">0 cal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Macro Ratio Chart -->
+                    <div class="mt-6 bg-gray-50 rounded-lg p-4">
+                        <div class="text-sm font-semibold text-gray-700 mb-2">Macro Distribution</div>
+                        <div class="flex rounded-full overflow-hidden h-4">
+                            <div id="proteinBar" class="bg-red-500 transition-all duration-1000"></div>
+                            <div id="carbsBar" class="bg-yellow-500 transition-all duration-1000"></div>
+                            <div id="fatsBar" class="bg-green-500 transition-all duration-1000"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-600 mt-2">
+                            <span id="proteinPercent">0% Protein</span>
+                            <span id="carbsPercent">0% Carbs</span>
+                            <span id="fatsPercent">0% Fats</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About Macro Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Our Macro Calculator helps you determine your daily macronutrient requirements based on your personal goals, activity level, and body composition. 
+                Macronutrients (proteins, carbohydrates, and fats) are the three main nutrients your body needs in large amounts to function properly and achieve your fitness goals.
+            </p>
+            <p class="text-gray-600 mb-4">
+                Whether you're looking to lose weight, gain muscle, or maintain your current physique, understanding your macro needs is crucial for success. 
+                Our calculator uses the Mifflin-St Jeor equation to estimate your Basal Metabolic Rate (BMR) and adjusts it based on your activity level and goals.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6 mt-6">
+                <div class="text-center p-4 bg-red-50 rounded-lg border border-red-200">
+                    <div class="text-red-500 font-bold text-lg mb-2">Protein</div>
+                    <p class="text-sm text-gray-600">Essential for muscle building, repair, and maintenance. Provides 4 calories per gram.</p>
+                </div>
+                <div class="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <div class="text-yellow-600 font-bold text-lg mb-2">Carbohydrates</div>
+                    <p class="text-sm text-gray-600">Primary energy source for your body and brain. Provides 4 calories per gram.</p>
+                </div>
+                <div class="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                    <div class="text-green-600 font-bold text-lg mb-2">Fats</div>
+                    <p class="text-sm text-gray-600">Important for hormone production and nutrient absorption. Provides 9 calories per gram.</p>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">How to Use the Macro Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">1</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Enter Personal Info</h3>
+                            <p class="text-gray-600">Input your age, gender, weight, and height for accurate calculations.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">2</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Select Activity Level</h3>
+                            <p class="text-gray-600">Choose your activity level from sedentary to very active based on your weekly exercise routine.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">3</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Choose Your Goal</h3>
+                            <p class="text-gray-600">Select whether you want to lose weight, maintain, or gain weight.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">4</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Get Your Results</h3>
+                            <p class="text-gray-600">Click calculate to see your daily calorie needs and macro breakdown.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">5</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Track Your Intake</h3>
+                            <p class="text-gray-600">Use the results to plan your meals and track your daily nutrition intake.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                        <h4 class="font-semibold text-blue-800 mb-2">💡 Pro Tips</h4>
+                        <ul class="text-sm text-blue-700 space-y-1">
+                            <li>• Weigh yourself consistently for accurate tracking</li>
+                            <li>• Adjust macros based on your progress and results</li>
+                            <li>• Consider consulting a nutritionist for personalized advice</li>
+                            <li>• Remember that these are estimates - listen to your body</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculateMacros() {
+            // Get input values
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseInt(document.getElementById('height').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            const goal = document.getElementById('goal').value;
+            // Validate inputs
+            if (!age || !weight || !height || age < 1 || weight < 1 || height < 1) {
+                alert('Please fill in all fields with valid values!');
+                return;
+            }
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+            // Calculate TDEE (Total Daily Energy Expenditure)
+            let tdee = bmr * activity;
+            // Adjust calories based on goal
+            let targetCalories;
+            switch(goal) {
+                case 'lose':
+                    targetCalories = tdee * 0.8; // 20% deficit
+                    break;
+                case 'gain':
+                    targetCalories = tdee * 1.2; // 20% surplus
+                    break;
+                default:
+                    targetCalories = tdee; // Maintenance
+            }
+            // Calculate macros (using standard ratios)
+            // Protein: 25% of calories
+            // Carbs: 45% of calories  
+            // Fats: 30% of calories
+            const proteinCalories = targetCalories * 0.25;
+            const carbsCalories = targetCalories * 0.45;
+            const fatsCalories = targetCalories * 0.30;
+            const proteinGrams = Math.round(proteinCalories / 4);
+            const carbsGrams = Math.round(carbsCalories / 4);
+            const fatsGrams = Math.round(fatsCalories / 9);
+            // Display results
+            document.getElementById('totalCalories').textContent = Math.round(targetCalories) + ' cal';
+            document.getElementById('proteinGrams').textContent = proteinGrams + 'g';
+            document.getElementById('proteinCals').textContent = Math.round(proteinCalories) + ' cal';
+            document.getElementById('carbsGrams').textContent = carbsGrams + 'g';
+            document.getElementById('carbsCals').textContent = Math.round(carbsCalories) + ' cal';
+            document.getElementById('fatsGrams').textContent = fatsGrams + 'g';
+            document.getElementById('fatsCals').textContent = Math.round(fatsCalories) + ' cal';
+            // Update percentage bars
+            document.getElementById('proteinBar').style.width = '25%';
+            document.getElementById('carbsBar').style.width = '45%';
+            document.getElementById('fatsBar').style.width = '30%';
+            document.getElementById('proteinPercent').textContent = '25% Protein';
+            document.getElementById('carbsPercent').textContent = '45% Carbs';
+            document.getElementById('fatsPercent').textContent = '30% Fats';
+            // Show result section
+            document.getElementById('result').classList.remove('hidden');
+            // Scroll to result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateMacros();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔥</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                    </div>
+                </a>
+                <a href="tdee_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">TDEE Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Total daily energy expenditure</div>
+                    </div>
+                </a>
+                <a href="body-fat-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Body Fat Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body fat percentage</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

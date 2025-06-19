@@ -1,0 +1,714 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Calculators - Free Mathematical & Scientific Tools | BESTUTILS</title>
+    <meta name="description" content="Free math calculators for basic math, scientific calculations, statistics, algebra, geometry, and more mathematical tools.">
+    <meta name="keywords" content="math calculators, scientific calculator, percentage calculator, fraction calculator, statistics calculator, algebra tools">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .calculator-card:hover { transform: translateY(-4px); }
+        .category-gradient { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        
+        /* Navigation Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background: #1e293b;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(99, 102, 241, 0.05);
+            border-left-color: #6366f1;
+            color: #6366f1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                position: relative;
+                padding: 0.75rem 1rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                order: 2;
+            }
+
+            .nav-logo {
+                order: 1;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 5rem 1rem 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-link {
+                padding: 1rem 0;
+                font-size: 1rem;
+                justify-content: space-between;
+                border: none;
+                border-radius: 0;
+            }
+
+            .nav-link:hover {
+                background: transparent;
+                transform: none;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                background: rgba(99, 102, 241, 0.05);
+                margin: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .dropdown.active .dropdown-menu {
+                max-height: 300px;
+            }
+
+            .dropdown.active .dropdown-arrow {
+                transform: rotate(180deg);
+            }
+
+            .dropdown-item {
+                padding: 0.75rem 1rem;
+                border-left: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .dropdown-item:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-violet-100 min-h-screen">
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">BestUtils</a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" id="navMenu">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Categories <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="finance.html" class="dropdown-item">Finance</a>
+                        <a href="health.html" class="dropdown-item">Health</a>
+                        <a href="math.html" class="dropdown-item">Math</a>
+                        <a href="conversion.html" class="dropdown-item">Conversion</a>
+                        <a href="time.html" class="dropdown-item">Time & Date</a>
+                        <a href="text.html" class="dropdown-item">Text Tools</a>
+                        <a href="construction.html" class="dropdown-item">Construction</a>
+                        <a href="automotive.html" class="dropdown-item">Automotive</a>
+                        <a href="utilities.html" class="dropdown-item">Utilities</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="category-gradient text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Math Calculators</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Mathematical and scientific calculation tools for students, professionals, and everyday use</p>
+            <div class="flex flex-wrap justify-center gap-4 text-lg">
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">Basic Math</span>
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">Scientific</span>
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">Statistics</span>
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">Geometry</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Top Math Tools (Preview - First 6 from index.html) -->
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Most Popular Math Tools</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="templates/basic-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-2">Basic Calculator</h3>
+                        <p class="text-gray-600 text-sm">Simple calculator for basic arithmetic operations</p>
+                    </a>
+                    
+                    <a href="templates/scientific-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-green-600 mb-2">Scientific Calculator</h3>
+                        <p class="text-gray-600 text-sm">Advanced calculator with scientific functions</p>
+                    </a>
+                    
+                    <a href="templates/percentage-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-purple-600 mb-2">Percentage Calculator</h3>
+                        <p class="text-gray-600 text-sm">Calculate percentages, increases, and decreases</p>
+                    </a>
+                    
+                    <a href="templates/fraction-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-orange-600 mb-2">Fraction Calculator</h3>
+                        <p class="text-gray-600 text-sm">Add, subtract, multiply, and divide fractions</p>
+                    </a>
+
+                    <a href="templates/gpa-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-2">GPA Calculator</h3>
+                        <p class="text-gray-600 text-sm">Calculate Grade Point Average</p>
+                    </a>
+
+                    <a href="templates/statistics_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-red-600 mb-2">Statistics Calculator</h3>
+                        <p class="text-gray-600 text-sm">Calculate statistical measures and analysis</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- See More Tools Button -->
+            <div class="text-center mb-12">
+                <button id="seeMoreBtn" onclick="toggleMoreTools()" class="bg-gradient-to-r from-purple-600 to-violet-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-violet-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <span id="btnText">See All 47+ Math Tools</span>
+                    <svg id="btnIcon" class="inline-block ml-2 w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Additional Tools (Hidden by default) -->
+            <div id="moreTools" class="hidden">
+                <!-- All Math Tools from index.html (41 additional tools) -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8">All Math Tools</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Row 1 -->
+                        <a href="templates/average_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">Average Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate mean, median, and mode averages</p>
+                        </a>
+
+                        <a href="templates/cgpa-to-percentage.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">CGPA to Percentage</h3>
+                            <p class="text-gray-600 text-sm">Convert CGPA to percentage and vice versa</p>
+                        </a>
+
+                        <a href="templates/common_factor_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">Common Factor Calculator</h3>
+                            <p class="text-gray-600 text-sm">Find common factors of numbers</p>
+                        </a>
+
+                        <a href="templates/density_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Density Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate density, mass, and volume</p>
+                        </a>
+
+                        <!-- Row 2 -->
+                        <a href="templates/dew_point_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-red-600 mb-2">Dew Point Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate dew point temperature</p>
+                        </a>
+
+                        <a href="templates/gcf-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-teal-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-teal-600 mb-2">GCF Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate Greatest Common Factor</p>
+                        </a>
+
+                        <a href="templates/grade-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-indigo-600 mb-2">Grade Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate grades and grade points</p>
+                        </a>
+
+                        <a href="templates/half-life-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-pink-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-pink-600 mb-2">Half Life Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate radioactive decay and half-life</p>
+                        </a>
+
+                        <!-- Row 3 -->
+                        <a href="templates/heat_index_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-yellow-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-yellow-600 mb-2">Heat Index Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate heat index and apparent temperature</p>
+                        </a>
+
+                        <a href="templates/hex_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gray-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">Hex Calculator</h3>
+                            <p class="text-gray-600 text-sm">Hexadecimal number calculations</p>
+                        </a>
+
+                        <a href="templates/horsepower_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">Horsepower Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate horsepower and engine power</p>
+                        </a>
+
+                        <a href="templates/lcm-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">LCM Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate Least Common Multiple</p>
+                        </a>
+
+                        <!-- Row 4 -->
+                        <a href="templates/log_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">Log Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate logarithms with different bases</p>
+                        </a>
+
+                        <a href="templates/long_division_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Long Division Calculator</h3>
+                            <p class="text-gray-600 text-sm">Perform long division with steps</p>
+                        </a>
+
+                        <a href="templates/mass_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-red-600 mb-2">Mass Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate mass, weight, and density</p>
+                        </a>
+
+                        <a href="templates/matrix_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-teal-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-teal-600 mb-2">Matrix Calculator</h3>
+                            <p class="text-gray-600 text-sm">Matrix operations and calculations</p>
+                        </a>
+
+                        <!-- Row 5 -->
+                        <a href="templates/mean_median_mode_range_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-indigo-600 mb-2">Mean Median Mode Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate statistical measures</p>
+                        </a>
+
+                        <a href="templates/molarity_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-pink-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-pink-600 mb-2">Molarity Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate molarity and concentration</p>
+                        </a>
+
+                        <a href="templates/molecular_weight_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-yellow-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-yellow-600 mb-2">Molecular Weight Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate molecular weight of compounds</p>
+                        </a>
+
+                        <a href="templates/percent_error_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gray-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">Percent Error Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate percentage error in measurements</p>
+                        </a>
+
+                        <!-- Row 6 -->
+                        <a href="templates/percent_off_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">Percent Off Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate discounts and sale prices</p>
+                        </a>
+
+                        <a href="templates/permutation-combination-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">Permutation Combination Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate permutations and combinations</p>
+                        </a>
+
+                        <a href="templates/pvalue_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">P-Value Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate statistical p-values</p>
+                        </a>
+
+                        <a href="templates/random-number-generator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Random Number Generator</h3>
+                            <p class="text-gray-600 text-sm">Generate random numbers and sequences</p>
+                        </a>
+
+                        <!-- Row 7 -->
+                        <a href="templates/root_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-red-600 mb-2">Root Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate square roots, cube roots, and nth roots</p>
+                        </a>
+
+                        <a href="templates/rounding_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-teal-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-teal-600 mb-2">Rounding Calculator</h3>
+                            <p class="text-gray-600 text-sm">Round numbers to specified decimal places</p>
+                        </a>
+
+                        <a href="templates/sample_size_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-indigo-600 mb-2">Sample Size Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate required sample size for surveys</p>
+                        </a>
+
+                        <a href="templates/scientific_notation_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-pink-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-pink-600 mb-2">Scientific Notation Calculator</h3>
+                            <p class="text-gray-600 text-sm">Convert to and from scientific notation</p>
+                        </a>
+
+                        <!-- Row 8 -->
+                        <a href="templates/slope_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-yellow-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-yellow-600 mb-2">Slope Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate slope of a line between two points</p>
+                        </a>
+
+                        <a href="templates/standard-deviation-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gray-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">Standard Deviation Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate standard deviation and variance</p>
+                        </a>
+
+                        <a href="templates/surface_area_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">Surface Area Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate surface area of geometric shapes</p>
+                        </a>
+
+                        <a href="templates/triangle-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">Triangle Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate triangle properties and measurements</p>
+                        </a>
+
+                        <!-- Row 9 -->
+                        <a href="templates/volume_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">Volume Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate volume of geometric shapes</p>
+                        </a>
+
+                        <a href="templates/wind-chill-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Wind Chill Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate wind chill temperature</p>
+                        </a>
+
+                        <a href="templates/z-score-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-red-600 mb-2">Z-Score Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate z-scores and standard scores</p>
+                        </a>
+
+                        <a href="templates/acceleration_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-teal-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-teal-600 mb-2">Acceleration Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate acceleration, velocity, and time</p>
+                        </a>
+
+                        <!-- Row 10 -->
+                        <a href="templates/area_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-indigo-600 mb-2">Area Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate area of geometric shapes</p>
+                        </a>
+
+                        <a href="templates/binary_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-pink-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-pink-600 mb-2">Binary Calculator</h3>
+                            <p class="text-gray-600 text-sm">Binary number system calculations</p>
+                        </a>
+
+                        <a href="templates/distance_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-yellow-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-yellow-600 mb-2">Distance Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate distance between points</p>
+                        </a>
+
+                        <a href="templates/exponent_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gray-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">Exponent Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate powers and exponents</p>
+                        </a>
+
+                        <!-- Row 11 -->
+                        <a href="templates/factorial_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">Factorial Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate factorials of numbers</p>
+                        </a>
+
+                        <a href="templates/fibonacci_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">Fibonacci Calculator</h3>
+                            <p class="text-gray-600 text-sm">Generate Fibonacci sequences</p>
+                        </a>
+
+                        <a href="templates/force_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">Force Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate force, mass, and acceleration</p>
+                        </a>
+
+                        <a href="templates/speed_calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Speed Calculator</h3>
+                            <p class="text-gray-600 text-sm">Calculate speed, distance, and time</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">BESTUTILS</h3>
+                    <p class="text-gray-400">Free online calculators and tools for everyone.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">All Categories</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="finance.html" class="hover:text-white transition-colors">Finance</a></li>
+                        <li><a href="health.html" class="hover:text-white transition-colors">Health</a></li>
+                        <li><a href="math.html" class="hover:text-white transition-colors">Math</a></li>
+                        <li><a href="conversion.html" class="hover:text-white transition-colors">Conversion</a></li>
+                        <li><a href="time.html" class="hover:text-white transition-colors">Time & Date</a></li>
+                        <li><a href="text.html" class="hover:text-white transition-colors">Text Tools</a></li>
+                        <li><a href="construction.html" class="hover:text-white transition-colors">Construction</a></li>
+                        <li><a href="automotive.html" class="hover:text-white transition-colors">Automotive</a></li>
+                        <li><a href="utilities.html" class="hover:text-white transition-colors">Utilities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Popular Math Tools</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="templates/basic-calculator.html" class="hover:text-white transition-colors">Basic Calculator</a></li>
+                        <li><a href="templates/scientific-calculator.html" class="hover:text-white transition-colors">Scientific Calculator</a></li>
+                        <li><a href="templates/percentage-calculator.html" class="hover:text-white transition-colors">Percentage Calculator</a></li>
+                        <li><a href="templates/fraction-calculator.html" class="hover:text-white transition-colors">Fraction Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="templates/contact-us.html" class="hover:text-white transition-colors">Contact Us</a>
+                    <a href="templates/about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BestUtils.com - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Menu JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+            // Mobile menu toggle
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        mobileMenuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Mobile dropdown functionality
+            dropdownToggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = toggle.closest('.dropdown');
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            // Close mobile menu on window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    mobileMenuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+        });
+
+        function toggleMoreTools() {
+            const moreTools = document.getElementById('moreTools');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+
+            if (moreTools.classList.contains('hidden')) {
+                moreTools.classList.remove('hidden');
+                btnText.textContent = 'Show Less Tools';
+                btnIcon.style.transform = 'rotate(180deg)';
+            } else {
+                moreTools.classList.add('hidden');
+                btnText.textContent = 'See All 47+ Math Tools';
+                btnIcon.style.transform = 'rotate(0deg)';
+                // Scroll back to the button
+                document.getElementById('seeMoreBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
+</body>
+</html>
+
+

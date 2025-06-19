@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slope Calculator - Calculate Line Slope Between Two Points | BESTUTILS</title>
+    <meta name="description" content="Free online slope calculator to find the slope of a line between two points. Calculate gradient, angle, and distance with step-by-step explanations. Mobile-friendly and easy to use.">
+    <meta name="keywords" content="slope calculator, free slope calculator online, slope formula calculator, line slope calculator, gradient calculator, rise over run calculator, math slope calculator, coordinate slope calculator, two points slope calculator, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/slope_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/slope_calculator.html">
+    <meta property="og:title" content="Slope Calculator - Calculate Line Slope Between Two Points | BestUtils">
+    <meta property="og:description" content="Free online slope calculator to find the slope of a line between two points. Calculate gradient, angle, and distance with step-by-step explanations.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/slope-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/slope_calculator.html">
+    <meta name="twitter:title" content="Slope Calculator - Calculate Line Slope Between Two Points | BestUtils">
+    <meta name="twitter:description" content="Free online slope calculator to find the slope of a line between two points. Calculate gradient, angle, and distance with step-by-step explanations.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/slope-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Slope Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Slope Calculator",
+        "description": "Free slope calculator for finding the slope of a line between two points using the slope formula (rise over run) with step-by-step explanations and visual representations.",
+        "url": "https://bestutils.com/templates/slope_calculator.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #3B82F6;
+        }
+        .result-animation {
+            animation: fadeInUp 0.5s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="gradient-bg min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="bg-white rounded-2xl calculator-shadow p-8 mb-8">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Slope Calculator</h1>
+                <p class="text-lg text-gray-600">Calculate the slope of a line between two points with detailed step-by-step solutions</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div class="space-y-6">
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Enter Coordinates</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Point 1 (x₁, y₁)</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <input type="number" id="x1" placeholder="x₁" step="any" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition-all">
+                                    <input type="number" id="y1" placeholder="y₁" step="any" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition-all">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Point 2 (x₂, y₂)</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <input type="number" id="x2" placeholder="x₂" step="any" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition-all">
+                                    <input type="number" id="y2" placeholder="y₂" step="any" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus focus:outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="calculateSlope()" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                            Calculate Slope
+                        </button>
+                        <button onclick="clearAll()" class="w-full mt-3 bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-6 rounded-lg transition-colors">
+                            Clear All
+                        </button>
+                    </div>
+                </div>
+                <!-- Results Section -->
+                <div id="results" class="hidden result-animation">
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Results</h2>
+                        <div id="resultContent" class="space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description and Instructions -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- What is Slope -->
+            <div class="bg-white rounded-xl p-6 calculator-shadow">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">What is Slope?</h2>
+                <p class="text-gray-600 mb-4">
+                    The slope of a line is a measure of how steep the line is. It represents the rate of change between two points on a line, calculated as the ratio of the vertical change (rise) to the horizontal change (run).
+                </p>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Slope Formula:</h3>
+                    <p class="text-lg font-mono">m = (y₂ - y₁) / (x₂ - x₁)</p>
+                    <p class="text-sm text-gray-600 mt-2">Where m is the slope, and (x₁,y₁) and (x₂,y₂) are two points on the line.</p>
+                </div>
+            </div>
+            <!-- How to Use -->
+            <div class="bg-white rounded-xl p-6 calculator-shadow">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use</h2>
+                <ol class="list-decimal list-inside space-y-3 text-gray-600">
+                    <li><strong>Enter Point 1:</strong> Input the x and y coordinates of the first point</li>
+                    <li><strong>Enter Point 2:</strong> Input the x and y coordinates of the second point</li>
+                    <li><strong>Calculate:</strong> Click the "Calculate Slope" button to get results</li>
+                    <li><strong>View Results:</strong> See the slope value, angle, and step-by-step calculation</li>
+                    <li><strong>Clear:</strong> Use the "Clear All" button to reset and start over</li>
+                </ol>
+            </div>
+        </div>
+        <!-- Additional Information -->
+        <div class="bg-white rounded-xl p-6 calculator-shadow">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Understanding Slope Values</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-red-50 rounded-lg p-4">
+                    <h3 class="font-semibold text-red-800 mb-2">Positive Slope</h3>
+                    <p class="text-sm text-red-600">Line rises from left to right (m > 0)</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h3 class="font-semibold text-blue-800 mb-2">Negative Slope</h3>
+                    <p class="text-sm text-blue-600">Line falls from left to right (m < 0)</p>
+                </div>
+                <div class="bg-green-50 rounded-lg p-4">
+                    <h3 class="font-semibold text-green-800 mb-2">Zero Slope</h3>
+                    <p class="text-sm text-green-600">Horizontal line (m = 0)</p>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-4">
+                    <h3 class="font-semibold text-purple-800 mb-2">Undefined Slope</h3>
+                    <p class="text-sm text-purple-600">Vertical line (division by zero)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculateSlope() {
+            const x1 = parseFloat(document.getElementById('x1').value);
+            const y1 = parseFloat(document.getElementById('y1').value);
+            const x2 = parseFloat(document.getElementById('x2').value);
+            const y2 = parseFloat(document.getElementById('y2').value);
+            if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) {
+                alert('Please enter valid numbers for all coordinates.');
+                return;
+            }
+            const deltaX = x2 - x1;
+            const deltaY = y2 - y1;
+            let resultHTML = `
+                <div class="space-y-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Step-by-Step Solution:</h3>
+                    <div class="bg-white rounded p-4 border-l-4 border-blue-500">
+                        <p><strong>Given Points:</strong></p>
+                        <p>Point 1: (${x1}, ${y1})</p>
+                        <p>Point 2: (${x2}, ${y2})</p>
+                    </div>
+                    <div class="bg-white rounded p-4 border-l-4 border-green-500">
+                        <p><strong>Calculate the differences:</strong></p>
+                        <p>Δx = x₂ - x₁ = ${x2} - ${x1} = ${deltaX}</p>
+                        <p>Δy = y₂ - y₁ = ${y2} - ${y1} = ${deltaY}</p>
+                    </div>
+            `;
+            if (deltaX === 0) {
+                resultHTML += `
+                    <div class="bg-yellow-50 rounded p-4 border-l-4 border-yellow-500">
+                        <p><strong>Result:</strong></p>
+                        <p class="text-xl font-bold text-yellow-700">Slope is UNDEFINED</p>
+                        <p class="text-sm">The line is vertical (division by zero)</p>
+                    </div>
+                `;
+            } else {
+                const slope = deltaY / deltaX;
+                const angle = Math.atan(slope) * (180 / Math.PI);
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                resultHTML += `
+                    <div class="bg-white rounded p-4 border-l-4 border-green-500">
+                        <p><strong>Apply the slope formula:</strong></p>
+                        <p>m = Δy / Δx = ${deltaY} / ${deltaX} = ${slope.toFixed(4)}</p>
+                    </div>
+                    <div class="bg-blue-50 rounded p-4">
+                        <h4 class="font-semibold mb-2">Additional Information:</h4>
+                        <p><strong>Slope:</strong> ${slope.toFixed(4)}</p>
+                        <p><strong>Angle:</strong> ${angle.toFixed(2)}°</p>
+                        <p><strong>Distance between points:</strong> ${distance.toFixed(4)} units</p>
+                        <p><strong>Line type:</strong> ${getLineType(slope)}</p>
+                    </div>
+                `;
+            }
+            resultHTML += '</div>';
+            document.getElementById('resultContent').innerHTML = resultHTML;
+            document.getElementById('results').classList.remove('hidden');
+        }
+        function getLineType(slope) {
+            if (slope > 0) return 'Positive slope (rising)';
+            if (slope < 0) return 'Negative slope (falling)';
+            return 'Zero slope (horizontal)';
+        }
+        function clearAll() {
+            document.getElementById('x1').value = '';
+            document.getElementById('y1').value = '';
+            document.getElementById('x2').value = '';
+            document.getElementById('y2').value = '';
+            document.getElementById('results').classList.add('hidden');
+        }
+        // Add enter key support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateSlope();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">📐</span>
+                Related Geometry Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="triangle-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Triangle Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate triangle properties</div></div>
+                </a>
+                <a href="surface_area_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Surface Area Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate surface areas</div></div>
+                </a>
+                <a href="volume_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Volume Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate volumes</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

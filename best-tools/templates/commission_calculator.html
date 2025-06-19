@@ -1,0 +1,548 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commission Calculator - Calculate Sales Commission Earnings | BESTUTILS</title>
+    <meta name="description" content="Calculate sales commission earnings with our easy-to-use commission calculator. Support for fixed rates, tiered commissions, and bonuses. Perfect for sales professionals.">
+    <meta name="keywords" content="commission calculator, sales commission, earnings calculator, commission rate, sales calculator, real estate commission">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/commission-calculator">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Commission Calculator - Calculate Sales Commission Earnings">
+    <meta property="og:description" content="Calculate sales commission earnings with support for fixed rates, tiered commissions, and bonuses.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/commission-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-highlight {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tier-input {
+            display: none;
+        }
+        .tier-input.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen py-6 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Commission Calculator</h1>
+            <p class="text-xl text-white/90 max-w-2xl mx-auto">Calculate your sales commission earnings with support for fixed rates, tiered structures, and bonuses</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="calculator-card rounded-2xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Calculate Commission</h2>
+                <div class="space-y-6">
+                    <!-- Commission Type -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Commission Type</label>
+                        <select id="commissionType" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" onchange="toggleCommissionType()">
+                            <option value="fixed">Fixed Rate Commission</option>
+                            <option value="tiered">Tiered Commission</option>
+                        </select>
+                    </div>
+                    <!-- Sales Amount -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Total Sales Amount</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="salesAmount" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="50000" value="50000">
+                        </div>
+                    </div>
+                    <!-- Fixed Rate Section -->
+                    <div id="fixedRateSection">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Commission Rate (%)</label>
+                        <div class="relative">
+                            <input type="number" id="commissionRate" class="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="5" value="5" step="0.1">
+                            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
+                        </div>
+                    </div>
+                    <!-- Tiered Commission Section -->
+                    <div id="tieredSection" class="tier-input">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Commission Tiers</label>
+                        <div class="space-y-4">
+                            <!-- Tier 1 -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-700 mb-3">Tier 1</h4>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs text-gray-600 mb-1">Up to Amount ($)</label>
+                                        <input type="number" id="tier1Amount" class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500" placeholder="25000" value="25000">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-600 mb-1">Rate (%)</label>
+                                        <input type="number" id="tier1Rate" class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500" placeholder="3" value="3" step="0.1">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tier 2 -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-700 mb-3">Tier 2</h4>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs text-gray-600 mb-1">Up to Amount ($)</label>
+                                        <input type="number" id="tier2Amount" class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500" placeholder="75000" value="75000">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-600 mb-1">Rate (%)</label>
+                                        <input type="number" id="tier2Rate" class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500" placeholder="5" value="5" step="0.1">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tier 3 -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-medium text-gray-700 mb-3">Tier 3+</h4>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs text-gray-600 mb-1">Above Amount ($)</label>
+                                        <input type="number" id="tier3Amount" class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500" placeholder="75000" value="75000">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-600 mb-1">Rate (%)</label>
+                                        <input type="number" id="tier3Rate" class="w-full px-3 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500" placeholder="7" value="7" step="0.1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Base Salary -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Base Salary (Optional)</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="baseSalary" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" value="0">
+                        </div>
+                    </div>
+                    <!-- Bonus -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Bonus (Optional)</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="bonus" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0" value="0">
+                        </div>
+                    </div>
+                    <button onclick="calculateCommission()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-lg transform transition hover:scale-105 shadow-lg">
+                        Calculate Commission
+                    </button>
+                </div>
+            </div>
+            <!-- Results -->
+            <div class="calculator-card rounded-2xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Commission Breakdown</h2>
+                <div id="results" class="space-y-4">
+                    <div class="text-center py-8">
+                        <div class="text-gray-400 text-lg">Enter your sales information to see commission breakdown</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="mt-12 calculator-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About Commission Calculator</h2>
+            <div class="prose prose-lg max-w-none text-gray-700">
+                <p class="text-lg mb-6">
+                    Our Commission Calculator helps sales professionals, real estate agents, and business owners calculate earnings based on sales performance. Whether you work with fixed commission rates or tiered structures, this tool provides accurate calculations for your compensation planning.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Features:</h3>
+                <ul class="list-disc list-inside space-y-2 mb-6">
+                    <li><strong>Fixed Rate Commission:</strong> Calculate earnings with a single commission percentage</li>
+                    <li><strong>Tiered Commission:</strong> Support for multiple commission tiers with different rates</li>
+                    <li><strong>Base Salary:</strong> Include fixed salary in total compensation calculations</li>
+                    <li><strong>Bonuses:</strong> Add performance bonuses and incentives</li>
+                    <li><strong>Detailed Breakdown:</strong> See exactly how your commission is calculated</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">How to Use:</h3>
+                <ol class="list-decimal list-inside space-y-2 mb-6">
+                    <li>Select your commission structure (Fixed Rate or Tiered)</li>
+                    <li>Enter your total sales amount for the calculation period</li>
+                    <li>For Fixed Rate: Enter your commission percentage</li>
+                    <li>For Tiered: Set up your commission tiers with amounts and rates</li>
+                    <li>Add any base salary (if applicable)</li>
+                    <li>Include additional bonuses or incentives</li>
+                    <li>Click "Calculate Commission" to see your breakdown</li>
+                </ol>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Commission Structure Examples:</h3>
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2">Fixed Rate Example:</h4>
+                        <p>Sales: $100,000 × 5% = $5,000 commission</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2">Tiered Commission Example:</h4>
+                        <p>First $25,000 × 3% = $750</p>
+                        <p>Next $50,000 × 5% = $2,500</p>
+                        <p>Remaining $25,000 × 7% = $1,750</p>
+                        <p><strong>Total Commission: $5,000</strong></p>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 mt-6">Tips for Sales Professionals:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Understand your commission structure thoroughly</li>
+                    <li>Track your sales progress throughout the period</li>
+                    <li>Plan your efforts to maximize higher-tier commissions</li>
+                    <li>Consider the impact of returns or cancellations</li>
+                    <li>Keep detailed records for tax and accounting purposes</li>
+                    <li>Negotiate commission structures that reward performance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleCommissionType() {
+            const type = document.getElementById('commissionType').value;
+            const fixedSection = document.getElementById('fixedRateSection');
+            const tieredSection = document.getElementById('tieredSection');
+            if (type === 'fixed') {
+                fixedSection.style.display = 'block';
+                tieredSection.classList.remove('active');
+            } else {
+                fixedSection.style.display = 'none';
+                tieredSection.classList.add('active');
+            }
+            calculateCommission();
+        }
+        function calculateCommission() {
+            const salesAmount = parseFloat(document.getElementById('salesAmount').value) || 0;
+            const baseSalary = parseFloat(document.getElementById('baseSalary').value) || 0;
+            const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+            const commissionType = document.getElementById('commissionType').value;
+            let commission = 0;
+            let breakdown = [];
+            if (commissionType === 'fixed') {
+                const rate = parseFloat(document.getElementById('commissionRate').value) || 0;
+                commission = salesAmount * (rate / 100);
+                breakdown.push({
+                    description: `Sales: ${salesAmount.toLocaleString()} × ${rate}%`,
+                    amount: commission
+                });
+            } else {
+                // Tiered commission calculation
+                const tier1Amount = parseFloat(document.getElementById('tier1Amount').value) || 0;
+                const tier1Rate = parseFloat(document.getElementById('tier1Rate').value) || 0;
+                const tier2Amount = parseFloat(document.getElementById('tier2Amount').value) || 0;
+                const tier2Rate = parseFloat(document.getElementById('tier2Rate').value) || 0;
+                const tier3Amount = parseFloat(document.getElementById('tier3Amount').value) || 0;
+                const tier3Rate = parseFloat(document.getElementById('tier3Rate').value) || 0;
+                let remainingSales = salesAmount;
+                // Tier 1
+                if (remainingSales > 0 && tier1Amount > 0) {
+                    const tier1Sales = Math.min(remainingSales, tier1Amount);
+                    const tier1Commission = tier1Sales * (tier1Rate / 100);
+                    commission += tier1Commission;
+                    breakdown.push({
+                        description: `First ${tier1Sales.toLocaleString()} × ${tier1Rate}%`,
+                        amount: tier1Commission
+                    });
+                    remainingSales -= tier1Sales;
+                }
+                // Tier 2
+                if (remainingSales > 0 && tier2Amount > tier1Amount) {
+                    const tier2Sales = Math.min(remainingSales, tier2Amount - tier1Amount);
+                    const tier2Commission = tier2Sales * (tier2Rate / 100);
+                    commission += tier2Commission;
+                    breakdown.push({
+                        description: `Next ${tier2Sales.toLocaleString()} × ${tier2Rate}%`,
+                        amount: tier2Commission
+                    });
+                    remainingSales -= tier2Sales;
+                }
+                // Tier 3+
+                if (remainingSales > 0 && tier3Rate > 0) {
+                    const tier3Commission = remainingSales * (tier3Rate / 100);
+                    commission += tier3Commission;
+                    breakdown.push({
+                        description: `Remaining ${remainingSales.toLocaleString()} × ${tier3Rate}%`,
+                        amount: tier3Commission
+                    });
+                }
+            }
+            const totalEarnings = commission + baseSalary + bonus;
+            displayResults(salesAmount, commission, baseSalary, bonus, totalEarnings, breakdown);
+        }
+        function displayResults(salesAmount, commission, baseSalary, bonus, totalEarnings, breakdown) {
+            const resultsDiv = document.getElementById('results');
+            const html = `
+                <div class="animate-fade-in">
+                    <div class="text-center mb-6">
+                        <div class="text-sm text-gray-600 mb-2">Total Earnings</div>
+                        <div class="text-4xl font-bold result-highlight">${totalEarnings.toLocaleString('en-US', {maximumFractionDigits: 2})}</div>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800">Earnings Breakdown</h3>
+                        ${commission > 0 ? `
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-3">Commission Details</h4>
+                            <div class="space-y-2">
+                                ${breakdown.map(item => `
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-700">${item.description}</span>
+                                        <span class="font-medium text-gray-900">${item.amount.toLocaleString('en-US', {maximumFractionDigits: 2})}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="border-t border-blue-200 mt-3 pt-3">
+                                <div class="flex justify-between font-semibold">
+                                    <span class="text-blue-800">Total Commission</span>
+                                    <span class="text-blue-900">${commission.toLocaleString('en-US', {maximumFractionDigits: 2})}</span>
+                                </div>
+                            </div>
+                        </div>
+                        ` : ''}
+                        <div class="space-y-3">
+                            ${commission > 0 ? `
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Commission</span>
+                                <span class="font-semibold text-gray-900">${commission.toLocaleString('en-US', {maximumFractionDigits: 2})}</span>
+                            </div>
+                            ` : ''}
+                            ${baseSalary > 0 ? `
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Base Salary</span>
+                                <span class="font-semibold text-gray-900">${baseSalary.toLocaleString('en-US', {maximumFractionDigits: 2})}</span>
+                            </div>
+                            ` : ''}
+                            ${bonus > 0 ? `
+                            <div class="flex justify-between items-center p-3 bg-yellow-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Bonus</span>
+                                <span class="font-semibold text-gray-900">${bonus.toLocaleString('en-US', {maximumFractionDigits: 2})}</span>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Summary</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Total Sales</span>
+                                <span class="font-medium">${salesAmount.toLocaleString('en-US', {maximumFractionDigits: 2})}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Commission Rate</span>
+                                <span class="font-medium">${commission > 0 ? ((commission / salesAmount) * 100).toFixed(2) + '%' : '0%'}</span>
+                            </div>
+                            <div class="flex justify-between font-semibold text-base border-t border-gray-300 pt-2">
+                                <span class="text-gray-800">Total Earnings</span>
+                                <span class="text-gray-900">${totalEarnings.toLocaleString('en-US', {maximumFractionDigits: 2})}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            resultsDiv.innerHTML = html;
+        }
+        // Calculate on page load with default values
+        window.addEventListener('load', function() {
+            calculateCommission();
+        });
+        // Calculate when inputs change
+        document.addEventListener('input', function(e) {
+            if (e.target.type === 'number' || e.target.tagName === 'SELECT') {
+                calculateCommission();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="salary-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Salary Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate salary conversions</div></div>
+                </a>
+                <a href="margin_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Margin Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate profit margins</div></div>
+                </a>
+                <a href="roi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💹</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">ROI Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Return on investment</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Famous Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                </a>
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

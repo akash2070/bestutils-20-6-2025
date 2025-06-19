@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Cost Calculator - Plan Your Education Expenses | BESTUTILS</title>
+    <meta name="description" content="Calculate total college costs including tuition, room & board, books, and living expenses. Plan your education budget with our comprehensive college cost calculator.">
+    <meta name="keywords" content="college cost calculator, tuition calculator, education expenses, college budget, student loans, financial planning">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/college-cost-calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="College Cost Calculator - Plan Your Education Expenses">
+    <meta property="og:description" content="Calculate total college costs including tuition, room & board, books, and living expenses. Plan your education budget effectively.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/college-cost-calculator">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .result-highlight {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        input:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #3B82F6;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen py-6 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">College Cost Calculator</h1>
+            <p class="text-xl text-white/90 max-w-2xl mx-auto">Plan your education expenses and budget for college with our comprehensive cost calculator</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="calculator-card rounded-2xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Calculate College Costs</h2>
+                
+                <div class="space-y-6">
+                    <!-- Annual Tuition -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Tuition & Fees</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="tuition" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="25000" value="25000">
+                        </div>
+                    </div>
+
+                    <!-- Room & Board -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Room & Board</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="roomBoard" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="12000" value="12000">
+                        </div>
+                    </div>
+
+                    <!-- Books & Supplies -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Books & Supplies</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="books" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="1200" value="1200">
+                        </div>
+                    </div>
+
+                    <!-- Personal Expenses -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Personal Expenses</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="personal" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="2000" value="2000">
+                        </div>
+                    </div>
+
+                    <!-- Transportation -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Transportation</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                            <input type="number" id="transportation" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="1500" value="1500">
+                        </div>
+                    </div>
+
+                    <!-- Number of Years -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Years</label>
+                        <select id="years" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="1">1 Year</option>
+                            <option value="2">2 Years</option>
+                            <option value="3">3 Years</option>
+                            <option value="4" selected>4 Years</option>
+                            <option value="5">5 Years</option>
+                            <option value="6">6 Years</option>
+                        </select>
+                    </div>
+
+                    <!-- Annual Increase -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Cost Increase (%)</label>
+                        <div class="relative">
+                            <input type="number" id="increase" class="w-full pr-8 pl-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="3" value="3" step="0.1">
+                            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
+                        </div>
+                    </div>
+
+                    <button onclick="calculateCosts()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-lg transform transition hover:scale-105 shadow-lg">
+                        Calculate Total Costs
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="calculator-card rounded-2xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Cost Breakdown</h2>
+                
+                <div id="results" class="space-y-4">
+                    <div class="text-center py-8">
+                        <div class="text-gray-400 text-lg">Enter your college information to see cost breakdown</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description Section -->
+        <div class="mt-12 calculator-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About College Cost Calculator</h2>
+            
+            <div class="prose prose-lg max-w-none text-gray-700">
+                <p class="text-lg mb-6">
+                    Planning for college expenses is crucial for students and families. Our College Cost Calculator helps you estimate the total cost of education by considering all major expense categories including tuition, room and board, books, and personal expenses.
+                </p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">What This Calculator Includes:</h3>
+                <ul class="list-disc list-inside space-y-2 mb-6">
+                    <li><strong>Tuition & Fees:</strong> Academic costs charged by the institution</li>
+                    <li><strong>Room & Board:</strong> Housing and meal plan expenses</li>
+                    <li><strong>Books & Supplies:</strong> Textbooks, materials, and equipment</li>
+                    <li><strong>Personal Expenses:</strong> Clothing, entertainment, and miscellaneous costs</li>
+                    <li><strong>Transportation:</strong> Travel costs to and from campus</li>
+                    <li><strong>Cost Inflation:</strong> Annual increase in college expenses</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">How to Use This Calculator:</h3>
+                <ol class="list-decimal list-inside space-y-2 mb-6">
+                    <li>Enter the annual tuition and fees for your chosen college</li>
+                    <li>Input estimated room and board costs (if living on campus)</li>
+                    <li>Add expected costs for books and supplies</li>
+                    <li>Estimate personal expenses like clothing and entertainment</li>
+                    <li>Include transportation costs for travel to/from school</li>
+                    <li>Select the number of years you plan to attend</li>
+                    <li>Set the annual cost increase percentage (typically 3-5%)</li>
+                    <li>Click "Calculate Total Costs" to see your complete breakdown</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Tips for College Financial Planning:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Start saving early - even small amounts compound over time</li>
+                    <li>Research scholarships and grants available in your field</li>
+                    <li>Compare costs between different colleges and programs</li>
+                    <li>Consider in-state vs. out-of-state tuition differences</li>
+                    <li>Factor in potential income from part-time work or internships</li>
+                    <li>Plan for unexpected expenses with a 10-15% buffer</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateCosts() {
+            const tuition = parseFloat(document.getElementById('tuition').value) || 0;
+            const roomBoard = parseFloat(document.getElementById('roomBoard').value) || 0;
+            const books = parseFloat(document.getElementById('books').value) || 0;
+            const personal = parseFloat(document.getElementById('personal').value) || 0;
+            const transportation = parseFloat(document.getElementById('transportation').value) || 0;
+            const years = parseInt(document.getElementById('years').value) || 4;
+            const increase = parseFloat(document.getElementById('increase').value) || 3;
+
+            let totalCost = 0;
+            let yearlyBreakdown = [];
+            let categoryTotals = {
+                tuition: 0,
+                roomBoard: 0,
+                books: 0,
+                personal: 0,
+                transportation: 0
+            };
+
+            for (let year = 1; year <= years; year++) {
+                const multiplier = Math.pow(1 + increase / 100, year - 1);
+                
+                const yearlyTuition = tuition * multiplier;
+                const yearlyRoomBoard = roomBoard * multiplier;
+                const yearlyBooks = books * multiplier;
+                const yearlyPersonal = personal * multiplier;
+                const yearlyTransportation = transportation * multiplier;
+                
+                const yearTotal = yearlyTuition + yearlyRoomBoard + yearlyBooks + yearlyPersonal + yearlyTransportation;
+                
+                yearlyBreakdown.push({
+                    year: year,
+                    tuition: yearlyTuition,
+                    roomBoard: yearlyRoomBoard,
+                    books: yearlyBooks,
+                    personal: yearlyPersonal,
+                    transportation: yearlyTransportation,
+                    total: yearTotal
+                });
+
+                categoryTotals.tuition += yearlyTuition;
+                categoryTotals.roomBoard += yearlyRoomBoard;
+                categoryTotals.books += yearlyBooks;
+                categoryTotals.personal += yearlyPersonal;
+                categoryTotals.transportation += yearlyTransportation;
+
+                totalCost += yearTotal;
+            }
+
+            displayResults(totalCost, categoryTotals, yearlyBreakdown);
+        }
+
+        function displayResults(totalCost, categoryTotals, yearlyBreakdown) {
+            const resultsDiv = document.getElementById('results');
+            
+            const html = `
+                <div class="animate-fade-in">
+                    <div class="text-center mb-6">
+                        <div class="text-sm text-gray-600 mb-2">Total College Cost</div>
+                        <div class="text-4xl font-bold result-highlight">$${totalCost.toLocaleString('en-US', {maximumFractionDigits: 0})}</div>
+                    </div>
+
+                    <div class="space-y-4 mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800">Cost by Category</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Tuition & Fees</span>
+                                <span class="font-semibold text-gray-900">$${categoryTotals.tuition.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Room & Board</span>
+                                <span class="font-semibold text-gray-900">$${categoryTotals.roomBoard.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-yellow-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Books & Supplies</span>
+                                <span class="font-semibold text-gray-900">$${categoryTotals.books.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Personal Expenses</span>
+                                <span class="font-semibold text-gray-900">$${categoryTotals.personal.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                <span class="font-medium text-gray-700">Transportation</span>
+                                <span class="font-semibold text-gray-900">$${categoryTotals.transportation.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Yearly Breakdown</h3>
+                        <div class="space-y-2">
+                            ${yearlyBreakdown.map(year => `
+                                <div class="flex justify-between items-center p-2 border-b border-gray-200">
+                                    <span class="font-medium text-gray-700">Year ${year.year}</span>
+                                    <span class="font-semibold text-gray-900">$${year.total.toLocaleString('en-US', {maximumFractionDigits: 0})}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            resultsDiv.innerHTML = html;
+        }
+
+        // Calculate on page load with default values
+        window.addEventListener('load', function() {
+            calculateCosts();
+        });
+
+        // Calculate when inputs change
+        document.addEventListener('input', function(e) {
+            if (e.target.type === 'number' || e.target.tagName === 'SELECT') {
+                calculateCosts();
+            }
+        });
+    </script>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="student_loan_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🎓</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Student Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate education loan payments</div></div>
+                </a>
+                <a href="savings_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Savings Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan your savings goals</div></div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Famous Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="401k-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">401k Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan 401k contributions</div></div>
+                </a>
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+                <a href="compound-interest-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Compound Interest Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate compound growth</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,696 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Beautifier & Formatter - Format SQL Queries Online | BESTUTILS</title>
+    <meta name="description" content="Free online SQL beautifier and formatter. Format, minify, and validate SQL queries. Support for MySQL, PostgreSQL, Oracle, SQL Server. Clean up messy SQL code instantly.">
+    <meta name="keywords" content="sql beautifier, free sql beautifier online, sql formatter, format sql, sql pretty print, sql validator, mysql formatter, postgresql formatter, sql code formatter, bestutils">
+    <meta name="author" content="BestUtils">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/sql_beautifier.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/sql_beautifier.html">
+    <meta property="og:title" content="SQL Beautifier & Formatter - Format SQL Queries Online | BestUtils">
+    <meta property="og:description" content="Free online SQL beautifier and formatter. Format, minify, and validate SQL queries. Support for MySQL, PostgreSQL, Oracle, SQL Server. Clean up messy SQL code instantly.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/sql-beautifier-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/sql_beautifier.html">
+    <meta name="twitter:title" content="SQL Beautifier & Formatter - Format SQL Queries Online | BestUtils">
+    <meta name="twitter:description" content="Free online SQL beautifier and formatter. Format, minify, and validate SQL queries. Support for MySQL, PostgreSQL, Oracle, SQL Server. Clean up messy SQL code instantly.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/sql-beautifier-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils SQL Beautifier">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SQL Beautifier",
+        "description": "Free SQL beautifier and formatter tool for formatting, minifying, and validating SQL queries with support for multiple database dialects.",
+        "url": "https://bestutils.com/templates/sql_beautifier.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .code-font {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+        }
+        
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        
+        .sql-editor {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .editor-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .sql-textarea {
+            background: #1a1a1a;
+            color: #e5e5e5;
+            border: 1px solid #404040;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        
+        .sql-textarea:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #10B981;
+            color: white;
+        }
+        
+        .status-error {
+            background: #EF4444;
+            color: white;
+        }
+        
+        .status-warning {
+            background: #F59E0B;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .sql-editor {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-blue-900 mb-6 text-center">SQL Beautifier & Formatter</h1>
+
+        <!-- How to Use Instructions -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the SQL Beautifier</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Step-by-Step Instructions:</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                        <li>Paste or type your SQL query in the input area</li>
+                        <li>Select your SQL dialect (MySQL, PostgreSQL, etc.)</li>
+                        <li>Choose formatting options (indent size, keyword case)</li>
+                        <li>Click "Format SQL" to beautify your query</li>
+                        <li>Use "Minify SQL" to compress the query</li>
+                        <li>Click "Validate SQL" to check for syntax errors</li>
+                        <li>Copy the result using the "Copy Result" button</li>
+                    </ol>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Features:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Format and beautify messy SQL code</li>
+                        <li>Minify SQL to reduce file size</li>
+                        <li>Basic syntax validation</li>
+                        <li>Support for multiple SQL dialects</li>
+                        <li>Customizable indentation options</li>
+                        <li>Uppercase/lowercase keyword formatting</li>
+                        <li>Real-time character counting</li>
+                        <li>Sample SQL for testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About the SQL Beautifier</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Our SQL Beautifier is a powerful online tool designed to format, beautify, and validate SQL queries. Whether you're working with messy, minified SQL code or need to standardize your database queries, this tool helps you create clean, readable SQL statements that follow best practices.
+            </p>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                The tool supports multiple SQL dialects including MySQL, PostgreSQL, Oracle, and SQL Server, ensuring compatibility with your specific database system. You can customize the formatting style with different indentation options and keyword casing preferences.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                Perfect for database developers, data analysts, and anyone working with SQL queries, this beautifier helps improve code readability and maintainability while catching common syntax errors.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Update character counts
+        function updateCharCount(textareaId, countId) {
+            const textarea = document.getElementById(textareaId);
+            const count = document.getElementById(countId);
+            count.textContent = textarea.value.length;
+        }
+
+        // Update counts on input
+        document.getElementById('inputSQL').addEventListener('input', function() {
+            updateCharCount('inputSQL', 'inputCount');
+        });
+
+        // SQL Keywords for formatting
+        const sqlKeywords = [
+            'SELECT', 'FROM', 'WHERE', 'JOIN', 'INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'FULL JOIN',
+            'ORDER BY', 'GROUP BY', 'HAVING', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'ALTER', 'DROP',
+            'TABLE', 'INDEX', 'VIEW', 'DATABASE', 'SCHEMA', 'PRIMARY KEY', 'FOREIGN KEY', 'CONSTRAINT',
+            'NOT NULL', 'UNIQUE', 'DEFAULT', 'CHECK', 'REFERENCES', 'ON', 'CASCADE', 'RESTRICT',
+            'AS', 'DISTINCT', 'ALL', 'ANY', 'SOME', 'EXISTS', 'IN', 'BETWEEN', 'LIKE', 'IS NULL',
+            'IS NOT NULL', 'AND', 'OR', 'NOT', 'UNION', 'EXCEPT', 'INTERSECT', 'CASE', 'WHEN', 'THEN',
+            'ELSE', 'END', 'IF', 'COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'LIMIT', 'OFFSET', 'TOP'
+        ];
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.className = `status-indicator status-${type}`;
+            status.textContent = message;
+            status.style.display = 'inline-flex';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 3000);
+        }
+
+        function formatSQL() {
+            const input = document.getElementById('inputSQL').value.trim();
+            const upperCase = document.getElementById('upperCaseKeywords').checked;
+            const indentSize = document.getElementById('indentSize').value;
+            
+            if (!input) {
+                showStatus('Please enter SQL to format', 'error');
+                return;
+            }
+
+            try {
+                let formatted = input;
+                
+                // Basic SQL formatting
+                formatted = formatted.replace(/\s+/g, ' '); // Normalize whitespace
+                formatted = formatted.replace(/;/g, ';\n'); // New line after semicolons
+                
+                // Add line breaks for major keywords
+                const majorKeywords = ['SELECT', 'FROM', 'WHERE', 'JOIN', 'INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 
+                                     'ORDER BY', 'GROUP BY', 'HAVING', 'UNION', 'INSERT INTO', 'UPDATE', 'DELETE FROM'];
+                
+                majorKeywords.forEach(keyword => {
+                    const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+                    formatted = formatted.replace(regex, `\n${keyword}`);
+                });
+                
+                // Handle commas in SELECT statements
+                formatted = formatted.replace(/,(\s*[^(])/g, ',\n    $1');
+                
+                // Set indentation
+                let indent = indentSize === 'tab' ? '\t' : ' '.repeat(parseInt(indentSize));
+                let lines = formatted.split('\n');
+                let indentLevel = 0;
+                
+                lines = lines.map(line => {
+                    line = line.trim();
+                    if (!line) return '';
+                    
+                    // Decrease indent for closing keywords
+                    if (line.match(/^\)/)) indentLevel = Math.max(0, indentLevel - 1);
+                    
+                    let indentedLine = indent.repeat(indentLevel) + line;
+                    
+                    // Increase indent for opening keywords
+                    if (line.match(/\($/)) indentLevel++;
+                    
+                    return indentedLine;
+                });
+                
+                formatted = lines.join('\n');
+                
+                // Apply keyword casing
+                if (upperCase) {
+                    sqlKeywords.forEach(keyword => {
+                        const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+                        formatted = formatted.replace(regex, keyword.toUpperCase());
+                    });
+                } else {
+                    sqlKeywords.forEach(keyword => {
+                        const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+                        formatted = formatted.replace(regex, keyword.toLowerCase());
+                    });
+                }
+                
+                // Clean up extra whitespace
+                formatted = formatted.replace(/\n\s*\n/g, '\n');
+                formatted = formatted.trim();
+                
+                document.getElementById('outputSQL').value = formatted;
+                updateCharCount('outputSQL', 'outputCount');
+                showStatus('SQL formatted successfully', 'success');
+                
+            } catch (error) {
+                showStatus('Error formatting SQL', 'error');
+            }
+        }
+
+        function minifySQL() {
+            const input = document.getElementById('inputSQL').value.trim();
+            
+            if (!input) {
+                showStatus('Please enter SQL to minify', 'error');
+                return;
+            }
+
+            try {
+                let minified = input;
+                
+                // Remove comments
+                minified = minified.replace(/--.*$/gm, '');
+                minified = minified.replace(/\/\*[\s\S]*?\*\//g, '');
+                
+                // Normalize whitespace
+                minified = minified.replace(/\s+/g, ' ');
+                minified = minified.replace(/\s*([();,])\s*/g, '$1');
+                minified = minified.trim();
+                
+                document.getElementById('outputSQL').value = minified;
+                updateCharCount('outputSQL', 'outputCount');
+                showStatus('SQL minified successfully', 'success');
+                
+            } catch (error) {
+                showStatus('Error minifying SQL', 'error');
+            }
+        }
+
+        function validateSQL() {
+            const input = document.getElementById('inputSQL').value.trim();
+            
+            if (!input) {
+                showStatus('Please enter SQL to validate', 'error');
+                return;
+            }
+
+            // Basic SQL validation
+            const errors = [];
+            
+            // Check for balanced parentheses
+            let parenCount = 0;
+            for (let char of input) {
+                if (char === '(') parenCount++;
+                if (char === ')') parenCount--;
+                if (parenCount < 0) {
+                    errors.push('Unmatched closing parenthesis');
+                    break;
+                }
+            }
+            if (parenCount > 0) errors.push('Unmatched opening parenthesis');
+            
+            // Check for balanced quotes
+            let singleQuotes = (input.match(/'/g) || []).length;
+            let doubleQuotes = (input.match(/"/g) || []).length;
+            if (singleQuotes % 2 !== 0) errors.push('Unmatched single quotes');
+            if (doubleQuotes % 2 !== 0) errors.push('Unmatched double quotes');
+            
+            // Check for basic keywords
+            const hasSelect = /\bSELECT\b/i.test(input);
+            const hasFrom = /\bFROM\b/i.test(input);
+            const hasInsert = /\bINSERT\b/i.test(input);
+            const hasUpdate = /\bUPDATE\b/i.test(input);
+            const hasDelete = /\bDELETE\b/i.test(input);
+            
+            if (hasSelect && !hasFrom && !input.includes('1') && !input.includes('*')) {
+                errors.push('SELECT statement missing FROM clause');
+            }
+            
+            if (errors.length === 0) {
+                showStatus('SQL validation passed', 'success');
+            } else {
+                showStatus(`Validation errors: ${errors.join(', ')}`, 'error');
+            }
+        }
+
+        function clearEditor() {
+            document.getElementById('inputSQL').value = '';
+            document.getElementById('outputSQL').value = '';
+            updateCharCount('inputSQL', 'inputCount');
+            updateCharCount('outputSQL', 'outputCount');
+            showStatus('Editor cleared', 'success');
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('outputSQL');
+            if (!output.value) {
+                showStatus('No content to copy', 'error');
+                return;
+            }
+            
+            output.select();
+            document.execCommand('copy');
+            showStatus('Copied to clipboard', 'success');
+        }
+
+        function loadSample() {
+            const sampleSQL = `select u.id,u.name,u.email,p.title as post_title,c.content as comment_content from users u inner join posts p on u.id=p.user_id left join comments c on p.id=c.post_id where u.status='active' and p.published_at is not null and u.created_at>='2023-01-01' order by u.created_at desc,p.published_at desc limit 10;`;
+            
+            document.getElementById('inputSQL').value = sampleSQL;
+            updateCharCount('inputSQL', 'inputCount');
+            showStatus('Sample SQL loaded', 'success');
+        }
+
+        // Initialize character counts
+        updateCharCount('inputSQL', 'inputCount');
+        updateCharCount('outputSQL', 'outputCount');
+    </script>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔄</span>
+                Related Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="html-beautifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">✨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">HTML Beautifier</div><div style="font-size: 0.85rem; color: #6b7280;">Format HTML code</div></div>
+                </a>
+                <a href="xml-beautifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">✨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">XML Beautifier</div><div style="font-size: 0.85rem; color: #6b7280;">Format XML code</div></div>
+                </a>
+                <a href="json_minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🗜️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">JSON Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify JSON data</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert all units</div></div>
+                </a>
+                <a href="currency-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💱</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Currency Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert currencies</div></div>
+                </a>
+                <a href="text-case-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔤</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Text Case Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert text cases</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+
+</body>
+</html>
+
+        <!-- Main SQL Beautifier -->
+        <div class="sql-editor">
+            <h1 class="text-3xl font-bold text-white text-center mb-2">SQL Beautifier & Formatter</h1>
+            <p class="text-blue-100 text-center mb-8">Format, beautify, and validate your SQL queries instantly</p>
+            
+            <!-- Controls -->
+            <div class="editor-panel mb-6">
+                <div class="flex flex-wrap gap-4 items-center mb-4">
+                    <div class="flex items-center gap-2">
+                        <label class="text-sm font-medium text-gray-700">SQL Dialect:</label>
+                        <select id="sqlDialect" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
+                            <option value="standard">Standard SQL</option>
+                            <option value="mysql">MySQL</option>
+                            <option value="postgresql">PostgreSQL</option>
+                            <option value="oracle">Oracle</option>
+                            <option value="sqlserver">SQL Server</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <label class="text-sm font-medium text-gray-700">Indent:</label>
+                        <select id="indentSize" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500">
+                            <option value="2">2 spaces</option>
+                            <option value="4" selected>4 spaces</option>
+                            <option value="tab">Tab</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="upperCaseKeywords" checked class="rounded">
+                        <label for="upperCaseKeywords" class="text-sm font-medium text-gray-700">Uppercase keywords</label>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="formatSQL()" class="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors">
+                        Format SQL
+                    </button>
+                    <button onclick="minifySQL()" class="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-600 transition-colors">
+                        Minify SQL
+                    </button>
+                    <button onclick="validateSQL()" class="bg-purple-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-600 transition-colors">
+                        Validate SQL
+                    </button>
+                    <button onclick="clearEditor()" class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-colors">
+                        Clear
+                    </button>
+                    <button onclick="copyToClipboard()" class="bg-gray-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-600 transition-colors">
+                        Copy Result
+                    </button>
+                </div>
+            </div>
+
+            <!-- Editor Area -->
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Input -->
+                <div class="editor-panel">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-semibold text-gray-800">Input SQL</h3>
+                        <button onclick="loadSample()" class="text-blue-500 hover:text-blue-600 text-sm font-medium">Load Sample</button>
+                    </div>
+                    <textarea 
+                        id="inputSQL" 
+                        class="sql-textarea w-full h-80" 
+                        placeholder="Paste your SQL query here...&#10;&#10;Example:&#10;select * from users where age>18 and status='active' order by created_at desc;"
+                    ></textarea>
+                    <div class="mt-2 text-sm text-gray-600">
+                        Characters: <span id="inputCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Output -->
+                <div class="editor-panel">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="font-semibold text-gray-800">Formatted SQL</h3>
+                        <div id="status" class="status-indicator" style="display: none;"></div>
+                    </div>
+                    <textarea 
+                        id="outputSQL" 
+                        class="sql-textarea w-full h-80" 
+                        readonly
+                        placeholder="Formatted SQL will appear here..."
+                    ></textarea>
+                    <div class="mt-2 text-sm text-gray-600">
+                        Characters: <span id="outputCount">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+

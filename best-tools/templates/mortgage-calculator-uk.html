@@ -1,0 +1,940 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator Uk | BestUtils</title>
+    <meta name="description" content="Free online mortgage calculator uk tool. Easy to use and accurate calculations.">
+    <meta name="keywords" content="mortgage calculator uk, calculator, tool, free online calculator">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Mortgage Calculator Uk | BestUtils">
+    <meta property="og:description" content="Free online mortgage calculator uk tool. Easy to use and accurate calculations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/mortgage-calculator-uk.html">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 1rem 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            opacity: 0.8;
+        }
+        .back-link::before {
+            content: "←";
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* Multi-calc styles */
+        .multi-calc-container {
+            max-width: 100%;
+        }
+        .multi-calc-tool {
+            background: white;
+            border-radius: 10px;
+            padding: 0;
+        }
+        .multi-calc-description {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 2rem;
+        }
+        .multi-calc-description p {
+            margin: 0;
+            color: #495057;
+            line-height: 1.6;
+        }
+        .multi-calc-form {
+            margin-bottom: 2rem;
+        }
+        .multi-calc-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .multi-calc-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        .multi-calc-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .multi-calc-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .multi-calc-button {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .multi-calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        .multi-calc-button.secondary {
+            background: #6c757d;
+            width: auto;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        .multi-calc-result {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .multi-calc-result h3 {
+            margin-top: 0;
+            color: #495057;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .multi-calc-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #f5c6cb;
+        }
+        .multi-calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .multi-calc-table th,
+        .multi-calc-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .multi-calc-table th {
+            background: #e9ecef;
+            font-weight: 600;
+            color: #495057;
+        }
+        #ads {
+            background: #e9ecef;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">Back to All Tools</a>
+            <h1>Mortgage Calculator Uk</h1>
+            <p>Free online mortgage calculator uk tool. Easy to use and accurate calculations.</p>
+        </div>
+        <div class="content">
+            <!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Mortgage Calculator | Free Online Tool | BestUtils.com</title>
+    <meta name="description" content="Calculate UK mortgage payments, affordability, and stamp duty with our comprehensive free mortgage calculator. Get accurate results for fixed, variable, and tracker mortgages.">
+    <meta name="keywords" content="UK mortgage calculator, mortgage payments UK, home loan calculator, affordability calculator, stamp duty calculator, mortgage rates UK">
+    <meta name="author" content="BestUtils.com">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="UK Mortgage Calculator | Free Online Tool | BestUtils.com">
+    <meta property="og:description" content="Calculate UK mortgage payments, affordability, and costs with our comprehensive free online mortgage calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/mortgage-calculator-uk.html">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="UK Mortgage Calculator | Free Online Tool">
+    <meta name="twitter:description" content="Calculate UK mortgage payments and affordability with our comprehensive free calculator.">
+    <link rel="canonical" href="https://bestutils.com/mortgage-calculator-uk.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3B82F6;
+            --primary-dark: #2563EB;
+            --secondary-color: #EF4444;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: linear-gradient(135deg, var(--gray-50) 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: var(--gray-700);
+        }
+        .logo-text .highlight {
+            color: var(--primary-color);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        .header p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .calculator-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--gray-200);
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .result-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--gray-200);
+        }
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .result-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .breakdown-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 2rem;
+        }
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .breakdown-label {
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+        .breakdown-value {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .info-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .info-section h2 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .info-section h3 {
+            color: var(--gray-800);
+            margin: 1.5rem 0 0.75rem 0;
+            font-size: 1.25rem;
+        }
+        .info-section p, .info-section li {
+            margin-bottom: 0.75rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+        .info-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .warning-box {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .warning-box p {
+            color: #92400E;
+            margin: 0;
+            font-weight: 500;
+        }
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .calculator-section {
+                padding: 1.5rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            .breakdown-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-section {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            .calculator-section {
+                padding: 1rem;
+            }
+            .info-section {
+                padding: 1rem;
+            }
+            .result-card {
+                padding: 1rem;
+            }
+            .result-value {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="header">
+            <h1>UK Mortgage Calculator</h1>
+            <p>Calculate your UK mortgage payments, affordability, and associated costs including stamp duty. Get accurate estimates for fixed, variable, and tracker mortgage rates.</p>
+        </div>
+        <!-- Calculator -->
+        <div class="calculator-grid">
+            <div class="calculator-section">
+                <h2 class="section-title">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                    </svg>
+                    Property & Mortgage Details
+                </h2>
+                <div class="form-group">
+                    <label class="form-label" for="propertyValue">Property Value (£)</label>
+                    <input type="number" id="propertyValue" class="form-input" placeholder="300,000" min="50000" step="1000">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="deposit">Deposit (£)</label>
+                    <input type="number" id="deposit" class="form-input" placeholder="60,000" min="0" step="1000">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="interestRate">Interest Rate (%)</label>
+                        <input type="number" id="interestRate" class="form-input" placeholder="4.5" min="0.1" max="15" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="mortgageTerm">Term (Years)</label>
+                        <select id="mortgageTerm" class="form-select">
+                            <option value="15">15 years</option>
+                            <option value="20">20 years</option>
+                            <option value="25" selected>25 years</option>
+                            <option value="30">30 years</option>
+                            <option value="35">35 years</option>
+                            <option value="40">40 years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="mortgageType">Mortgage Type</label>
+                        <select id="mortgageType" class="form-select">
+                            <option value="repayment">Repayment</option>
+                            <option value="interest-only">Interest Only</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="firstTimeBuyer">First Time Buyer?</label>
+                        <select id="firstTimeBuyer" class="form-select">
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateUKMortgage()">Calculate Mortgage</button>
+            </div>
+            <div class="calculator-section">
+                <h2 class="section-title">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                    </svg>
+                    Payment Summary
+                </h2>
+                <div id="results" class="results-grid" style="display: none;">
+                    <div class="result-card">
+                        <div class="result-value" id="monthlyPayment">£0</div>
+                        <div class="result-label">Monthly Payment</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value" id="loanToValue">0%</div>
+                        <div class="result-label">Loan to Value</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value" id="totalCost">£0</div>
+                        <div class="result-label">Total Cost</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value" id="totalInterest">£0</div>
+                        <div class="result-label">Total Interest</div>
+                    </div>
+                </div>
+                <div id="placeholder" style="text-align: center; color: #9CA3AF; padding: 3rem;">
+                    <svg width="64" height="64" fill="currentColor" viewBox="0 0 20 20" style="margin: 0 auto 1rem;">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                    </svg>
+                    <p>Enter your property and mortgage details to see payment calculations</p>
+                </div>
+            </div>
+        </div>
+        <!-- Cost Breakdown -->
+        <div id="breakdownSection" class="breakdown-section" style="display: none;">
+            <h2 class="section-title">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                </svg>
+                Purchase Cost Breakdown
+            </h2>
+            <div class="breakdown-grid">
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Property Value</span>
+                    <span class="breakdown-value" id="breakdownPropertyValue">£0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Deposit Required</span>
+                    <span class="breakdown-value" id="breakdownDeposit">£0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Mortgage Amount</span>
+                    <span class="breakdown-value" id="breakdownMortgageAmount">£0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Stamp Duty</span>
+                    <span class="breakdown-value" id="breakdownStampDuty">£0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Legal Fees (Est.)</span>
+                    <span class="breakdown-value" id="breakdownLegalFees">£0</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Survey Costs (Est.)</span>
+                    <span class="breakdown-value" id="breakdownSurveyFees">£0</span>
+                </div>
+            </div>
+        </div>
+        <!-- Tool Description -->
+        <div class="info-section">
+            <h2>About the UK Mortgage Calculator</h2>
+            <p>Our comprehensive UK mortgage calculator helps you understand the complete cost of buying a property in the United Kingdom. This tool calculates not only your monthly mortgage payments but also provides a detailed breakdown of all associated costs including stamp duty, legal fees, and survey costs.</p>
+            <div class="warning-box">
+                <p>⚠️ <strong>Important:</strong> This calculator provides estimates based on standard rates and may not reflect your specific circumstances. Always consult with a qualified mortgage advisor for personalised advice.</p>
+            </div>
+            <h3>Key Features:</h3>
+            <ul>
+                <li><strong>Accurate UK Calculations:</strong> Designed specifically for the UK property market</li>
+                <li><strong>Stamp Duty Calculator:</strong> Automatic calculation based on property value and first-time buyer status</li>
+                <li><strong>Multiple Mortgage Types:</strong> Supports both repayment and interest-only mortgages</li>
+                <li><strong>Loan-to-Value Ratio:</strong> Shows your LTV percentage for rate comparison</li>
+                <li><strong>Total Cost Analysis:</strong> Complete breakdown of all purchase costs</li>
+                <li><strong>First-Time Buyer Benefits:</strong> Includes stamp duty relief calculations</li>
+            </ul>
+            <h3>How to Use the Calculator:</h3>
+            <ul>
+                <li><strong>Property Value:</strong> Enter the purchase price of the property</li>
+                <li><strong>Deposit:</strong> Input your available deposit amount</li>
+                <li><strong>Interest Rate:</strong> Current mortgage interest rate (check with lenders for latest rates)</li>
+                <li><strong>Mortgage Term:</strong> Choose the loan duration (typically 25-30 years)</li>
+                <li><strong>Mortgage Type:</strong> Select repayment or interest-only</li>
+                <li><strong>First-Time Buyer:</strong> Indicate if you qualify for first-time buyer benefits</li>
+            </ul>
+            <h3>Understanding UK Mortgage Types:</h3>
+            <ul>
+                <li><strong>Repayment Mortgage:</strong> Monthly payments cover both interest and capital, gradually reducing the loan balance</li>
+                <li><strong>Interest-Only Mortgage:</strong> Monthly payments only cover interest; the capital amount remains unchanged and must be repaid at the end of the term</li>
+            </ul>
+            <h3>UK Stamp Duty Rates (2024):</h3>
+            <ul>
+                <li><strong>First-Time Buyers:</strong> No stamp duty on properties up to £425,000</li>
+                <li><strong>Standard Rates:</strong> 0% up to £250,000, then tiered rates apply</li>
+                <li><strong>Higher Rates:</strong> Additional 3% surcharge for second homes and buy-to-let properties</li>
+            </ul>
+            <h3>Additional Costs to Consider:</h3>
+            <ul>
+                <li><strong>Legal Fees:</strong> Typically £800-£1,500 for conveyancing</li>
+                <li><strong>Survey Costs:</strong> £300-£1,000 depending on property type and survey level</li>
+                <li><strong>Mortgage Arrangement Fees:</strong> £0-£2,000 depending on the lender</li>
+                <li><strong>Valuation Fees:</strong> Usually covered by the lender but may be charged separately</li>
+                <li><strong>Buildings Insurance:</strong> Required from completion day</li>
+                <li><strong>Removal Costs:</strong> Varies by distance and volume</li>
+            </ul>
+            <h3>Tips for UK Mortgage Applications:</h3>
+            <ul>
+                <li>Check your credit score before applying</li>
+                <li>Save for a larger deposit to access better rates</li>
+                <li>Compare rates from multiple lenders</li>
+                <li>Consider getting a Decision in Principle (DIP) before house hunting</li>
+                <li>Factor in all costs, not just the mortgage payment</li>
+                <li>Consider fixed vs. variable rate mortgages based on your risk tolerance</li>
+            </ul>
+            <h3>Current Market Considerations:</h3>
+            <ul>
+                <li>Interest rates fluctuate based on Bank of England base rate changes</li>
+                <li>Lenders typically require a minimum 5-10% deposit</li>
+                <li>Higher LTV ratios may result in higher interest rates</li>
+                <li>Help to Buy schemes may be available for eligible buyers</li>
+                <li>Consider the impact of rising rates on affordability</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function calculateUKMortgage() {
+            // Get input values
+            const propertyValue = parseFloat(document.getElementById('propertyValue').value);
+            const deposit = parseFloat(document.getElementById('deposit').value);
+            const annualRate = parseFloat(document.getElementById('interestRate').value);
+            const mortgageTermYears = parseInt(document.getElementById('mortgageTerm').value);
+            const mortgageType = document.getElementById('mortgageType').value;
+            const isFirstTimeBuyer = document.getElementById('firstTimeBuyer').value === 'yes';
+            // Validate inputs
+            if (!propertyValue || !deposit || deposit < 0 || !annualRate || !mortgageTermYears) {
+                alert('Please fill in all required fields with valid values');
+                return;
+            }
+            if (deposit >= propertyValue) {
+                alert('Deposit cannot be equal to or greater than property value');
+                return;
+            }
+            const mortgageAmount = propertyValue - deposit;
+            const loanToValue = (mortgageAmount / propertyValue) * 100;
+            // Calculate stamp duty
+            const stampDuty = calculateStampDuty(propertyValue, isFirstTimeBuyer);
+            // Calculate mortgage payments
+            let monthlyPayment;
+            let totalCost;
+            let totalInterest;
+            if (mortgageType === 'repayment') {
+                const monthlyRate = annualRate / 100 / 12;
+                const totalPayments = mortgageTermYears * 12;
+                monthlyPayment = mortgageAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+                totalCost = monthlyPayment * totalPayments;
+                totalInterest = totalCost - mortgageAmount;
+            } else {
+                // Interest-only mortgage
+                monthlyPayment = (mortgageAmount * annualRate / 100) / 12;
+                totalCost = (monthlyPayment * mortgageTermYears * 12) + mortgageAmount;
+                totalInterest = monthlyPayment * mortgageTermYears * 12;
+            }
+            // Calculate additional costs
+            const legalFees = Math.max(800, Math.min(1500, propertyValue * 0.001));
+            const surveyFees = propertyValue <= 200000 ? 300 : propertyValue <= 500000 ? 600 : 1000;
+            // Display results
+            document.getElementById('monthlyPayment').textContent = '£' + monthlyPayment.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('loanToValue').textContent = loanToValue.toFixed(1) + '%';
+            document.getElementById('totalCost').textContent = '£' + totalCost.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('totalInterest').textContent = '£' + totalInterest.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            // Display breakdown
+            document.getElementById('breakdownPropertyValue').textContent = '£' + propertyValue.toLocaleString('en-GB');
+            document.getElementById('breakdownDeposit').textContent = '£' + deposit.toLocaleString('en-GB');
+            document.getElementById('breakdownMortgageAmount').textContent = '£' + mortgageAmount.toLocaleString('en-GB');
+            document.getElementById('breakdownStampDuty').textContent = '£' + stampDuty.toLocaleString('en-GB');
+            document.getElementById('breakdownLegalFees').textContent = '£' + legalFees.toLocaleString('en-GB');
+            document.getElementById('breakdownSurveyFees').textContent = '£' + surveyFees.toLocaleString('en-GB');
+            // Show results and hide placeholder
+            document.getElementById('results').style.display = 'grid';
+            document.getElementById('placeholder').style.display = 'none';
+            document.getElementById('breakdownSection').style.display = 'block';
+        }
+        function calculateStampDuty(propertyValue, isFirstTimeBuyer) {
+            let stampDuty = 0;
+            if (isFirstTimeBuyer) {
+                // First-time buyer rates (as of 
+        </div>
+        <div class="footer">
+            <p>Powered by <a href="index.html">BestUtils</a> - Free Online Calculators & Tools</p>
+        </div>
+        <!-- Internal Linking Section -->
+        <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                    Related Finance Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="mortgage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🏠</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Mortgage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate home loan payments</div></div>
+                    </a>
+                    <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🏦</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div></div>
+                    </a>
+                    <a href="interest-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📈</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Interest Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate interest rates</div></div>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                    Famous Finance Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="auto-loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🚗</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Auto Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate car loan payments</div></div>
+                    </a>
+                    <a href="personal-loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">💳</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Personal Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Personal loan payments</div></div>
+                    </a>
+                    <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

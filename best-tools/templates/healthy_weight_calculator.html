@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Weight Calculator - Calculate BMI & Ideal Weight | BESTUTILS</title>
+    <meta name="description" content="Free healthy weight calculator to determine your BMI, ideal weight range, and health status. Easy-to-use tool with instant results and health recommendations.">
+    <meta name="keywords" content="healthy weight calculator, BMI calculator, ideal weight, body mass index, weight loss, health calculator">
+    <meta name="author" content="BESTUTILS">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/healthy_weight_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/healthy_weight_calculator.html">
+    <meta property="og:title" content="Healthy Weight Calculator - Calculate BMI & Ideal Weight | BestUtils">
+    <meta property="og:description" content="Calculate your BMI and ideal weight range instantly with our free healthy weight calculator. Get personalized health recommendations.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/healthy-weight-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/healthy_weight_calculator.html">
+    <meta name="twitter:title" content="Healthy Weight Calculator - Calculate BMI & Ideal Weight | BestUtils">
+    <meta name="twitter:description" content="Calculate your BMI and ideal weight range instantly with our free healthy weight calculator. Get personalized health recommendations.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/healthy-weight-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Healthy Weight Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Healthy Weight Calculator",
+        "description": "Free healthy weight calculator to determine ideal weight range based on height, age, and body frame for optimal health and fitness goals.",
+        "url": "https://bestutils.com/templates/healthy_weight_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .bmi-underweight { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+        .bmi-normal { background: linear-gradient(135deg, #00b894, #00cec9); }
+        .bmi-overweight { background: linear-gradient(135deg, #fdcb6e, #e17055); }
+        .bmi-obese { background: linear-gradient(135deg, #fd79a8, #e84393); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Healthy Weight Calculator</h1>
+            <p class="text-xl text-white opacity-90">Calculate your BMI and discover your ideal weight range</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Calculator -->
+            <div class="calculator-card rounded-2xl p-8 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <svg class="w-8 h-8 mr-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                    Calculate Your Health Metrics
+                </h2>
+                <form id="healthForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Height</label>
+                            <div class="relative">
+                                <input type="number" id="height" step="0.1" min="100" max="250" 
+                                       class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" 
+                                       placeholder="Enter height">
+                                <select id="heightUnit" class="absolute right-2 top-3 bg-transparent border-none outline-none text-gray-600">
+                                    <option value="cm">cm</option>
+                                    <option value="ft">ft/in</option>
+                                </select>
+                            </div>
+                            <div id="feetInchesInput" class="hidden mt-2 grid grid-cols-2 gap-2">
+                                <input type="number" id="feet" min="3" max="8" placeholder="Feet" class="px-3 py-2 border border-gray-300 rounded">
+                                <input type="number" id="inches" min="0" max="11" placeholder="Inches" class="px-3 py-2 border border-gray-300 rounded">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Weight</label>
+                            <div class="relative">
+                                <input type="number" id="weight" step="0.1" min="30" max="300" 
+                                       class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" 
+                                       placeholder="Enter weight">
+                                <select id="weightUnit" class="absolute right-2 top-3 bg-transparent border-none outline-none text-gray-600">
+                                    <option value="kg">kg</option>
+                                    <option value="lbs">lbs</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Age</label>
+                            <input type="number" id="age" min="18" max="100" 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors" 
+                                   placeholder="Enter age">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
+                            <select id="gender" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors">
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-4 px-8 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Calculate Health Metrics
+                    </button>
+                </form>
+            </div>
+            <!-- Results -->
+            <div id="results" class="hidden">
+                <div class="result-card rounded-2xl p-8 shadow-2xl text-white mb-6">
+                    <h3 class="text-2xl font-bold mb-4">Your Results</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold" id="bmiValue">--</div>
+                            <div class="text-sm opacity-90">BMI</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-lg font-semibold" id="bmiCategory">--</div>
+                            <div class="text-sm opacity-90">Category</div>
+                        </div>
+                    </div>
+                    <div id="weightRange" class="text-center">
+                        <div class="text-lg font-semibold mb-1">Healthy Weight Range</div>
+                        <div class="text-2xl font-bold" id="idealWeight">--</div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-2xl">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">Health Recommendations</h4>
+                    <div id="recommendations" class="text-gray-700"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="mt-12 bg-white rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About the Healthy Weight Calculator</h2>
+            <div class="prose max-w-none text-gray-700">
+                <p class="text-lg mb-6">Our Healthy Weight Calculator is a comprehensive tool designed to help you understand your current health status and determine your ideal weight range. By calculating your Body Mass Index (BMI) and providing personalized recommendations, this calculator serves as your first step towards achieving and maintaining optimal health.</p>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">What is BMI?</h3>
+                <p class="mb-6">Body Mass Index (BMI) is a widely used measurement that evaluates whether your weight is appropriate for your height. It's calculated using the formula: BMI = weight (kg) / height (m)². While BMI doesn't directly measure body fat, it provides a reliable indicator for most people to assess whether they fall into a healthy weight range.</p>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">BMI Categories</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bmi-underweight text-white p-4 rounded-lg text-center">
+                        <div class="font-bold">Underweight</div>
+                        <div class="text-sm">BMI < 18.5</div>
+                    </div>
+                    <div class="bmi-normal text-white p-4 rounded-lg text-center">
+                        <div class="font-bold">Normal</div>
+                        <div class="text-sm">BMI 18.5-24.9</div>
+                    </div>
+                    <div class="bmi-overweight text-white p-4 rounded-lg text-center">
+                        <div class="font-bold">Overweight</div>
+                        <div class="text-sm">BMI 25-29.9</div>
+                    </div>
+                    <div class="bmi-obese text-white p-4 rounded-lg text-center">
+                        <div class="font-bold">Obese</div>
+                        <div class="text-sm">BMI ≥ 30</div>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">How to Use the Calculator</h3>
+                <ol class="list-decimal list-inside space-y-2 mb-6">
+                    <li><strong>Enter Your Height:</strong> Input your height in centimeters or feet/inches</li>
+                    <li><strong>Enter Your Weight:</strong> Input your current weight in kilograms or pounds</li>
+                    <li><strong>Provide Age and Gender:</strong> These help calculate more accurate ideal weight ranges</li>
+                    <li><strong>Click Calculate:</strong> Get instant results with your BMI and health recommendations</li>
+                    <li><strong>Review Results:</strong> Understand your current status and ideal weight range</li>
+                </ol>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Features</h3>
+                <ul class="list-disc list-inside space-y-2 mb-6">
+                    <li>Instant BMI calculation with category classification</li>
+                    <li>Ideal weight range calculation based on age and gender</li>
+                    <li>Support for both metric (cm, kg) and imperial (ft/in, lbs) units</li>
+                    <li>Personalized health recommendations</li>
+                    <li>Mobile-friendly responsive design</li>
+                    <li>No registration or personal data storage required</li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Important Notes</h3>
+                <p class="mb-4">While BMI is a useful screening tool, it has limitations:</p>
+                <ul class="list-disc list-inside space-y-2 mb-6">
+                    <li>It doesn't distinguish between muscle and fat mass</li>
+                    <li>Athletic individuals with high muscle mass may have elevated BMI</li>
+                    <li>It may not be accurate for elderly adults or certain ethnic groups</li>
+                    <li>Always consult healthcare professionals for comprehensive health assessment</li>
+                </ul>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                    <p class="text-blue-800"><strong>Disclaimer:</strong> This calculator provides general health information and should not replace professional medical advice. Always consult with healthcare providers for personalized health guidance and before making significant lifestyle changes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Unit conversion handlers
+        document.getElementById('heightUnit').addEventListener('change', function() {
+            const feetInchesInput = document.getElementById('feetInchesInput');
+            const heightInput = document.getElementById('height');
+            if (this.value === 'ft') {
+                feetInchesInput.classList.remove('hidden');
+                heightInput.classList.add('hidden');
+            } else {
+                feetInchesInput.classList.add('hidden');
+                heightInput.classList.remove('hidden');
+            }
+        });
+        // Form submission
+        document.getElementById('healthForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateHealth();
+        });
+        function calculateHealth() {
+            // Get values
+            let height, weight, age, gender;
+            const heightUnit = document.getElementById('heightUnit').value;
+            const weightUnit = document.getElementById('weightUnit').value;
+            // Get height in cm
+            if (heightUnit === 'ft') {
+                const feet = parseFloat(document.getElementById('feet').value) || 0;
+                const inches = parseFloat(document.getElementById('inches').value) || 0;
+                height = (feet * 12 + inches) * 2.54; // Convert to cm
+            } else {
+                height = parseFloat(document.getElementById('height').value);
+            }
+            // Get weight in kg
+            weight = parseFloat(document.getElementById('weight').value);
+            if (weightUnit === 'lbs') {
+                weight = weight * 0.453592; // Convert to kg
+            }
+            age = parseInt(document.getElementById('age').value);
+            gender = document.getElementById('gender').value;
+            // Validate inputs
+            if (!height || !weight || !age || !gender) {
+                alert('Please fill in all fields');
+                return;
+            }
+            // Calculate BMI
+            const heightM = height / 100; // Convert cm to m
+            const bmi = weight / (heightM * heightM);
+            // Determine BMI category
+            let category, categoryClass;
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                categoryClass = 'bmi-underweight';
+            } else if (bmi < 25) {
+                category = 'Normal';
+                categoryClass = 'bmi-normal';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                categoryClass = 'bmi-overweight';
+            } else {
+                category = 'Obese';
+                categoryClass = 'bmi-obese';
+            }
+            // Calculate ideal weight range
+            const minIdeal = 18.5 * heightM * heightM;
+            const maxIdeal = 24.9 * heightM * heightM;
+            let idealWeightText;
+            if (weightUnit === 'lbs') {
+                idealWeightText = `${Math.round(minIdeal * 2.20462)} - ${Math.round(maxIdeal * 2.20462)} lbs`;
+            } else {
+                idealWeightText = `${Math.round(minIdeal)} - ${Math.round(maxIdeal)} kg`;
+            }
+            // Display results
+            document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+            document.getElementById('bmiCategory').textContent = category;
+            document.getElementById('idealWeight').textContent = idealWeightText;
+            // Update result card class
+            const resultCard = document.querySelector('.result-card');
+            resultCard.className = `result-card rounded-2xl p-8 shadow-2xl text-white mb-6 ${categoryClass}`;
+            // Generate recommendations
+            generateRecommendations(bmi, category, age, gender);
+            // Show results
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        function generateRecommendations(bmi, category, age, gender) {
+            let recommendations = '';
+            switch(category) {
+                case 'Underweight':
+                    recommendations = `
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                <div>Consider consulting a healthcare provider to rule out underlying health conditions</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                <div>Focus on nutrient-dense foods and healthy weight gain strategies</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                <div>Consider strength training to build muscle mass</div>
+                            </div>
+                        </div>`;
+                    break;
+                case 'Normal':
+                    recommendations = `
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                                <div>Excellent! Maintain your current healthy lifestyle</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                                <div>Continue regular physical activity and balanced nutrition</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                                <div>Regular health check-ups to monitor your wellbeing</div>
+                            </div>
+                        </div>`;
+                    break;
+                case 'Overweight':
+                    recommendations = `
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                                <div>Consider gradual weight loss of 1-2 pounds per week</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                                <div>Increase physical activity to 150+ minutes per week</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                                <div>Focus on portion control and nutrient-dense foods</div>
+                            </div>
+                        </div>`;
+                    break;
+                case 'Obese':
+                    recommendations = `
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                                <div>Consult healthcare providers for a comprehensive weight management plan</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                                <div>Consider working with nutritionists and fitness professionals</div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                                <div>Start with low-impact exercises and gradual dietary changes</div>
+                            </div>
+                        </div>`;
+                    break;
+            }
+            document.getElementById('recommendations').innerHTML = recommendations;
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+                <a href="ideal-weight-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🎯</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Ideal Weight Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Find your ideal weight</div>
+                    </div>
+                </a>
+                <a href="body-fat-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Body Fat Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body fat percentage</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

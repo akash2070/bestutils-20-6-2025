@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary SEO Meta Tags -->
+    <title>Free Loan Calculator - Calculate Monthly Payments & Interest | BestUtils.com</title>
+    <meta name="title" content="Free Loan Calculator - Calculate Monthly Payments & Interest | BestUtils.com">
+    <meta name="description" content="Calculate your monthly loan payments, total interest, and total cost with our free online Loan Calculator. Input the principal amount, interest rate, and loan term to understand your financial obligations. This versatile tool is ideal for personal loans, car loans, or any installment-based financing, helping you plan your budget effectively.">
+    <meta name="keywords" content="loan calculator, free loan calculator, free online loan calculator, free personal loan calculator, how much loan can i afford, loan payment calculator, monthly payment calculator, loan interest calculator, bestutils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/finance/loan-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/finance/loan-calculator.html">
+    <meta property="og:title" content="Free Loan Calculator - Calculate Monthly Payments & Interest | BestUtils.com">
+    <meta property="og:description" content="Calculate your monthly loan payments, total interest, and total cost with our free online Loan Calculator. Perfect for personal loans, car loans, and more.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/loan-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bestutils.com/templates/finance/loan-calculator.html">
+    <meta property="twitter:title" content="Free Loan Calculator - Calculate Monthly Payments & Interest | BestUtils.com">
+    <meta property="twitter:description" content="Calculate your monthly loan payments, total interest, and total cost with our free online Loan Calculator. Perfect for personal loans, car loans, and more.">
+    <meta property="twitter:image" content="https://bestutils.com/assets/images/loan-calculator-twitter.jpg">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="BestUtils">
+    <meta name="language" content="English">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Loan Calculator",
+        "description": "Calculate your monthly loan payments, total interest, and total cost with our free online Loan Calculator.",
+        "url": "https://bestutils.com/templates/finance/loan-calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS Variables for theme consistency */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6C757D;
+            --accent-color: #28A745;
+            --background-color: #F8F9FA;
+            --text-color: #343A40;
+            --card-bg: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        /* Basic body styling */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        /* Container for the main content */
+        .tool-container {
+            max-width: 700px;
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Tool specific header styling */
+        .tool-container h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-top: 1rem;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left; /* Align labels to the left */
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #D6DCE0;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .form-group button {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        #resultOutput {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #D6DCE0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        #resultOutput h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: 1.5rem;
+        }
+        #resultOutput strong {
+            color: var(--accent-color);
+        }
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        /* Ad placeholder */
+        #ads {
+            background-color: #E9ECEF;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 20px;
+            }
+            .tool-container h1 {
+                font-size: 2rem;
+            }
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <div class="site-logo-container">
+             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                 <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+             </svg>
+             <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <h1>Loan Calculator</h1>
+        <p class="text-center text-gray-600 mb-6">
+            Calculate your monthly loan payments, total interest, and total cost with our free online Loan Calculator. Input the principal amount, interest rate, and loan term to understand your financial obligations. This versatile tool is ideal for personal loans, car loans, or any installment-based financing, helping you plan your budget effectively.
+        </p>
+        <div id="ads">Advertisement Space</div>
+        <div class="form-group">
+            <label for="principalAmount">Principal Loan Amount ($):</label>
+            <input type="number" id="principalAmount" min="0" step="100" value="10000">
+        </div>
+        <div class="form-group">
+            <label for="annualInterestRate">Annual Interest Rate (%):</label>
+            <input type="number" id="annualInterestRate" min="0" step="0.01" value="5.0">
+        </div>
+        <div class="form-group">
+            <label for="loanTermMonths">Loan Term (Months):</label>
+            <input type="number" id="loanTermMonths" min="1" step="1" value="60">
+        </div>
+        <p id="loanError" class="error-message" style="display: none;"></p>
+        <div class="form-group mt-8">
+            <button onclick="calculateLoan()">Calculate Loan</button>
+        </div>
+        <div id="resultOutput" style="display: none;">
+            <h3>Loan Calculation Result:</h3>
+            <p>Monthly Payment: <strong id="monthlyLoanPayment">$0.00</strong></p>
+            <p>Total Principal Paid: <strong id="totalLoanPrincipal">$0.00</strong></p>
+            <p>Total Interest Paid: <strong id="totalLoanInterest">$0.00</strong></p>
+            <p>Total Cost of Loan: <strong id="totalLoanCost">$0.00</strong></p>
+        </div>
+        <!-- Description Section -->
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">About Loan Calculator</h2>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 15px;">
+                Our free loan calculator helps you determine monthly payments, total interest, and total cost for any type of loan. Whether you're considering a personal loan, auto loan, or any installment-based financing, this tool provides accurate calculations to help you make informed financial decisions.
+            </p>
+            <p style="line-height: 1.6; color: #555;">
+                The calculator uses standard loan amortization formulas to show you exactly how much you'll pay each month and over the life of the loan, helping you budget effectively and compare different loan options.
+            </p>
+        </div>
+        <!-- How to Use Section -->
+        <div style="margin-top: 20px; padding: 20px; background: #e6f3ff; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">How to Use the Loan Calculator</h2>
+            <ol style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Enter Loan Amount:</strong> Input the total amount you want to borrow</li>
+                <li><strong>Set Interest Rate:</strong> Enter the annual interest rate (APR) offered by the lender</li>
+                <li><strong>Choose Loan Term:</strong> Select the loan duration in months</li>
+                <li><strong>Calculate:</strong> Click calculate to see your monthly payment and total costs</li>
+                <li><strong>Review Results:</strong> Analyze the monthly payment, total interest, and total amount paid</li>
+                <li><strong>Compare Options:</strong> Try different amounts, rates, and terms to find the best option</li>
+            </ol>
+        </div>
+        <!-- Tips Section -->
+        <div style="margin-top: 20px; padding: 20px; background: #f0fff4; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">Loan Planning Tips</h2>
+            <ul style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Shop Around:</strong> Compare rates from multiple lenders to get the best deal</li>
+                <li><strong>Check Your Credit:</strong> Higher credit scores typically qualify for lower interest rates</li>
+                <li><strong>Consider Loan Term:</strong> Shorter terms mean higher payments but less total interest</li>
+                <li><strong>Budget Carefully:</strong> Ensure monthly payments fit comfortably in your budget</li>
+                <li><strong>Read the Fine Print:</strong> Watch for origination fees, prepayment penalties, and other costs</li>
+                <li><strong>Make Extra Payments:</strong> Additional principal payments can significantly reduce total interest</li>
+                <li><strong>Avoid Borrowing More:</strong> Only borrow what you actually need to minimize costs</li>
+            </ul>
+        </div>
+        <!-- Additional Information -->
+        <div style="margin-top: 20px; padding: 20px; background: #fff5f5; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">Important Loan Considerations</h2>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>APR vs Interest Rate:</strong> APR includes fees and gives you the true cost of borrowing, while interest rate is just the base rate.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Fixed vs Variable Rates:</strong> Fixed rates stay the same throughout the loan, while variable rates can change over time.
+            </p>
+            <p style="line-height: 1.6; color: #555;">
+                <strong>Debt-to-Income Ratio:</strong> Lenders typically prefer your total monthly debt payments to be less than 36% of your income.
+            </p>
+        </div>
+        <!-- Internal Linking Section -->
+        <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+            <!-- Related Finance Tools -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #1e40af; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                    Related Finance Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="mortgage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#3b82f6'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🏠</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Mortgage Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate home loan payments</div>
+                        </div>
+                    </a>
+                    <a href="compound-interest-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#3b82f6'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">📈</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Compound Interest Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate investment growth</div>
+                        </div>
+                    </a>
+                    <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#3b82f6'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Investment Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Plan your investments</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- You Might Also Like -->
+            <div>
+                <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                    You Might Also Like
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">⚖️</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                        </div>
+                    </a>
+                    <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                        </div>
+                    </a>
+                    <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🔄</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const principalAmountInput = document.getElementById('principalAmount');
+        const annualInterestRateInput = document.getElementById('annualInterestRate');
+        const loanTermMonthsInput = document.getElementById('loanTermMonths');
+        const loanErrorDiv = document.getElementById('loanError');
+        const resultOutputDiv = document.getElementById('resultOutput');
+        function calculateLoan() {
+            let principalAmount = parseFloat(principalAmountInput.value);
+            let annualInterestRate = parseFloat(annualInterestRateInput.value);
+            let loanTermMonths = parseFloat(loanTermMonthsInput.value);
+            // Validate inputs
+            if (isNaN(principalAmount) || principalAmount <= 0) {
+                loanErrorDiv.textContent = 'Please enter a valid positive Principal Loan Amount.';
+                loanErrorDiv.style.display = 'block';
+                resultOutputDiv.style.display = 'none';
+                return;
+            }
+            if (isNaN(annualInterestRate) || annualInterestRate < 0) {
+                loanErrorDiv.textContent = 'Please enter a valid non-negative Annual Interest Rate.';
+                loanErrorDiv.style.display = 'block';
+                resultOutputDiv.style.display = 'none';
+                return;
+            }
+            if (isNaN(loanTermMonths) || loanTermMonths <= 0) {
+                loanErrorDiv.textContent = 'Please enter a valid positive Loan Term in months.';
+                loanErrorDiv.style.display = 'block';
+                resultOutputDiv.style.display = 'none';
+                return;
+            }
+            loanErrorDiv.style.display = 'none'; // Clear previous errors
+            resultOutputDiv.style.display = 'none'; // Hide previous results
+            // Convert annual interest rate to monthly decimal rate
+            const monthlyInterestRate = (annualInterestRate / 100) / 12;
+            const numberOfPayments = loanTermMonths; // Loan term is already in months
+            let monthlyPayment;
+            let totalInterestPaid;
+            let totalCostOfLoan;
+            if (monthlyInterestRate === 0) {
+                // Handle 0% interest rate case
+                monthlyPayment = principalAmount / numberOfPayments;
+                totalInterestPaid = 0;
+                totalCostOfLoan = principalAmount;
+            } else {
+                // Calculate monthly payment using the standard formula:
+                // M = P [ i(1 + i)^n ] / [ (1 + i)^n – 1]
+                // Where:
+                // M = Monthly Payment
+                // P = Principal Loan Amount
+                // i = Monthly Interest Rate (annual rate / 12 / 100)
+                // n = Number of Payments (loan term in months)
+                monthlyPayment = principalAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+                totalCostOfLoan = monthlyPayment * numberOfPayments;
+                totalInterestPaid = totalCostOfLoan - principalAmount;
+            }
+            // Format currency
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            document.getElementById('monthlyLoanPayment').textContent = formatter.format(monthlyPayment);
+            document.getElementById('totalLoanPrincipal').textContent = formatter.format(principalAmount);
+            document.getElementById('totalLoanInterest').textContent = formatter.format(totalInterestPaid);
+            document.getElementById('totalLoanCost').textContent = formatter.format(totalCostOfLoan);
+            resultOutputDiv.style.display = 'block';
+            resultOutputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

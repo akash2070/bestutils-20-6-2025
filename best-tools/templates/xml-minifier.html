@@ -1,0 +1,617 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Minifier - Compress XML Files Online | BESTUTILS</title>
+    <meta name="description" content="Free online XML minifier tool to compress and minify XML files. Remove whitespace, comments, and unnecessary characters to reduce file size. Fast and secure XML compression.">
+    <meta name="keywords" content="XML minifier, XML compressor, minify XML, compress XML, XML optimizer, reduce XML size, XML beautifier">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="XML Minifier - Compress XML Files Online | BESTUTILS">
+    <meta property="og:description" content="Free online XML minifier tool to compress and minify XML files. Remove whitespace and reduce file size instantly.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XML Minifier - Compress XML Files Online | BESTUTILS">
+    <meta name="twitter:description" content="Free online XML minifier tool to compress and minify XML files. Remove whitespace and reduce file size instantly.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .code-container {
+            background-color: #1e293b;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .code-textarea {
+            background-color: transparent;
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            min-height: 200px;
+        }
+        
+        .code-textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #3b82f6;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">XML Minifier</h1>
+                <p class="text-xl text-white/90 mb-6">Compress and minify your XML files instantly</p>
+            </div>
+
+            <!-- Tool Description -->
+            <div class="glass-effect rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4">About XML Minifier</h2>
+                <p class="text-white/90 mb-4">
+                    The XML Minifier is a powerful online tool that helps you reduce the size of your XML files by removing unnecessary whitespace, comments, and formatting. This process, known as minification, can significantly decrease file size while maintaining the XML structure and functionality.
+                </p>
+                <p class="text-white/90">
+                    Perfect for web developers, API integrations, and anyone working with XML data who needs to optimize file sizes for faster loading times and reduced bandwidth usage.
+                </p>
+            </div>
+
+            <!-- Main Tool -->
+            <div class="bg-white rounded-lg shadow-2xl p-6 mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Input Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Input XML</h3>
+                            <div class="flex gap-2">
+                                <button onclick="clearInput()" class="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors">
+                                    Clear
+                                </button>
+                                <button onclick="loadSample()" class="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
+                                    Sample
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <textarea 
+                                id="xmlInput" 
+                                class="code-textarea w-full p-4 border-none" 
+                                placeholder="Paste your XML code here..."
+                                rows="12"
+                            ></textarea>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-600">
+                            Characters: <span id="inputCount">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Output Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Minified XML</h3>
+                            <button onclick="copyOutput()" class="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600 transition-colors">
+                                Copy
+                            </button>
+                        </div>
+                        <div class="code-container">
+                            <textarea 
+                                id="xmlOutput" 
+                                class="code-textarea w-full p-4 border-none" 
+                                placeholder="Minified XML will appear here..."
+                                rows="12"
+                                readonly
+                            ></textarea>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-600">
+                            Characters: <span id="outputCount">0</span> | 
+                            Reduction: <span id="reductionPercent">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="flex flex-wrap gap-4 mt-6 justify-center">
+                    <button onclick="minifyXML()" class="btn-primary px-8 py-3 text-white font-semibold rounded-lg shadow-lg">
+                        Minify XML
+                    </button>
+                    <button onclick="beautifyXML()" class="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition-colors">
+                        Beautify XML
+                    </button>
+                    <button onclick="downloadXML()" class="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition-colors">
+                        Download
+                    </button>
+                </div>
+            </div>
+
+            <!-- How to Use -->
+            <div class="glass-effect rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4">How to Use</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-medium text-white mb-2">Step-by-Step Guide:</h3>
+                        <ol class="list-decimal list-inside text-white/90 space-y-2">
+                            <li>Paste your XML code in the input area</li>
+                            <li>Click "Minify XML" to compress the code</li>
+                            <li>Review the minified output</li>
+                            <li>Copy or download the result</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium text-white mb-2">Features:</h3>
+                        <ul class="list-disc list-inside text-white/90 space-y-2">
+                            <li>Removes unnecessary whitespace</li>
+                            <li>Strips comments and formatting</li>
+                            <li>Preserves XML structure</li>
+                            <li>Shows compression statistics</li>
+                            <li>Download minified files</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="glass-effect rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-white mb-4">Benefits of XML Minification</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Faster Loading</h3>
+                        <p class="text-white/80">Reduced file size means faster page load times and better user experience.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Reduced Bandwidth</h3>
+                        <p class="text-white/80">Smaller files consume less bandwidth, saving costs and improving performance.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Maintains Functionality</h3>
+                        <p class="text-white/80">Preserves all XML functionality while optimizing file size.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let inputXML = document.getElementById('xmlInput');
+        let outputXML = document.getElementById('xmlOutput');
+        let inputCount = document.getElementById('inputCount');
+        let outputCount = document.getElementById('outputCount');
+        let reductionPercent = document.getElementById('reductionPercent');
+
+        // Update character count
+        inputXML.addEventListener('input', function() {
+            inputCount.textContent = this.value.length;
+        });
+
+        function minifyXML() {
+            const input = inputXML.value.trim();
+            if (!input) {
+                alert('Please enter XML content to minify.');
+                return;
+            }
+
+            try {
+                // Remove comments
+                let minified = input.replace(/<!--[\s\S]*?-->/g, '');
+                
+                // Remove whitespace between tags
+                minified = minified.replace(/>\s+</g, '><');
+                
+                // Remove leading/trailing whitespace
+                minified = minified.replace(/^\s+|\s+$/g, '');
+                
+                // Remove extra whitespace within tags
+                minified = minified.replace(/\s+/g, ' ');
+                
+                outputXML.value = minified;
+                updateStats();
+            } catch (error) {
+                alert('Error minifying XML: ' + error.message);
+            }
+        }
+
+        function beautifyXML() {
+            const input = inputXML.value.trim();
+            if (!input) {
+                alert('Please enter XML content to beautify.');
+                return;
+            }
+
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(input, 'text/xml');
+                
+                if (xmlDoc.getElementsByTagName('parsererror').length > 0) {
+                    throw new Error('Invalid XML format');
+                }
+
+                const formatted = formatXML(input);
+                outputXML.value = formatted;
+                updateStats();
+            } catch (error) {
+                alert('Error beautifying XML: ' + error.message);
+            }
+        }
+
+        function formatXML(xml) {
+            let formatted = '';
+            let indent = '';
+            const tab = '  ';
+            
+            xml.split(/>\s*</).forEach(function(node) {
+                if (node.match(/^\/\w/)) {
+                    indent = indent.substring(tab.length);
+                }
+                formatted += indent + '<' + node + '>\n';
+                if (node.match(/^<?\w[^>]*[^\/]$/)) {
+                    indent += tab;
+                }
+            });
+            
+            return formatted.substring(1, formatted.length - 2);
+        }
+
+        function updateStats() {
+            const inputLength = inputXML.value.length;
+            const outputLength = outputXML.value.length;
+            
+            outputCount.textContent = outputLength;
+            
+            if (inputLength > 0) {
+                const reduction = ((inputLength - outputLength) / inputLength * 100).toFixed(1);
+                reductionPercent.textContent = reduction + '%';
+            } else {
+                reductionPercent.textContent = '0%';
+            }
+        }
+
+        function clearInput() {
+            inputXML.value = '';
+            outputXML.value = '';
+            inputCount.textContent = '0';
+            outputCount.textContent = '0';
+            reductionPercent.textContent = '0%';
+        }
+
+        function loadSample() {
+            const sampleXML = `<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sample XML Document -->
+<bookstore>
+    <book id="1">
+        <title>The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <price currency="USD">12.99</price>
+        <category>Fiction</category>
+    </book>
+    <book id="2">
+        <title>To Kill a Mockingbird</title>
+        <author>Harper Lee</author>
+        <price currency="USD">14.99</price>
+        <category>Fiction</category>
+    </book>
+</bookstore>`;
+            
+            inputXML.value = sampleXML;
+            inputCount.textContent = sampleXML.length;
+        }
+
+        function copyOutput() {
+            if (!outputXML.value) {
+                alert('No output to copy. Please minify XML first.');
+                return;
+            }
+            
+            outputXML.select();
+            document.execCommand('copy');
+            
+            // Show feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.style.backgroundColor = '#10b981';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.backgroundColor = '#059669';
+            }, 2000);
+        }
+
+        function downloadXML() {
+            if (!outputXML.value) {
+                alert('No output to download. Please minify XML first.');
+                return;
+            }
+            
+            const blob = new Blob([outputXML.value], { type: 'application/xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'minified.xml';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔄</span>
+                Related Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="xml-beautifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">✨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">XML Beautifier</div><div style="font-size: 0.85rem; color: #6b7280;">Format XML code</div></div>
+                </a>
+                <a href="html-minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🗜️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">HTML Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify HTML code</div></div>
+                </a>
+                <a href="json_minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🗜️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">JSON Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify JSON data</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert all units</div></div>
+                </a>
+                <a href="currency-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💱</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Currency Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert currencies</div></div>
+                </a>
+                <a href="xml-to-json-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">XML to JSON Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert XML to JSON</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">📦</span>
+                Related XML & Code Optimization Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="xml-beautifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🎨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">XML Beautifier</div><div style="font-size: 0.85rem; color: #6b7280;">Format XML code</div></div>
+                </a>
+                <a href="json_minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📋</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">JSON Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify JSON code</div></div>
+                </a>
+                <a href="html-minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">HTML Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify HTML code</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Developer Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="sql_minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">SQL Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify SQL code</div></div>
+                </a>
+                <a href="regex-tester.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔍</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Regex Tester</div><div style="font-size: 0.85rem; color: #6b7280;">Test regex patterns</div></div>
+                </a>
+                <a href="base64-encoder-decoder.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Base64 Encoder</div><div style="font-size: 0.85rem; color: #6b7280;">Encode/decode Base64</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,754 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Notation Calculator - Convert Numbers to Scientific Notation | BESTUTILS</title>
+    <meta name="description" content="Free online scientific notation calculator. Convert numbers to and from scientific notation, perform calculations, and learn about exponential notation with step-by-step explanations.">
+    <meta name="keywords" content="scientific notation calculator, free scientific notation calculator online, exponential notation calculator, scientific notation converter, e notation calculator, standard form calculator, scientific calculator, scientific notation tool, convert to scientific notation, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/scientific_notation_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/scientific_notation_calculator.html">
+    <meta property="og:title" content="Scientific Notation Calculator - Convert Numbers to Scientific Notation | BestUtils">
+    <meta property="og:description" content="Free online scientific notation calculator. Convert numbers to and from scientific notation, perform calculations, and learn about exponential notation with step-by-step explanations.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/scientific-notation-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/scientific_notation_calculator.html">
+    <meta name="twitter:title" content="Scientific Notation Calculator - Convert Numbers to Scientific Notation | BestUtils">
+    <meta name="twitter:description" content="Free online scientific notation calculator. Convert numbers to and from scientific notation, perform calculations, and learn about exponential notation with step-by-step explanations.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/scientific-notation-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Scientific Notation Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Scientific Notation Calculator",
+        "description": "Free scientific notation calculator for converting numbers to and from scientific notation, performing calculations with exponential notation, and learning about standard form with step-by-step explanations.",
+        "url": "https://bestutils.com/templates/scientific_notation_calculator.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 0.5rem;
+        }
+        .tab-button.active {
+            background: white;
+            color: #667eea;
+        }
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        .input-label {
+            display: block;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white;
+            font-family: 'Courier New', monospace;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+        }
+        .result-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            font-weight: 500;
+            color: #6B7280;
+        }
+        .result-value {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #7C3AED;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        .step-by-step {
+            background: #F3F4F6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .step {
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .example-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .calculator-card {
+                padding: 1.5rem;
+            }
+            .tab-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Scientific Notation Calculator</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Convert numbers to and from scientific notation, perform calculations, and learn about exponential notation with detailed step-by-step explanations.</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="calculator-card">
+                <div class="mb-6">
+                    <button class="tab-button active" id="toScientificTab" onclick="switchTab('toScientific')">To Scientific</button>
+                    <button class="tab-button" id="fromScientificTab" onclick="switchTab('fromScientific')">From Scientific</button>
+                    <button class="tab-button" id="calculatorTab" onclick="switchTab('calculator')">Calculator</button>
+                </div>
+                <!-- To Scientific Notation -->
+                <div id="toScientificPanel">
+                    <h2 class="text-2xl font-bold text-white mb-6">Convert to Scientific Notation</h2>
+                    <div class="input-group">
+                        <label class="input-label">Enter Number</label>
+                        <input type="text" id="numberInput" class="input-field" placeholder="Enter any number (e.g., 123456789 or 0.000123)" value="123456789">
+                    </div>
+                    <button class="calculate-btn" onclick="convertToScientific()">
+                        Convert to Scientific Notation
+                    </button>
+                </div>
+                <!-- From Scientific Notation -->
+                <div id="fromScientificPanel" style="display: none;">
+                    <h2 class="text-2xl font-bold text-white mb-6">Convert from Scientific Notation</h2>
+                    <div class="input-group">
+                        <label class="input-label">Coefficient (a)</label>
+                        <input type="number" id="coefficient" class="input-field" placeholder="1.23" value="1.23" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Exponent (n)</label>
+                        <input type="number" id="exponent" class="input-field" placeholder="8" value="8">
+                    </div>
+                    <button class="calculate-btn" onclick="convertFromScientific()">
+                        Convert to Standard Form
+                    </button>
+                </div>
+                <!-- Scientific Calculator -->
+                <div id="calculatorPanel" style="display: none;">
+                    <h2 class="text-2xl font-bold text-white mb-6">Scientific Notation Calculator</h2>
+                    <div class="input-group">
+                        <label class="input-label">First Number</label>
+                        <input type="text" id="num1" class="input-field" placeholder="1.5e8 or 150000000" value="1.5e8">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Operation</label>
+                        <select id="operation" class="input-field">
+                            <option value="add">Addition (+)</option>
+                            <option value="subtract">Subtraction (-)</option>
+                            <option value="multiply">Multiplication (×)</option>
+                            <option value="divide">Division (÷)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Second Number</label>
+                        <input type="text" id="num2" class="input-field" placeholder="2.3e6 or 2300000" value="2.3e6">
+                    </div>
+                    <button class="calculate-btn" onclick="calculateScientific()">
+                        Calculate
+                    </button>
+                </div>
+            </div>
+            <!-- Results -->
+            <div>
+                <div class="result-card" id="results" style="display: none;">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Results</h3>
+                    <div id="resultContent"></div>
+                    <div class="step-by-step" id="steps" style="display: none;">
+                        <h4 class="font-semibold text-gray-800 mb-2">Step-by-Step Solution:</h4>
+                        <div id="stepContent"></div>
+                    </div>
+                </div>
+                <!-- Quick Examples -->
+                <div class="result-card">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Examples</h3>
+                    <div class="examples-grid">
+                        <div class="example-card">
+                            <div class="font-semibold text-gray-800">Large Numbers</div>
+                            <div class="text-sm text-gray-600 mt-1">
+                                300,000,000 = 3.0 × 10⁸
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <div class="font-semibold text-gray-800">Small Numbers</div>
+                            <div class="text-sm text-gray-600 mt-1">
+                                0.000045 = 4.5 × 10⁻⁵
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <div class="font-semibold text-gray-800">E Notation</div>
+                            <div class="text-sm text-gray-600 mt-1">
+                                1.23e-4 = 1.23 × 10⁻⁴
+                            </div>
+                        </div>
+                        <div class="example-card">
+                            <div class="font-semibold text-gray-800">Scientific Format</div>
+                            <div class="text-sm text-gray-600 mt-1">
+                                6.022 × 10²³ (Avogadro's number)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="mt-12 bg-white rounded-xl p-8 shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About Scientific Notation</h2>
+            <div class="prose prose-lg max-w-none">
+                <p class="text-gray-700 mb-4">
+                    Scientific notation is a way of expressing numbers that are too large or too small to be conveniently written in decimal form. It's widely used in science, engineering, and mathematics to handle very large or very small quantities efficiently.
+                </p>
+                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">What is Scientific Notation?</h3>
+                <p class="text-gray-700 mb-4">
+                    Scientific notation expresses numbers in the form <strong>a × 10ⁿ</strong>, where:
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                    <li><strong>a</strong> is a number between 1 and 10 (called the coefficient or mantissa)</li>
+                    <li><strong>n</strong> is an integer (called the exponent or power of 10)</li>
+                    <li>The number can be positive or negative</li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Key Features:</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                    <li>Convert between standard form and scientific notation</li>
+                    <li>Perform calculations with numbers in scientific notation</li>
+                    <li>Support for E notation (calculator format)</li>
+                    <li>Step-by-step explanations for learning</li>
+                    <li>Handle both very large and very small numbers</li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">How to Use This Calculator:</h3>
+                <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Converting TO Scientific Notation:</h4>
+                <ol class="list-decimal list-inside text-gray-700 space-y-2 mb-4">
+                    <li>Enter any number in standard form (e.g., 123456789 or 0.000123)</li>
+                    <li>Click "Convert to Scientific Notation"</li>
+                    <li>View the result in proper scientific notation format</li>
+                    <li>See step-by-step explanation of the conversion process</li>
+                </ol>
+                <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Converting FROM Scientific Notation:</h4>
+                <ol class="list-decimal list-inside text-gray-700 space-y-2 mb-4">
+                    <li>Enter the coefficient (number between 1 and 10)</li>
+                    <li>Enter the exponent (power of 10)</li>
+                    <li>Click "Convert to Standard Form"</li>
+                    <li>View the number in standard decimal notation</li>
+                </ol>
+                <h4 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Scientific Notation Calculator:</h4>
+                <ol class="list-decimal list-inside text-gray-700 space-y-2 mb-6">
+                    <li>Enter two numbers (in any format: standard, scientific, or E notation)</li>
+                    <li>Select the operation (addition, subtraction, multiplication, division)</li>
+                    <li>Click "Calculate" to perform the operation</li>
+                    <li>Results are shown in both standard and scientific notation</li>
+                </ol>
+                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Common Examples:</h3>
+                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                    <div class="grid md:grid-cols-2 gap-4 text-sm font-mono">
+                        <div>
+                            <strong>Large Numbers:</strong><br>
+                            300,000,000 = 3.0 × 10⁸<br>
+                            5,600,000,000 = 5.6 × 10⁹<br>
+                            93,000,000 = 9.3 × 10⁷
+                        </div>
+                        <div>
+                            <strong>Small Numbers:</strong><br>
+                            0.000045 = 4.5 × 10⁻⁵<br>
+                            0.0000000123 = 1.23 × 10⁻⁸<br>
+                            0.007 = 7.0 × 10⁻³
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Tips for Using Scientific Notation:</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-6">
+                    <li>For large numbers, the exponent is positive</li>
+                    <li>For small numbers (between 0 and 1), the exponent is negative</li>
+                    <li>Moving the decimal point right decreases the exponent</li>
+                    <li>Moving the decimal point left increases the exponent</li>
+                    <li>E notation (like 1.5e8) is equivalent to × 10 notation (1.5 × 10⁸)</li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Applications:</h3>
+                <p class="text-gray-700 mb-4">
+                    Scientific notation is essential in many fields including physics, chemistry, astronomy, and engineering where extremely large or small numbers are common, such as:
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Avogadro's number: 6.022 × 10²³</li>
+                    <li>Speed of light: 2.998 × 10⁸ m/s</li>
+                    <li>Planck's constant: 6.626 × 10⁻³⁴ J⋅s</li>
+                    <li>Distance to nearest star: 4.24 × 10¹³ km</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentTab = 'toScientific';
+        function switchTab(tab) {
+            // Hide all panels
+            document.getElementById('toScientificPanel').style.display = 'none';
+            document.getElementById('fromScientificPanel').style.display = 'none';
+            document.getElementById('calculatorPanel').style.display = 'none';
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            // Show selected panel and activate tab
+            document.getElementById(tab + 'Panel').style.display = 'block';
+            document.getElementById(tab + 'Tab').classList.add('active');
+            currentTab = tab;
+            // Hide results when switching tabs
+            document.getElementById('results').style.display = 'none';
+        }
+        function convertToScientific() {
+            const input = document.getElementById('numberInput').value.trim();
+            if (!input || isNaN(input)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            const number = parseFloat(input);
+            if (number === 0) {
+                showResult('0', '0 = 0.0 × 10⁰', 'Zero in scientific notation is 0.0 × 10⁰');
+                return;
+            }
+            const exponent = Math.floor(Math.log10(Math.abs(number)));
+            const coefficient = number / Math.pow(10, exponent);
+            const scientificNotation = coefficient.toFixed(2) + ' × 10^' + exponent;
+            const eNotation = coefficient.toFixed(2) + 'e' + exponent;
+            // Generate steps
+            const steps = generateConversionSteps(number, coefficient, exponent);
+            const resultHtml = `
+                <div class="result-item">
+                    <span class="result-label">Original Number</span>
+                    <span class="result-value">${number.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Scientific Notation</span>
+                    <span class="result-value">${scientificNotation}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">E Notation</span>
+                    <span class="result-value">${eNotation}</span>
+                </div>
+            `;
+            showResult(resultHtml, '', steps);
+        }
+        function convertFromScientific() {
+            const coefficient = parseFloat(document.getElementById('coefficient').value);
+            const exponent = parseInt(document.getElementById('exponent').value);
+            if (isNaN(coefficient) || isNaN(exponent)) {
+                alert('Please enter valid coefficient and exponent values');
+                return;
+            }
+            const result = coefficient * Math.pow(10, exponent);
+            const scientificNotation = coefficient + ' × 10^' + exponent;
+            // Generate steps
+            const steps = generateFromScientificSteps(coefficient, exponent, result);
+            const resultHtml = `
+                <div class="result-item">
+                    <span class="result-label">Scientific Notation</span>
+                    <span class="result-value">${scientificNotation}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Standard Form</span>
+                    <span class="result-value">${result.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">E Notation</span>
+                    <span class="result-value">${coefficient}e${exponent}</span>
+                </div>
+            `;
+            showResult(resultHtml, '', steps);
+        }
+        function calculateScientific() {
+            const num1Str = document.getElementById('num1').value.trim();
+            const num2Str = document.getElementById('num2').value.trim();
+            const operation = document.getElementById('operation').value;
+            if (!num1Str || !num2Str) {
+                alert('Please enter both numbers');
+                return;
+            }
+            const num1 = parseScientificNumber(num1Str);
+            const num2 = parseScientificNumber(num2Str);
+            if (isNaN(num1) || isNaN(num2)) {
+                alert('Please enter valid numbers');
+                return;
+            }
+            let result;
+            let operationSymbol;
+            switch(operation) {
+                case 'add':
+                    result = num1 + num2;
+                    operationSymbol = '+';
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    operationSymbol = '-';
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    operationSymbol = '×';
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        alert('Cannot divide by zero');
+                        return;
+                    }
+                    result = num1 / num2;
+                    operationSymbol = '÷';
+                    break;
+            }
+            const resultScientific = toScientificNotation(result);
+            const resultHtml = `
+                <div class="result-item">
+                    <span class="result-label">Calculation</span>
+                    <span class="result-value">${num1Str} ${operationSymbol} ${num2Str}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Result (Standard)</span>
+                    <span class="result-value">${result.toLocaleString()}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Result (Scientific)</span>
+                    <span class="result-value">${resultScientific}</span>
+                </div>
+            `;
+            showResult(resultHtml, '', '');
+        }
+        function parseScientificNumber(str) {
+            // Handle E notation (1.5e8, 2.3e-4)
+            if (str.toLowerCase().includes('e')) {
+                return parseFloat(str);
+            }
+            // Handle × notation (1.5 × 10^8)
+            if (str.includes('×') || str.includes('*')) {
+                const parts = str.replace(/\s/g, '').split(/[×*]/);
+                if (parts.length === 2) {
+                    const coefficient = parseFloat(parts[0]);
+                    const powerPart = parts[1];
+                    if (powerPart.includes('^')) {
+                        const exponent = parseInt(powerPart.split('^')[1]);
+                        return coefficient * Math.pow(10, exponent);
+                    }
+                }
+            }
+            // Regular number
+            return parseFloat(str);
+        }
+        function toScientificNotation(num) {
+            if (num === 0) return '0.0 × 10⁰';
+            const exponent = Math.floor(Math.log10(Math.abs(num)));
+            const coefficient = num / Math.pow(10, exponent);
+            return coefficient.toFixed(2) + ' × 10^' + exponent;
+        }
+        function generateConversionSteps(number, coefficient, exponent) {
+            const absNumber = Math.abs(number);
+            let steps = '';
+            if (absNumber >= 1) {
+                steps += `<div class="step">1. The number ${number} is ≥ 1, so we move the decimal point to the left.</div>`;
+                steps += `<div class="step">2. Count how many places we move: ${Math.abs(exponent)} places.</div>`;
+                steps += `<div class="step">3. The coefficient is ${coefficient.toFixed(2)} (between 1 and 10).</div>`;
+                steps += `<div class="step">4. The exponent is positive: +${exponent}.</div>`;
+            } else {
+                steps += `<div class="step">1. The number ${number} is < 1, so we move the decimal point to the right.</div>`;
+                steps += `<div class="step">2. Count how many places we move: ${Math.abs(exponent)} places.</div>`;
+                steps += `<div class="step">3. The coefficient is ${coefficient.toFixed(2)} (between 1 and 10).</div>`;
+                steps += `<div class="step">4. The exponent is negative: ${exponent}.</div>`;
+            }
+            steps += `<div class="step">5. Result: ${coefficient.toFixed(2)} × 10^${exponent}</div>`;
+            return steps;
+        }
+        function generateFromScientificSteps(coefficient, exponent, result) {
+            let steps = '';
+            steps += `<div class="step">1. Start with ${coefficient} × 10^${exponent}</div>`;
+            steps += `<div class="step">2. Calculate 10^${exponent} = ${Math.pow(10, exponent)}</div>`;
+            steps += `<div class="step">3. Multiply: ${coefficient} × ${Math.pow(10, exponent)} = ${result}</div>`;
+            if (exponent > 0) {
+                steps += `<div class="step">4. Since exponent is positive, move decimal ${exponent} places right.</div>`;
+            } else if (exponent < 0) {
+                steps += `<div class="step">4. Since exponent is negative, move decimal ${Math.abs(exponent)} places left.</div>`;
+            }
+            return steps;
+        }
+        function showResult(resultHtml, title, steps) {
+            document.getElementById('resultContent').innerHTML = resultHtml;
+            if (steps) {
+                document.getElementById('stepContent').innerHTML = steps;
+                document.getElementById('steps').style.display = 'block';
+            } else {
+                document.getElementById('steps').style.display = 'none';
+            }
+            document.getElementById('results').style.display = 'block';
+        }
+        // Initialize with default calculation
+        document.addEventListener('DOMContentLoaded', function() {
+            convertToScientific();
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔢</span>
+                Related Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced mathematical functions</div></div>
+                </a>
+                <a href="log_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Log Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Logarithmic calculations</div></div>
+                </a>
+                <a href="rounding_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Rounding Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Round numbers precisely</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔢</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Simple arithmetic operations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                </a>
+                <a href="algebra-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Algebra Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Solve algebraic equations</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

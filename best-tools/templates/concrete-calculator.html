@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Calculator - Estimate Concrete Volume and Bags</title>
+    <meta name="description" content="Estimate concrete volume for slabs, footings, or columns easily with our free online Concrete Calculator. Input dimensions to quickly determine cubic yards or meters needed. This tool helps you accurately plan your concrete projects, minimizing waste and ensuring you order the right amount for your construction needs.">
+    <meta name="keywords" content="concrete calculator, concrete volume, cubic yards, cubic meters, concrete estimate, construction calculator, free concrete tool, slab calculator, footing calculator">
+    <link rel="canonical" href="https://bestutils.com/concrete-calculator.html">
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS Variables for theme consistency */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6C757D;
+            --accent-color: #28A745;
+            --background-color: #F8F9FA;
+            --text-color: #343A40;
+            --card-bg: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+        /* Basic body styling */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        /* Container for the main content */
+        .tool-container {
+            max-width: 700px;
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Tool specific header styling */
+        .tool-container h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-top: 1rem;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left; /* Align labels to the left */
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #D6DCE0;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .form-group button {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        #resultOutput {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #D6DCE0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        #resultOutput h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: 1.5rem;
+        }
+        #resultOutput strong {
+            color: var(--accent-color);
+        }
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 20px;
+            }
+            .tool-container h1 {
+                font-size: 2rem;
+            }
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="tool-container">
+        <div class="site-logo-container">
+             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                 <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+             </svg>
+             <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <h1>Concrete Calculator</h1>
+        <p class="text-center text-gray-600 mb-6">
+            Our free online Concrete Calculator helps you accurately estimate the volume of concrete needed for your projects. Simply input the dimensions (length, width, and thickness) of your slab, footing, or other concrete structure. The tool will then quickly calculate the required cubic yards or cubic meters of concrete, helping you avoid over-ordering or running short on materials.
+        </p>
+        <div class="form-group">
+            <label for="length">Length:</label>
+            <input type="number" id="length" min="0" step="0.01" placeholder="e.g., 10">
+            <select id="lengthUnit" class="mt-2">
+                <option value="feet">Feet</option>
+                <option value="meters">Meters</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="width">Width:</label>
+            <input type="number" id="width" min="0" step="0.01" placeholder="e.g., 10">
+            <select id="widthUnit" class="mt-2">
+                <option value="feet">Feet</option>
+                <option value="meters">Meters</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="thickness">Thickness:</label>
+            <input type="number" id="thickness" min="0" step="0.01" placeholder="e.g., 4">
+            <select id="thicknessUnit" class="mt-2">
+                <option value="inches">Inches</option>
+                <option value="centimeters">Centimeters</option>
+            </option>
+            </select>
+        </div>
+        <p id="calcError" class="error-message" style="display: none;"></p>
+        <div class="form-group mt-8">
+            <button onclick="calculateConcrete()">Calculate Concrete</button>
+        </div>
+        <div id="resultOutput" style="display: none;">
+            <h3>Concrete Calculation Result:</h3>
+            <p>Required Volume: <strong id="volumeCubicYards">0.00 Cubic Yards</strong></p>
+            <p>Required Volume: <strong id="volumeCubicMeters">0.00 Cubic Meters</strong></p>
+            <p>Estimated 60lb Bags: <strong id="bags60lb">0</strong></p>
+            <p>Estimated 80lb Bags: <strong id="bags80lb">0</strong></p>
+        </div>
+        <!-- Description Section -->
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">About Concrete Calculator</h2>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 15px;">
+                Our free concrete calculator helps you determine the exact amount of concrete needed for your construction project. Calculate volume in cubic yards and cubic meters, plus estimate the number of concrete bags required for slabs, driveways, sidewalks, and foundations.
+            </p>
+            <p style="line-height: 1.6; color: #555;">
+                Perfect for contractors, DIY enthusiasts, and homeowners planning concrete projects. Get accurate measurements to avoid waste and ensure you order the right amount of materials.
+            </p>
+        </div>
+        <!-- How to Use Section -->
+        <div style="margin-top: 20px; padding: 20px; background: #e6f3ff; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">How to Use the Concrete Calculator</h2>
+            <ol style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Enter Length:</strong> Input the length of your concrete area in feet or meters</li>
+                <li><strong>Enter Width:</strong> Input the width of your concrete area in feet or meters</li>
+                <li><strong>Enter Thickness:</strong> Input the thickness/depth in inches or centimeters</li>
+                <li><strong>Select Units:</strong> Choose appropriate units for each dimension</li>
+                <li><strong>Calculate:</strong> Click "Calculate Concrete" to get volume and bag estimates</li>
+                <li><strong>Review Results:</strong> See volume in cubic yards/meters and bag quantities</li>
+                <li><strong>Add Extra:</strong> Consider ordering 5-10% extra for waste and spillage</li>
+            </ol>
+        </div>
+        <!-- Tips Section -->
+        <div style="margin-top: 20px; padding: 20px; background: #f0fff4; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">Concrete Project Tips</h2>
+            <ul style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Standard Thickness:</strong> 4" for sidewalks, 6" for driveways, 8" for heavy-duty areas</li>
+                <li><strong>Order Extra:</strong> Add 5-10% extra concrete to account for waste and uneven surfaces</li>
+                <li><strong>Weather Considerations:</strong> Avoid pouring in extreme temperatures or wet conditions</li>
+                <li><strong>Reinforcement:</strong> Consider rebar or wire mesh for structural strength</li>
+                <li><strong>Delivery vs Bags:</strong> Ready-mix delivery is cost-effective for large projects</li>
+                <li><strong>Curing Time:</strong> Allow proper curing time for maximum strength (28 days)</li>
+                <li><strong>Site Preparation:</strong> Ensure proper base preparation and leveling</li>
+            </ul>
+        </div>
+        <!-- Additional Information -->
+        <div style="margin-top: 20px; padding: 20px; background: #fff5f5; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">Concrete Information</h2>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Bag Coverage:</strong> 60lb bags cover ~0.45 sq ft at 4" thick, 80lb bags cover ~0.6 sq ft at 4" thick.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Ready-Mix vs Bags:</strong> Ready-mix is more convenient for large projects; bags are better for small repairs.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Concrete Strength:</strong> Standard concrete has 2500-4000 PSI strength; choose based on application.
+            </p>
+            <p style="line-height: 1.6; color: #555;">
+                <strong>Cost Estimation:</strong> This calculator provides volume only; contact suppliers for current pricing.
+            </p>
+        </div>
+    </div>
+    <script>
+        const lengthInput = document.getElementById('length');
+        const lengthUnitSelect = document.getElementById('lengthUnit');
+        const widthInput = document.getElementById('width');
+        const widthUnitSelect = document.getElementById('widthUnit');
+        const thicknessInput = document.getElementById('thickness');
+        const thicknessUnitSelect = document.getElementById('thicknessUnit');
+        const calcErrorDiv = document.getElementById('calcError');
+        const resultOutputDiv = document.getElementById('resultOutput');
+        function calculateConcrete() {
+            let length = parseFloat(lengthInput.value);
+            let width = parseFloat(widthInput.value);
+            let thickness = parseFloat(thicknessInput.value);
+            const lengthUnit = lengthUnitSelect.value;
+            const widthUnit = widthUnitSelect.value;
+            const thicknessUnit = thicknessUnitSelect.value;
+            // Validate inputs
+            if (isNaN(length) || length <= 0 || isNaN(width) || width <= 0 || isNaN(thickness) || thickness <= 0) {
+                calcErrorDiv.textContent = 'Please enter valid positive numbers for all dimensions.';
+                calcErrorDiv.style.display = 'block';
+                resultOutputDiv.style.display = 'none';
+                return;
+            }
+            calcErrorDiv.style.display = 'none'; // Clear previous errors
+            // Convert all dimensions to feet for consistent calculation
+            if (lengthUnit === 'meters') {
+                length *= 3.28084; // 1 meter = 3.28084 feet
+            }
+            if (widthUnit === 'meters') {
+                width *= 3.28084; // 1 meter = 3.28084 feet
+            }
+            if (thicknessUnit === 'centimeters') {
+                thickness *= 0.0328084; // 1 centimeter = 0.0328084 feet
+            } else { // inches to feet
+                thickness /= 12; // 1 foot = 12 inches
+            }
+            // Calculate volume in cubic feet
+            const volumeCubicFeet = length * width * thickness;
+            // Convert cubic feet to cubic yards (1 cubic yard = 27 cubic feet)
+            const volumeCubicYards = volumeCubicFeet / 27;
+            // Convert cubic feet to cubic meters (1 cubic meter = 35.3147 cubic feet)
+            const volumeCubicMeters = volumeCubicFeet / 35.3147;
+            // Estimate bags (approximate values, can vary by brand/mix)
+            // A 60lb bag typically yields ~0.0167 cubic yards
+            // An 80lb bag typically yields ~0.0222 cubic yards
+            const bags60lb = Math.ceil(volumeCubicYards / 0.0167);
+            const bags80lb = Math.ceil(volumeCubicYards / 0.0222);
+            // Display results
+            document.getElementById('volumeCubicYards').textContent = `${volumeCubicYards.toFixed(2)} Cubic Yards`;
+            document.getElementById('volumeCubicMeters').textContent = `${volumeCubicMeters.toFixed(2)} Cubic Meters`;
+            document.getElementById('bags60lb').textContent = `${bags60lb}`;
+            document.getElementById('bags80lb').textContent = `${bags80lb}`;
+            resultOutputDiv.style.display = 'block';
+            resultOutputDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏗️</span>
+                Related Construction & Building Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="square_footage_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Square Footage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate area measurements</div></div>
+                </a>
+                <a href="tile_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔲</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Tile Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate tiles needed</div></div>
+                </a>
+                <a href="gravel_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🪨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Gravel Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate gravel needed</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Home & Construction Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="roofing-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏠</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Roofing Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate roofing materials</div></div>
+                </a>
+                <a href="stair_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🪜</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Stair Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate stair dimensions</div></div>
+                </a>
+                <a href="volume_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Volume Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate volumes</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

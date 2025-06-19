@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Calculator - Calculate Distance, Time & Speed | BESTUTILS</title>
+    <meta name="description" content="Free online speed calculator to calculate speed, distance, and time. Convert between different units like mph, kmh, meters per second. Easy to use speed conversion tool.">
+    <meta name="keywords" content="speed calculator, distance calculator, time calculator, speed conversion, mph to kmh, velocity calculator, physics calculator">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Speed Calculator - Calculate Distance, Time & Speed | BESTUTILS">
+    <meta property="og:description" content="Free online speed calculator to calculate speed, distance, and time. Convert between different units like mph, kmh, meters per second.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/speed-calculator">
+    <link rel="canonical" href="https://bestutils.com/speed-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-group {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-display {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .calculator-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="calculator-card">
+            <h1 class="text-3xl font-bold text-white text-center mb-2">Speed Calculator</h1>
+            <p class="text-blue-100 text-center mb-8">Calculate speed, distance, and time with unit conversions</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Input Section -->
+                <div class="space-y-4">
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Distance</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="distance" placeholder="Enter distance" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select id="distanceUnit" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <option value="m">Meters</option>
+                                <option value="km" selected>Kilometers</option>
+                                <option value="ft">Feet</option>
+                                <option value="mi">Miles</option>
+                                <option value="yd">Yards</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="time" placeholder="Enter time" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select id="timeUnit" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <option value="s">Seconds</option>
+                                <option value="min">Minutes</option>
+                                <option value="h" selected>Hours</option>
+                                <option value="d">Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Speed</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="speed" placeholder="Enter speed" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <select id="speedUnit" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <option value="ms">m/s</option>
+                                <option value="kmh" selected>km/h</option>
+                                <option value="mph">mph</option>
+                                <option value="kn">knots</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="calculateSpeed()" class="flex-1 bg-white text-purple-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors">Calculate Speed</button>
+                        <button onclick="calculateDistance()" class="flex-1 bg-white text-purple-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors">Calculate Distance</button>
+                        <button onclick="calculateTime()" class="flex-1 bg-white text-purple-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors">Calculate Time</button>
+                        <button onclick="clearAll()" class="w-full bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-colors mt-2">Clear All</button>
+                    </div>
+                </div>
+                <!-- Results Section -->
+                <div>
+                    <div id="results" class="result-display">
+                        Enter values and click calculate to see results
+                    </div>
+                    <div class="bg-white bg-opacity-90 rounded-lg p-4 mt-4">
+                        <h3 class="font-semibold text-gray-800 mb-2">Formula Used:</h3>
+                        <p id="formula" class="text-gray-600 text-sm">Speed = Distance ÷ Time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Instructions -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the Speed Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Step-by-Step Instructions:</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                        <li>Enter any two known values (distance, time, or speed)</li>
+                        <li>Select the appropriate units from the dropdown menus</li>
+                        <li>Click the corresponding calculate button for the unknown value</li>
+                        <li>View your result with automatic unit conversions</li>
+                        <li>Use "Clear All" to start a new calculation</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Supported Units:</h3>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div><strong>Distance:</strong> Meters, Kilometers, Feet, Miles, Yards</div>
+                        <div><strong>Time:</strong> Seconds, Minutes, Hours, Days</div>
+                        <div><strong>Speed:</strong> m/s, km/h, mph, knots</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About the Speed Calculator</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Our speed calculator is a versatile online tool that helps you calculate speed, distance, and time using the fundamental physics equation: Speed = Distance ÷ Time. Whether you're a student studying physics, an athlete tracking performance, or someone planning a trip, this calculator provides accurate results with multiple unit conversions.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                The calculator supports various units of measurement and automatically converts between them, making it easy to work with different measurement systems. Simply enter any two known values, and the calculator will determine the third value for you.
+            </p>
+        </div>
+    </div>
+    <script>
+        // Unit conversion factors to meters, seconds, and m/s
+        const distanceUnits = {
+            'm': 1,
+            'km': 1000,
+            'ft': 0.3048,
+            'mi': 1609.344,
+            'yd': 0.9144
+        };
+        const timeUnits = {
+            's': 1,
+            'min': 60,
+            'h': 3600,
+            'd': 86400
+        };
+        const speedUnits = {
+            'ms': 1,
+            'kmh': 1/3.6,
+            'mph': 0.44704,
+            'kn': 0.514444
+        };
+        function convertToBase(value, unit, unitMap) {
+            return value * unitMap[unit];
+        }
+        function convertFromBase(value, unit, unitMap) {
+            return value / unitMap[unit];
+        }
+        function calculateSpeed() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const time = parseFloat(document.getElementById('time').value);
+            const distanceUnit = document.getElementById('distanceUnit').value;
+            const timeUnit = document.getElementById('timeUnit').value;
+            const speedUnit = document.getElementById('speedUnit').value;
+            if (isNaN(distance) || isNaN(time) || time === 0) {
+                document.getElementById('results').innerHTML = 'Please enter valid distance and time values';
+                return;
+            }
+            const distanceInMeters = convertToBase(distance, distanceUnit, distanceUnits);
+            const timeInSeconds = convertToBase(time, timeUnit, timeUnits);
+            const speedInMS = distanceInMeters / timeInSeconds;
+            const resultSpeed = convertFromBase(speedInMS, speedUnit, speedUnits);
+            document.getElementById('speed').value = resultSpeed.toFixed(4);
+            document.getElementById('results').innerHTML = `
+                <div>Speed: ${resultSpeed.toFixed(4)} ${speedUnit}</div>
+                <div class="text-sm mt-2 opacity-90">
+                    ${speedInMS.toFixed(4)} m/s | ${(speedInMS * 3.6).toFixed(4)} km/h | ${(speedInMS * 2.237).toFixed(4)} mph
+                </div>
+            `;
+            document.getElementById('formula').textContent = 'Speed = Distance ÷ Time';
+        }
+        function calculateDistance() {
+            const speed = parseFloat(document.getElementById('speed').value);
+            const time = parseFloat(document.getElementById('time').value);
+            const speedUnit = document.getElementById('speedUnit').value;
+            const timeUnit = document.getElementById('timeUnit').value;
+            const distanceUnit = document.getElementById('distanceUnit').value;
+            if (isNaN(speed) || isNaN(time)) {
+                document.getElementById('results').innerHTML = 'Please enter valid speed and time values';
+                return;
+            }
+            const speedInMS = convertToBase(speed, speedUnit, speedUnits);
+            const timeInSeconds = convertToBase(time, timeUnit, timeUnits);
+            const distanceInMeters = speedInMS * timeInSeconds;
+            const resultDistance = convertFromBase(distanceInMeters, distanceUnit, distanceUnits);
+            document.getElementById('distance').value = resultDistance.toFixed(4);
+            document.getElementById('results').innerHTML = `
+                <div>Distance: ${resultDistance.toFixed(4)} ${distanceUnit}</div>
+                <div class="text-sm mt-2 opacity-90">
+                    ${distanceInMeters.toFixed(4)} m | ${(distanceInMeters/1000).toFixed(4)} km | ${(distanceInMeters*3.281).toFixed(4)} ft
+                </div>
+            `;
+            document.getElementById('formula').textContent = 'Distance = Speed × Time';
+        }
+        function calculateTime() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const speed = parseFloat(document.getElementById('speed').value);
+            const distanceUnit = document.getElementById('distanceUnit').value;
+            const speedUnit = document.getElementById('speedUnit').value;
+            const timeUnit = document.getElementById('timeUnit').value;
+            if (isNaN(distance) || isNaN(speed) || speed === 0) {
+                document.getElementById('results').innerHTML = 'Please enter valid distance and speed values';
+                return;
+            }
+            const distanceInMeters = convertToBase(distance, distanceUnit, distanceUnits);
+            const speedInMS = convertToBase(speed, speedUnit, speedUnits);
+            const timeInSeconds = distanceInMeters / speedInMS;
+            const resultTime = convertFromBase(timeInSeconds, timeUnit, timeUnits);
+            document.getElementById('time').value = resultTime.toFixed(4);
+            document.getElementById('results').innerHTML = `
+                <div>Time: ${resultTime.toFixed(4)} ${timeUnit}</div>
+                <div class="text-sm mt-2 opacity-90">
+                    ${timeInSeconds.toFixed(4)} s | ${(timeInSeconds/60).toFixed(4)} min | ${(timeInSeconds/3600).toFixed(4)} h
+                </div>
+            `;
+            document.getElementById('formula').textContent = 'Time = Distance ÷ Speed';
+        }
+        function clearAll() {
+            document.getElementById('distance').value = '';
+            document.getElementById('time').value = '';
+            document.getElementById('speed').value = '';
+            document.getElementById('results').innerHTML = 'Enter values and click calculate to see results';
+            document.getElementById('formula').textContent = 'Speed = Distance ÷ Time';
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏃</span>
+                Related Physics Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="wind-chill-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🌡️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Wind Chill Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate wind chill effects</div></div>
+                </a>
+                <a href="acceleration_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🚀</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Acceleration Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate acceleration</div></div>
+                </a>
+                <a href="force_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💪</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Force Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate force</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horsepower Calculator - Convert HP, Watts, kW | BESTUTILS</title>
+    <meta name="description" content="Free online horsepower calculator. Convert between horsepower (HP), watts, kilowatts (kW), and more. Calculate mechanical, electrical, and brake horsepower with instant results.">
+    <meta name="keywords" content="horsepower calculator, HP to watts, watts to horsepower, kW to HP, power conversion, mechanical horsepower, electrical horsepower">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Horsepower Calculator - Convert HP, Watts, kW | BESTUTILS">
+    <meta property="og:description" content="Free online horsepower calculator. Convert between horsepower (HP), watts, kilowatts (kW), and more with instant results.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/horsepower-calculator.html">
+    <link rel="canonical" href="https://bestutils.com/horsepower-calculator.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Calculator styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        .conversion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .conversion-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="p-4">
+    <!-- Logo -->
+    <div class="site-logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+        </svg>
+        <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+    </div>
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-4">Horsepower Calculator</h1>
+            <p class="text-xl text-gray-200">Convert between horsepower, watts, kilowatts and more power units</p>
+        </div>
+        <!-- Calculator -->
+        <div class="calculator-card p-6 mb-8">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Input Section -->
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Enter Power Value</h2>
+                    <div class="space-y-4">
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Power Value</label>
+                            <input type="number" id="powerValue" class="input-field" placeholder="Enter power value" step="any">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">From Unit</label>
+                            <select id="fromUnit" class="input-field">
+                                <option value="hp">Horsepower (HP)</option>
+                                <option value="watts">Watts (W)</option>
+                                <option value="kw">Kilowatts (kW)</option>
+                                <option value="metric_hp">Metric Horsepower (PS)</option>
+                                <option value="boiler_hp">Boiler Horsepower</option>
+                                <option value="electric_hp">Electric Horsepower</option>
+                            </select>
+                        </div>
+                        <button onclick="calculatePower()" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 shadow-lg">
+                            Calculate Power Conversions
+                        </button>
+                    </div>
+                </div>
+                <!-- Results Section -->
+                <div id="resultsSection" class="hidden">
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Conversion Results</h2>
+                    <div class="result-card">
+                        <div class="conversion-grid" id="conversionResults">
+                            <!-- Results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="calculator-card p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About Horsepower Calculator</h2>
+            <div class="prose max-w-none text-gray-700">
+                <p class="mb-4">Our horsepower calculator is a comprehensive tool designed to convert between various power units commonly used in engineering, automotive, and industrial applications. Whether you're working on engine specifications, electrical systems, or mechanical equipment, this calculator provides accurate conversions instantly.</p>
+                <h3 class="text-xl font-semibold mt-6 mb-3">What is Horsepower?</h3>
+                <p class="mb-4">Horsepower is a unit of measurement for power, originally developed by James Watt to compare the output of steam engines with the power of draft horses. One horsepower is equivalent to 745.7 watts in the metric system.</p>
+                <h3 class="text-xl font-semibold mt-6 mb-3">Types of Horsepower:</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li><strong>Mechanical Horsepower (HP):</strong> The standard unit equal to 745.7 watts</li>
+                    <li><strong>Metric Horsepower (PS):</strong> Used in Europe, equal to 735.5 watts</li>
+                    <li><strong>Boiler Horsepower:</strong> Used for steam boilers, equal to 9,809.5 watts</li>
+                    <li><strong>Electric Horsepower:</strong> Exactly 746 watts, used for electric motors</li>
+                </ul>
+                <h3 class="text-xl font-semibold mt-6 mb-3">Common Applications:</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li>Automotive engine power ratings</li>
+                    <li>Electric motor specifications</li>
+                    <li>Industrial machinery power requirements</li>
+                    <li>HVAC system calculations</li>
+                    <li>Generator and pump sizing</li>
+                </ul>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="calculator-card p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the Horsepower Calculator</h2>
+            <div class="space-y-4 text-gray-700">
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">1</div>
+                    <div>
+                        <h4 class="font-semibold">Enter Power Value</h4>
+                        <p>Type the numerical value of the power you want to convert in the input field.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">2</div>
+                    <div>
+                        <h4 class="font-semibold">Select Source Unit</h4>
+                        <p>Choose the unit of the power value you entered from the dropdown menu (HP, Watts, kW, etc.).</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">3</div>
+                    <div>
+                        <h4 class="font-semibold">Calculate</h4>
+                        <p>Click the "Calculate Power Conversions" button to see the value converted to all supported units.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold">4</div>
+                    <div>
+                        <h4 class="font-semibold">View Results</h4>
+                        <p>The results will display all conversions in an easy-to-read format with precise values.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="text-center text-white">
+            <p>&copy; 2024 BESTUTILS.com - Free Online Calculators and Tools</p>
+        </div>
+    </div>
+    <script>
+        function calculatePower() {
+            const powerValue = parseFloat(document.getElementById('powerValue').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            if (isNaN(powerValue) || powerValue < 0) {
+                alert('Please enter a valid positive number');
+                return;
+            }
+            // Convert to watts first
+            let watts = 0;
+            switch(fromUnit) {
+                case 'hp':
+                    watts = powerValue * 745.7;
+                    break;
+                case 'watts':
+                    watts = powerValue;
+                    break;
+                case 'kw':
+                    watts = powerValue * 1000;
+                    break;
+                case 'metric_hp':
+                    watts = powerValue * 735.5;
+                    break;
+                case 'boiler_hp':
+                    watts = powerValue * 9809.5;
+                    break;
+                case 'electric_hp':
+                    watts = powerValue * 746;
+                    break;
+            }
+            // Convert to all units
+            const conversions = {
+                'Horsepower (HP)': watts / 745.7,
+                'Watts (W)': watts,
+                'Kilowatts (kW)': watts / 1000,
+                'Metric HP (PS)': watts / 735.5,
+                'Boiler HP': watts / 9809.5,
+                'Electric HP': watts / 746
+            };
+            displayResults(conversions);
+        }
+        function displayResults(conversions) {
+            const resultsSection = document.getElementById('resultsSection');
+            const conversionResults = document.getElementById('conversionResults');
+            let html = '';
+            for (const [unit, value] of Object.entries(conversions)) {
+                html += `
+                    <div class="conversion-item">
+                        <div class="text-sm opacity-80">${unit}</div>
+                        <div class="text-xl font-bold">${formatNumber(value)}</div>
+                    </div>
+                `;
+            }
+            conversionResults.innerHTML = html;
+            resultsSection.classList.remove('hidden');
+        }
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(2) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(2) + 'K';
+            } else if (num < 0.01) {
+                return num.toExponential(3);
+            } else {
+                return num.toFixed(4);
+            }
+        }
+        // Allow Enter key to calculate
+        document.getElementById('powerValue').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculatePower();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">⚡</span>
+                Related Engineering Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="ohms-law-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Ohm's Law Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate electrical values</div></div>
+                </a>
+                <a href="speed_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏃</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Speed Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate speed</div></div>
+                </a>
+                <a href="voltage_drop_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Voltage Drop Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate voltage drop</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

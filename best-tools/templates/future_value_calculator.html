@@ -1,0 +1,567 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Value Calculator - Calculate Investment Growth | BESTUTILS</title>
+    <meta name="description" content="Free Future Value Calculator to calculate how much your investment will be worth in the future. Calculate compound interest, investment growth, and financial planning with our easy-to-use tool.">
+    <meta name="keywords" content="future value calculator, investment calculator, compound interest calculator, financial planning, investment growth, retirement planning">
+    <meta name="author" content="BESTUTILS">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/future_value_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/future_value_calculator.html">
+    <meta property="og:title" content="Future Value Calculator - Calculate Investment Growth | BestUtils">
+    <meta property="og:description" content="Calculate how much your investment will be worth in the future with our free Future Value Calculator. Perfect for financial planning and retirement calculations.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/future-value-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/future_value_calculator.html">
+    <meta name="twitter:title" content="Future Value Calculator - Calculate Investment Growth | BestUtils">
+    <meta name="twitter:description" content="Calculate how much your investment will be worth in the future with our free Future Value Calculator. Perfect for financial planning and retirement calculations.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/future-value-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Future Value Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Future Value Calculator",
+        "description": "Free future value calculator to project investment growth with compound interest, regular contributions, and various compounding frequencies for financial planning.",
+        "url": "https://bestutils.com/templates/future_value_calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Calculator styling */
+        .calculator-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .input-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        .result-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #10b981;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #059669;
+        }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .calculator-container {
+                padding: 1.5rem;
+            }
+            .result-value {
+                font-size: 1.5rem;
+            }
+        }
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Future Value Calculator</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Calculate how much your investment will be worth in the future with compound interest. Perfect for retirement planning, savings goals, and investment analysis.</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Calculator -->
+            <div class="calculator-container">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">Calculate Future Value</h2>
+                <form id="calculatorForm">
+                    <div class="input-group">
+                        <label class="input-label text-white">Present Value (Initial Investment) ($)</label>
+                        <input type="number" id="presentValue" class="input-field" placeholder="10000" step="0.01" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label text-white">Annual Interest Rate (%)</label>
+                        <input type="number" id="interestRate" class="input-field" placeholder="7" step="0.01" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label text-white">Number of Years</label>
+                        <input type="number" id="years" class="input-field" placeholder="10" step="1" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label text-white">Compounding Frequency</label>
+                        <select id="compounding" class="input-field" required>
+                            <option value="1">Annually</option>
+                            <option value="2">Semi-annually</option>
+                            <option value="4">Quarterly</option>
+                            <option value="12" selected>Monthly</option>
+                            <option value="365">Daily</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label text-white">Monthly Additional Payment ($)</label>
+                        <input type="number" id="monthlyPayment" class="input-field" placeholder="0" step="0.01">
+                        <small class="text-gray-200 text-sm mt-1 block">Optional: Regular monthly contributions</small>
+                    </div>
+                    <button type="submit" class="calculate-btn">
+                        Calculate Future Value
+                    </button>
+                </form>
+            </div>
+            <!-- Results -->
+            <div>
+                <div id="results" class="hidden">
+                    <div class="result-card fade-in">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Calculation Results</h3>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-600 mb-2">Future Value</div>
+                            <div id="futureValue" class="result-value">$0.00</div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="breakdown-item">
+                                <span class="text-gray-600">Initial Investment:</span>
+                                <span id="initialAmount" class="font-semibold">$0.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="text-gray-600">Total Contributions:</span>
+                                <span id="totalContributions" class="font-semibold">$0.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="text-gray-600">Interest Earned:</span>
+                                <span id="interestEarned" class="font-semibold text-green-600">$0.00</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="text-gray-600">Total Return:</span>
+                                <span id="totalReturn" class="font-semibold text-blue-600">0.00%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Instructions -->
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">How to Use This Calculator</h3>
+                    <div class="space-y-3 text-gray-600">
+                        <div class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">1</span>
+                            <p><strong>Present Value:</strong> Enter your initial investment amount or current savings.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">2</span>
+                            <p><strong>Interest Rate:</strong> Enter the expected annual interest rate as a percentage.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">3</span>
+                            <p><strong>Time Period:</strong> Enter the number of years you plan to invest.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">4</span>
+                            <p><strong>Compounding:</strong> Choose how often interest is compounded (monthly is most common).</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">5</span>
+                            <p><strong>Monthly Payments:</strong> Add regular monthly contributions (optional).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="mt-12 bg-white rounded-lg p-8 shadow-sm">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">About Future Value Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">What is Future Value?</h3>
+                    <p class="text-gray-600 mb-4">Future Value (FV) is the value of a current asset at a specified date in the future based on an assumed rate of growth. It's a fundamental concept in finance that helps investors understand how much their money will be worth after earning interest over time.</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Why Use This Calculator?</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>• Plan for retirement and long-term financial goals</li>
+                        <li>• Compare different investment options</li>
+                        <li>• Understand the power of compound interest</li>
+                        <li>• Make informed financial decisions</li>
+                        <li>• Set realistic savings targets</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Formula Used</h3>
+                    <p class="text-gray-600 mb-4">For compound interest: <strong>FV = PV × (1 + r/n)^(nt)</strong></p>
+                    <p class="text-gray-600 mb-4">Where:</p>
+                    <ul class="text-gray-600 space-y-1 text-sm">
+                        <li>• FV = Future Value</li>
+                        <li>• PV = Present Value (initial amount)</li>
+                        <li>• r = Annual interest rate</li>
+                        <li>• n = Number of compounding periods per year</li>
+                        <li>• t = Number of years</li>
+                    </ul>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">Common Use Cases</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>• Retirement planning and 401(k) projections</li>
+                        <li>• Education savings (529 plans)</li>
+                        <li>• Investment portfolio growth analysis</li>
+                        <li>• Emergency fund planning</li>
+                        <li>• Real estate investment calculations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- FAQ Section -->
+        <div class="mt-8 bg-gray-100 rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">What's the difference between simple and compound interest?</h3>
+                    <p class="text-gray-600">Simple interest is calculated only on the principal amount, while compound interest is calculated on both the principal and previously earned interest. This calculator uses compound interest, which is more realistic for most investments.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">How often should interest be compounded?</h3>
+                    <p class="text-gray-600">More frequent compounding generally results in higher returns. Monthly compounding is common for savings accounts, while daily compounding maximizes growth. The difference becomes more significant with larger amounts and longer time periods.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">What interest rate should I use?</h3>
+                    <p class="text-gray-600">Use realistic rates based on your investment type: savings accounts (1-2%), bonds (3-5%), stock market average (7-10%), or high-growth investments (10%+). Conservative estimates are recommended for financial planning.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Should I include inflation in my calculations?</h3>
+                    <p class="text-gray-600">This calculator shows nominal returns. For real purchasing power, subtract the expected inflation rate (typically 2-3%) from your interest rate to get inflation-adjusted returns.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('calculatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateFutureValue();
+        });
+        function calculateFutureValue() {
+            // Get input values
+            const presentValue = parseFloat(document.getElementById('presentValue').value) || 0;
+            const annualRate = parseFloat(document.getElementById('interestRate').value) / 100 || 0;
+            const years = parseFloat(document.getElementById('years').value) || 0;
+            const compoundingFreq = parseFloat(document.getElementById('compounding').value) || 1;
+            const monthlyPayment = parseFloat(document.getElementById('monthlyPayment').value) || 0;
+            // Validate inputs
+            if (presentValue <= 0 || annualRate < 0 || years <= 0) {
+                alert('Please enter valid positive numbers for all required fields.');
+                return;
+            }
+            // Calculate future value of initial investment
+            const futureValueInitial = presentValue * Math.pow(1 + annualRate / compoundingFreq, compoundingFreq * years);
+            // Calculate future value of monthly payments (annuity)
+            let futureValuePayments = 0;
+            if (monthlyPayment > 0) {
+                const monthlyRate = annualRate / 12;
+                const totalMonths = years * 12;
+                if (monthlyRate > 0) {
+                    futureValuePayments = monthlyPayment * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate);
+                } else {
+                    futureValuePayments = monthlyPayment * totalMonths;
+                }
+            }
+            // Total future value
+            const totalFutureValue = futureValueInitial + futureValuePayments;
+            // Calculate totals
+            const totalContributions = presentValue + (monthlyPayment * years * 12);
+            const interestEarned = totalFutureValue - totalContributions;
+            const totalReturn = totalContributions > 0 ? ((totalFutureValue - totalContributions) / totalContributions) * 100 : 0;
+            // Display results
+            document.getElementById('futureValue').textContent = formatCurrency(totalFutureValue);
+            document.getElementById('initialAmount').textContent = formatCurrency(presentValue);
+            document.getElementById('totalContributions').textContent = formatCurrency(totalContributions);
+            document.getElementById('interestEarned').textContent = formatCurrency(interestEarned);
+            document.getElementById('totalReturn').textContent = totalReturn.toFixed(2) + '%';
+            // Show results
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+        // Auto-calculate on input change
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if (document.getElementById('presentValue').value && 
+                    document.getElementById('interestRate').value && 
+                    document.getElementById('years').value) {
+                    setTimeout(calculateFutureValue, 300);
+                }
+            });
+        });
+        // Add example values on page load
+        window.addEventListener('load', function() {
+            document.getElementById('presentValue').value = '10000';
+            document.getElementById('interestRate').value = '7';
+            document.getElementById('years').value = '10';
+            document.getElementById('monthlyPayment').value = '500';
+            calculateFutureValue();
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="compound-interest-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Compound Interest Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate compound growth</div></div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+                <a href="sip-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">SIP Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Systematic investment planning</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">BMI Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

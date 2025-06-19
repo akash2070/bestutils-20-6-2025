@@ -1,0 +1,619 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Tools - Free Unit & Format Converters | BESTUTILS</title>
+    <meta name="description" content="Free conversion tools for units, currencies, images, documents, and file formats. Convert between different measurements and formats easily.">
+    <meta name="keywords" content="conversion tools, unit converter, currency converter, image converter, file converter, format converter">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .calculator-card:hover { transform: translateY(-4px); }
+        .category-gradient { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+        
+        /* Navigation Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
+            background: #1e293b;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(99, 102, 241, 0.05);
+            border-left-color: #6366f1;
+            color: #6366f1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                position: relative;
+                padding: 0.75rem 1rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                order: 2;
+            }
+
+            .nav-logo {
+                order: 1;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 5rem 1rem 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+
+            .nav-item {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-link {
+                padding: 1rem 0;
+                font-size: 1rem;
+                justify-content: space-between;
+                border: none;
+                border-radius: 0;
+            }
+
+            .nav-link:hover {
+                background: transparent;
+                transform: none;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                background: rgba(99, 102, 241, 0.05);
+                margin: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .dropdown.active .dropdown-menu {
+                max-height: 300px;
+            }
+
+            .dropdown.active .dropdown-arrow {
+                transform: rotate(180deg);
+            }
+
+            .dropdown-item {
+                padding: 0.75rem 1rem;
+                border-left: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .dropdown-item:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-cyan-50 to-blue-100 min-h-screen">
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">BestUtils</a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" id="navMenu">
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        Categories <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="finance.html" class="dropdown-item">Finance</a>
+                        <a href="health.html" class="dropdown-item">Health</a>
+                        <a href="math.html" class="dropdown-item">Math</a>
+                        <a href="conversion.html" class="dropdown-item">Conversion</a>
+                        <a href="time.html" class="dropdown-item">Time & Date</a>
+                        <a href="text.html" class="dropdown-item">Text Tools</a>
+                        <a href="construction.html" class="dropdown-item">Construction</a>
+                        <a href="automotive.html" class="dropdown-item">Automotive</a>
+                        <a href="utilities.html" class="dropdown-item">Utilities</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="category-gradient text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Conversion Tools</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Convert between different units, formats, and file types with our comprehensive collection of conversion tools</p>
+            <div class="flex flex-wrap justify-center gap-4 text-lg">
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">Unit Conversion</span>
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">File Formats</span>
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">Image & Video</span>
+                <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">Document Tools</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Top Conversion Tools (Preview - First 6 from index.html) -->
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">Most Popular Conversion Tools</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <a href="templates/unit-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-2">Unit Converter</h3>
+                        <p class="text-gray-600 text-sm">Convert between different units of measurement</p>
+                    </a>
+                    
+                    <a href="templates/currency-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-green-600 mb-2">Currency Converter</h3>
+                        <p class="text-gray-600 text-sm">Convert between different currencies with live rates</p>
+                    </a>
+                    
+                    <a href="templates/image-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-purple-600 mb-2">Image Converter</h3>
+                        <p class="text-gray-600 text-sm">Convert images between different formats</p>
+                    </a>
+                    
+                    <a href="templates/pdf_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-orange-600 mb-2">PDF Converter</h3>
+                        <p class="text-gray-600 text-sm">Convert documents to and from PDF format</p>
+                    </a>
+
+                    <a href="templates/json-to-xml-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-2">JSON to XML Converter</h3>
+                        <p class="text-gray-600 text-sm">Convert between JSON and XML formats</p>
+                    </a>
+
+                    <a href="templates/roman-numeral-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                        <h3 class="text-xl font-semibold text-red-600 mb-2">Roman Numeral Converter</h3>
+                        <p class="text-gray-600 text-sm">Convert between numbers and Roman numerals</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- See More Tools Button -->
+            <div class="text-center mb-12">
+                <button id="seeMoreBtn" onclick="toggleMoreTools()" class="bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-cyan-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <span id="btnText">See All 32+ Conversion Tools</span>
+                    <svg id="btnIcon" class="inline-block ml-2 w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Additional Tools (Hidden by default) -->
+            <div id="moreTools" class="hidden">
+                <!-- All Conversion Tools from index.html (26 additional tools) -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8">All Conversion Tools</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Row 1 -->
+                        <a href="templates/image-to-base64.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">Image to Base64</h3>
+                            <p class="text-gray-600 text-sm">Convert images to Base64 encoded strings</p>
+                        </a>
+
+                        <a href="templates/markdown-to-html-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">Markdown to HTML</h3>
+                            <p class="text-gray-600 text-sm">Convert Markdown text to HTML format</p>
+                        </a>
+
+                        <a href="templates/pdf-to-image-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">PDF to Image</h3>
+                            <p class="text-gray-600 text-sm">Convert PDF pages to image files</p>
+                        </a>
+
+                        <a href="templates/video-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Video Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert videos between different formats</p>
+                        </a>
+
+                        <!-- Row 2 -->
+                        <a href="templates/xml-to-json-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-red-600 mb-2">XML to JSON</h3>
+                            <p class="text-gray-600 text-sm">Convert XML data to JSON format</p>
+                        </a>
+
+                        <a href="templates/archive_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-teal-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-teal-600 mb-2">Archive Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert between different archive formats</p>
+                        </a>
+
+                        <a href="templates/audio_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-indigo-600 mb-2">Audio Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert audio files between formats</p>
+                        </a>
+
+                        <a href="templates/document-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-pink-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-pink-600 mb-2">Document Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert documents between formats</p>
+                        </a>
+
+                        <!-- Row 3 -->
+                        <a href="templates/heic_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-yellow-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-yellow-600 mb-2">HEIC Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert HEIC images to other formats</p>
+                        </a>
+
+                        <a href="templates/image_converter_tool.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gray-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">Image Converter Tool</h3>
+                            <p class="text-gray-600 text-sm">Advanced image format conversion tool</p>
+                        </a>
+
+                        <a href="templates/image_pdf_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">Image PDF Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert images to PDF and vice versa</p>
+                        </a>
+
+                        <a href="templates/image_svg_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">Image SVG Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert images to SVG format</p>
+                        </a>
+
+                        <!-- Row 4 -->
+                        <a href="templates/raw_image_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">Raw Image Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert RAW camera files to standard formats</p>
+                        </a>
+
+                        <a href="templates/resolution_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Resolution Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert image resolution and dimensions</p>
+                        </a>
+
+                        <a href="templates/video-to-audio-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-red-600 mb-2">Video to Audio</h3>
+                            <p class="text-gray-600 text-sm">Extract audio from video files</p>
+                        </a>
+
+                        <a href="templates/video-to-gif-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-teal-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-teal-600 mb-2">Video to GIF</h3>
+                            <p class="text-gray-600 text-sm">Convert video clips to animated GIFs</p>
+                        </a>
+
+                        <!-- Row 5 -->
+                        <a href="templates/word-to-pdf-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-indigo-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-indigo-600 mb-2">Word to PDF</h3>
+                            <p class="text-gray-600 text-sm">Convert Word documents to PDF format</p>
+                        </a>
+
+                        <a href="templates/pdf-to-word-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-pink-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-pink-600 mb-2">PDF to Word</h3>
+                            <p class="text-gray-600 text-sm">Convert PDF files to Word documents</p>
+                        </a>
+
+                        <a href="templates/pdf-to-ppt-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-yellow-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-yellow-600 mb-2">PDF to PPT</h3>
+                            <p class="text-gray-600 text-sm">Convert PDF files to PowerPoint presentations</p>
+                        </a>
+
+                        <a href="templates/ppt-to-pdf-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-gray-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">PPT to PDF</h3>
+                            <p class="text-gray-600 text-sm">Convert PowerPoint presentations to PDF</p>
+                        </a>
+
+                        <!-- Row 6 -->
+                        <a href="templates/pdf_excel_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-blue-600 mb-2">PDF Excel Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert between PDF and Excel formats</p>
+                        </a>
+
+                        <a href="templates/pdf_compressor.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-green-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-green-600 mb-2">PDF Compressor</h3>
+                            <p class="text-gray-600 text-sm">Compress PDF files to reduce size</p>
+                        </a>
+
+                        <a href="templates/conversion-calculator.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-purple-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-purple-600 mb-2">Conversion Calculator</h3>
+                            <p class="text-gray-600 text-sm">General purpose conversion calculator</p>
+                        </a>
+
+                        <a href="templates/video_converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-orange-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-orange-600 mb-2">Advanced Video Converter</h3>
+                            <p class="text-gray-600 text-sm">Professional video format conversion</p>
+                        </a>
+
+                        <!-- Row 7 -->
+                        <a href="templates/html-to-markdown.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-red-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-red-600 mb-2">HTML to Markdown</h3>
+                            <p class="text-gray-600 text-sm">Convert HTML content to Markdown format</p>
+                        </a>
+
+                        <a href="templates/text-case-converter.html" class="calculator-card bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-teal-300 transition-all duration-300 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-teal-600 mb-2">Text Case Converter</h3>
+                            <p class="text-gray-600 text-sm">Convert text between different cases</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">BESTUTILS</h3>
+                    <p class="text-gray-400">Free online calculators and tools for everyone.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">All Categories</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="finance.html" class="hover:text-white transition-colors">Finance</a></li>
+                        <li><a href="health.html" class="hover:text-white transition-colors">Health</a></li>
+                        <li><a href="math.html" class="hover:text-white transition-colors">Math</a></li>
+                        <li><a href="conversion.html" class="hover:text-white transition-colors">Conversion</a></li>
+                        <li><a href="time.html" class="hover:text-white transition-colors">Time & Date</a></li>
+                        <li><a href="text.html" class="hover:text-white transition-colors">Text Tools</a></li>
+                        <li><a href="construction.html" class="hover:text-white transition-colors">Construction</a></li>
+                        <li><a href="automotive.html" class="hover:text-white transition-colors">Automotive</a></li>
+                        <li><a href="utilities.html" class="hover:text-white transition-colors">Utilities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Popular Conversion Tools</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="templates/unit-converter.html" class="hover:text-white transition-colors">Unit Converter</a></li>
+                        <li><a href="templates/currency-converter.html" class="hover:text-white transition-colors">Currency Converter</a></li>
+                        <li><a href="templates/image-converter.html" class="hover:text-white transition-colors">Image Converter</a></li>
+                        <li><a href="templates/pdf_converter.html" class="hover:text-white transition-colors">PDF Converter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="templates/contact-us.html" class="hover:text-white transition-colors">Contact Us</a>
+                    <a href="templates/about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BestUtils.com - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Menu JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+            // Mobile menu toggle
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mobileMenuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        mobileMenuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Mobile dropdown functionality
+            dropdownToggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = toggle.closest('.dropdown');
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            // Close mobile menu on window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    mobileMenuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
+        });
+
+        function toggleMoreTools() {
+            const moreTools = document.getElementById('moreTools');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+
+            if (moreTools.classList.contains('hidden')) {
+                moreTools.classList.remove('hidden');
+                btnText.textContent = 'Show Less Tools';
+                btnIcon.style.transform = 'rotate(180deg)';
+            } else {
+                moreTools.classList.add('hidden');
+                btnText.textContent = 'See All 32+ Conversion Tools';
+                btnIcon.style.transform = 'rotate(0deg)';
+                // Scroll back to the button
+                document.getElementById('seeMoreBtn').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
+</body>
+</html>
+
+

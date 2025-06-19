@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roth IRA Calculator - Free Retirement Planning Tool | BESTUTILS</title>
+    <meta name="description" content="Free Roth IRA calculator to plan your retirement savings. Calculate contributions, growth, and tax-free withdrawals with detailed projections and charts.">
+    <meta name="keywords" content="roth ira calculator, retirement calculator, ira calculator, retirement planning, tax-free retirement, investment calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/roth-ira-calculator.html">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Roth IRA Calculator - Free Retirement Planning Tool">
+    <meta property="og:description" content="Plan your retirement with our free Roth IRA calculator. Calculate contributions, growth, and tax-free withdrawals.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/roth-ira-calculator.html">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Roth IRA Calculator - BESTUTILS">
+    <meta name="twitter:description" content="Free Roth IRA calculator for retirement planning with detailed projections and charts.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .result-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .calc-button {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .input-field {
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        .chart-container {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            height: 400px;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .calculator-container {
+                padding: 1.5rem;
+            }
+            .chart-container {
+                height: 300px;
+                padding: 1rem;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="calculator-container mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">Roth IRA Calculator</h1>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-white font-medium mb-2">Current Age</label>
+                            <input type="number" id="currentAge" class="input-field w-full p-3 rounded-lg border-0 text-lg font-medium text-gray-800" placeholder="25" min="18" max="100" value="25">
+                        </div>
+                        <div>
+                            <label class="block text-white font-medium mb-2">Retirement Age</label>
+                            <input type="number" id="retirementAge" class="input-field w-full p-3 rounded-lg border-0 text-lg font-medium text-gray-800" placeholder="65" min="50" max="100" value="65">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-white font-medium mb-2">Current Roth IRA Balance</label>
+                        <input type="number" id="currentBalance" class="input-field w-full p-3 rounded-lg border-0 text-lg font-medium text-gray-800" placeholder="0" min="0" step="100" value="0">
+                    </div>
+                    <div>
+                        <label class="block text-white font-medium mb-2">Annual Contribution</label>
+                        <input type="number" id="annualContribution" class="input-field w-full p-3 rounded-lg border-0 text-lg font-medium text-gray-800" placeholder="6500" min="0" step="100" value="6500">
+                        <p class="text-white text-sm mt-1 opacity-80">2024 limit: $7,000 ($8,000 if 50+)</p>
+                    </div>
+                    <div>
+                        <label class="block text-white font-medium mb-2">Expected Annual Return (%)</label>
+                        <input type="number" id="annualReturn" class="input-field w-full p-3 rounded-lg border-0 text-lg font-medium text-gray-800" placeholder="7" min="0" max="20" step="0.1" value="7">
+                    </div>
+                    <div>
+                        <label class="block text-white font-medium mb-2">Annual Contribution Increase (%)</label>
+                        <input type="number" id="contributionIncrease" class="input-field w-full p-3 rounded-lg border-0 text-lg font-medium text-gray-800" placeholder="3" min="0" max="10" step="0.1" value="3">
+                    </div>
+                    <button onclick="calculateRothIRA()" class="calc-button w-full py-4 px-6 rounded-lg text-white font-bold text-lg shadow-lg">
+                        Calculate Retirement Savings
+                    </button>
+                </div>
+                <!-- Results Section -->
+                <div class="space-y-4">
+                    <div class="result-card rounded-lg p-6 text-white">
+                        <h3 class="text-xl font-bold mb-4 text-center">Retirement Summary</h3>
+                        <div id="results" class="space-y-4">
+                            <div class="text-center py-8 opacity-70">
+                                Enter your information to see retirement projections
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chart Section -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Growth Projection</h2>
+            <div class="chart-container">
+                <canvas id="growthChart"></canvas>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About the Roth IRA Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Our comprehensive Roth IRA calculator is designed to help you plan for a secure retirement by projecting the growth of your Roth IRA investments over time. This powerful financial planning tool takes into account various factors including your current age, planned retirement age, contribution amounts, expected returns, and contribution increases to provide accurate retirement savings projections.
+            </p>
+            <p class="text-gray-600 mb-6">
+                A Roth IRA is one of the most tax-efficient retirement savings vehicles available, offering tax-free growth and tax-free withdrawals in retirement. Unlike traditional IRAs, contributions to a Roth IRA are made with after-tax dollars, but all qualified withdrawals are completely tax-free, making it an excellent choice for long-term wealth building.
+            </p>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Benefits of Roth IRA:</h3>
+            <ul class="text-gray-600 space-y-2 mb-6">
+                <li>• Tax-free growth on all investments</li>
+                <li>• Tax-free qualified withdrawals in retirement</li>
+                <li>• No required minimum distributions (RMDs)</li>
+                <li>• Contributions can be withdrawn penalty-free anytime</li>
+                <li>• Estate planning advantages</li>
+                <li>• Income diversification in retirement</li>
+                <li>• Protection against future tax rate increases</li>
+            </ul>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Calculator Features:</h3>
+            <ul class="text-gray-600 space-y-2 mb-6">
+                <li>• Detailed retirement balance projections</li>
+                <li>• Visual growth charts and trends</li>
+                <li>• Total contributions vs. earnings breakdown</li>
+                <li>• Annual contribution increase modeling</li>
+                <li>• Flexible return rate scenarios</li>
+                <li>• Mobile-responsive design</li>
+                <li>• Instant calculations and updates</li>
+            </ul>
+        </div>
+        <!-- How to Use Section -->
+        <div class="bg-green-50 rounded-lg p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold text-green-800 mb-4">How to Use the Roth IRA Calculator</h2>
+            <div class="space-y-4 text-gray-700">
+                <div class="flex items-start space-x-3">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">1</span>
+                    <div>
+                        <h4 class="font-semibold">Enter Your Age Information</h4>
+                        <p>Input your current age and your planned retirement age. The calculator uses this to determine your investment timeline and compound growth period.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">2</span>
+                    <div>
+                        <h4 class="font-semibold">Current Balance</h4>
+                        <p>Enter your existing Roth IRA balance if you already have one. If you're just starting, enter $0.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">3</span>
+                    <div>
+                        <h4 class="font-semibold">Annual Contribution</h4>
+                        <p>Set your planned annual contribution amount. For 2024, the limit is $7,000 ($8,000 if you're 50 or older). The calculator will show if your contribution exceeds current limits.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">4</span>
+                    <div>
+                        <h4 class="font-semibold">Expected Annual Return</h4>
+                        <p>Enter your expected annual rate of return. Historical stock market averages range from 6-10%. Conservative estimates use 6-7%, while more aggressive projections might use 8-10%.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">5</span>
+                    <div>
+                        <h4 class="font-semibold">Contribution Increases</h4>
+                        <p>Set the annual percentage increase for your contributions. This accounts for salary raises and inflation. A typical range is 2-5% annually.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">6</span>
+                    <div>
+                        <h4 class="font-semibold">View Results</h4>
+                        <p>Click "Calculate" to see your projected retirement balance, total contributions, earnings, and a visual chart showing your account growth over time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tips Section -->
+        <div class="bg-blue-50 rounded-lg p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold text-blue-800 mb-4">Roth IRA Planning Tips</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-gray-700">
+                <div>
+                    <h4 class="font-semibold text-blue-800 mb-2">Maximize Your Contributions</h4>
+                    <p class="mb-4">Try to contribute the maximum amount allowed each year. Even small increases can lead to significant growth over decades due to compound interest.</p>
+                    <h4 class="font-semibold text-blue-800 mb-2">Start Early</h4>
+                    <p>The power of compound growth means that starting early, even with smaller amounts, can be more beneficial than starting later with larger contributions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-blue-800 mb-2">Consider Income Limits</h4>
+                    <p class="mb-4">Roth IRA contributions phase out at higher income levels. For 2024, phase-outs begin at $138,000 for single filers and $218,000 for married filing jointly.</p>
+                    <h4 class="font-semibold text-blue-800 mb-2">Diversify Your Investments</h4>
+                    <p>Within your Roth IRA, consider a diversified portfolio of stocks, bonds, and other investments to balance growth potential with risk management.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Important Notes -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+            <h3 class="text-lg font-semibold text-yellow-800 mb-2">Important Disclaimer</h3>
+            <p class="text-yellow-700">
+                This calculator provides estimates based on the information you provide and should not be considered as financial advice. Actual investment returns will vary and past performance does not guarantee future results. Please consult with a qualified financial advisor for personalized retirement planning advice. Investment values can go down as well as up, and you may get back less than you invested.
+            </p>
+        </div>
+    </div>
+    <script>
+        let growthChart;
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+        function calculateRothIRA() {
+            const currentAge = parseInt(document.getElementById('currentAge').value);
+            const retirementAge = parseInt(document.getElementById('retirementAge').value);
+            const currentBalance = parseFloat(document.getElementById('currentBalance').value) || 0;
+            const annualContribution = parseFloat(document.getElementById('annualContribution').value) || 0;
+            const annualReturn = parseFloat(document.getElementById('annualReturn').value) / 100 || 0.07;
+            const contributionIncrease = parseFloat(document.getElementById('contributionIncrease').value) / 100 || 0.03;
+            if (currentAge >= retirementAge) {
+                document.getElementById('results').innerHTML = '<div class="text-center text-red-300">Retirement age must be greater than current age</div>';
+                return;
+            }
+            const yearsToRetirement = retirementAge - currentAge;
+            let balance = currentBalance;
+            let totalContributions = currentBalance;
+            let yearlyContribution = annualContribution;
+            // Arrays for chart data
+            const years = [];
+            const balances = [];
+            const contributions = [];
+            // Calculate year by year
+            for (let year = 0; year <= yearsToRetirement; year++) {
+                if (year > 0) {
+                    // Add contribution for the year
+                    balance += yearlyContribution;
+                    totalContributions += yearlyContribution;
+                    // Apply investment growth
+                    balance *= (1 + annualReturn);
+                    // Increase contribution for next year
+                    yearlyContribution *= (1 + contributionIncrease);
+                }
+                years.push(currentAge + year);
+                balances.push(balance);
+                contributions.push(totalContributions);
+            }
+            const finalBalance = balance;
+            const totalEarnings = finalBalance - totalContributions;
+            // Display results
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <div class="fade-in space-y-4">
+                    <div class="metric-card">
+                        <div class="metric-value">${formatCurrency(finalBalance)}</div>
+                        <div class="text-sm opacity-90">Total at Retirement</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                            <div class="text-lg font-bold">${formatCurrency(totalContributions)}</div>
+                            <div class="text-sm opacity-90">Total Contributions</div>
+                        </div>
+                        <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                            <div class="text-lg font-bold">${formatCurrency(totalEarnings)}</div>
+                            <div class="text-sm opacity-90">Total Earnings</div>
+                        </div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <div class="text-sm opacity-90 mb-2">Key Metrics:</div>
+                        <div class="text-sm space-y-1">
+                            <div>Years to retirement: ${yearsToRetirement}</div>
+                            <div>Final annual contribution: ${formatCurrency(yearlyContribution / (1 + contributionIncrease))}</div>
+                            <div>Return multiple: ${(finalBalance / totalContributions).toFixed(1)}x</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Update chart
+            updateChart(years, balances, contributions);
+        }
+        function updateChart(years, balances, contributions) {
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            if (growthChart) {
+                growthChart.destroy();
+            }
+            growthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [
+                        {
+                            label: 'Total Balance',
+                            data: balances,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Total Contributions',
+                            data: contributions,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Roth IRA Growth Over Time'
+                        },
+                        legend: {
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Age'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Amount ($)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+        // Calculate on input change
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', debounce(calculateRothIRA, 500));
+        });
+        // Debounce function to limit calculation frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        // Initial calculation
+        window.addEventListener('load', calculateRothIRA);
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="ira-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💼</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">IRA Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Individual retirement account</div></div>
+                </a>
+                <a href="401k-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">401k Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan 401k contributions</div></div>
+                </a>
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">BMI Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

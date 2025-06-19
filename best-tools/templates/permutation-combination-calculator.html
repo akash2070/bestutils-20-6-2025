@@ -1,0 +1,634 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permutation and Combination Calculator - nPr & nCr Calculator | BESTUTILS</title>
+    <meta name="description" content="Free permutation and combination calculator to calculate nPr, nCr, and factorials. Solve probability and statistics problems with step-by-step explanations.">
+    <meta name="keywords" content="permutation calculator, free permutation calculator online, combination calculator, nPr calculator, nCr calculator, factorial calculator, probability calculator, math calculator, permutation combination calculator, combinatorics calculator, permutation tool, combination tool, statistics calculator, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/permutation-combination-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/permutation-combination-calculator.html">
+    <meta property="og:title" content="Permutation and Combination Calculator - nPr & nCr Calculator | BestUtils">
+    <meta property="og:description" content="Free permutation and combination calculator to calculate nPr, nCr, and factorials. Solve probability and statistics problems with step-by-step explanations and examples.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/permutation-combination-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/permutation-combination-calculator.html">
+    <meta name="twitter:title" content="Permutation and Combination Calculator - nPr & nCr Calculator | BestUtils">
+    <meta name="twitter:description" content="Free permutation and combination calculator to calculate nPr, nCr, and factorials. Solve probability and statistics problems with step-by-step explanations and examples.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/permutation-combination-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Permutation Combination Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Permutation and Combination Calculator",
+        "description": "Free permutation and combination calculator for calculating nPr, nCr, and factorials. Essential tool for probability, statistics, and combinatorics problems.",
+        "url": "https://bestutils.com/templates/permutation-combination-calculator.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <meta property="og:url" content="https://bestutils.com/permutation-and-combination-calculator.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .input-label {
+            position: absolute;
+            top: -0.5rem;
+            left: 1rem;
+            background: white;
+            padding: 0 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #4B5563;
+            z-index: 10;
+        }
+        .calculator-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .calculator-input:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .tab-button.active {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+        }
+        .tab-button.inactive {
+            background: #F3F4F6;
+            color: #6B7280;
+        }
+        .tab-button.inactive:hover {
+            background: #E5E7EB;
+        }
+        .formula-box {
+            background: #F8F9FA;
+            border: 2px solid #E9ECEF;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #495057;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="p-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Permutation & Combination Calculator</h1>
+            <p class="text-xl text-white opacity-90">Calculate nPr, nCr, and factorials for probability and statistics</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="calculator-card p-8">
+                <!-- Tab Selection -->
+                <div class="flex gap-2 mb-6">
+                    <button id="permutationTab" class="tab-button active flex-1" onclick="switchTab('permutation')">Permutation (nPr)</button>
+                    <button id="combinationTab" class="tab-button inactive flex-1" onclick="switchTab('combination')">Combination (nCr)</button>
+                </div>
+                <div id="permutationSection">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Permutation Calculator</h2>
+                    <div class="formula-box">
+                        <div class="formula">nPr = n! / (n-r)!</div>
+                    </div>
+                </div>
+                <div id="combinationSection" style="display: none;">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Combination Calculator</h2>
+                    <div class="formula-box">
+                        <div class="formula">nCr = n! / (r! × (n-r)!)</div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Total items (n)</label>
+                    <input type="number" id="nValue" class="calculator-input" placeholder="10" min="0" max="170" step="1">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Items to choose (r)</label>
+                    <input type="number" id="rValue" class="calculator-input" placeholder="3" min="0" step="1">
+                </div>
+                <button onclick="calculate()" class="calculate-btn">Calculate</button>
+                <button onclick="calculateFactorial()" class="calculate-btn" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">Calculate n! (Factorial only)</button>
+                <div id="results" class="result-card" style="display: none;">
+                    <div id="resultContent">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Information Panel -->
+            <div class="calculator-card p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">About Permutations & Combinations</h2>
+                <div class="space-y-4 text-gray-700">
+                    <p>Permutations and combinations are fundamental concepts in probability and statistics used to count arrangements and selections.</p>
+                    <h3 class="text-lg font-semibold text-gray-800 mt-6">How to Use:</h3>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li>Choose between Permutation or Combination</li>
+                        <li>Enter the total number of items (n)</li>
+                        <li>Enter the number of items to choose (r)</li>
+                        <li>Click "Calculate" to see the result</li>
+                        <li>Use "Calculate n!" for factorial only</li>
+                    </ol>
+                    <h3 class="text-lg font-semibold text-gray-800 mt-6">Key Differences:</h3>
+                    <div class="space-y-3">
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <h4 class="font-semibold text-blue-800">Permutation (nPr):</h4>
+                            <p class="text-blue-700">Order matters. Used when arranging items where sequence is important.</p>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded-lg">
+                            <h4 class="font-semibold text-green-800">Combination (nCr):</h4>
+                            <p class="text-green-700">Order doesn't matter. Used when selecting items where sequence is irrelevant.</p>
+                        </div>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg mt-6">
+                        <h4 class="font-semibold text-yellow-800">💡 Remember:</h4>
+                        <p class="text-yellow-700 mt-2">Permutations are always greater than or equal to combinations for the same n and r values!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Examples Section -->
+        <div class="calculator-card p-8 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Examples & Applications</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Permutation Examples:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Password arrangements:</strong> 4 different letters from 26 = 26P4</li>
+                        <li><strong>Race positions:</strong> Top 3 finishers from 10 runners = 10P3</li>
+                        <li><strong>Seating arrangements:</strong> 5 people in 5 chairs = 5P5 = 5!</li>
+                        <li><strong>License plates:</strong> 3 letters from 26 = 26P3</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Combination Examples:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2">
+                        <li><strong>Team selection:</strong> Choose 5 players from 12 = 12C5</li>
+                        <li><strong>Pizza toppings:</strong> Choose 3 from 10 toppings = 10C3</li>
+                        <li><strong>Committee formation:</strong> 4 members from 15 people = 15C4</li>
+                        <li><strong>Lottery numbers:</strong> Pick 6 from 49 numbers = 49C6</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Quick Reference Formulas:</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="formula-box">
+                        <div class="text-center">
+                            <strong>Factorial</strong><br>
+                            <span class="formula">n! = n × (n-1) × ... × 1</span>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="text-center">
+                            <strong>Permutation</strong><br>
+                            <span class="formula">nPr = n! / (n-r)!</span>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="text-center">
+                            <strong>Combination</strong><br>
+                            <span class="formula">nCr = n! / (r! × (n-r)!)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentMode = 'permutation';
+        function switchTab(mode) {
+            currentMode = mode;
+            // Update tab appearance
+            const permTab = document.getElementById('permutationTab');
+            const combTab = document.getElementById('combinationTab');
+            const permSection = document.getElementById('permutationSection');
+            const combSection = document.getElementById('combinationSection');
+            if (mode === 'permutation') {
+                permTab.className = 'tab-button active flex-1';
+                combTab.className = 'tab-button inactive flex-1';
+                permSection.style.display = 'block';
+                combSection.style.display = 'none';
+            } else {
+                permTab.className = 'tab-button inactive flex-1';
+                combTab.className = 'tab-button active flex-1';
+                permSection.style.display = 'none';
+                combSection.style.display = 'block';
+            }
+            // Clear previous results
+            document.getElementById('results').style.display = 'none';
+        }
+        function factorial(n) {
+            if (n < 0) return NaN;
+            if (n === 0 || n === 1) return 1;
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+                // Prevent overflow for very large numbers
+                if (result === Infinity) return Infinity;
+            }
+            return result;
+        }
+        function permutation(n, r) {
+            if (n < 0 || r < 0 || r > n) return NaN;
+            return factorial(n) / factorial(n - r);
+        }
+        function combination(n, r) {
+            if (n < 0 || r < 0 || r > n) return NaN;
+            return factorial(n) / (factorial(r) * factorial(n - r));
+        }
+        function formatNumber(num) {
+            if (num === Infinity) return "∞ (Too large to calculate)";
+            if (isNaN(num)) return "Invalid";
+            if (num > 1e15) return num.toExponential(2);
+            return num.toLocaleString();
+        }
+        function calculate() {
+            const n = parseInt(document.getElementById('nValue').value);
+            const r = parseInt(document.getElementById('rValue').value);
+            if (isNaN(n) || isNaN(r)) {
+                alert('Please enter valid numbers for both n and r');
+                return;
+            }
+            if (n < 0 || r < 0) {
+                alert('Please enter non-negative numbers');
+                return;
+            }
+            if (r > n) {
+                alert('r cannot be greater than n');
+                return;
+            }
+            if (n > 170) {
+                alert('n is too large (maximum 170 to prevent overflow)');
+                return;
+            }
+            let result, formula, explanation;
+            if (currentMode === 'permutation') {
+                result = permutation(n, r);
+                formula = `${n}P${r} = ${n}! / (${n}-${r})! = ${formatNumber(factorial(n))} / ${formatNumber(factorial(n-r))}`;
+                explanation = `Number of ways to arrange ${r} items from ${n} total items where order matters.`;
+            } else {
+                result = combination(n, r);
+                formula = `${n}C${r} = ${n}! / (${r}! × (${n}-${r})!) = ${formatNumber(factorial(n))} / (${formatNumber(factorial(r))} × ${formatNumber(factorial(n-r))})`;
+                explanation = `Number of ways to choose ${r} items from ${n} total items where order doesn't matter.`;
+            }
+            displayResults(result, formula, explanation, n, r);
+        }
+        function calculateFactorial() {
+            const n = parseInt(document.getElementById('nValue').value);
+            if (isNaN(n)) {
+                alert('Please enter a valid number for n');
+                return;
+            }
+            if (n < 0) {
+                alert('Please enter a non-negative number');
+                return;
+            }
+            if (n > 170) {
+                alert('n is too large (maximum 170 to prevent overflow)');
+                return;
+            }
+            const result = factorial(n);
+            const formula = `${n}! = ${n} × ${n-1} × ${n-2} × ... × 1`;
+            const explanation = `Factorial of ${n} - the product of all positive integers from 1 to ${n}.`;
+            displayFactorialResults(result, formula, explanation, n);
+        }
+        function displayResults(result, formula, explanation, n, r) {
+            const resultContent = document.getElementById('resultContent');
+            const modeName = currentMode === 'permutation' ? 'Permutation' : 'Combination';
+            const notation = currentMode === 'permutation' ? `${n}P${r}` : `${n}C${r}`;
+            resultContent.innerHTML = `
+                <h3 class="text-xl font-bold mb-4">${modeName} Result</h3>
+                <div class="result-item">
+                    <span>${notation}:</span>
+                    <span class="font-bold text-2xl">${formatNumber(result)}</span>
+                </div>
+                <div class="mt-4 p-3 bg-white bg-opacity-20 rounded-lg">
+                    <h4 class="font-semibold mb-2">Formula:</h4>
+                    <p class="font-mono text-sm">${formula}</p>
+                </div>
+                <div class="mt-3 p-3 bg-white bg-opacity-20 rounded-lg">
+                    <h4 class="font-semibold mb-2">Explanation:</h4>
+                    <p class="text-sm">${explanation}</p>
+                </div>
+            `;
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        function displayFactorialResults(result, formula, explanation, n) {
+            const resultContent = document.getElementById('resultContent');
+            resultContent.innerHTML = `
+                <h3 class="text-xl font-bold mb-4">Factorial Result</h3>
+                <div class="result-item">
+                    <span>${n}!:</span>
+                    <span class="font-bold text-2xl">${formatNumber(result)}</span>
+                </div>
+                <div class="mt-4 p-3 bg-white bg-opacity-20 rounded-lg">
+                    <h4 class="font-semibold mb-2">Formula:</h4>
+                    <p class="font-mono text-sm">${formula}</p>
+                </div>
+                <div class="mt-3 p-3 bg-white bg-opacity-20 rounded-lg">
+                    <h4 class="font-semibold mb-2">Explanation:</h4>
+                    <p class="text-sm">${explanation}</p>
+                </div>
+            `;
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculate();
+            }
+        });
+        // Input validation
+        document.getElementById('nValue').addEventListener('input', function(e) {
+            if (e.target.value < 0) e.target.value = 0;
+            if (e.target.value > 170) e.target.value = 170;
+            // Update r max value
+            const rInput = document.getElementById('rValue');
+            rInput.max = e.target.value;
+            if (parseInt(rInput.value) > parseInt(e.target.value)) {
+                rInput.value = e.target.value;
+            }
+        });
+        document.getElementById('rValue').addEventListener('input', function(e) {
+            const nValue = parseInt(document.getElementById('nValue').value) || 0;
+            if (e.target.value < 0) e.target.value = 0;
+            if (e.target.value > nValue) e.target.value = nValue;
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔢</span>
+                Related Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="probability_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🎲</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Probability Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate probabilities</div></div>
+                </a>
+                <a href="factorial_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">!</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Factorial Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate factorials</div></div>
+                </a>
+                <a href="statistics_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Statistics Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Statistical calculations</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔢</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Simple arithmetic operations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced mathematical functions</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

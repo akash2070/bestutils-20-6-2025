@@ -1,0 +1,650 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Army Body Fat Calculator - Military Body Fat Percentage | BestUtils.com</title>
+    <meta name="description" content="Calculate your army body fat percentage with our free military body fat calculator. Meet US Army standards with accurate measurements for height, weight, neck, and waist.">
+    <meta name="keywords" content="army body fat calculator, military body fat percentage, US army fitness standards, body fat measurement, army physical fitness">
+    <meta name="author" content="BestUtils.com">
+    <meta name="robots" content="index, follow">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/army_body_fat_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/army_body_fat_calculator.html">
+    <meta property="og:title" content="Army Body Fat Calculator - Military Body Fat Percentage | BestUtils">
+    <meta property="og:description" content="Calculate your army body fat percentage with our free military body fat calculator. Meet US Army standards with accurate measurements for height, weight, neck, and waist.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/army-body-fat-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/army_body_fat_calculator.html">
+    <meta name="twitter:title" content="Army Body Fat Calculator - Military Body Fat Percentage | BestUtils">
+    <meta name="twitter:description" content="Calculate your army body fat percentage with our free military body fat calculator. Meet US Army standards with accurate measurements for height, weight, neck, and waist.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/army-body-fat-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Army Body Fat Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Army Body Fat Calculator",
+        "description": "Free Army body fat calculator using official military standards to calculate body fat percentage for fitness requirements and health assessment.",
+        "url": "https://bestutils.com/templates/army_body_fat_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .gender-selection {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        .gender-btn {
+            padding: 12px 24px;
+            border: 2px solid #2c3e50;
+            background: white;
+            color: #2c3e50;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .gender-btn.active {
+            background: #2c3e50;
+            color: white;
+        }
+        .gender-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+        }
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .input-group {
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .input-with-unit {
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: #f8f9fa;
+        }
+        input:focus {
+            outline: none;
+            border-color: #2c3e50;
+            background: white;
+        }
+        .unit-selector {
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            background: #f8f9fa;
+            cursor: pointer;
+            min-width: 80px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .calculate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(44, 62, 80, 0.3);
+        }
+        .result {
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .result.show {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .excellent { background: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
+        .good { background: #d1ecf1; color: #0c5460; border: 2px solid #bee5eb; }
+        .acceptable { background: #fff3cd; color: #856404; border: 2px solid #ffeaa7; }
+        .needs-improvement { background: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
+        .standards-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .standards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .standards-table th,
+        .standards-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .standards-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .info-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .info-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        .info-section h3 {
+            color: #34495e;
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.3rem;
+        }
+        .info-section p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        .info-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .calculator-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .gender-selection {
+                flex-direction: column;
+                align-items: center;
+            }
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="brand">BestUtils.com - Free Online Calculators</div>
+    </header>
+    <div class="container">
+        <div class="calculator-card">
+            <h1>Army Body Fat Calculator</h1>
+            <p class="description">Calculate your body fat percentage using the US Army's official method. This calculator helps determine if you meet military body composition standards.</p>
+            <div class="gender-selection">
+                <button class="gender-btn active" onclick="selectGender('male')">Male</button>
+                <button class="gender-btn" onclick="selectGender('female')">Female</button>
+            </div>
+            <form id="bodyFatForm">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="height">Height:</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="height" step="0.1" placeholder="Enter height" required>
+                            <select class="unit-selector" id="heightUnit">
+                                <option value="inches">inches</option>
+                                <option value="cm">cm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="weight">Weight:</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="weight" step="0.1" placeholder="Enter weight" required>
+                            <select class="unit-selector" id="weightUnit">
+                                <option value="lbs">lbs</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="neck">Neck Circumference:</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="neck" step="0.1" placeholder="Neck measurement" required>
+                            <select class="unit-selector" id="neckUnit">
+                                <option value="inches">inches</option>
+                                <option value="cm">cm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="waist">Waist Circumference:</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="waist" step="0.1" placeholder="Waist measurement" required>
+                            <select class="unit-selector" id="waistUnit">
+                                <option value="inches">inches</option>
+                                <option value="cm">cm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group" id="hipGroup" style="display: none;">
+                        <label for="hip">Hip Circumference:</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="hip" step="0.1" placeholder="Hip measurement">
+                            <select class="unit-selector" id="hipUnit">
+                                <option value="inches">inches</option>
+                                <option value="cm">cm</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="calculate-btn">Calculate Body Fat Percentage</button>
+            </form>
+            <div id="result" class="result"></div>
+        </div>
+        <div class="standards-section">
+            <h2>US Army Body Fat Standards</h2>
+            <table class="standards-table">
+                <thead>
+                    <tr>
+                        <th>Age Group</th>
+                        <th>Male Maximum</th>
+                        <th>Female Maximum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>17-20 years</td>
+                        <td>20%</td>
+                        <td>30%</td>
+                    </tr>
+                    <tr>
+                        <td>21-27 years</td>
+                        <td>22%</td>
+                        <td>32%</td>
+                    </tr>
+                    <tr>
+                        <td>28-39 years</td>
+                        <td>24%</td>
+                        <td>34%</td>
+                    </tr>
+                    <tr>
+                        <td>40+ years</td>
+                        <td>26%</td>
+                        <td>36%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="info-section">
+            <h2>About Army Body Fat Calculator</h2>
+            <p>The Army Body Fat Calculator uses the US Army's official method to calculate body fat percentage. This method is used to determine if military personnel meet the required body composition standards.</p>
+            <h3>How to Measure</h3>
+            <ul>
+                <li><strong>Height:</strong> Stand straight against a wall without shoes</li>
+                <li><strong>Weight:</strong> Use a calibrated scale, preferably in the morning</li>
+                <li><strong>Neck:</strong> Measure at the narrowest point below the Adam's apple</li>
+                <li><strong>Waist:</strong> Measure at the narrowest point of the torso</li>
+                <li><strong>Hip (Females):</strong> Measure at the widest point of the hips</li>
+            </ul>
+            <h3>Army Body Fat Formula</h3>
+            <p><strong>For Males:</strong> Body Fat % = 86.010 × log₁₀(waist - neck) - 70.041 × log₁₀(height) + 36.76</p>
+            <p><strong>For Females:</strong> Body Fat % = 163.205 × log₁₀(waist + hip - neck) - 97.684 × log₁₀(height) - 78.387</p>
+            <h3>Why Body Fat Standards Matter</h3>
+            <p>The US Army maintains body fat standards to ensure soldiers are physically fit and able to perform their duties effectively. These standards help maintain operational readiness and promote overall health and wellness.</p>
+        </div>
+    </div>
+    <script>
+        let currentGender = 'male';
+        function selectGender(gender) {
+            currentGender = gender;
+            // Update button states
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            // Show/hide hip measurement for females
+            const hipGroup = document.getElementById('hipGroup');
+            if (gender === 'female') {
+                hipGroup.style.display = 'block';
+                document.getElementById('hip').required = true;
+            } else {
+                hipGroup.style.display = 'none';
+                document.getElementById('hip').required = false;
+            }
+            // Clear previous results
+            document.getElementById('result').classList.remove('show');
+        }
+        function convertToInches(value, unit) {
+            if (unit === 'cm') {
+                return value / 2.54;
+            }
+            return value;
+        }
+        function calculateBodyFat(height, neck, waist, hip, gender) {
+            // Convert all measurements to inches
+            const heightInches = height;
+            const neckInches = neck;
+            const waistInches = waist;
+            const hipInches = hip;
+            let bodyFat;
+            if (gender === 'male') {
+                // Male formula: 86.010 × log₁₀(waist - neck) - 70.041 × log₁₀(height) + 36.76
+                bodyFat = 86.010 * Math.log10(waistInches - neckInches) - 70.041 * Math.log10(heightInches) + 36.76;
+            } else {
+                // Female formula: 163.205 × log₁₀(waist + hip - neck) - 97.684 × log₁₀(height) - 78.387
+                bodyFat = 163.205 * Math.log10(waistInches + hipInches - neckInches) - 97.684 * Math.log10(heightInches) - 78.387;
+            }
+            return Math.max(0, bodyFat); // Ensure non-negative result
+        }
+        function getBodyFatCategory(bodyFat, gender) {
+            if (gender === 'male') {
+                if (bodyFat <= 15) return { category: 'Excellent', class: 'excellent' };
+                if (bodyFat <= 20) return { category: 'Good', class: 'good' };
+                if (bodyFat <= 26) return { category: 'Acceptable', class: 'acceptable' };
+                return { category: 'Needs Improvement', class: 'needs-improvement' };
+            } else {
+                if (bodyFat <= 20) return { category: 'Excellent', class: 'excellent' };
+                if (bodyFat <= 25) return { category: 'Good', class: 'good' };
+                if (bodyFat <= 36) return { category: 'Acceptable', class: 'acceptable' };
+                return { category: 'Needs Improvement', class: 'needs-improvement' };
+            }
+        }
+        document.getElementById('bodyFatForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const neck = parseFloat(document.getElementById('neck').value);
+            const waist = parseFloat(document.getElementById('waist').value);
+            const hip = currentGender === 'female' ? parseFloat(document.getElementById('hip').value) : 0;
+            const heightUnit = document.getElementById('heightUnit').value;
+            const neckUnit = document.getElementById('neckUnit').value;
+            const waistUnit = document.getElementById('waistUnit').value;
+            const hipUnit = document.getElementById('hipUnit').value;
+            if (!height || !weight || !neck || !waist || (currentGender === 'female' && !hip)) {
+                alert('Please fill in all required measurements.');
+                return;
+            }
+            // Convert all measurements to inches
+            const heightInches = convertToInches(height, heightUnit);
+            const neckInches = convertToInches(neck, neckUnit);
+            const waistInches = convertToInches(waist, waistUnit);
+            const hipInches = currentGender === 'female' ? convertToInches(hip, hipUnit) : 0;
+            const bodyFat = calculateBodyFat(heightInches, neckInches, waistInches, hipInches, currentGender);
+            const category = getBodyFatCategory(bodyFat, currentGender);
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = `result ${category.class} show`;
+            resultDiv.innerHTML = `
+                <h3>Your Body Fat Analysis</h3>
+                <p style="font-size: 2rem; font-weight: bold; margin: 1rem 0;">${bodyFat.toFixed(1)}%</p>
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;">Category: ${category.category}</p>
+                <p style="font-size: 0.95rem; opacity: 0.9;">
+                    ${getAdvice(bodyFat, currentGender)}
+                </p>
+            `;
+        });
+        function getAdvice(bodyFat, gender) {
+            const maxAllowed = gender === 'male' ? 26 : 36;
+            if (bodyFat > maxAllowed) {
+                return `Your body fat percentage exceeds Army standards (${maxAllowed}% max for ${gender}s). Consider consulting with a fitness professional.`;
+            } else if (bodyFat > (maxAllowed - 5)) {
+                return `You're within Army standards but close to the limit. Maintain your current fitness level.`;
+            } else {
+                return `Excellent! You meet Army body fat standards with room to spare. Keep up the great work!`;
+            }
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="body-fat-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Body Fat Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body fat percentage</div>
+                    </div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+                <a href="lean_body_mass_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💪</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Lean Body Mass Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate lean muscle mass</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

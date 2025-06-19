@@ -1,0 +1,656 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Mortgage Amortization Calculator | BestUtils.com</title>
+    <meta name="description" content="Calculate your mortgage amortization schedule with our free online calculator. View monthly payments, interest costs, and payment breakdowns for any loan term.">
+    <meta name="keywords" content="mortgage calculator, amortization calculator, loan calculator, mortgage payments, home loan calculator, payment schedule">
+    <meta name="author" content="BestUtils.com">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Free Mortgage Amortization Calculator | BestUtils.com">
+    <meta property="og:description" content="Calculate your mortgage amortization schedule with detailed payment breakdowns and total interest costs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/mortgage-amortization-calculator.html">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Free Mortgage Amortization Calculator">
+    <meta name="twitter:description" content="Calculate mortgage payments and view detailed amortization schedules online.">
+    <link rel="canonical" href="https://bestutils.com/mortgage-amortization-calculator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3B82F6;
+            --primary-dark: #2563EB;
+            --secondary-color: #EF4444;
+            --success-color: #10B981;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: linear-gradient(135deg, var(--gray-50) 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: var(--gray-700);
+        }
+        .logo-text .highlight {
+            color: var(--primary-color);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+        .header p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .calculator-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--gray-200);
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .calculate-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .result-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--gray-200);
+        }
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .result-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .amortization-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        .table-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th:first-child, td:first-child {
+            text-align: center;
+        }
+        th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        tbody tr:hover {
+            background: var(--gray-50);
+        }
+        .info-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .info-section h2 {
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .info-section h3 {
+            color: var(--gray-800);
+            margin: 1.5rem 0 0.75rem 0;
+            font-size: 1.25rem;
+        }
+        .info-section p, .info-section li {
+            margin-bottom: 0.75rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+        .info-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .calculator-section {
+                padding: 1.5rem;
+            }
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            table {
+                font-size: 0.875rem;
+            }
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+            .info-section {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            .calculator-section {
+                padding: 1rem;
+            }
+            .info-section {
+                padding: 1rem;
+            }
+            th, td {
+                padding: 0.5rem 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="header">
+            <h1>Mortgage Amortization Calculator</h1>
+            <p>Calculate your mortgage payments and view detailed amortization schedules with our comprehensive loan calculator tool.</p>
+        </div>
+        <!-- Calculator -->
+        <div class="calculator-grid">
+            <div class="calculator-section">
+                <h2 class="section-title">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                    </svg>
+                    Loan Details
+                </h2>
+                <div class="form-group">
+                    <label class="form-label" for="loanAmount">Loan Amount ($)</label>
+                    <input type="number" id="loanAmount" class="form-input" placeholder="300,000" min="1000" step="1000">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="interestRate">Annual Interest Rate (%)</label>
+                    <input type="number" id="interestRate" class="form-input" placeholder="3.5" min="0.1" max="30" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="loanTerm">Loan Term (Years)</label>
+                    <input type="number" id="loanTerm" class="form-input" placeholder="30" min="1" max="50" step="1">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="startDate">Loan Start Date</label>
+                    <input type="month" id="startDate" class="form-input">
+                </div>
+                <button class="calculate-btn" onclick="calculateMortgage()">Calculate Amortization</button>
+            </div>
+            <div class="calculator-section">
+                <h2 class="section-title">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 100-2H7zm2 1a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4-4a1 1 0 100 2h.01a1 1 0 100-2H13zM9 9a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM7 8a1 1 0 000 2h.01a1 1 0 000-2H7z" clip-rule="evenodd"/>
+                    </svg>
+                    Payment Summary
+                </h2>
+                <div id="results" class="results-grid" style="display: none;">
+                    <div class="result-card">
+                        <div class="result-value" id="monthlyPayment">$0</div>
+                        <div class="result-label">Monthly Payment</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value" id="totalInterest">$0</div>
+                        <div class="result-label">Total Interest</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-value" id="totalAmount">$0</div>
+                        <div class="result-label">Total Amount</div>
+                    </div>
+                </div>
+                <div id="placeholder" style="text-align: center; color: #9CA3AF; padding: 3rem;">
+                    <svg width="64" height="64" fill="currentColor" viewBox="0 0 20 20" style="margin: 0 auto 1rem;">
+                        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                    </svg>
+                    <p>Enter loan details and click calculate to see your payment summary</p>
+                </div>
+            </div>
+        </div>
+        <!-- Amortization Schedule -->
+        <div id="amortizationSection" class="amortization-table" style="display: none;">
+            <div class="table-header">
+                <h2>Amortization Schedule</h2>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Payment #</th>
+                            <th>Payment Date</th>
+                            <th>Payment Amount</th>
+                            <th>Principal</th>
+                            <th>Interest</th>
+                            <th>Remaining Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="amortizationTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Tool Description -->
+        <div class="info-section">
+            <h2>About the Mortgage Amortization Calculator</h2>
+            <p>Our mortgage amortization calculator is a comprehensive tool that helps you understand the complete financial picture of your home loan. Unlike simple payment calculators, this tool provides a detailed breakdown of every payment throughout your loan term, showing exactly how much goes toward principal and interest each month.</p>
+            <h3>What is Mortgage Amortization?</h3>
+            <p>Mortgage amortization is the process of paying off your home loan through regular monthly payments over a specified period. Each payment consists of two parts: principal (which reduces your loan balance) and interest (the cost of borrowing). Early in your loan term, more of your payment goes toward interest, while later payments contribute more toward the principal balance.</p>
+            <h3>Key Features of Our Calculator:</h3>
+            <ul>
+                <li><strong>Detailed Payment Schedule:</strong> View every payment from start to finish with exact dates</li>
+                <li><strong>Principal vs. Interest Breakdown:</strong> See how much of each payment reduces your balance</li>
+                <li><strong>Total Interest Calculation:</strong> Understand the true cost of your mortgage over its lifetime</li>
+                <li><strong>Remaining Balance Tracking:</strong> Monitor how your loan balance decreases over time</li>
+                <li><strong>Flexible Terms:</strong> Calculate for any loan amount, interest rate, and term length</li>
+                <li><strong>Mobile Friendly:</strong> Access your calculations on any device, anywhere</li>
+            </ul>
+            <h3>How to Use the Calculator:</h3>
+            <ul>
+                <li><strong>Enter Loan Amount:</strong> Input the total amount you're borrowing (principal)</li>
+                <li><strong>Set Interest Rate:</strong> Enter your annual interest rate as a percentage</li>
+                <li><strong>Choose Loan Term:</strong> Select the number of years for your mortgage (typically 15, 20, or 30 years)</li>
+                <li><strong>Select Start Date:</strong> Choose when your loan begins to see actual payment dates</li>
+                <li><strong>Calculate:</strong> Click the calculate button to generate your amortization schedule</li>
+                <li><strong>Review Results:</strong> Examine your monthly payment, total interest, and detailed payment schedule</li>
+            </ul>
+            <h3>Benefits of Using an Amortization Calculator:</h3>
+            <ul>
+                <li><strong>Financial Planning:</strong> Budget accurately by knowing your exact monthly payment</li>
+                <li><strong>Interest Savings:</strong> Understand how extra payments can reduce total interest</li>
+                <li><strong>Loan Comparison:</strong> Compare different loan terms and rates to find the best option</li>
+                <li><strong>Refinancing Decisions:</strong> Determine if refinancing makes financial sense</li>
+                <li><strong>Payment Strategy:</strong> Plan when to make extra principal payments for maximum impact</li>
+                <li><strong>Tax Planning:</strong> Track mortgage interest for potential tax deductions</li>
+            </ul>
+            <h3>Tips for Using Your Results:</h3>
+            <ul>
+                <li>Consider making extra principal payments early to save significant interest</li>
+                <li>Compare different loan terms to see the impact on monthly payments and total cost</li>
+                <li>Use the schedule to plan major financial decisions around your mortgage timeline</li>
+                <li>Save or print your amortization schedule for future reference</li>
+                <li>Consult with a financial advisor to optimize your mortgage strategy</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Set default start date to current month
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const currentMonth = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0');
+            document.getElementById('startDate').value = currentMonth;
+        });
+        function calculateMortgage() {
+            // Get input values
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const annualRate = parseFloat(document.getElementById('interestRate').value);
+            const loanTermYears = parseInt(document.getElementById('loanTerm').value);
+            const startDate = document.getElementById('startDate').value;
+            // Validate inputs
+            if (!loanAmount || !annualRate || !loanTermYears || !startDate) {
+                alert('Please fill in all fields');
+                return;
+            }
+            if (loanAmount <= 0 || annualRate <= 0 || loanTermYears <= 0) {
+                alert('Please enter positive values for all fields');
+                return;
+            }
+            // Calculate mortgage details
+            const monthlyRate = annualRate / 100 / 12;
+            const totalPayments = loanTermYears * 12;
+            const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+            const totalAmount = monthlyPayment * totalPayments;
+            const totalInterest = totalAmount - loanAmount;
+            // Display summary results
+            document.getElementById('monthlyPayment').textContent = '$' + monthlyPayment.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('totalInterest').textContent = '$' + totalInterest.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('totalAmount').textContent = '$' + totalAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            // Show results and hide placeholder
+            document.getElementById('results').style.display = 'grid';
+            document.getElementById('placeholder').style.display = 'none';
+            // Generate amortization schedule
+            generateAmortizationSchedule(loanAmount, monthlyRate, monthlyPayment, totalPayments, startDate);
+        }
+        function generateAmortizationSchedule(principal, monthlyRate, monthlyPayment, totalPayments, startDateStr) {
+            const tableBody = document.getElementById('amortizationTableBody');
+            tableBody.innerHTML = '';
+            let remainingBalance = principal;
+            const startDate = new Date(startDateStr + '-01');
+            for (let payment = 1; payment <= totalPayments; payment++) {
+                const interestPayment = remainingBalance * monthlyRate;
+                const principalPayment = monthlyPayment - interestPayment;
+                remainingBalance -= principalPayment;
+                // Ensure remaining balance doesn't go negative due to rounding
+                if (remainingBalance < 0) remainingBalance = 0;
+                // Calculate payment date
+                const paymentDate = new Date(startDate);
+                paymentDate.setMonth(paymentDate.getMonth() + payment - 1);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${payment}</td>
+                    <td>${paymentDate.toLocaleDateString('en-US', {year: 'numeric', month: 'short'})}</td>
+                    <td>$${monthlyPayment.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>$${principalPayment.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>$${interestPayment.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>$${remainingBalance.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                `;
+                tableBody.appendChild(row);
+            }
+            // Show amortization table
+            document.getElementById('amortizationSection').style.display = 'block';
+        }
+        // Format number inputs with commas
+        document.getElementById('loanAmount').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/,/g, '');
+            if (value && !isNaN(value)) {
+                e.target.value = parseFloat(value).toLocaleString('en-US');
+            }
+        });
+        // Remove commas before calculation
+        document.getElementById('loanAmount').addEventListener('blur', function(e) {
+            e.target.value = e.target.value.replace(/,/g, '');
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="mortgage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏠</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Mortgage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate home loan payments</div></div>
+                </a>
+                <a href="amortization-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Amortization Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate loan amortization</div></div>
+                </a>
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Famous Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="auto-loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🚗</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Auto Loan Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate car loan payments</div></div>
+                </a>
+                <a href="interest-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Interest Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate interest rates</div></div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

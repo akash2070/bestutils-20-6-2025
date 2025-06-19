@@ -1,0 +1,664 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Calculator | BestUtils</title>
+    <meta name="description" content="Free online sleep calculator tool. Easy to use and accurate calculations.">
+    <meta name="keywords" content="sleep calculator, free sleep calculator online, bedtime calculator, wake up time calculator, sleep cycle calculator, optimal sleep time calculator, sleep schedule calculator, sleep duration calculator, best bedtime calculator, sleep quality calculator, sleep pattern calculator, rem sleep calculator, sleep hygiene calculator, healthy sleep calculator, bestutils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/sleep_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/sleep_calculator.html">
+    <meta property="og:title" content="Sleep Calculator - Calculate Optimal Sleep & Wake Times | BestUtils">
+    <meta property="og:description" content="Calculate your optimal sleep and wake times with our free sleep calculator. Find the best bedtime and wake-up time for quality sleep cycles.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/sleep-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/sleep_calculator.html">
+    <meta name="twitter:title" content="Sleep Calculator - Calculate Optimal Sleep & Wake Times | BestUtils">
+    <meta name="twitter:description" content="Calculate your optimal sleep and wake times with our free sleep calculator. Find the best bedtime and wake-up time for quality sleep cycles.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/sleep-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Sleep Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Sleep Calculator",
+        "description": "Free sleep calculator to determine optimal sleep and wake times based on sleep cycles for better sleep quality and health.",
+        "url": "https://bestutils.com/templates/sleep_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 1rem 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            opacity: 0.8;
+        }
+        .back-link::before {
+            content: "←";
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* Multi-calc styles */
+        .multi-calc-container {
+            max-width: 100%;
+        }
+        .multi-calc-tool {
+            background: white;
+            border-radius: 10px;
+            padding: 0;
+        }
+        .multi-calc-description {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 2rem;
+        }
+        .multi-calc-description p {
+            margin: 0;
+            color: #495057;
+            line-height: 1.6;
+        }
+        .multi-calc-form {
+            margin-bottom: 2rem;
+        }
+        .multi-calc-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .multi-calc-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        .multi-calc-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .multi-calc-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .multi-calc-button {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .multi-calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        .multi-calc-button.secondary {
+            background: #6c757d;
+            width: auto;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        .multi-calc-result {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .multi-calc-result h3 {
+            margin-top: 0;
+            color: #495057;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .multi-calc-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #f5c6cb;
+        }
+        .multi-calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .multi-calc-table th,
+        .multi-calc-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .multi-calc-table th {
+            background: #e9ecef;
+            font-weight: 600;
+            color: #495057;
+        }
+        #ads {
+            background: #e9ecef;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">Back to All Tools</a>
+            <h1>Sleep Calculator</h1>
+            <p>Free online sleep calculator tool. Easy to use and accurate calculations.</p>
+        </div>
+        <div class="content">
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Calculator - Find Your Perfect Bedtime & Wake Time | BESTUTILS</title>
+    <meta name="description" content="Free sleep calculator to find your optimal bedtime and wake time based on sleep cycles. Calculate when to sleep for better rest and wake up refreshed naturally.">
+    <meta name="keywords" content="sleep calculator, bedtime calculator, wake time calculator, sleep cycles calculator, sleep schedule, bestutils">
+    <meta name="author" content="BESTUTILS">
+    <link rel="canonical" href="https://bestutils.com/sleep-calculator">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/sleep-calculator">
+    <meta property="og:title" content="Sleep Calculator - Find Your Perfect Bedtime & Wake Time | BESTUTILS">
+    <meta property="og:description" content="Free sleep calculator to find your optimal bedtime and wake time based on sleep cycles. Wake up refreshed naturally.">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bestutils.com/sleep-calculator">
+    <meta property="twitter:title" content="Sleep Calculator - Find Your Perfect Bedtime & Wake Time | BESTUTILS">
+    <meta property="twitter:description" content="Free sleep calculator to find your optimal bedtime and wake time based on sleep cycles. Wake up refreshed naturally.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .sleep-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-field {
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .btn-calculate {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(79, 172, 254, 0.4);
+        }
+        .sleep-time-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .sleep-time-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .calculator-card, .sleep-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen py-8 px-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Content -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Sleep Calculator</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Find your perfect bedtime and wake time based on natural sleep cycles. Wake up refreshed by timing your sleep to complete 90-minute cycles.</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <!-- Wake Time Calculator -->
+            <div class="calculator-card">
+                <div class="text-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-white">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                    <h2 class="text-2xl font-bold text-white">Find Wake Time</h2>
+                    <p class="text-white opacity-90">I want to sleep at a specific time</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-white font-medium mb-2">Bedtime</label>
+                        <input type="time" id="bedtime" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+                <button onclick="calculateWakeTime()" class="btn-calculate w-full mt-6 py-3 px-6 text-white font-semibold rounded-lg">
+                    Calculate Wake Times
+                </button>
+                <div id="wakeResults" class="hidden"></div>
+            </div>
+            <!-- Bedtime Calculator -->
+            <div class="sleep-card">
+                <div class="text-center mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-gray-700">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                    </svg>
+                    <h2 class="text-2xl font-bold text-gray-700">Find Bedtime</h2>
+                    <p class="text-gray-600">I need to wake up at a specific time</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Wake Time</label>
+                        <input type="time" id="waketime" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+                <button onclick="calculateBedtime()" class="btn-calculate w-full mt-6 py-3 px-6 text-white font-semibold rounded-lg">
+                    Calculate Bedtimes
+                </button>
+                <div id="bedtimeResults" class="hidden"></div>
+            </div>
+        </div>
+        <!-- Information Section -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- About Sleep Calculator -->
+            <div class="bg-white rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">About Sleep Calculator</h2>
+                <p class="text-gray-600 mb-4">Our Sleep Calculator helps you determine the optimal bedtime and wake time based on natural sleep cycles. Each sleep cycle lasts approximately 90 minutes, and waking up at the end of a cycle helps you feel more refreshed.</p>
+                <p class="text-gray-600">The calculator accounts for the average 15 minutes it takes to fall asleep and provides multiple wake-up time options based on completing 4, 5, or 6 sleep cycles.</p>
+            </div>
+            <!-- How to Use -->
+            <div class="bg-white rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-gray-700 mb-2">For Wake Time Calculator:</h3>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-600 text-sm">
+                            <li>Enter your desired bedtime</li>
+                            <li>Click "Calculate Wake Times"</li>
+                            <li>Choose from suggested wake times</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-700 mb-2">For Bedtime Calculator:</h3>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-600 text-sm">
+                            <li>Enter your required wake time</li>
+                            <li>Click "Calculate Bedtimes"</li>
+                            <li>Choose from suggested bedtimes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- Sleep Cycle Info -->
+            <div class="bg-white rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Sleep Cycle Facts</h2>
+                <div class="space-y-3 text-sm text-gray-600">
+                    <div class="flex items-start gap-2">
+                        <span class="text-blue-500 font-bold">90min</span>
+                        <span>Average sleep cycle duration</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-green-500 font-bold">4-6</span>
+                        <span>Recommended cycles per night</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-purple-500 font-bold">15min</span>
+                        <span>Average time to fall asleep</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-orange-500 font-bold">7-9h</span>
+                        <span>Recommended sleep for adults</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sleep Tips -->
+        <div class="bg-white rounded-lg p-6 shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Sleep Tips for Better Rest</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-blue-50 rounded-lg">
+                    <div class="text-blue-500 text-2xl mb-2">🌙
+        </div>
+        <!-- Internal Linking Section -->
+        <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+            <!-- Related Health Tools -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                    Related Health Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="heart_rate_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">❤️</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Heart Rate Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate target heart rate</div>
+                        </div>
+                    </a>
+                    <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">⚖️</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                        </div>
+                    </a>
+                    <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🔥</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- You Might Also Like -->
+            <div>
+                <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                    You Might Also Like
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="age-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🎂</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Age Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate age precisely</div>
+                        </div>
+                    </a>
+                    <a href="stopwatch.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">⏱️</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Stopwatch</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Online stopwatch timer</div>
+                        </div>
+                    </a>
+                    <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Powered by <a href="index.html">BestUtils</a> - Free Online Calculators & Tools</p>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

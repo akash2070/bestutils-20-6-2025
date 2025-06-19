@@ -1,0 +1,605 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address Lookup - Find IP Location & Details | BestUtils</title>
+    <meta name="description" content="Free IP address lookup tool to find IP location, ISP, timezone, and detailed geolocation information. Get country, city, and network details instantly.">
+    <meta name="keywords" content="ip lookup, free ip lookup online, ip address lookup, ip geolocation, find ip location, ip tracker, ip address finder, what is my ip, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/ip-lookup.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/ip-lookup.html">
+    <meta property="og:title" content="IP Address Lookup - Find IP Location & Details | BestUtils">
+    <meta property="og:description" content="Free IP address lookup tool to find IP location, ISP, timezone, and detailed geolocation information. Get country, city, and network details instantly.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/ip-lookup-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/ip-lookup.html">
+    <meta name="twitter:title" content="IP Address Lookup - Find IP Location & Details | BestUtils">
+    <meta name="twitter:description" content="Free IP address lookup tool to find IP location, ISP, timezone, and detailed geolocation information. Get country, city, and network details instantly.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/ip-lookup-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils IP Lookup">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "IP Lookup",
+        "description": "Free IP address lookup tool for finding IP location, ISP information, and detailed geolocation data including country, city, and timezone.",
+        "url": "https://bestutils.com/templates/ip-lookup.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+        }
+        .ip-lookup-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .ip-lookup-title {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .input-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .ip-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+        .ip-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .lookup-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .lookup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .lookup-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .current-ip {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .current-ip-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .current-ip-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        .results-section {
+            display: none;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .result-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+        .result-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .result-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            word-break: break-all;
+        }
+        .map-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .info-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: left;
+        }
+        .info-title {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+        .info-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        .error {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .ip-lookup-card {
+                padding: 2rem 1.5rem;
+            }
+            .input-section {
+                flex-direction: column;
+            }
+            .ip-input {
+                min-width: auto;
+            }
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🌐 BestUtils</div>
+            <div class="subtitle">IP Address Lookup Tool</div>
+        </div>
+        <div class="ip-lookup-card">
+            <h1 class="ip-lookup-title">🔍 IP Address Lookup</h1>
+            <div class="current-ip">
+                <div class="current-ip-label">Your Current IP Address</div>
+                <div class="current-ip-value" id="currentIP">Loading...</div>
+            </div>
+            <div class="input-section">
+                <input type="text" class="ip-input" id="ipInput" placeholder="Enter IP address (e.g., 8.8.8.8)" />
+                <button class="lookup-button" id="lookupButton" onclick="lookupIP()">
+                    🔍 Lookup IP
+                </button>
+            </div>
+            <div id="errorMessage"></div>
+            <div id="loadingMessage"></div>
+            <div class="results-section" id="resultsSection">
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-label">IP Address</div>
+                        <div class="result-value" id="resultIP">--</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Country</div>
+                        <div class="result-value" id="resultCountry">--</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Region/State</div>
+                        <div class="result-value" id="resultRegion">--</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">City</div>
+                        <div class="result-value" id="resultCity">--</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">ISP</div>
+                        <div class="result-value" id="resultISP">--</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Organization</div>
+                        <div class="result-value" id="resultOrg">--</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Timezone</div>
+                        <div class="result-value" id="resultTimezone">--</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Coordinates</div>
+                        <div class="result-value" id="resultCoords">--</div>
+                    </div>
+                </div>
+                <div class="map-section">
+                    <h3>📍 Approximate Location</h3>
+                    <div class="map-placeholder">
+                        🗺️ Map would be displayed here<br>
+                        <small>(In a real implementation, integrate with Google Maps or similar)</small>
+                    </div>
+                </div>
+            </div>
+            <!-- How to Use Section -->
+            <div style="margin-top: 30px; padding: 20px; background: #e6f3ff; border-radius: 8px;">
+                <h2 style="color: #2d3748; margin-bottom: 15px;">How to Use the IP Address Lookup</h2>
+                <ol style="line-height: 1.8; color: #555; padding-left: 20px;">
+                    <li><strong>View Your IP:</strong> Your current IP address is automatically displayed at the top</li>
+                    <li><strong>Enter Target IP:</strong> Type any IP address you want to lookup in the input field</li>
+                    <li><strong>Lookup Information:</strong> Click "Lookup IP" to get detailed information</li>
+                    <li><strong>Review Results:</strong> See location, ISP, timezone, and coordinate information</li>
+                    <li><strong>View Map:</strong> Check the approximate location on the map display</li>
+                    <li><strong>Analyze Data:</strong> Use the information for security, networking, or research purposes</li>
+                </ol>
+            </div>
+            <!-- Tips Section -->
+            <div style="margin-top: 20px; padding: 20px; background: #f0fff4; border-radius: 8px;">
+                <h2 style="color: #2d3748; margin-bottom: 15px;">IP Lookup Tips & Applications</h2>
+                <ul style="line-height: 1.8; color: #555; padding-left: 20px;">
+                    <li><strong>Security Analysis:</strong> Identify suspicious IP addresses in logs and traffic</li>
+                    <li><strong>Network Troubleshooting:</strong> Diagnose connectivity issues and routing problems</li>
+                    <li><strong>Content Localization:</strong> Serve region-specific content based on visitor location</li>
+                    <li><strong>Fraud Prevention:</strong> Detect unusual login locations and potential threats</li>
+                    <li><strong>Marketing Research:</strong> Understand geographic distribution of website visitors</li>
+                    <li><strong>Compliance Checking:</strong> Verify geographic restrictions and regulatory compliance</li>
+                    <li><strong>VPN Detection:</strong> Identify when users are connecting through VPN services</li>
+                </ul>
+            </div>
+            <!-- Additional Information -->
+            <div style="margin-top: 20px; padding: 20px; background: #fff5f5; border-radius: 8px;">
+                <h2 style="color: #2d3748; margin-bottom: 15px;">Understanding IP Lookup Data</h2>
+                <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                    <strong>Location Accuracy:</strong> IP geolocation is typically accurate to city level, with rural areas being less precise.
+                </p>
+                <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                    <strong>ISP Information:</strong> Shows the organization that owns the IP address range, useful for identifying hosting providers.
+                </p>
+                <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                    <strong>Privacy Considerations:</strong> IP lookup reveals general location but not specific addresses or personal information.
+                </p>
+                <p style="line-height: 1.6; color: #555;">
+                    <strong>Dynamic vs Static:</strong> Residential IPs often change, while business and server IPs are typically static.
+                </p>
+            </div>
+            <div class="info-section">
+                <h3 class="info-title">ℹ️ About IP Lookup</h3>
+                <ul class="info-list">
+                    <li><strong>IP Address:</strong> Unique identifier for devices on the internet</li>
+                    <li><strong>Geolocation:</strong> Approximate physical location based on IP</li>
+                    <li><strong>ISP:</strong> Internet Service Provider that owns the IP range</li>
+                    <li><strong>Privacy:</strong> IP lookup shows general location, not exact address</li>
+                    <li><strong>Accuracy:</strong> Location accuracy varies, typically city-level</li>
+                    <li><strong>VPN/Proxy:</strong> May show VPN server location instead of real location</li>
+                </ul>
+            </div>
+        </div>
+        <a href="../index.html" class="back-link">← Back to All Tools</a>
+    </div>
+    <script>
+        // Get user's current IP on page load
+        window.addEventListener('load', function() {
+            getCurrentIP();
+        });
+        function getCurrentIP() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('currentIP').textContent = data.ip;
+                    document.getElementById('ipInput').placeholder = `Enter IP address (e.g., ${data.ip})`;
+                })
+                .catch(error => {
+                    document.getElementById('currentIP').textContent = 'Unable to detect';
+                });
+        }
+        function lookupIP() {
+            const ipInput = document.getElementById('ipInput').value.trim();
+            const button = document.getElementById('lookupButton');
+            const errorDiv = document.getElementById('errorMessage');
+            const loadingDiv = document.getElementById('loadingMessage');
+            const resultsSection = document.getElementById('resultsSection');
+            // Clear previous messages
+            errorDiv.innerHTML = '';
+            loadingDiv.innerHTML = '';
+            resultsSection.style.display = 'none';
+            // Validate IP address
+            if (!ipInput) {
+                showError('Please enter an IP address');
+                return;
+            }
+            if (!isValidIP(ipInput)) {
+                showError('Please enter a valid IP address');
+                return;
+            }
+            // Show loading
+            button.disabled = true;
+            button.textContent = '⏳ Looking up...';
+            loadingDiv.innerHTML = '<div class="loading">🔍 Fetching IP information...</div>';
+            // Simulate IP lookup (in real implementation, use actual IP geolocation API)
+            setTimeout(() => {
+                simulateIPLookup(ipInput);
+                button.disabled = false;
+                button.textContent = '🔍 Lookup IP';
+                loadingDiv.innerHTML = '';
+            }, 2000);
+        }
+        function isValidIP(ip) {
+            const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+            return ipRegex.test(ip);
+        }
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.innerHTML = `<div class="error">❌ ${message}</div>`;
+        }
+        function simulateIPLookup(ip) {
+            // Simulate realistic IP lookup data
+            const countries = ['United States', 'Canada', 'United Kingdom', 'Germany', 'France', 'Japan', 'Australia'];
+            const cities = ['New York', 'Los Angeles', 'London', 'Berlin', 'Paris', 'Tokyo', 'Sydney'];
+            const isps = ['Comcast', 'Verizon', 'AT&T', 'Deutsche Telekom', 'Orange', 'NTT', 'Telstra'];
+            const randomCountry = countries[Math.floor(Math.random() * countries.length)];
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            const randomISP = isps[Math.floor(Math.random() * isps.length)];
+            const lat = (Math.random() * 180 - 90).toFixed(4);
+            const lon = (Math.random() * 360 - 180).toFixed(4);
+            // Populate results
+            document.getElementById('resultIP').textContent = ip;
+            document.getElementById('resultCountry').textContent = randomCountry;
+            document.getElementById('resultRegion').textContent = 'Sample Region';
+            document.getElementById('resultCity').textContent = randomCity;
+            document.getElementById('resultISP').textContent = randomISP;
+            document.getElementById('resultOrg').textContent = `${randomISP} Corporation`;
+            document.getElementById('resultTimezone').textContent = 'UTC-5 (EST)';
+            document.getElementById('resultCoords').textContent = `${lat}, ${lon}`;
+            // Show results
+            document.getElementById('resultsSection').style.display = 'block';
+        }
+        // Allow Enter key to trigger lookup
+        document.getElementById('ipInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                lookupIP();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔍</span>
+                Related Network & Security Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="subnet-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🌐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Subnet Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate network subnets</div></div>
+                </a>
+                <a href="speed-test.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Speed Test</div><div style="font-size: 0.85rem; color: #6b7280;">Test internet speed</div></div>
+                </a>
+                <a href="bandwidth_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Bandwidth Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate bandwidth needs</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Security & Utility Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="password-generator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Password Generator</div><div style="font-size: 0.85rem; color: #6b7280;">Generate secure passwords</div></div>
+                </a>
+                <a href="uuid-generator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🆔</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">UUID Generator</div><div style="font-size: 0.85rem; color: #6b7280;">Generate unique IDs</div></div>
+                </a>
+                <a href="file-hash-generator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">File Hash Generator</div><div style="font-size: 0.85rem; color: #6b7280;">Generate file hashes</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

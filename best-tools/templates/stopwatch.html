@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Stopwatch - Simple and Accurate Time Measurement Tool</title>
+
+    <meta name="description" content="Utilize our free online Stopwatch tool for precise time measurement in various scenarios. Whether you're timing workouts, cooking, presentations, or scientific experiments, our digital stopwatch offers easy-to-use start, stop, and reset functions. It provides accurate readings down to milliseconds, making it perfect for tracking short intervals or longer durations. Enhance your productivity and time management with this simple yet powerful web-based utility.">
+    <meta name="keywords" content="stopwatch, free stopwatch online, online timer, digital stopwatch, time measurement, accurate timer, productivity tool, sports timer, workout timer, cooking timer, bestutils">
+    <meta name="author" content="BestUtils">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/stopwatch.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/stopwatch.html">
+    <meta property="og:title" content="Online Stopwatch - Simple and Accurate Time Measurement Tool | BestUtils">
+    <meta property="og:description" content="Free online Stopwatch tool for precise time measurement. Perfect for timing workouts, cooking, presentations, or scientific experiments with millisecond accuracy.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/stopwatch-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/stopwatch.html">
+    <meta name="twitter:title" content="Online Stopwatch - Simple and Accurate Time Measurement Tool | BestUtils">
+    <meta name="twitter:description" content="Free online Stopwatch tool for precise time measurement. Perfect for timing workouts, cooking, presentations, or scientific experiments with millisecond accuracy.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/stopwatch-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Stopwatch">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Stopwatch",
+        "description": "Free online stopwatch tool for precise time measurement with millisecond accuracy, perfect for sports, workouts, cooking, and productivity timing.",
+        "url": "https://bestutils.com/templates/stopwatch.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        /* CSS Variables for theme consistency */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6C757D;
+            --accent-color: #28A745;
+            --background-color: #F8F9FA;
+            --text-color: #343A40;
+            --card-bg: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        /* Basic body styling */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* Container for the main content */
+        .tool-container {
+            max-width: 600px; /* Adjusted max-width for a simpler tool */
+            margin: 20px auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center; /* Center content within the container */
+        }
+
+         /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+
+        /* Tool specific header styling */
+        .tool-container h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-top: 1rem;
+            margin-bottom: 20px;
+        }
+
+        #display {
+            font-size: 3rem; /* Large font size for the timer */
+            font-family: 'Consolas', 'Monaco', monospace; /* Monospace font for consistent display */
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .controls button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+            margin: 0 5px; /* Space between buttons */
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+
+        .controls button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 20px;
+            }
+
+            .tool-container h1 {
+                font-size: 2rem;
+            }
+             #display {
+                font-size: 2.5rem;
+            }
+             /* Responsive adjustments for logo */
+             .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+             }
+             .logo-text {
+                font-size: 1.5rem;
+             }
+             .site-logo-container svg {
+                 width: 32px;
+                 height: 32px;
+             }
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+         <div class="site-logo-container">
+             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                 <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+             </svg>
+             <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+
+        <h1>Online Stopwatch</h1>
+        <p class="text-center text-gray-600 mb-6">
+            Utilize our free online Stopwatch tool for precise time measurement in various scenarios. Whether you're timing workouts, cooking, presentations, or scientific experiments, our digital stopwatch offers easy-to-use start, stop, and reset functions. It provides accurate readings down to milliseconds, making it perfect for tracking short intervals or longer durations. Enhance your productivity and time management with this simple yet powerful web-based utility.
+        </p>
+
+        <div id="display">00:00:00.000</div>
+
+        <div class="controls">
+            <button id="startButton" onclick="startStopwatch()">Start</button>
+            <button id="stopButton" onclick="stopStopwatch()" disabled>Stop</button>
+            <button id="resetButton" onclick="resetStopwatch()" disabled>Reset</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const resetButton = document.getElementById('resetButton');
+
+        let startTime;
+        let elapsedTime = 0;
+        let timerInterval;
+
+        function formatTime(ms) {
+            const milliseconds = String(ms % 1000).padStart(3, '0');
+            const seconds = Math.floor(ms / 1000) % 60;
+            const minutes = Math.floor(ms / (1000 * 60)) % 60;
+            const hours = Math.floor(ms / (1000 * 60 * 60));
+
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${milliseconds}`;
+        }
+
+        function startStopwatch() {
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            resetButton.disabled = false;
+
+            startTime = Date.now() - elapsedTime;
+
+            timerInterval = setInterval(() => {
+                elapsedTime = Date.now() - startTime;
+                display.textContent = formatTime(elapsedTime);
+            }, 10); // Update every 10 milliseconds
+        }
+
+        function stopStopwatch() {
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            clearInterval(timerInterval);
+        }
+
+        function resetStopwatch() {
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            display.textContent = formatTime(elapsedTime);
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            resetButton.disabled = true;
+        }
+    </script>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">⏰</span>
+                Related Time & Date Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="time-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⏱️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Time Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Add/subtract time</div></div>
+                </a>
+                <a href="time-duration-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⏲️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Time Duration Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate time durations</div></div>
+                </a>
+                <a href="pace-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏃</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Pace Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate running pace</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Timing Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="age-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🎂</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Age Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate exact age</div></div>
+                </a>
+                <a href="date-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📅</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Date Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Add/subtract dates</div></div>
+                </a>
+                <a href="time-zone-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🌍</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Time Zone Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert time zones</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+

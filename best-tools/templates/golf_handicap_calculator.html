@@ -1,0 +1,449 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Handicap Calculator - Calculate Your USGA Handicap Index | BestUtils</title>
+    <meta name="description" content="Free Golf Handicap Calculator to determine your USGA Handicap Index. Calculate golf handicap from your recent scores with our easy-to-use tool. Track your golf progress accurately.">
+    <meta name="keywords" content="golf handicap calculator, USGA handicap index, golf scores, handicap system, golf calculator, bestutils">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Golf Handicap Calculator - Calculate Your USGA Handicap Index">
+    <meta property="og:description" content="Calculate your golf handicap index using official USGA formulas. Free, accurate, and easy-to-use golf handicap calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/golf-handicap-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Custom animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .score-input {
+            transition: all 0.3s ease;
+        }
+        .score-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header with Logo -->
+    <header class="py-6">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 pb-12">
+        <!-- Page Title -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                ⛳ Golf Handicap Calculator
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Calculate your USGA Handicap Index using official formulas. Track your golf progress and improve your game with accurate handicap calculations.
+            </p>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <!-- Calculator Section -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        Enter Your Golf Scores
+                    </h2>
+                    <!-- Course Rating and Slope -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="courseRating" class="block text-sm font-medium text-gray-700 mb-2">
+                                Course Rating
+                            </label>
+                            <input type="number" id="courseRating" step="0.1" min="60" max="80" 
+                                   class="score-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                   placeholder="e.g., 72.1" value="72.0">
+                        </div>
+                        <div>
+                            <label for="slopeRating" class="block text-sm font-medium text-gray-700 mb-2">
+                                Slope Rating
+                            </label>
+                            <input type="number" id="slopeRating" min="55" max="155" 
+                                   class="score-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                   placeholder="e.g., 113" value="113">
+                        </div>
+                    </div>
+                    <!-- Score Inputs -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-3">
+                            Recent Scores (Enter at least 5 scores, up to 20)
+                        </label>
+                        <div id="scoreInputs" class="grid md:grid-cols-4 gap-3">
+                            <!-- Score inputs will be generated by JavaScript -->
+                        </div>
+                        <button id="addScore" class="mt-3 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                            + Add Score
+                        </button>
+                    </div>
+                    <!-- Calculate Button -->
+                    <button id="calculateBtn" class="w-full bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg">
+                        🏌️ Calculate Handicap Index
+                    </button>
+                </div>
+                <!-- Results Section -->
+                <div id="results" class="hidden mt-8">
+                    <div class="result-card rounded-xl shadow-lg p-6 md:p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            🏆 Your Handicap Results
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                                <div class="text-3xl font-bold" id="handicapIndex">-</div>
+                                <div class="text-sm opacity-90">Handicap Index</div>
+                            </div>
+                            <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                                <div class="text-3xl font-bold" id="scoresUsed">-</div>
+                                <div class="text-sm opacity-90">Scores Used</div>
+                            </div>
+                            <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                                <div class="text-3xl font-bold" id="avgDifferential">-</div>
+                                <div class="text-sm opacity-90">Avg Differential</div>
+                            </div>
+                        </div>
+                        <div id="detailedResults" class="mt-4 text-sm opacity-90">
+                            <!-- Detailed breakdown will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Info Sidebar -->
+            <div class="lg:col-span-1">
+                <!-- How to Use -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        How to Use
+                    </h3>
+                    <ol class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">1</span>
+                            Enter the course rating and slope rating (found on scorecards)
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">2</span>
+                            Add your recent golf scores (at least 5 scores needed)
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">3</span>
+                            Click "Calculate Handicap Index" to get your result
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">4</span>
+                            Your handicap index will be calculated using USGA formulas
+                        </li>
+                    </ol>
+                </div>
+                <!-- About Tool -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        About This Tool
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        This Golf Handicap Calculator uses the official USGA handicap system to determine your handicap index. It calculates score differentials and applies the proper averaging formula based on the number of scores submitted.
+                    </p>
+                    <div class="text-xs text-gray-500">
+                        <strong>Formula:</strong> Score Differential = (Score - Course Rating) × 113 / Slope Rating
+                    </div>
+                </div>
+                <!-- Tips -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl border border-yellow-200 p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        Pro Tips
+                    </h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-yellow-600 mr-2">💡</span>
+                            Use your most recent 20 scores for accurate results
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-600 mr-2">⭐</span>
+                            Course rating and slope can be found on scorecards
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-600 mr-2">🎯</span>
+                            Update your handicap regularly as you play more rounds
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-600 mr-2">📊</span>
+                            Lower handicap index means better golfer
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2025 BestUtils.com - Free Online Calculators and Tools</p>
+            <p class="text-sm text-gray-500 mt-2">Calculate your golf handicap accurately with our USGA-compliant calculator</p>
+        </div>
+    </footer>
+    <script>
+        let scoreCount = 5;
+        const maxScores = 20;
+        // Initialize score inputs
+        function initializeScoreInputs() {
+            const container = document.getElementById('scoreInputs');
+            container.innerHTML = '';
+            for (let i = 0; i < scoreCount; i++) {
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.min = '50';
+                input.max = '150';
+                input.className = 'score-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent';
+                input.placeholder = `Score ${i + 1}`;
+                input.id = `score${i}`;
+                container.appendChild(input);
+            }
+        }
+        // Add score input
+        document.getElementById('addScore').addEventListener('click', function() {
+            if (scoreCount < maxScores) {
+                scoreCount++;
+                initializeScoreInputs();
+                if (scoreCount >= maxScores) {
+                    this.style.display = 'none';
+                }
+            }
+        });
+        // Calculate handicap
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            const courseRating = parseFloat(document.getElementById('courseRating').value) || 72.0;
+            const slopeRating = parseInt(document.getElementById('slopeRating').value) || 113;
+            // Collect scores
+            const scores = [];
+            for (let i = 0; i < scoreCount; i++) {
+                const scoreInput = document.getElementById(`score${i}`);
+                if (scoreInput && scoreInput.value) {
+                    const score = parseInt(scoreInput.value);
+                    if (score >= 50 && score <= 150) {
+                        scores.push(score);
+                    }
+                }
+            }
+            if (scores.length < 5) {
+                alert('Please enter at least 5 valid scores (between 50 and 150).');
+                return;
+            }
+            // Calculate score differentials
+            const differentials = scores.map(score => {
+                return ((score - courseRating) * 113) / slopeRating;
+            });
+            // Sort differentials (lowest first)
+            differentials.sort((a, b) => a - b);
+            // Determine how many scores to use based on total scores
+            let scoresToUse;
+            if (scores.length <= 6) scoresToUse = 1;
+            else if (scores.length <= 8) scoresToUse = 2;
+            else if (scores.length <= 10) scoresToUse = 3;
+            else if (scores.length <= 12) scoresToUse = 4;
+            else if (scores.length <= 14) scoresToUse = 5;
+            else if (scores.length <= 16) scoresToUse = 6;
+            else if (scores.length <= 18) scoresToUse = 7;
+            else if (scores.length <= 19) scoresToUse = 8;
+            else scoresToUse = 10;
+            // Calculate average of lowest differentials
+            const lowestDifferentials = differentials.slice(0, scoresToUse);
+            const averageDifferential = lowestDifferentials.reduce((sum, diff) => sum + diff, 0) / scoresToUse;
+            // Handicap Index is the average differential multiplied by 0.96
+            const handicapIndex = averageDifferential * 0.96;
+            // Display results
+            document.getElementById('handicapIndex').textContent = handicapIndex.toFixed(1);
+            document.getElementById('scoresUsed').textContent = `${scoresToUse}/${scores.length}`;
+            document.getElementById('avgDifferential').textContent = averageDifferential.toFixed(1);
+            // Detailed breakdown
+            const detailedResults = document.getElementById('detailedResults');
+            detailedResults.innerHTML = `
+                <div class="mt-4 p-4 bg-white bg-opacity-10 rounded-lg">
+                    <h4 class="font-semibold mb-2">Calculation Details:</h4>
+                    <p class="text-sm">• Course Rating: ${courseRating}</p>
+                    <p class="text-sm">• Slope Rating: ${slopeRating}</p>
+                    <p class="text-sm">• Total Scores Entered: ${scores.length}</p>
+                    <p class="text-sm">• Lowest Differentials Used: ${scoresToUse}</p>
+                    <p class="text-sm">• Average Differential: ${averageDifferential.toFixed(2)}</p>
+                    <p class="text-sm">• Handicap Index: ${averageDifferential.toFixed(2)} × 0.96 = ${handicapIndex.toFixed(1)}</p>
+                </div>
+            `;
+            // Show results with animation
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.classList.add('fade-in');
+            // Scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        // Initialize the calculator
+        initializeScoreInputs();
+        // Add some sample data for demonstration
+        document.getElementById('score0').value = '85';
+        document.getElementById('score1').value = '78';
+        document.getElementById('score2').value = '82';
+        document.getElementById('score3').value = '88';
+        document.getElementById('score4').value = '79';
+    </script>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

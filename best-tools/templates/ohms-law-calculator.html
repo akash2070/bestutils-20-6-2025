@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohm's Law Calculator - Calculate Voltage, Current & Resistance | BESTUTILS</title>
+    <meta name="description" content="Free online Ohm's Law calculator to calculate voltage (V), current (I), resistance (R), and power (P). Perfect for electronics students, engineers, and technicians.">
+    <meta name="keywords" content="ohms law calculator, voltage calculator, current calculator, resistance calculator, power calculator, electronics, electrical engineering">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Ohm's Law Calculator - Calculate Voltage, Current & Resistance">
+    <meta property="og:description" content="Free online tool to calculate voltage, current, resistance, and power using Ohm's Law. Essential for electronics and electrical engineering.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/ohms-law-calculator.html">
+    <link rel="canonical" href="https://bestutils.com/ohms-law-calculator.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .calculator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        .result-card {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            width: 100%;
+        }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .btn-calculate {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+        }
+        .btn-clear {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.5rem;
+            padding: 0.75rem 2rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-clear:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .formula-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .ohms-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #ff6b6b, #feca57, #48dbfb, #ff6b6b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .ohms-circle-inner {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gray-50 min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Ohm's Law Calculator</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Calculate voltage, current, resistance, and power using Ohm's Law. Perfect for electronics students, engineers, and technicians.</p>
+        </header>
+        <!-- Calculator -->
+        <div class="calculator-card">
+            <div class="ohms-circle">
+                <div class="ohms-circle-inner">
+                    <div class="text-center">
+                        <div class="text-2xl">V = I × R</div>
+                        <div class="text-sm mt-1">P = V × I</div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-2xl font-semibold mb-6 text-center">Enter Any Two Values</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Voltage (V) - Volts</label>
+                    <input type="number" id="voltage" class="input-field" placeholder="Enter voltage" step="any" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Current (I) - Amperes</label>
+                    <input type="number" id="current" class="input-field" placeholder="Enter current" step="any" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Resistance (R) - Ohms (Ω)</label>
+                    <input type="number" id="resistance" class="input-field" placeholder="Enter resistance" step="any" />
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Power (P) - Watts</label>
+                    <input type="number" id="power" class="input-field" placeholder="Enter power" step="any" />
+                </div>
+            </div>
+            <div class="flex justify-center gap-4 mt-6">
+                <button onclick="calculateOhmsLaw()" class="btn-calculate">Calculate</button>
+                <button onclick="clearAll()" class="btn-clear">Clear All</button>
+            </div>
+            <div id="result" class="hidden result-card mt-6">
+                <h3 class="text-xl font-semibold mb-3">Results</h3>
+                <div id="resultContent"></div>
+            </div>
+            <!-- Formulas -->
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Ohm's Law Formulas</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="formula-card">
+                        <h4 class="font-semibold mb-2">Basic Ohm's Law</h4>
+                        <p class="font-mono">V = I × R</p>
+                        <p class="font-mono">I = V ÷ R</p>
+                        <p class="font-mono">R = V ÷ I</p>
+                    </div>
+                    <div class="formula-card">
+                        <h4 class="font-semibold mb-2">Power Formulas</h4>
+                        <p class="font-mono">P = V × I</p>
+                        <p class="font-mono">P = I² × R</p>
+                        <p class="font-mono">P = V² ÷ R</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <section class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About Ohm's Law Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Ohm's Law is a fundamental principle in electrical engineering that describes the relationship between voltage, current, 
+                and resistance in an electrical circuit. Our calculator makes it easy to find any unknown value when you know the other two.
+            </p>
+            <p class="text-gray-600 mb-4">
+                This tool is essential for electronics students, electrical engineers, technicians, and hobbyists working with circuits. 
+                It can calculate voltage (V), current (I), resistance (R), and power (P) using the standard Ohm's Law formulas.
+            </p>
+            <p class="text-gray-600">
+                The calculator also includes power calculations, making it a comprehensive tool for electrical circuit analysis and design.
+            </p>
+        </section>
+        <!-- How to Use Section -->
+        <section class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the Ohm's Law Calculator</h2>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">1</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Enter Known Values</h3>
+                        <p class="text-gray-600">Input any two known values from voltage, current, resistance, or power. Leave the unknown fields empty.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">2</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Click Calculate</h3>
+                        <p class="text-gray-600">Press the "Calculate" button to compute all unknown values using Ohm's Law formulas.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">3</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">View Results</h3>
+                        <p class="text-gray-600">The calculator will display all four values (V, I, R, P) with the formulas used for calculations.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">4</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Clear and Recalculate</h3>
+                        <p class="text-gray-600">Use "Clear All" to reset all fields and perform new calculations with different values.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Examples Section -->
+        <section class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Example Calculations</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Example 1: Find Current</h3>
+                    <p class="text-gray-600 text-sm mb-2">Given: Voltage = 12V, Resistance = 4Ω</p>
+                    <p class="text-blue-600 font-mono">I = V ÷ R = 12V ÷ 4Ω = 3A</p>
+                    <p class="text-green-600 font-mono">P = V × I = 12V × 3A = 36W</p>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Example 2: Find Resistance</h3>
+                    <p class="text-gray-600 text-sm mb-2">Given: Voltage = 24V, Current = 2A</p>
+                    <p class="text-blue-600 font-mono">R = V ÷ I = 24V ÷ 2A = 12Ω</p>
+                    <p class="text-green-600 font-mono">P = V × I = 24V × 2A = 48W</p>
+                </div>
+                <div class="border-l-4 border-purple-500 pl-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Example 3: Find Voltage</h3>
+                    <p class="text-gray-600 text-sm mb-2">Given: Current = 0.5A, Resistance = 100Ω</p>
+                    <p class="text-blue-600 font-mono">V = I × R = 0.5A × 100Ω = 50V</p>
+                    <p class="text-green-600 font-mono">P = I² × R = 0.5² × 100 = 25W</p>
+                </div>
+                <div class="border-l-4 border-red-500 pl-4">
+                    <h3 class="font-semibold text-gray-800 mb-2">Example 4: Find Power</h3>
+                    <p class="text-gray-600 text-sm mb-2">Given: Voltage = 9V, Current = 1.5A</p>
+                    <p class="text-blue-600 font-mono">P = V × I = 9V × 1.5A = 13.5W</p>
+                    <p class="text-green-600 font-mono">R = V ÷ I = 9V ÷ 1.5A = 6Ω</p>
+                </div>
+            </div>
+        </section>
+        <!-- Units and Symbols -->
+        <section class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Units and Symbols</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Electrical Quantities</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Voltage (V)</span>
+                            <span class="font-mono text-blue-600">Volts (V)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Current (I)</span>
+                            <span class="font-mono text-blue-600">Amperes (A)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Resistance (R)</span>
+                            <span class="font-mono text-blue-600">Ohms (Ω)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Power (P)</span>
+                            <span class="font-mono text-blue-600">Watts (W)</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-3">Common Prefixes</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">milli (m)</span>
+                            <span class="font-mono text-blue-600">× 0.001</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">kilo (k)</span>
+                            <span class="font-mono text-blue-600">× 1,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">mega (M)</span>
+                            <span class="font-mono text-blue-600">× 1,000,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">micro (μ)</span>
+                            <span class="font-mono text-blue-600">× 0.000001</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function calculateOhmsLaw() {
+            const voltage = parseFloat(document.getElementById('voltage').value) || null;
+            const current = parseFloat(document.getElementById('current').value) || null;
+            const resistance = parseFloat(document.getElementById('resistance').value) || null;
+            const power = parseFloat(document.getElementById('power').value) || null;
+            const values = [voltage, current, resistance, power].filter(v => v !== null);
+            if (values.length < 2) {
+                alert('Please enter at least two values to calculate the others.');
+                return;
+            }
+            let calculatedValues = {};
+            let formulas = [];
+            // Calculate missing values
+            if (voltage !== null && current !== null) {
+                calculatedValues.resistance = voltage / current;
+                calculatedValues.power = voltage * current;
+                formulas.push('R = V ÷ I = ' + voltage + ' ÷ ' + current + ' = ' + calculatedValues.resistance.toFixed(4) + 'Ω');
+                formulas.push('P = V × I = ' + voltage + ' × ' + current + ' = ' + calculatedValues.power.toFixed(4) + 'W');
+            } 
+            else if (voltage !== null && resistance !== null) {
+                calculatedValues.current = voltage / resistance;
+                calculatedValues.power = (voltage * voltage) / resistance;
+                formulas.push('I = V ÷ R = ' + voltage + ' ÷ ' + resistance + ' = ' + calculatedValues.current.toFixed(4) + 'A');
+                formulas.push('P = V² ÷ R = ' + voltage + '² ÷ ' + resistance + ' = ' + calculatedValues.power.toFixed(4) + 'W');
+            }
+            else if (voltage !== null && power !== null) {
+                calculatedValues.current = power / voltage;
+                calculatedValues.resistance = (voltage * voltage) / power;
+                formulas.push('I = P ÷ V = ' + power + ' ÷ ' + voltage + ' = ' + calculatedValues.current.toFixed(4) + 'A');
+                formulas.push('R = V² ÷ P = ' + voltage + '² ÷ ' + power + ' = ' + calculatedValues.resistance.toFixed(4) + 'Ω');
+            }
+            else if (current !== null && resistance !== null) {
+                calculatedValues.voltage = current * resistance;
+                calculatedValues.power = current * current * resistance;
+                formulas.push('V = I × R = ' + current + ' × ' + resistance + ' = ' + calculatedValues.voltage.toFixed(4) + 'V');
+                formulas.push('P = I² × R = ' + current + '² × ' + resistance + ' = ' + calculatedValues.power.toFixed(4) + 'W');
+            }
+            else if (current !== null && power !== null) {
+                calculatedValues.voltage = power / current;
+                calculatedValues.resistance = power / (current * current);
+                formulas.push('V = P ÷ I = ' + power + ' ÷ ' + current + ' = ' + calculatedValues.voltage.toFixed(4) + 'V');
+                formulas.push('R = P ÷ I² = ' + power + ' ÷ ' + current + '² = ' + calculatedValues.resistance.toFixed(4) + 'Ω');
+            }
+            else if (resistance !== null && power !== null) {
+                calculatedValues.current = Math.sqrt(power / resistance);
+                calculatedValues.voltage = Math.sqrt(power * resistance);
+                formulas.push('I = √(P ÷ R) = √(' + power + ' ÷ ' + resistance + ') = ' + calculatedValues.current.toFixed(4) + 'A');
+                formulas.push('V = √(P × R) = √(' + power + ' × ' + resistance + ') = ' + calculatedValues.voltage.toFixed(4) + 'V');
+            }
+            // Fill in calculated values
+            if (calculatedValues.voltage !== undefined) {
+                document.getElementById('voltage').value = calculatedValues.voltage.toFixed(4);
+            }
+            if (calculatedValues.current !== undefined) {
+                document.getElementById('current').value = calculatedValues.current.toFixed(4);
+            }
+            if (calculatedValues.resistance !== undefined) {
+                document.getElementById('resistance').value = calculatedValues.resistance.toFixed(4);
+            }
+            if (calculatedValues.power !== undefined) {
+                document.getElementById('power').value = calculatedValues.power.toFixed(4);
+            }
+            displayResults(formulas);
+        }
+        function displayResults(formulas) {
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('resultContent');
+            const voltage = parseFloat(document.getElementById('voltage').value);
+            const current = parseFloat(document.getElementById('current').value);
+            const resistance = parseFloat(document.getElementById('resistance').value);
+            const power = parseFloat(document.getElementById('power').value);
+            resultContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center p-3 bg-white bg-opacity-20 rounded">
+                            <div class="text-sm opacity-75">Voltage</div>
+                            <div class="text-xl font-bold">${voltage.toFixed(4)} V</div>
+                        </div>
+                        <div class="text-center p-3 bg-white bg-opacity-20 rounded">
+                            <div class="text-sm opacity-75">Current</div>
+                            <div class="text-xl font-bold">${current.toFixed(4)} A</div>
+                        </div>
+                        <div class="text-center p-3 bg-white bg-opacity-20 rounded">
+                            <div class="text-sm opacity-75">Resistance</div>
+                            <div class="text-xl font-bold">${resistance.toFixed(4)} Ω</div>
+                        </div>
+                        <div class="text-center p-3 bg-white bg-opacity-20 rounded">
+                            <div class="text-sm opacity-75">Power</div>
+                            <div class="text-xl font-bold">${power.toFixed(4)} W</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Calculations Used:</h4>
+                        <div class="space-y-1">
+                            ${formulas.map(formula => `<p class="font-mono text-sm bg-white bg-opacity-10 p-2 rounded">${formula}</p>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+        }
+        function clearAll() {
+            document.getElementById('voltage').value = '';
+            document.getElementById('current').value = '';
+            document.getElementById('resistance').value = '';
+            document.getElementById('power').value = '';
+            document.getElementById('result').classList.add('hidden');
+        }
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateOhmsLaw();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">⚡</span>
+                Related Electrical & Engineering Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="resistor-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔌</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Resistor Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate resistor values</div></div>
+                </a>
+                <a href="electricity_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Electricity Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate electrical costs</div></div>
+                </a>
+                <a href="voltage_drop_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Voltage Drop Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate voltage drops</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Science & Engineering Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert units</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

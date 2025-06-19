@@ -1,0 +1,777 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML to JSON Converter - Convert XML to JSON Online | BESTUTILS</title>
+    <meta name="description" content="Free online XML to JSON converter tool. Transform XML data to JSON format instantly. Support for complex XML structures, attributes, and arrays. Fast and secure conversion.">
+    <meta name="keywords" content="xml to json converter, free xml to json converter online, xml json conversion, convert xml to json, xml parser, json generator, data transformation, xml converter, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/xml-to-json-converter.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/xml-to-json-converter.html">
+    <meta property="og:title" content="XML to JSON Converter - Convert XML to JSON Online | BestUtils">
+    <meta property="og:description" content="Free online XML to JSON converter tool. Transform XML data to JSON format instantly. Support for complex XML structures, attributes, and arrays. Fast and secure conversion.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/xml-to-json-converter-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/xml-to-json-converter.html">
+    <meta name="twitter:title" content="XML to JSON Converter - Convert XML to JSON Online | BestUtils">
+    <meta name="twitter:description" content="Free online XML to JSON converter tool. Transform XML data to JSON format instantly. Support for complex XML structures, attributes, and arrays. Fast and secure conversion.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/xml-to-json-converter-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils XML to JSON Converter">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "XML to JSON Converter",
+        "description": "Free XML to JSON converter tool for converting XML data to JSON format with proper formatting, validation, and instant results.",
+        "url": "https://bestutils.com/templates/xml-to-json-converter.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XML to JSON Converter - Convert XML to JSON Online | BESTUTILS">
+    <meta name="twitter:description" content="Free online XML to JSON converter tool. Transform XML data to JSON format instantly with support for complex structures.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .code-container {
+            background-color: #1e293b;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .code-textarea {
+            background-color: transparent;
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            min-height: 250px;
+        }
+        .code-textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #3b82f6;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .language-badge {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: rgba(59, 130, 246, 0.8);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="gradient-bg min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Content -->
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">XML to JSON Converter</h1>
+                <h2 class="text-xl text-white/90 mb-6">Transform XML data to JSON format instantly</h2>
+            </div>
+            <!-- Tool Description -->
+            <div class="glass-effect rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4">About XML to JSON Converter</h2>
+                <p class="text-white/90 mb-4">
+                    The XML to JSON Converter is a powerful online tool that transforms XML (eXtensible Markup Language) data into JSON (JavaScript Object Notation) format. This conversion is essential for modern web development, API integrations, and data processing workflows.
+                </p>
+                <p class="text-white/90">
+                    Our converter handles complex XML structures including nested elements, attributes, arrays, and mixed content, providing you with clean, well-formatted JSON output that's ready to use in your applications.
+                </p>
+            </div>
+            <!-- Conversion Options -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Conversion Options</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" id="includeAttributes" checked class="rounded">
+                        <span class="text-sm text-gray-700">Include XML Attributes</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" id="arrayMode" class="rounded">
+                        <span class="text-sm text-gray-700">Force Array Mode</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="checkbox" id="prettifyOutput" checked class="rounded">
+                        <span class="text-sm text-gray-700">Prettify JSON Output</span>
+                    </label>
+                </div>
+            </div>
+            <!-- Main Tool -->
+            <div class="bg-white rounded-lg shadow-2xl p-6 mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Input Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">XML Input</h3>
+                            <div class="flex gap-2">
+                                <button onclick="clearInput()" class="px-3 py-1 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors">
+                                    Clear
+                                </button>
+                                <button onclick="loadSample()" class="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">
+                                    Sample
+                                </button>
+                                <button onclick="validateXML()" class="px-3 py-1 text-sm bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors">
+                                    Validate
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="language-badge">XML</div>
+                            <textarea 
+                                id="xmlInput" 
+                                class="code-textarea w-full p-4 border-none" 
+                                placeholder="Paste your XML code here..."
+                                rows="15"
+                            ></textarea>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-600">
+                            Characters: <span id="inputCount">0</span> | 
+                            <span id="validationStatus" class="font-medium">Status: Ready</span>
+                        </div>
+                    </div>
+                    <!-- Output Section -->
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">JSON Output</h3>
+                            <div class="flex gap-2">
+                                <button onclick="copyOutput()" class="px-3 py-1 text-sm bg-green-500 text-white rounded hover:bg-green-600 transition-colors">
+                                    Copy
+                                </button>
+                                <button onclick="downloadJSON()" class="px-3 py-1 text-sm bg-indigo-500 text-white rounded hover:bg-indigo-600 transition-colors">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-container">
+                            <div class="language-badge">JSON</div>
+                            <textarea 
+                                id="jsonOutput" 
+                                class="code-textarea w-full p-4 border-none" 
+                                placeholder="Converted JSON will appear here..."
+                                rows="15"
+                                readonly
+                            ></textarea>
+                        </div>
+                        <div class="mt-2 text-sm text-gray-600">
+                            Characters: <span id="outputCount">0</span> | 
+                            Size: <span id="outputSize">0 B</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Control Buttons -->
+                <div class="flex flex-wrap gap-4 mt-6 justify-center">
+                    <button onclick="convertXMLToJSON()" class="btn-primary px-8 py-3 text-white font-semibold rounded-lg shadow-lg">
+                        Convert to JSON
+                    </button>
+                    <button onclick="convertJSONToXML()" class="px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-lg hover:bg-green-700 transition-colors">
+                        Convert to XML
+                    </button>
+                    <button onclick="formatJSON()" class="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition-colors">
+                        Format JSON
+                    </button>
+                    <button onclick="minifyJSON()" class="px-8 py-3 bg-orange-600 text-white font-semibold rounded-lg shadow-lg hover:bg-orange-700 transition-colors">
+                        Minify JSON
+                    </button>
+                </div>
+            </div>
+            <!-- How to Use -->
+            <div class="glass-effect rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4">How to Use</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-medium text-white mb-2">Step-by-Step Guide:</h3>
+                        <ol class="list-decimal list-inside text-white/90 space-y-2">
+                            <li>Paste your XML code in the input area</li>
+                            <li>Configure conversion options if needed</li>
+                            <li>Click "Convert to JSON" to transform</li>
+                            <li>Review the JSON output</li>
+                            <li>Copy or download the result</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium text-white mb-2">Conversion Features:</h3>
+                        <ul class="list-disc list-inside text-white/90 space-y-2">
+                            <li>Handles nested XML elements</li>
+                            <li>Preserves XML attributes</li>
+                            <li>Converts arrays automatically</li>
+                            <li>Supports mixed content</li>
+                            <li>Validates XML before conversion</li>
+                            <li>Bidirectional conversion (XML ↔ JSON)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Conversion Examples -->
+            <div class="glass-effect rounded-lg p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-white mb-4">Conversion Examples</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-medium text-white mb-2">XML Input:</h3>
+                        <div class="bg-gray-800 rounded p-4 text-sm text-gray-300 font-mono">
+                            <pre>&lt;user id="123"&gt;
+  &lt;name&gt;John Doe&lt;/name&gt;
+  &lt;email&gt;john@example.com&lt;/email&gt;
+  &lt;roles&gt;
+    &lt;role&gt;admin&lt;/role&gt;
+    &lt;role&gt;user&lt;/role&gt;
+  &lt;/roles&gt;
+&lt;/user&gt;</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium text-white mb-2">JSON Output:</h3>
+                        <div class="bg-gray-800 rounded p-4 text-sm text-gray-300 font-mono">
+                            <pre>{
+  "user": {
+    "@id": "123",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "roles": {
+      "role": ["admin", "user"]
+    }
+  }
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Benefits -->
+            <div class="glass-effect rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-white mb-4">Why Convert XML to JSON?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Web Development</h3>
+                        <p class="text-white/80">JSON is the standard format for modern web APIs and JavaScript applications.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Lighter Weight</h3>
+                        <p class="text-white/80">JSON is more compact than XML, reducing bandwidth usage and improving performance.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Easy Processing</h3>
+                        <p class="text-white/80">JSON can be easily parsed and manipulated in most programming languages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let inputXML = document.getElementById('xmlInput');
+        let outputJSON = document.getElementById('jsonOutput');
+        let inputCount = document.getElementById('inputCount');
+        let outputCount = document.getElementById('outputCount');
+        let outputSize = document.getElementById('outputSize');
+        let validationStatus = document.getElementById('validationStatus');
+        // Update character count
+        inputXML.addEventListener('input', function() {
+            inputCount.textContent = this.value.length;
+        });
+        function convertXMLToJSON() {
+            const input = inputXML.value.trim();
+            if (!input) {
+                alert('Please enter XML content to convert.');
+                return;
+            }
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(input, 'text/xml');
+                // Check for parsing errors
+                const errorNode = xmlDoc.querySelector('parsererror');
+                if (errorNode) {
+                    throw new Error('Invalid XML format: ' + errorNode.textContent);
+                }
+                const includeAttributes = document.getElementById('includeAttributes').checked;
+                const arrayMode = document.getElementById('arrayMode').checked;
+                const prettify = document.getElementById('prettifyOutput').checked;
+                const jsonObj = xmlToJson(xmlDoc.documentElement, includeAttributes, arrayMode);
+                const jsonString = prettify ? JSON.stringify(jsonObj, null, 2) : JSON.stringify(jsonObj);
+                outputJSON.value = jsonString;
+                updateOutputStats();
+                validationStatus.textContent = 'Status: Converted Successfully';
+                validationStatus.className = 'font-medium text-green-600';
+            } catch (error) {
+                alert('Error converting XML to JSON: ' + error.message);
+                validationStatus.textContent = 'Status: Conversion Error';
+                validationStatus.className = 'font-medium text-red-600';
+            }
+        }
+        function xmlToJson(xml, includeAttributes = true, arrayMode = false) {
+            let obj = {};
+            if (xml.nodeType === 1) { // element
+                // Handle attributes
+                if (includeAttributes && xml.attributes.length > 0) {
+                    for (let i = 0; i < xml.attributes.length; i++) {
+                        const attribute = xml.attributes.item(i);
+                        obj["@" + attribute.nodeName] = attribute.nodeValue;
+                    }
+                }
+            } else if (xml.nodeType === 3) { // text
+                obj = xml.nodeValue.trim();
+            }
+            // Handle children
+            if (xml.hasChildNodes()) {
+                for (let i = 0; i < xml.childNodes.length; i++) {
+                    const item = xml.childNodes.item(i);
+                    const nodeName = item.nodeName;
+                    if (typeof obj[nodeName] === "undefined") {
+                        const converted = xmlToJson(item, includeAttributes, arrayMode);
+                        if (converted !== "") {
+                            obj[nodeName] = arrayMode ? [converted] : converted;
+                        }
+                    } else {
+                        if (typeof obj[nodeName].push === "undefined") {
+                            const old = obj[nodeName];
+                            obj[nodeName] = [];
+                            obj[nodeName].push(old);
+                        }
+                        const converted = xmlToJson(item, includeAttributes, arrayMode);
+                        if (converted !== "") {
+                            obj[nodeName].push(converted);
+                        }
+                    }
+                }
+            }
+            return obj;
+        }
+        function convertJSONToXML() {
+            const input = outputJSON.value.trim();
+            if (!input) {
+                alert('Please convert XML to JSON first, or enter JSON content.');
+                return;
+            }
+            try {
+                const jsonObj = JSON.parse(input);
+                const xmlString = jsonToXml(jsonObj);
+                inputXML.value = formatXML(xmlString);
+                inputCount.textContent = inputXML.value.length;
+                validationStatus.textContent = 'Status: Converted to XML';
+                validationStatus.className = 'font-medium text-blue-600';
+            } catch (error) {
+                alert('Error converting JSON to XML: ' + error.message);
+            }
+        }
+        function jsonToXml(obj, rootName = 'root') {
+            let xml = '';
+            for (let prop in obj) {
+                if (obj.hasOwnProperty(prop)) {
+                    if (prop.startsWith('@')) continue; // Skip attributes for now
+                    if (Array.isArray(obj[prop])) {
+                        for (let i = 0; i < obj[prop].length; i++) {
+                            xml += '<' + prop + '>';
+                            if (typeof obj[prop][i] === 'object') {
+                                xml += jsonToXml(obj[prop][i]);
+                            } else {
+                                xml += obj[prop][i];
+                            }
+                            xml += '</' + prop + '>';
+                        }
+                    } else if (typeof obj[prop] === 'object') {
+                        xml += '<' + prop + '>';
+                        xml += jsonToXml(obj[prop]);
+                        xml += '</' + prop + '>';
+                    } else {
+                        xml += '<' + prop + '>' + obj[prop] + '</' + prop + '>';
+                    }
+                }
+            }
+            return xml;
+        }
+        function formatXML(xml) {
+            let formatted = '';
+            let indent = '';
+            const tab = '  ';
+            xml.split(/>\s*</).forEach(function(node) {
+                if (node.match(/^\/\w/)) {
+                    indent = indent.substring(tab.length);
+                }
+                formatted += indent + '<' + node + '>\n';
+                if (node.match(/^<?\w[^>]*[^\/]$/)) {
+                    indent += tab;
+                }
+            });
+            return formatted.substring(1, formatted.length - 2);
+        }
+        function validateXML() {
+            const input = inputXML.value.trim();
+            if (!input) {
+                alert('Please enter XML content to validate.');
+                return;
+            }
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(input, 'text/xml');
+                const errorNode = xmlDoc.querySelector('parsererror');
+                if (errorNode) {
+                    throw new Error('Invalid XML format');
+                }
+                validationStatus.textContent = 'Status: Valid XML';
+                validationStatus.className = 'font-medium text-green-600';
+                alert('XML is valid and well-formed!');
+            } catch (error) {
+                validationStatus.textContent = 'Status: Invalid XML';
+                validationStatus.className = 'font-medium text-red-600';
+                alert('XML validation failed: ' + error.message);
+            }
+        }
+        function formatJSON() {
+            const input = outputJSON.value.trim();
+            if (!input) {
+                alert('No JSON content to format.');
+                return;
+            }
+            try {
+                const parsed = JSON.parse(input);
+                outputJSON.value = JSON.stringify(parsed, null, 2);
+                updateOutputStats();
+            } catch (error) {
+                alert('Error formatting JSON: ' + error.message);
+            }
+        }
+        function minifyJSON() {
+            const input = outputJSON.value.trim();
+            if (!input) {
+                alert('No JSON content to minify.');
+                return;
+            }
+            try {
+                const parsed = JSON.parse(input);
+                outputJSON.value = JSON.stringify(parsed);
+                updateOutputStats();
+            } catch (error) {
+                alert('Error minifying JSON: ' + error.message);
+            }
+        }
+        function updateOutputStats() {
+            const outputLength = outputJSON.value.length;
+            outputCount.textContent = outputLength;
+            // Calculate size in bytes
+            const bytes = new Blob([outputJSON.value]).size;
+            if (bytes < 1024) {
+                outputSize.textContent = bytes + ' B';
+            } else if (bytes < 1024 * 1024) {
+                outputSize.textContent = (bytes / 1024).toFixed(1) + ' KB';
+            } else {
+                outputSize.textContent = (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+            }
+        }
+        function clearInput() {
+            inputXML.value = '';
+            outputJSON.value = '';
+            inputCount.textContent = '0';
+            outputCount.textContent = '0';
+            outputSize.textContent = '0 B';
+            validationStatus.textContent = 'Status: Ready';
+            validationStatus.className = 'font-medium';
+        }
+        function loadSample() {
+            const sampleXML = `<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <book id="1" category="fiction">
+        <title lang="en">The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <year>1925</year>
+        <price currency="USD">12.99</price>
+        <description>A classic American novel about the Jazz Age.</description>
+        <tags>
+            <tag>classic</tag>
+            <tag>american literature</tag>
+            <tag>jazz age</tag>
+        </tags>
+    </book>
+    <book id="2" category="science fiction">
+        <title lang="en">Dune</title>
+        <author>Frank Herbert</author>
+        <year>1965</year>
+        <price currency="USD">15.99</price>
+        <description>A science fiction epic set on the desert planet Arrakis.</description>
+        <tags>
+            <tag>science fiction</tag>
+            <tag>space opera</tag>
+            <tag>desert planet</tag>
+        </tags>
+    </book>
+</catalog>`;
+            inputXML.value = sampleXML;
+            inputCount.textContent = sampleXML.length;
+            validationStatus.textContent = 'Status: Sample Loaded';
+            validationStatus.className = 'font-medium text-blue-600';
+        }
+        function copyOutput() {
+            if (!outputJSON.value) {
+                alert('No output to copy. Please convert XML first.');
+                return;
+            }
+            outputJSON.select();
+            document.execCommand('copy');
+            // Show feedback
+            const button = event.target;
+            const originalText = button.textContent;
+            button.style.backgroundColor = '#10b981';
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.backgroundColor = '#059669';
+            }, 2000);
+        }
+        function downloadJSON() {
+            if (!outputJSON.value) {
+                alert('No output to download. Please convert XML first.');
+                return;
+            }
+            const blob = new Blob([outputJSON.value], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'converted.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔄</span>
+                Related Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="json-to-xml-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">JSON to XML Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert JSON to XML</div></div>
+                </a>
+                <a href="xml-beautifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">✨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">XML Beautifier</div><div style="font-size: 0.85rem; color: #6b7280;">Format XML code</div></div>
+                </a>
+                <a href="json_minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🗜️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">JSON Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify JSON data</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert all units</div></div>
+                </a>
+                <a href="currency-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💱</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Currency Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert currencies</div></div>
+                </a>
+                <a href="text-case-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔤</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Text Case Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert text cases</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

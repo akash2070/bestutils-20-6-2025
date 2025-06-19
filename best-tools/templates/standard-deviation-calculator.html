@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard Deviation Calculator - BestUtils.com | Calculate Variance & Std Dev</title>
+    <meta name="description" content="Calculate the standard deviation and variance of a dataset quickly and accurately. Our online calculator supports both population and sample standard deviation. Essential for statistics, data analysis, and understanding data dispersion.">
+    <meta name="keywords" content="standard deviation calculator, free standard deviation calculator online, variance calculator, statistics calculator, data analysis calculator, math calculator, population standard deviation calculator, sample standard deviation calculator, statistical analysis tool, standard deviation tool, data dispersion calculator, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/standard-deviation-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/standard-deviation-calculator.html">
+    <meta property="og:title" content="Standard Deviation Calculator - Calculate Variance & Std Dev | BestUtils">
+    <meta property="og:description" content="Calculate the standard deviation and variance of a dataset quickly and accurately. Our online calculator supports both population and sample standard deviation. Essential for statistics, data analysis, and understanding data dispersion.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/standard-deviation-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/standard-deviation-calculator.html">
+    <meta name="twitter:title" content="Standard Deviation Calculator - Calculate Variance & Std Dev | BestUtils">
+    <meta name="twitter:description" content="Calculate the standard deviation and variance of a dataset quickly and accurately. Our online calculator supports both population and sample standard deviation.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/standard-deviation-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Standard Deviation Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Standard Deviation Calculator",
+        "description": "Free standard deviation and variance calculator for statistical analysis. Calculate population and sample standard deviation with step-by-step explanations.",
+        "url": "https://bestutils.com/templates/standard-deviation-calculator.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and general layout */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            display: flex;
+            flex-direction: column; /* Stack logo and calculator vertically */
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .logo-section {
+            margin-bottom: 30px; /* Space between logo and calculator */
+            padding: 15px 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px; /* Match calculator width */
+            width: 100%;
+            justify-content: center; /* Center content horizontally */
+        }
+        .logo-main-line {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Smaller gap for top placement */
+        }
+        .logo-text-best {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #0F172A;
+            letter-spacing: -1px;
+        }
+        .logo-text-utils {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #2563EB;
+            letter-spacing: -1px;
+        }
+        .gear-icon {
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .input-group label {
+            font-weight: 600;
+            color: #334155; /* Slate-700 */
+            margin-bottom: 8px;
+            display: block;
+        }
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1; /* Slate-300 */
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #1e293b; /* Slate-800 */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            min-height: 100px; /* Make textarea larger */
+            resize: vertical; /* Allow vertical resizing */
+        }
+        .input-group textarea:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #3b82f6; /* Blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Blue-500 with transparency */
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #2563eb; /* Blue-600 */
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8; /* Blue-700 */
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background-color: #e2e8f0; /* Slate-200 */
+            color: #475569; /* Slate-600 */
+            border: 1px solid #cbd5e1; /* Slate-300 */
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e1; /* Slate-300 */
+            transform: translateY(-1px);
+        }
+        .result-box {
+            background-color: #eff6ff; /* Blue-50 */
+            border: 1px solid #bfdbfe; /* Blue-200 */
+            padding: 16px;
+            border-radius: 8px;
+            text-align: left; /* Align text to left for list of results */
+            font-size: 1.125rem;
+            color: #1e40af; /* Blue-800 */
+            font-weight: 600;
+            word-wrap: break-word; /* Ensure long results wrap */
+        }
+        .result-item {
+            margin-bottom: 8px;
+        }
+        .result-item:last-child {
+            margin-bottom: 0;
+        }
+        .error-message {
+            color: #ef4444; /* Red-500 */
+            font-size: 0.875rem;
+            margin-top: 8px;
+            text-align: center;
+        }
+        /* Responsive adjustments */
+        @media (min-width: 640px) {
+            .btn-group {
+                display: flex;
+                gap: 16px;
+            }
+            .btn {
+                width: auto; /* Allow buttons to size naturally in a row */
+                flex-grow: 1; /* Distribute space evenly */
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="logo-section">
+        <div class="logo-main-line">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g class="gear-icon" transform="translate(50, 50) scale(0.6)">
+                    <circle cx="0" cy="0" r="30" fill="#2563EB"/>
+                    <circle cx="0" cy="0" r="12" fill="#ffffff"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(0)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(60)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(120)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(180)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(240)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(300)"/>
+                </g>
+            </svg>
+            <span class="logo-text-best">Best</span>
+            <span class="logo-text-utils">Utils</span>
+        </div>
+    </div>
+    <div class="calculator-container">
+        <h1 class="text-3xl font-bold text-center text-gray-800">Standard Deviation Calculator</h1>
+        <p class="text-center text-gray-600 mb-4">Calculate the standard deviation and variance of a dataset quickly and accurately. Our online calculator supports both population and sample standard deviation. Essential for statistics, data analysis, and understanding data dispersion.</p>
+        <div class="input-group">
+            <label for="dataInput">Enter Data (comma or space separated numbers):</label>
+            <textarea id="dataInput" placeholder="e.g., 10, 12, 23, 23, 16, 23, 21, 16" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Data Input"></textarea>
+            <p id="dataInput-error" class="error-message hidden">Please enter at least two valid numbers.</p>
+        </div>
+        <div class="input-group">
+            <label for="calculationType">Calculation Type:</label>
+            <select id="calculationType" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Calculation Type">
+                <option value="population">Population Standard Deviation (σ)</option>
+                <option value="sample">Sample Standard Deviation (s)</option>
+            </select>
+        </div>
+        <div class="btn-group">
+            <button id="calculateBtn" class="btn btn-primary">Calculate</button>
+            <button id="clearBtn" class="btn btn-secondary">Clear</button>
+        </div>
+        <div id="result" class="result-box hidden">
+            </div>
+        <script>
+            // Function to get element by ID
+            const getById = (id) => document.getElementById(id);
+            // Get references to elements
+            const dataInput = getById('dataInput');
+            const calculationTypeSelect = getById('calculationType');
+            const calculateBtn = getById('calculateBtn');
+            const clearBtn = getById('clearBtn');
+            const resultDiv = getById('result');
+            // Error message element
+            const dataInputError = getById('dataInput-error');
+            /**
+             * Shows an error message for a given element.
+             * @param {HTMLElement} errorElement - The element for the error message.
+             * @param {string} message - The error message to display.
+             */
+            const showError = (errorElement, message) => {
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            };
+            /**
+             * Hides an error message for a given element.
+             * @param {HTMLElement} errorElement - The element for the error message.
+             */
+            const hideError = (errorElement) => {
+                errorElement.classList.add('hidden');
+                errorElement.textContent = '';
+            };
+            /**
+             * Parses and validates the input data string into an array of numbers.
+             * @param {string} inputString - The raw string input from the textarea.
+             * @param {HTMLElement} errorElement - The error message element.
+             * @returns {number[] | null} An array of numbers or null if invalid.
+             */
+            const parseData = (inputString, errorElement) => {
+                const numbers = inputString
+                    .split(/[\s,]+/) // Split by comma or space
+                    .filter(s => s.trim() !== '') // Remove empty strings
+                    .map(s => parseFloat(s)); // Convert to float
+                // Check for non-numeric values or insufficient data
+                if (numbers.some(isNaN) || numbers.length < 2) {
+                    showError(errorElement, 'Please enter at least two valid numbers, separated by commas or spaces.');
+                    return null;
+                }
+                hideError(errorElement);
+                return numbers;
+            };
+            /**
+             * Calculates the mean (average) of an array of numbers.
+             * @param {number[]} data - Array of numbers.
+             * @returns {number} The mean.
+             */
+            const calculateMean = (data) => {
+                const sum = data.reduce((acc, val) => acc + val, 0);
+                return sum / data.length;
+            };
+            /**
+             * Calculates the variance of an array of numbers.
+             * @param {number[]} data - Array of numbers.
+             * @param {number} mean - The mean of the data.
+             * @param {string} type - 'population' or 'sample'.
+             * @returns {number} The variance.
+             */
+            const calculateVariance = (data, mean, type) => {
+                const squaredDifferencesSum = data.reduce((acc, val) => {
+                    return acc + Math.pow(val - mean, 2);
+                }, 0);
+                const divisor = (type === 'population') ? data.length : (data.length - 1);
+                // Handle case where divisor is 0 (for sample variance with 1 data point)
+                if (divisor === 0) {
+                    return NaN; // Or throw an error, depending on desired behavior
+                }
+                return squaredDifferencesSum / divisor;
+            };
+            /**
+             * Calculates the standard deviation of an array of numbers.
+             * @param {number[]} data - Array of numbers.
+             * @param {string} type - 'population' or 'sample'.
+             * @returns {number} The standard deviation.
+             */
+            const calculateStandardDeviation = (data, type) => {
+                if (data.length < 2 && type === 'sample') {
+                    showError(dataInputError, 'Sample standard deviation requires at least two data points.');
+                    return NaN;
+                }
+                const mean = calculateMean(data);
+                const variance = calculateVariance(data, mean, type);
+                if (isNaN(variance)) {
+                    return NaN; // Propagate NaN if variance calculation failed
+                }
+                return Math.sqrt(variance);
+            };
+            /**
+             * Handles the calculation logic when the calculate button is clicked.
+             */
+            const handleCalculate = () => {
+                // Clear previous errors and results
+                hideError(dataInputError);
+                resultDiv.classList.add('hidden');
+                resultDiv.innerHTML = '';
+                const dataString = dataInput.value;
+                const data = parseData(dataString, dataInputError);
+                if (data === null) {
+                    return; // Error already shown by parseData
+                }
+                const calculationType = calculationTypeSelect.value;
+                const mean = calculateMean(data);
+                const variance = calculateVariance(data, mean, calculationType);
+                const stdDev = calculateStandardDeviation(data, calculationType);
+                if (isNaN(stdDev) || isNaN(variance)) {
+                    // Specific error for sample std dev with < 2 points is handled in calculateStandardDeviation
+                    if (!dataInputError.classList.contains('hidden')) {
+                        // If an error is already displayed from a sub-function, don't overwrite
+                        return;
+                    }
+                    showError(resultDiv, 'Could not calculate. Please check your data and ensure there are no extreme values causing issues.');
+                    return;
+                }
+                // Display the result
+                resultDiv.innerHTML = `
+                    <div class="result-item"><strong>Count (n):</strong> ${data.length}</div>
+                    <div class="result-item"><strong>Sum (Σx):</strong> ${data.reduce((a, b) => a + b, 0).toFixed(2)}</div>
+                    <div class="result-item"><strong>Mean (x̄):</strong> ${mean.toFixed(4)}</div>
+                    <div class="result-item"><strong>Variance (${calculationType === 'population' ? 'σ²' : 's²'}):</strong> ${variance.toFixed(4)}</div>
+                    <div class="result-item"><strong>Standard Deviation (${calculationType === 'population' ? 'σ' : 's'}):</strong> ${stdDev.toFixed(4)}</div>
+                `;
+                resultDiv.classList.remove('hidden');
+            };
+            /**
+             * Clears all input fields and hides results/errors.
+             */
+            const handleClear = () => {
+                dataInput.value = '';
+                calculationTypeSelect.value = 'population'; // Reset to default
+                resultDiv.classList.add('hidden');
+                resultDiv.innerHTML = '';
+                hideError(dataInputError);
+            };
+            // Add event listeners to buttons
+            calculateBtn.addEventListener('click', handleCalculate);
+            clearBtn.addEventListener('click', handleClear);
+            // Add input event listener to clear error as user types
+            dataInput.addEventListener('input', () => hideError(dataInputError));
+        </script>
+        <!-- Internal Linking Section -->
+        <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔢</span>
+                    Related Math Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="statistics_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📈</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Statistics Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Statistical calculations</div></div>
+                    </a>
+                    <a href="average_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Average Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate mean values</div></div>
+                    </a>
+                    <a href="variance_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📈</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Variance Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate data variance</div></div>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                    Popular Math Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                    </a>
+                    <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🧮</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced mathematical functions</div></div>
+                    </a>
+                    <a href="probability_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <span style="font-size: 1.5rem;">🎲</span>
+                        <div><div style="font-weight: 600; color: #1f2937;">Probability Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate probabilities</div></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

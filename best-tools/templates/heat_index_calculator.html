@@ -1,0 +1,659 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heat Index Calculator - Calculate Feels Like Temperature | BESTUTILS</title>
+    <meta name="description" content="Free heat index calculator to determine how hot it feels based on temperature and humidity. Get instant results with safety recommendations and heat warnings.">
+    <meta name="keywords" content="heat index calculator, feels like temperature, humidity calculator, heat safety, weather calculator, apparent temperature">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Heat Index Calculator - Calculate Feels Like Temperature">
+    <meta property="og:description" content="Calculate the heat index and apparent temperature instantly. Get safety recommendations based on temperature and humidity levels.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/heat-index-calculator">
+    <link rel="canonical" href="https://bestutils.com/heat-index-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 50%, #f12711 100%);
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .heat-safe { background: linear-gradient(135deg, #00b894, #00cec9); }
+        .heat-caution { background: linear-gradient(135deg, #fdcb6e, #f39c12); }
+        .heat-extreme-caution { background: linear-gradient(135deg, #e17055, #d63031); }
+        .heat-danger { background: linear-gradient(135deg, #fd79a8, #e84393); }
+        .heat-extreme-danger { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+        .temperature-display {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .humidity-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #3b82f6, #1d4ed8);
+            outline: none;
+        }
+        .humidity-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #3b82f6;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .humidity-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #3b82f6;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="gradient-bg min-h-screen py-8 px-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Heat Index Calculator</h1>
+            <p class="text-xl text-white opacity-90">Calculate how hot it really feels with temperature and humidity</p>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Calculator -->
+            <div class="lg:col-span-2 calculator-card rounded-2xl p-8 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <svg class="w-8 h-8 mr-3 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Calculate Heat Index
+                </h2>
+                <form id="heatForm" class="space-y-8">
+                    <!-- Temperature Input -->
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-4">Temperature</label>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-1">
+                                <div class="relative">
+                                    <input type="number" id="temperature" step="1" min="-50" max="150" 
+                                           class="w-full px-6 py-4 text-2xl border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors text-center" 
+                                           placeholder="Enter temperature" value="85">
+                                    <span class="absolute right-4 top-4 text-2xl text-gray-500" id="tempUnit">°F</span>
+                                </div>
+                            </div>
+                            <div class="flex bg-gray-100 rounded-lg p-1">
+                                <button type="button" id="fahrenheitBtn" class="px-4 py-2 rounded-md bg-orange-500 text-white font-semibold transition-colors">°F</button>
+                                <button type="button" id="celsiusBtn" class="px-4 py-2 rounded-md text-gray-600 font-semibold transition-colors">°C</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Humidity Input -->
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700 mb-4">Relative Humidity</label>
+                        <div class="space-y-4">
+                            <div class="relative">
+                                <input type="range" id="humidity" min="0" max="100" value="65" 
+                                       class="humidity-slider w-full">
+                                <div class="flex justify-between text-sm text-gray-500 mt-2">
+                                    <span>0%</span>
+                                    <span>25%</span>
+                                    <span>50%</span>
+                                    <span>75%</span>
+                                    <span>100%</span>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-3xl font-bold text-blue-600" id="humidityValue">65</span>
+                                <span class="text-xl text-gray-600">%</span>
+                            </div>
+                            <input type="number" id="humidityInput" min="0" max="100" value="65" 
+                                   class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-center" 
+                                   placeholder="Or enter humidity manually">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold py-4 px-8 rounded-xl hover:from-orange-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg text-lg">
+                        Calculate Heat Index
+                    </button>
+                </form>
+            </div>
+            <!-- Results -->
+            <div class="space-y-6">
+                <div id="results" class="heat-safe rounded-2xl p-8 shadow-2xl text-white">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                        <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Heat Index Results
+                    </h3>
+                    <div class="text-center mb-6">
+                        <div class="temperature-display" id="heatIndexValue">91°F</div>
+                        <div class="text-lg opacity-90">Feels Like Temperature</div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="font-semibold">Risk Level:</span>
+                            <span class="font-bold" id="riskLevel">Caution</span>
+                        </div>
+                        <div class="text-sm opacity-90" id="riskDescription">
+                            Exercise caution during prolonged exposure or physical activity
+                        </div>
+                    </div>
+                </div>
+                <!-- Safety Recommendations -->
+                <div class="bg-white rounded-2xl p-6 shadow-2xl">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.732 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        Safety Tips
+                    </h4>
+                    <div id="safetyTips" class="text-gray-700 space-y-2">
+                        <div class="flex items-start space-x-2">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                            <div>Stay hydrated by drinking plenty of water</div>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                            <div>Take frequent breaks if working outdoors</div>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                            <div>Wear light-colored, loose-fitting clothing</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Quick Reference -->
+                <div class="bg-white rounded-2xl p-6 shadow-2xl">
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">Heat Index Scale</h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-4 h-4 bg-green-500 rounded"></div>
+                            <div><strong>80-90°F:</strong> Safe</div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-4 h-4 bg-yellow-500 rounded"></div>
+                            <div><strong>90-105°F:</strong> Caution</div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-4 h-4 bg-orange-500 rounded"></div>
+                            <div><strong>105-130°F:</strong> Extreme Caution</div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-4 h-4 bg-red-500 rounded"></div>
+                            <div><strong>130-150°F:</strong> Danger</div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-4 h-4 bg-purple-500 rounded"></div>
+                            <div><strong>>150°F:</strong> Extreme Danger</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="mt-12 bg-white rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About the Heat Index Calculator</h2>
+            <div class="prose max-w-none text-gray-700">
+                <p class="text-lg mb-6">The Heat Index Calculator determines how hot it actually feels when relative humidity is factored in with the actual air temperature. Also known as the "apparent temperature" or "feels like" temperature, the heat index is crucial for understanding heat-related health risks and making informed decisions about outdoor activities.</p>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">What is Heat Index?</h3>
+                <p class="mb-6">Heat index is a measure of how hot it feels when relative humidity is combined with air temperature. This is important because the human body cools itself through perspiration (sweating). When humidity is high, the rate of evaporation from the body decreases, making it feel hotter than the actual temperature. The heat index was developed by the National Weather Service to help people understand the potential health risks of hot, humid conditions.</p>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">How is Heat Index Calculated?</h3>
+                <p class="mb-4">The heat index is calculated using a complex formula that takes into account both temperature and relative humidity. The calculation involves:</p>
+                <ul class="list-disc list-inside space-y-2 mb-6">
+                    <li>Air temperature (in Fahrenheit or Celsius)</li>
+                    <li>Relative humidity percentage</li>
+                    <li>Mathematical constants that account for human physiological responses</li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Heat Index Categories & Risks</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="heat-safe text-white p-4 rounded-lg">
+                        <div class="font-bold text-lg">80-90°F (27-32°C)</div>
+                        <div class="text-sm font-semibold">SAFE</div>
+                        <div class="text-sm mt-2">Normal outdoor activities are safe for most people</div>
+                    </div>
+                    <div class="heat-caution text-white p-4 rounded-lg">
+                        <div class="font-bold text-lg">90-105°F (32-40°C)</div>
+                        <div class="text-sm font-semibold">CAUTION</div>
+                        <div class="text-sm mt-2">Fatigue possible with prolonged exposure and physical activity</div>
+                    </div>
+                    <div class="heat-extreme-caution text-white p-4 rounded-lg">
+                        <div class="font-bold text-lg">105-130°F (40-54°C)</div>
+                        <div class="text-sm font-semibold">EXTREME CAUTION</div>
+                        <div class="text-sm mt-2">Heat exhaustion and heat cramps possible</div>
+                    </div>
+                    <div class="heat-danger text-white p-4 rounded-lg">
+                        <div class="font-bold text-lg">130-150°F (54-65°C)</div>
+                        <div class="text-sm font-semibold">DANGER</div>
+                        <div class="text-sm mt-2">Heat exhaustion and heat stroke likely</div>
+                    </div>
+                    <div class="heat-extreme-danger text-white p-4 rounded-lg md:col-span-2 lg:col-span-2">
+                        <div class="font-bold text-lg">Above 150°F (65°C)</div>
+                        <div class="text-sm font-semibold">EXTREME DANGER</div>
+                        <div class="text-sm mt-2">Heat stroke highly likely with continued exposure</div>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">How to Use the Calculator</h3>
+                <ol class="list-decimal list-inside space-y-2 mb-6">
+                    <li><strong>Enter Temperature:</strong> Input the current air temperature in Fahrenheit or Celsius</li>
+                    <li><strong>Set Humidity:</strong> Use the slider or input field to set the relative humidity percentage</li>
+                    <li><strong>Get Results:</strong> The calculator instantly shows the heat index and risk level</li>
+                    <li><strong>Review Safety Tips:</strong> Follow the personalized safety recommendations based on your results</li>
+                    <li><strong>Plan Activities:</strong> Use the information to make informed decisions about outdoor activities</li>
+                </ol>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Features</h3>
+                <ul class="list-disc list-inside space-y-2 mb-6">
+                    <li>Real-time heat index calculation as you adjust inputs</li>
+                    <li>Support for both Fahrenheit and Celsius temperature units</li>
+                    <li>Interactive humidity slider with manual input option</li>
+                    <li>Visual risk level indicators with color-coded results</li>
+                    <li>Personalized safety recommendations based on calculated heat index</li>
+                    <li>Mobile-friendly responsive design for use anywhere</li>
+                    <li>Quick reference heat index scale for easy comparison</li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">When to Use This Calculator</h3>
+                <ul class="list-disc list-inside space-y-2 mb-6">
+                    <li><strong>Outdoor Work:</strong> Planning construction, landscaping, or other outdoor labor</li>
+                    <li><strong>Sports & Exercise:</strong> Determining safety for outdoor athletic activities</li>
+                    <li><strong>Event Planning:</strong> Assessing conditions for outdoor events and gatherings</li>
+                    <li><strong>Travel Planning:</strong> Understanding weather conditions at your destination</li>
+                    <li><strong>Health Monitoring:</strong> Especially important for elderly, children, and those with health conditions</li>
+                    <li><strong>Emergency Preparedness:</strong> Understanding heat-related risks during extreme weather</li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Important Safety Information</h3>
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-6">
+                    <h4 class="font-bold text-red-800 mb-2">Heat-Related Illness Warning Signs:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-red-700">
+                        <li><strong>Heat Exhaustion:</strong> Heavy sweating, weakness, nausea, headache, muscle cramps</li>
+                        <li><strong>Heat Stroke:</strong> High body temperature, hot/dry skin, rapid pulse, confusion, loss of consciousness</li>
+                        <li>Seek immediate medical attention for heat stroke symptoms</li>
+                    </ul>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Prevention Tips</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-3">Before Going Outside:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Check the heat index forecast</li>
+                            <li>Plan activities for cooler parts of the day</li>
+                            <li>Wear lightweight, light-colored, loose-fitting clothing</li>
+                            <li>Apply sunscreen with SPF 15 or higher</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-gray-800 mb-3">While Outside:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Drink plenty of fluids, even if you don't feel thirsty</li>
+                            <li>Take frequent breaks in shade or air conditioning</li>
+                            <li>Avoid alcohol and caffeine</li>
+                            <li>Watch for signs of heat illness in yourself and others</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                    <p class="text-blue-800"><strong>Disclaimer:</strong> This calculator provides general information about heat index and should not replace professional meteorological services or medical advice. Always consult official weather services for severe weather warnings and healthcare providers for heat-related health concerns.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let isMetric = false;
+        // DOM elements
+        const temperatureInput = document.getElementById('temperature');
+        const humiditySlider = document.getElementById('humidity');
+        const humidityInput = document.getElementById('humidityInput');
+        const humidityValue = document.getElementById('humidityValue');
+        const fahrenheitBtn = document.getElementById('fahrenheitBtn');
+        const celsiusBtn = document.getElementById('celsiusBtn');
+        const tempUnit = document.getElementById('tempUnit');
+        const resultsDiv = document.getElementById('results');
+        const heatIndexValue = document.getElementById('heatIndexValue');
+        const riskLevel = document.getElementById('riskLevel');
+        const riskDescription = document.getElementById('riskDescription');
+        const safetyTips = document.getElementById('safetyTips');
+        // Temperature unit toggle
+        fahrenheitBtn.addEventListener('click', () => {
+            if (isMetric) {
+                const celsius = parseFloat(temperatureInput.value) || 0;
+                temperatureInput.value = Math.round(celsius * 9/5 + 32);
+                isMetric = false;
+                fahrenheitBtn.classList.add('bg-orange-500', 'text-white');
+                fahrenheitBtn.classList.remove('text-gray-600');
+                celsiusBtn.classList.remove('bg-orange-500', 'text-white');
+                celsiusBtn.classList.add('text-gray-600');
+                tempUnit.textContent = '°F';
+                calculateHeatIndex();
+            }
+        });
+        celsiusBtn.addEventListener('click', () => {
+            if (!isMetric) {
+                const fahrenheit = parseFloat(temperatureInput.value) || 0;
+                temperatureInput.value = Math.round((fahrenheit - 32) * 5/9);
+                isMetric = true;
+                celsiusBtn.classList.add('bg-orange-500', 'text-white');
+                celsiusBtn.classList.remove('text-gray-600');
+                fahrenheitBtn.classList.remove('bg-orange-500', 'text-white');
+                fahrenheitBtn.classList.add('text-gray-600');
+                tempUnit.textContent = '°C';
+                calculateHeatIndex();
+            }
+        });
+        // Humidity slider sync
+        humiditySlider.addEventListener('input', () => {
+            humidityValue.textContent = humiditySlider.value;
+            humidityInput.value = humiditySlider.value;
+            calculateHeatIndex();
+        });
+        humidityInput.addEventListener('input', () => {
+            const value = Math.max(0, Math.min(100, humidityInput.value));
+            humiditySlider.value = value;
+            humidityValue.textContent = value;
+            calculateHeatIndex();
+        });
+        // Temperature input change
+        temperatureInput.addEventListener('input', calculateHeatIndex);
+        // Form submission
+        document.getElementById('heatForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateHeatIndex();
+        });
+        function calculateHeatIndex() {
+            let temp = parseFloat(temperatureInput.value);
+            const humidity = parseFloat(humiditySlider.value);
+            if (!temp || isNaN(humidity)) return;
+            // Convert to Fahrenheit if needed for calculation
+            let tempF = isMetric ? (temp * 9/5) + 32 : temp;
+            // Heat index calculation (Rothfusz equation)
+            let heatIndex;
+            if (tempF < 80) {
+                heatIndex = tempF; // Simple approximation for low temperatures
+            } else {
+                // Full Rothfusz equation
+                const c1 = -42.379;
+                const c2 = 2.04901523;
+                const c3 = 10.14333127;
+                const c4 = -0.22475541;
+                const c5 = -0.00683783;
+                const c6 = -0.05481717;
+                const c7 = 0.00122874;
+                const c8 = 0.00085282;
+                const c9 = -0.00000199;
+                heatIndex = c1 + (c2 * tempF) + (c3 * humidity) + 
+                           (c4 * tempF * humidity) + (c5 * tempF * tempF) + 
+                           (c6 * humidity * humidity) + (c7 * tempF * tempF * humidity) + 
+                           (c8 * tempF * humidity * humidity) + 
+                           (c9 * tempF * tempF * humidity * humidity);
+                // Adjustments for low humidity
+                if (humidity < 13 && tempF >= 80 && tempF <= 112) {
+                    heatIndex -= ((13 - humidity) / 4) * Math.sqrt((17 - Math.abs(tempF - 95)) / 17);
+                }
+                // Adjustments for high humidity
+                if (humidity > 85 && tempF >= 80 && tempF <= 87) {
+                    heatIndex += ((humidity - 85) / 10) * ((87 - tempF) / 5);
+                }
+            }
+            // Convert back to Celsius if needed
+            const displayTemp = isMetric ? Math.round((heatIndex - 32) * 5/9) : Math.round(heatIndex);
+            const unit = isMetric ? '°C' : '°F';
+            // Update display
+            heatIndexValue.textContent = `${displayTemp}${unit}`;
+            // Determine risk level and styling
+            let riskClass, riskText, description, tips;
+            if (heatIndex < 90) {
+                riskClass = 'heat-safe';
+                riskText = 'Safe';
+                description = 'Normal outdoor activities are generally safe';
+                tips = [
+                    'Stay hydrated with regular water intake',
+                    'Normal outdoor activities are safe',
+                    'Monitor weather conditions regularly'
+                ];
+            } else if (heatIndex < 105) {
+                riskClass = 'heat-caution';
+                riskText = 'Caution';
+                description = 'Fatigue possible with prolonged exposure or physical activity';
+                tips = [
+                    'Drink water regularly, even if not thirsty',
+                    'Take frequent breaks in shade',
+                    'Limit strenuous outdoor activities',
+                    'Wear light-colored, loose clothing'
+                ];
+            } else if (heatIndex < 130) {
+                riskClass = 'heat-extreme-caution';
+                riskText = 'Extreme Caution';
+                description = 'Heat exhaustion and heat cramps possible with prolonged exposure';
+                tips = [
+                    'Limit outdoor activities to essential only',
+                    'Drink water frequently and stay in shade',
+                    'Watch for signs of heat exhaustion',
+                    'Avoid strenuous activities',
+                    'Consider postponing outdoor work'
+                ];
+            } else if (heatIndex < 150) {
+                riskClass = 'heat-danger';
+                riskText = 'Danger';
+                description = 'Heat exhaustion and heat stroke likely with continued exposure';
+                tips = [
+                    'Avoid prolonged outdoor exposure',
+                    'Stay in air-conditioned areas when possible',
+                    'Drink water constantly',
+                    'Watch for heat stroke symptoms',
+                    'Seek immediate shelter if feeling unwell'
+                ];
+            } else {
+                riskClass = 'heat-extreme-danger';
+                riskText = 'Extreme Danger';
+                description = 'Heat stroke highly likely with continued exposure';
+                tips = [
+                    'AVOID all outdoor activities',
+                    'Stay indoors with air conditioning',
+                    'Emergency heat protocols should be in effect',
+                    'Check on elderly and vulnerable individuals',
+                    'Seek immediate medical attention for any heat illness symptoms'
+                ];
+            }
+            // Update result card styling
+            resultsDiv.className = `${riskClass} rounded-2xl p-8 shadow-2xl text-white`;
+            riskLevel.textContent = riskText;
+            riskDescription.textContent = description;
+            // Update safety tips
+            safetyTips.innerHTML = tips.map(tip => `
+                <div class="flex items-start space-x-2">
+                    <div class="w-2 h-2 bg-current rounded-full mt-2 opacity-75"></div>
+                    <div>${tip}</div>
+                </div>
+            `).join('');
+        }
+        // Initial calculation
+        calculateHeatIndex();
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🌡️</span>
+                Related Weather Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="dew_point_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💧</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Dew Point Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate dew point</div></div>
+                </a>
+                <a href="wind-chill-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">❄️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Wind Chill Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate wind chill</div></div>
+                </a>
+                <a href="density_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔬</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Density Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate density</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

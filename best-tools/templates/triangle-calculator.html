@@ -1,0 +1,779 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle Calculator - BestUtils.com | Solve Sides, Angles, Area</title>
+    <meta name="description" content="Solve any triangle with our comprehensive Triangle Calculator. Find missing sides, angles, area, and perimeter using SSS, SAS, ASA, or AAS inputs. Perfect for geometry students, engineers, and anyone needing accurate triangle calculations for various applications.">
+    <meta name="keywords" content="triangle calculator, solve triangle, sides of triangle, angles of triangle, triangle area, triangle perimeter, law of sines, law of cosines, geometry, math tools, bestutils">
+    <meta name="author" content="BestUtils.com">
+    <meta name="keywords" content="triangle calculator, free triangle calculator online, triangle area calculator, triangle perimeter calculator, triangle angle calculator, right triangle calculator, geometry calculator, triangle solver, triangle math calculator, triangle tool, bestutils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/triangle-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/triangle-calculator.html">
+    <meta property="og:title" content="Triangle Calculator - Calculate Area, Perimeter, Angles | BestUtils">
+    <meta property="og:description" content="Free triangle calculator to find area, perimeter, angles, and sides of any triangle. Solve right triangles, equilateral, isosceles, and scalene triangles.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/triangle-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/triangle-calculator.html">
+    <meta name="twitter:title" content="Triangle Calculator - Calculate Area, Perimeter, Angles | BestUtils">
+    <meta name="twitter:description" content="Free triangle calculator to find area, perimeter, angles, and sides of any triangle. Solve right triangles, equilateral, isosceles, and scalene triangles.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/triangle-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Triangle Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Triangle Calculator",
+        "description": "Free triangle calculator for calculating area, perimeter, angles, and sides of triangles including right triangles, equilateral, isosceles, and scalene triangles.",
+        "url": "https://bestutils.com/templates/triangle-calculator.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and general layout */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+            display: flex;
+            flex-direction: column; /* Stack logo and calculator vertically */
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .logo-section {
+            margin-bottom: 30px; /* Space between logo and calculator */
+            padding: 15px 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 500px; /* Match calculator width */
+            width: 100%;
+            justify-content: center; /* Center content horizontally */
+        }
+        .logo-main-line {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Smaller gap for top placement */
+        }
+        .logo-text-best {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #0F172A;
+            letter-spacing: -1px;
+        }
+        .logo-text-utils {
+            font-weight: 800;
+            font-size: 32px; /* Smaller font for top placement */
+            color: #2563EB;
+            letter-spacing: -1px;
+        }
+        .gear-icon {
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .input-group label {
+            font-weight: 600;
+            color: #334155; /* Slate-700 */
+            margin-bottom: 8px;
+            display: block;
+        }
+        .input-group input[type="number"],
+        .input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1; /* Slate-300 */
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #1e293b; /* Slate-800 */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .input-group input[type="number"]:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #3b82f6; /* Blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Blue-500 with transparency */
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            width: 100%;
+        }
+        .btn-primary {
+            background-color: #2563eb; /* Blue-600 */
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #1d4ed8; /* Blue-700 */
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background-color: #e2e8f0; /* Slate-200 */
+            color: #475569; /* Slate-600 */
+            border: 1px solid #cbd5e1; /* Slate-300 */
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e1; /* Slate-300 */
+            transform: translateY(-1px);
+        }
+        .result-box {
+            background-color: #eff6ff; /* Blue-50 */
+            border: 1px solid #bfdbfe; /* Blue-200 */
+            padding: 16px;
+            border-radius: 8px;
+            text-align: left; /* Align text to left for list of results */
+            font-size: 1.125rem;
+            color: #1e40af; /* Blue-800 */
+            font-weight: 600;
+            word-wrap: break-word; /* Ensure long results wrap */
+        }
+        .error-message {
+            color: #ef4444; /* Red-500 */
+            font-size: 0.875rem;
+            margin-top: 8px;
+            text-align: center;
+        }
+        /* Responsive adjustments */
+        @media (min-width: 640px) {
+            .btn-group {
+                display: flex;
+                gap: 16px;
+            }
+            .btn {
+                width: auto; /* Allow buttons to size naturally in a row */
+                flex-grow: 1; /* Distribute space evenly */
+            }
+        }
+        .angle-units {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        .angle-units label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+            color: #475569;
+        }
+        .angle-units input[type="radio"] {
+            width: auto; /* Override 100% width for radio buttons */
+            margin-right: 5px;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="logo-section">
+        <div class="logo-main-line">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g class="gear-icon" transform="translate(50, 50) scale(0.6)">
+                    <circle cx="0" cy="0" r="30" fill="#2563EB"/>
+                    <circle cx="0" cy="0" r="12" fill="#ffffff"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(0)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(60)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(120)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(180)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(240)"/>
+                    <path d="M-18 30 L-12 36 L12 36 L18 30 L18 -30 L12 -36 L-12 -36 L-18 -30 Z" fill="#2563EB" transform="rotate(300)"/>
+                </g>
+            </svg>
+            <span class="logo-text-best">Best</span>
+            <span class="logo-text-utils">Utils</span>
+        </div>
+    </div>
+    <div class="calculator-container">
+        <h1 class="text-3xl font-bold text-center text-gray-800">Triangle Calculator</h1>
+        <p class="text-center text-gray-600 mb-4">Solve any triangle with our comprehensive Triangle Calculator. Find missing sides, angles, area, and perimeter using SSS, SAS, ASA, or AAS inputs. Perfect for geometry students, engineers, and anyone needing accurate triangle calculations for various applications.</p>
+        <div class="input-group">
+            <label>Angle Units:</label>
+            <div class="angle-units">
+                <label><input type="radio" name="angleUnits" value="degrees" id="degrees" checked> Degrees</label>
+                <label><input type="radio" name="angleUnits" value="radians" id="radians"> Radians</label>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="sideA">Side a:</label>
+            <input type="number" id="sideA" placeholder="e.g., 5" step="0.01" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Side a">
+            <p id="sideA-error" class="error-message hidden"></p>
+        </div>
+        <div class="input-group">
+            <label for="sideB">Side b:</label>
+            <input type="number" id="sideB" placeholder="e.g., 7" step="0.01" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Side b">
+            <p id="sideB-error" class="error-message hidden"></p>
+        </div>
+        <div class="input-group">
+            <label for="sideC">Side c:</label>
+            <input type="number" id="sideC" placeholder="e.g., 10" step="0.01" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Side c">
+            <p id="sideC-error" class="error-message hidden"></p>
+        </div>
+        <div class="input-group">
+            <label for="angleA">Angle A:</label>
+            <input type="number" id="angleA" placeholder="e.g., 60" step="0.01" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Angle A">
+            <p id="angleA-error" class="error-message hidden"></p>
+        </div>
+        <div class="input-group">
+            <label for="angleB">Angle B:</label>
+            <input type="number" id="angleB" placeholder="e.g., 45" step="0.01" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Angle B">
+            <p id="angleB-error" class="error-message hidden"></p>
+        </div>
+        <div class="input-group">
+            <label for="angleC">Angle C:</label>
+            <input type="number" id="angleC" placeholder="e.g., 75" step="0.01" class="focus:ring-blue-500 focus:border-blue-500" aria-label="Angle C">
+            <p id="angleC-error" class="error-message hidden"></p>
+        </div>
+        <div class="btn-group">
+            <button id="calculateBtn" class="btn btn-primary">Calculate Triangle</button>
+            <button id="clearBtn" class="btn btn-secondary">Clear</button>
+        </div>
+        <div id="result" class="result-box hidden">
+            </div>
+        <script>
+            // Function to get element by ID
+            const getById = (id) => document.getElementById(id);
+            // Get references to elements
+            const sideAInput = getById('sideA');
+            const sideBInput = getById('sideB');
+            const sideCInput = getById('sideC');
+            const angleAInput = getById('angleA');
+            const angleBInput = getById('angleB');
+            const angleCInput = getById('angleC');
+            const degreesRadio = getById('degrees');
+            const radiansRadio = getById('radians');
+            const calculateBtn = getById('calculateBtn');
+            const clearBtn = getById('clearBtn');
+            const resultDiv = getById('result');
+            // Error message elements
+            const sideAError = getById('sideA-error');
+            const sideBError = getById('sideB-error');
+            const sideCError = getById('sideC-error');
+            const angleAError = getById('angleA-error');
+            const angleBError = getById('angleB-error');
+            const angleCError = getById('angleC-error');
+            const PI = Math.PI;
+            /**
+             * Shows an error message for a given input field.
+             * @param {HTMLElement} errorElement - The paragraph element for the error message.
+             * @param {string} message - The error message to display.
+             */
+            const showError = (errorElement, message) => {
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            };
+            /**
+             * Hides an error message for a given input field.
+             * @param {HTMLElement} errorElement - The paragraph element for the error message.
+             */
+            const hideError = (errorElement) => {
+                errorElement.classList.add('hidden');
+                errorElement.textContent = '';
+            };
+            /**
+             * Validates a numeric input field.
+             * @param {HTMLInputElement} inputElement - The input element to validate.
+             * @param {HTMLElement} errorElement - The paragraph element for the error message.
+             * @param {string} errorMessage - The error message to display if invalid.
+             * @param {number} min - Minimum allowed value.
+             * @returns {number | null} The parsed number if valid and positive, otherwise null.
+             */
+            const validateInput = (inputElement, errorElement, errorMessage, min = 0) => {
+                const value = parseFloat(inputElement.value);
+                if (inputElement.value === '' || isNaN(value) || value <= min) {
+                    showError(errorElement, errorMessage);
+                    return null;
+                }
+                hideError(errorElement);
+                return value;
+            };
+            /**
+             * Converts degrees to radians.
+             * @param {number} degrees - Angle in degrees.
+             * @returns {number} Angle in radians.
+             */
+            const toRadians = (degrees) => degrees * (PI / 180);
+            /**
+             * Converts radians to degrees.
+             * @param {number} radians - Angle in radians.
+             * @returns {number} Angle in degrees.
+             */
+            const toDegrees = (radians) => radians * (180 / PI);
+            /**
+             * Formats an angle based on the selected unit (degrees or radians).
+             * @param {number} angle - Angle value.
+             * @returns {string} Formatted angle string.
+             */
+            const formatAngle = (angle) => {
+                if (degreesRadio.checked) {
+                    return `${angle.toFixed(2)}°`;
+                } else {
+                    return `${angle.toFixed(4)} rad`;
+                }
+            };
+            /**
+             * Formats a side length.
+             * @param {number} side - Side length.
+             * @returns {string} Formatted side string.
+             */
+            const formatSide = (side) => {
+                return side.toFixed(2);
+            };
+            /**
+             * Solves a triangle given three sides (SSS).
+             * @param {number} a - Side a.
+             * @param {number} b - Side b.
+             * @param {number} c - Side c.
+             * @returns {{A: number, B: number, C: number, area: number, perimeter: number} | null} Solved triangle properties or null on error.
+             */
+            const solveSSS = (a, b, c) => {
+                // Triangle Inequality Theorem
+                if (!((a + b > c) && (a + c > b) && (b + c > a))) {
+                    showError(resultDiv, 'Invalid triangle: Sum of two sides must be greater than the third side.');
+                    return null;
+                }
+                // Law of Cosines to find angles
+                let A_rad = Math.acos((b * b + c * c - a * a) / (2 * b * c));
+                let B_rad = Math.acos((a * a + c * c - b * b) / (2 * a * c));
+                let C_rad = PI - A_rad - B_rad; // Sum of angles in a triangle is PI radians (180 degrees)
+                // Heron's Formula for Area
+                const s = (a + b + c) / 2; // Semi-perimeter
+                const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+                const perimeter = a + b + c;
+                return {
+                    A: degreesRadio.checked ? toDegrees(A_rad) : A_rad,
+                    B: degreesRadio.checked ? toDegrees(B_rad) : B_rad,
+                    C: degreesRadio.checked ? toDegrees(C_rad) : C_rad,
+                    area: area,
+                    perimeter: perimeter
+                };
+            };
+            /**
+             * Solves a triangle given two sides and the included angle (SAS).
+             * @param {number} a - Side a.
+             * @param {number} b - Side b.
+             * @param {number} C_input - Angle C (included angle).
+             * @param {string} angleUnit - 'degrees' or 'radians'.
+             * @returns {{c: number, A: number, B: number, area: number, perimeter: number} | null} Solved triangle properties or null on error.
+             */
+            const solveSAS = (a, b, C_input, angleUnit) => {
+                let C_rad = (angleUnit === 'degrees') ? toRadians(C_input) : C_input;
+                if (C_input <= 0 || C_input >= (angleUnit === 'degrees' ? 180 : PI)) {
+                    showError(resultDiv, 'Invalid angle C. Must be between 0 and 180 degrees (or 0 and PI radians).');
+                    return null;
+                }
+                // Law of Cosines to find side c
+                const c = Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(C_rad));
+                if (isNaN(c) || c <= 0) {
+                    showError(resultDiv, 'Calculation error for side c. Check inputs.');
+                    return null;
+                }
+                // Law of Sines to find angle A
+                let A_rad = Math.asin((a * Math.sin(C_rad)) / c);
+                // Handle ambiguous case for A (if A_rad is obtuse)
+                // This is generally not an issue for SAS if C is acute.
+                // If C is obtuse, A and B must be acute.
+                if (isNaN(A_rad)) {
+                    showError(resultDiv, 'Calculation error for angle A. Check inputs.');
+                    return null;
+                }
+                // Angle B
+                let B_rad = PI - A_rad - C_rad;
+                // Check for valid angles (sum to 180/PI)
+                if (A_rad <= 0 || B_rad <= 0 || C_rad <= 0 || A_rad >= PI || B_rad >= PI || C_rad >= PI) {
+                    showError(resultDiv, 'Invalid angles calculated. Check inputs.');
+                    return null;
+                }
+                // Area: 0.5 * a * b * sin(C)
+                const area = 0.5 * a * b * Math.sin(C_rad);
+                const perimeter = a + b + c;
+                return {
+                    c: c,
+                    A: degreesRadio.checked ? toDegrees(A_rad) : A_rad,
+                    B: degreesRadio.checked ? toDegrees(B_rad) : B_rad,
+                    C: degreesRadio.checked ? toDegrees(C_rad) : C_rad,
+                    area: area,
+                    perimeter: perimeter
+                };
+            };
+            /**
+             * Solves a triangle given two angles and the included side (ASA).
+             * @param {number} A_input - Angle A.
+             * @param {number} C_input - Angle C.
+             * @param {number} b - Side b (included between A and C).
+             * @param {string} angleUnit - 'degrees' or 'radians'.
+             * @returns {{a: number, c: number, B: number, area: number, perimeter: number} | null} Solved triangle properties or null on error.
+             */
+            const solveASA = (A_input, C_input, b, angleUnit) => {
+                let A_rad = (angleUnit === 'degrees') ? toRadians(A_input) : A_input;
+                let C_rad = (angleUnit === 'degrees') ? toRadians(C_input) : C_input;
+                if (A_input <= 0 || C_input <= 0 || A_input >= (angleUnit === 'degrees' ? 180 : PI) || C_input >= (angleUnit === 'degrees' ? 180 : PI)) {
+                    showError(resultDiv, 'Invalid angle input. Angles must be between 0 and 180 degrees (or 0 and PI radians).');
+                    return null;
+                }
+                let B_rad = PI - A_rad - C_rad;
+                if (B_rad <= 0 || B_rad >= PI) {
+                    showError(resultDiv, 'Invalid angles: Sum of A and C is too large or too small.');
+                    return null;
+                }
+                // Law of Sines to find sides a and c
+                const a = (b * Math.sin(A_rad)) / Math.sin(B_rad);
+                const c = (b * Math.sin(C_rad)) / Math.sin(B_rad);
+                if (isNaN(a) || a <= 0 || isNaN(c) || c <= 0) {
+                    showError(resultDiv, 'Calculation error for sides. Check inputs.');
+                    return null;
+                }
+                // Area: 0.5 * a * b * sin(C) or 0.5 * b * c * sin(A)
+                const area = 0.5 * a * b * Math.sin(C_rad);
+                const perimeter = a + b + c;
+                return {
+                    a: a,
+                    c: c,
+                    B: degreesRadio.checked ? toDegrees(B_rad) : B_rad,
+                    A: degreesRadio.checked ? toDegrees(A_rad) : A_rad,
+                    C: degreesRadio.checked ? toDegrees(C_rad) : C_rad,
+                    area: area,
+                    perimeter: perimeter
+                };
+            };
+            /**
+             * Solves a triangle given two angles and a non-included side (AAS).
+             * @param {number} A_input - Angle A.
+             * @param {number} B_input - Angle B.
+             * @param {number} a - Side a (opposite Angle A).
+             * @param {string} angleUnit - 'degrees' or 'radians'.
+             * @returns {{b: number, c: number, C: number, area: number, perimeter: number} | null} Solved triangle properties or null on error.
+             */
+            const solveAAS = (A_input, B_input, a, angleUnit) => {
+                let A_rad = (angleUnit === 'degrees') ? toRadians(A_input) : A_input;
+                let B_rad = (angleUnit === 'degrees') ? toRadians(B_input) : B_input;
+                if (A_input <= 0 || B_input <= 0 || A_input >= (angleUnit === 'degrees' ? 180 : PI) || B_input >= (angleUnit === 'degrees' ? 180 : PI)) {
+                    showError(resultDiv, 'Invalid angle input. Angles must be between 0 and 180 degrees (or 0 and PI radians).');
+                    return null;
+                }
+                let C_rad = PI - A_rad - B_rad;
+                if (C_rad <= 0 || C_rad >= PI) {
+                    showError(resultDiv, 'Invalid angles: Sum of A and B is too large or too small.');
+                    return null;
+                }
+                // Law of Sines to find sides b and c
+                const b = (a * Math.sin(B_rad)) / Math.sin(A_rad);
+                const c = (a * Math.sin(C_rad)) / Math.sin(A_rad);
+                if (isNaN(b) || b <= 0 || isNaN(c) || c <= 0) {
+                    showError(resultDiv, 'Calculation error for sides. Check inputs.');
+                    return null;
+                }
+                // Area: 0.5 * a * b * sin(C)
+                const area = 0.5 * a * b * Math.sin(C_rad);
+                const perimeter = a + b + c;
+                return {
+                    b: b,
+                    c: c,
+                    C: degreesRadio.checked ? toDegrees(C_rad) : C_rad,
+                    A: degreesRadio.checked ? toDegrees(A_rad) : A_rad,
+                    B: degreesRadio.checked ? toDegrees(B_rad) : B_rad,
+                    area: area,
+                    perimeter: perimeter
+                };
+            };
+            /**
+             * Handles the calculation logic when the calculate button is clicked.
+             */
+            const handleCalculate = () => {
+                // Clear previous errors and results
+                [sideAError, sideBError, sideCError, angleAError, angleBError, angleCError].forEach(hideError);
+                resultDiv.classList.add('hidden');
+                resultDiv.textContent = '';
+                const a = validateInput(sideAInput, sideAError, 'Enter a positive value for Side a.', 0);
+                const b = validateInput(sideBInput, sideBError, 'Enter a positive value for Side b.', 0);
+                const c = validateInput(sideCInput, sideCError, 'Enter a positive value for Side c.', 0);
+                const A = validateInput(angleAInput, angleAError, 'Enter a positive angle for A.', 0);
+                const B = validateInput(angleBInput, angleBError, 'Enter a positive angle for B.', 0);
+                const C = validateInput(angleCInput, angleCError, 'Enter a positive angle for C.', 0);
+                const angleUnit = degreesRadio.checked ? 'degrees' : 'radians';
+                let result = null;
+                let calculationType = '';
+                // Determine which case to solve (SSS, SAS, ASA, AAS)
+                // Prioritize SSS if all three sides are given
+                if (a && b && c && !A && !B && !C) {
+                    result = solveSSS(a, b, c);
+                    calculationType = 'SSS';
+                }
+                // SAS cases (two sides and included angle)
+                else if (a && c && B && !b && !A && !C) { // a, c, B
+                    result = solveSAS(a, c, B, angleUnit); // Using a, c, B to find b, A, C
+                    calculationType = 'SAS (a,c,B)';
+                }
+                else if (a && b && C && !c && !A && !B) { // a, b, C
+                    result = solveSAS(a, b, C, angleUnit); // Using a, b, C to find c, A, B
+                    calculationType = 'SAS (a,b,C)';
+                }
+                else if (b && c && A && !a && !B && !C) { // b, c, A
+                    result = solveSAS(b, c, A, angleUnit); // Using b, c, A to find a, B, C
+                    calculationType = 'SAS (b,c,A)';
+                }
+                // ASA cases (two angles and included side)
+                else if (A && B && c && !a && !b && !C) { // A, B, c
+                    result = solveASA(A, B, c, angleUnit); // Using A, B, c to find a, b, C
+                    calculationType = 'ASA (A,B,c)';
+                }
+                else if (A && C && b && !a && !c && !B) { // A, C, b
+                    result = solveASA(A, C, b, angleUnit); // Using A, C, b to find a, c, B
+                    calculationType = 'ASA (A,C,b)';
+                }
+                else if (B && C && a && !b && !c && !A) { // B, C, a
+                    result = solveASA(B, C, a, angleUnit); // Using B, C, a to find b, c, A
+                    calculationType = 'ASA (B,C,a)';
+                }
+                // AAS cases (two angles and a non-included side)
+                else if (A && B && a && !b && !c && !C) { // A, B, a
+                    result = solveAAS(A, B, a, angleUnit); // Using A, B, a to find b, c, C
+                    calculationType = 'AAS (A,B,a)';
+                }
+                else if (A && B && b && !a && !c && !C) { // A, B, b
+                    result = solveAAS(B, A, b, angleUnit); // Swap A, B and a, b for AAS (B,A,b)
+                    calculationType = 'AAS (A,B,b)';
+                }
+                else if (A && C && a && !b && !c && !B) { // A, C, a
+                    result = solveAAS(A, C, a, angleUnit); // Using A, C, a to find b, c, B
+                    calculationType = 'AAS (A,C,a)';
+                }
+                else if (A && C && c && !a && !b && !B) { // A, C, c
+                    result = solveAAS(C, A, c, angleUnit); // Swap A, C and a, c for AAS (C,A,c)
+                    calculationType = 'AAS (A,C,c)';
+                }
+                else if (B && C && b && !a && !c && !A) { // B, C, b
+                    result = solveAAS(B, C, b, angleUnit); // Using B, C, b to find a, c, A
+                    calculationType = 'AAS (B,C,b)';
+                }
+                else if (B && C && c && !a && !b && !A) { // B, C, c
+                    result = solveAAS(C, B, c, angleUnit); // Swap B, C and b, c for AAS (C,B,c)
+                    calculationType = 'AAS (B,C,c)';
+                }
+                else {
+                    showError(resultDiv, 'Please provide enough valid inputs to solve a triangle (e.g., 3 sides, 2 sides and included angle, or 2 angles and a side).');
+                    return;
+                }
+                if (result) {
+                    resultDiv.innerHTML = `
+                        <div class="mb-2"><strong>Case Solved:</strong> ${calculationType}</div>
+                        <div class="mb-2"><strong>Sides:</strong></div>
+                        <div>a = ${formatSide(result.a || a)}</div>
+                        <div>b = ${formatSide(result.b || b)}</div>
+                        <div>c = ${formatSide(result.c || c)}</div>
+                        <div class="mb-2 mt-2"><strong>Angles:</strong></div>
+                        <div>A = ${formatAngle(result.A || A)}</div>
+                        <div>B = ${formatAngle(result.B || B)}</div>
+                        <div>C = ${formatAngle(result.C || C)}</div>
+                        <div class="mb-2 mt-2"><strong>Area:</strong> ${result.area.toFixed(2)}</div>
+                        <div><strong>Perimeter:</strong> ${result.perimeter.toFixed(2)}</div>
+                    `;
+                    resultDiv.classList.remove('hidden');
+                }
+            };
+            /**
+             * Clears all input fields and hides results/errors.
+             */
+            const handleClear = () => {
+                sideAInput.value = '';
+                sideBInput.value = '';
+                sideCInput.value = '';
+                angleAInput.value = '';
+                angleBInput.value = '';
+                angleCInput.value = '';
+                degreesRadio.checked = true; // Reset to degrees
+                resultDiv.classList.add('hidden');
+                resultDiv.textContent = '';
+                [sideAError, sideBError, sideCError, angleAError, angleBError, angleCError].forEach(hideError);
+            };
+            // Add event listeners to buttons
+            calculateBtn.addEventListener('click', handleCalculate);
+            clearBtn.addEventListener('click', handleClear);
+            // Add input event listeners to clear errors as user types
+            sideAInput.addEventListener('input', () => hideError(sideAError));
+            sideBInput.addEventListener('input', () => hideError(sideBError));
+            sideCInput.addEventListener('input', () => hideError(sideCError));
+            angleAInput.addEventListener('input', () => hideError(angleAError));
+            angleBInput.addEventListener('input', () => hideError(angleBError));
+            angleCInput.addEventListener('input', () => hideError(angleCError));
+        </script>
+    </div>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">📐</span>
+                Related Geometry Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="surface_area_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Surface Area Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate 3D surface areas</div></div>
+                </a>
+                <a href="volume_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Volume Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate 3D volumes</div></div>
+                </a>
+                <a href="slope_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Slope Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate line slope</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

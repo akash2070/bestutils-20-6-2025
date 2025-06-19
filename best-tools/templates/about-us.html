@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about BestUtils.com - your go-to platform for the best free online tools and utilities. Discover our mission, tools, and how to use them effectively.">
+    <title>About Us | BestUtils - Free Online Tools & Utilities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+        
+        .logo-text .highlight {
+            color: #FCD34D;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
+        .tool-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <header class="hero-gradient text-white min-h-screen flex flex-col justify-center items-center px-4 py-8">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-yellow-300">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Your Ultimate <span class="text-yellow-300">Toolkit</span> for Digital Success
+            </h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90 leading-relaxed">
+                Discover powerful, free online utilities designed to boost your productivity, streamline workflows, and solve everyday digital challenges.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#tools" class="inline-block bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-yellow-50 transition-all duration-300 transform hover:scale-105">
+                    Explore Tools
+                </a>
+                <a href="#how-to-use" class="inline-block border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300">
+                    How to Use
+                </a>
+            </div>
+        </div>
+        
+        <!-- Floating elements for visual appeal -->
+        <div class="absolute top-20 left-10 opacity-20">
+            <div class="w-20 h-20 bg-yellow-300 rounded-full animate-pulse"></div>
+        </div>
+        <div class="absolute bottom-20 right-10 opacity-20">
+            <div class="w-16 h-16 bg-white rounded-full animate-bounce"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-16">
+        <!-- Mission Section -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Mission</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Empowering everyone with simple, powerful, and completely free online tools that solve real-world problems.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover text-center">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Speed & Efficiency</h3>
+                    <p class="text-gray-600">Lightning-fast tools that deliver results instantly, saving you valuable time.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover text-center">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Precision & Accuracy</h3>
+                    <p class="text-gray-600">Reliable results you can trust, backed by rigorous testing and validation.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg card-hover text-center">
+                    <div class="text-4xl mb-4">💡</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">User-First Design</h3>
+                    <p class="text-gray-600">Intuitive interfaces designed for everyone, from beginners to professionals.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Categories -->
+        <section id="tools" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Tool Categories</h2>
+                <p class="text-xl text-gray-600">Comprehensive utilities for every digital need</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Finance Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">💰</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Finance Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Financial calculators and planning tools</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Loan Calculator</span>
+                        <span class="tool-tag">Mortgage</span>
+                        <span class="tool-tag">Investment</span>
+                        <span class="tool-tag">Tax Calculator</span>
+                    </div>
+                </div>
+                
+                <!-- Health Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">🏥</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Health Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Health and fitness calculators</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">BMI Calculator</span>
+                        <span class="tool-tag">Body Fat</span>
+                        <span class="tool-tag">Pregnancy</span>
+                        <span class="tool-tag">Calorie</span>
+                    </div>
+                </div>
+                
+                <!-- Math Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">🧮</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Math Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Mathematical and scientific calculators</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Scientific Calc</span>
+                        <span class="tool-tag">Statistics</span>
+                        <span class="tool-tag">Geometry</span>
+                        <span class="tool-tag">Algebra</span>
+                    </div>
+                </div>
+                
+                <!-- Text Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">📝</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Text Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Text processing and analysis tools</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Word Counter</span>
+                        <span class="tool-tag">Case Converter</span>
+                        <span class="tool-tag">Text Analyzer</span>
+                        <span class="tool-tag">Regex Tester</span>
+                    </div>
+                </div>
+                
+                <!-- Conversion Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">🔄</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Conversion Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Format and unit converters</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Unit Converter</span>
+                        <span class="tool-tag">PDF Converter</span>
+                        <span class="tool-tag">Image Converter</span>
+                        <span class="tool-tag">Video Converter</span>
+                    </div>
+                </div>
+                
+                <!-- Construction Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">🏗️</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Construction Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Construction and building calculators</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Concrete</span>
+                        <span class="tool-tag">Roofing</span>
+                        <span class="tool-tag">Tile</span>
+                        <span class="tool-tag">Stair</span>
+                    </div>
+                </div>
+                
+                <!-- Automotive Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">🚗</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Automotive Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Automotive and vehicle calculators</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Auto Loan</span>
+                        <span class="tool-tag">Tire Size</span>
+                        <span class="tool-tag">Gas Mileage</span>
+                        <span class="tool-tag">Fuel Cost</span>
+                    </div>
+                </div>
+                
+                <!-- Time Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">⏰</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Time Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Time and date calculators</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Date Calculator</span>
+                        <span class="tool-tag">Time Zone</span>
+                        <span class="tool-tag">Duration</span>
+                        <span class="tool-tag">Stopwatch</span>
+                    </div>
+                </div>
+                
+                <!-- Utility Tools -->
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon text-2xl mr-3">⚙️</div>
+                        <h3 class="text-xl font-semibold text-gray-800">Utility Tools</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">General utility and productivity tools</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tool-tag">Password Generator</span>
+                        <span class="tool-tag">QR Code</span>
+                        <span class="tool-tag">UUID Generator</span>
+                        <span class="tool-tag">File Hash</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section id="how-to-use" class="mb-20">
+            <div class="bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl p-8 md:p-12 text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">How to Use Our Tools</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="step-number mx-auto mb-4">1</div>
+                        <h3 class="text-xl font-semibold mb-2">Choose Your Tool</h3>
+                        <p class="opacity-90">Browse our categories and select the tool that fits your needs.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="step-number mx-auto mb-4">2</div>
+                        <h3 class="text-xl font-semibold mb-2">Input Your Data</h3>
+                        <p class="opacity-90">Enter text, upload files, or input values as required.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="step-number mx-auto mb-4">3</div>
+                        <h3 class="text-xl font-semibold mb-2">Process & Generate</h3>
+                        <p class="opacity-90">Click the process button and let our tool work its magic.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="step-number mx-auto mb-4">4</div>
+                        <h3 class="text-xl font-semibold mb-2">Download Results</h3>
+                        <p class="opacity-90">Copy, download, or use your results immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Choose BestUtils?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="flex items-start space-x-4">
+                    <div class="feature-icon text-3xl">🔒</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">100% Secure</h3>
+                        <p class="text-gray-600">All processing happens locally in your browser. Your data never leaves your device.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="feature-icon text-3xl">💰</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Completely Free</h3>
+                        <p class="text-gray-600">No hidden costs, subscriptions, or premium features. All tools are free forever.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="feature-icon text-3xl">📱</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Mobile Optimized</h3>
+                        <p class="text-gray-600">Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="feature-icon text-3xl">⚡</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Lightning Fast</h3>
+                        <p class="text-gray-600">Instant results with optimized algorithms and efficient processing.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="feature-icon text-3xl">🌐</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">No Registration</h3>
+                        <p class="text-gray-600">Start using tools immediately without creating accounts or providing personal info.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="feature-icon text-3xl">🔄</div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Regular Updates</h3>
+                        <p class="text-gray-600">Continuously improved and updated with new features and tools.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="text-center bg-white rounded-2xl p-8 md:p-12 shadow-lg">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Ready to Get Started?</h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Join thousands of users who trust BestUtils for their daily digital tasks. Start exploring our powerful tools today!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../index.html" class="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105">
+                    Explore All Tools
+                </a>
+                <a href="../sitemap.html" class="inline-block border-2 border-purple-500 text-purple-500 px-8 py-4 rounded-full font-semibold hover:bg-purple-500 hover:text-white transition-all duration-300">
+                    Browse Categories
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="site-logo-container mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-yellow-300">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                    <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                </svg>
+                <span class="logo-text text-2xl">BEST<span class="highlight">UTILS</span></span>
+            </div>
+            
+            <p class="text-gray-400 mb-4 max-w-2xl mx-auto">
+                BestUtils.com - Your trusted platform for free, powerful online utilities. Simplifying digital tasks, one tool at a time.
+            </p>
+            
+            <div class="border-t border-gray-800 pt-6 mt-8">
+                <p class="text-gray-500">© 2025 BestUtils.com — All rights reserved. Made with ❤️ for the community.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

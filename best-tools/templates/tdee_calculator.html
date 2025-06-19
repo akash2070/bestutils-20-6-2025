@@ -1,0 +1,523 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDEE Calculator - Total Daily Energy Expenditure | BestUtils</title>
+    <meta name="description" content="Calculate your Total Daily Energy Expenditure (TDEE) with our free, accurate calculator. Determine daily calorie needs for weight loss, maintenance, or muscle gain based on your activity level.">
+    <meta name="keywords" content="tdee calculator, free tdee calculator online, total daily energy expenditure calculator, daily calorie needs calculator, bmr tdee calculator, metabolism calculator, calorie expenditure calculator, weight loss calorie calculator, maintenance calorie calculator, muscle gain calorie calculator, activity level calculator, calorie burn calculator, energy expenditure calculator, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/tdee_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/tdee_calculator.html">
+    <meta property="og:title" content="TDEE Calculator - Total Daily Energy Expenditure | BestUtils">
+    <meta property="og:description" content="Calculate your Total Daily Energy Expenditure (TDEE) with our free, accurate calculator. Determine daily calorie needs for weight loss, maintenance, or muscle gain.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/tdee-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/tdee_calculator.html">
+    <meta name="twitter:title" content="TDEE Calculator - Total Daily Energy Expenditure | BestUtils">
+    <meta name="twitter:description" content="Calculate your Total Daily Energy Expenditure (TDEE) with our free, accurate calculator. Determine daily calorie needs for weight loss, maintenance, or muscle gain.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/tdee-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils TDEE Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "TDEE Calculator",
+        "description": "Free Total Daily Energy Expenditure (TDEE) calculator to determine daily calorie needs based on BMR and activity level for weight management.",
+        "url": "https://bestutils.com/templates/tdee_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-highlight {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                TDEE Calculator
+            </h1>
+            <p class="text-xl text-white/90 max-w-2xl mx-auto">
+                Calculate your Total Daily Energy Expenditure to determine how many calories you burn per day
+            </p>
+        </div>
+        <!-- Calculator -->
+        <div class="max-w-4xl mx-auto">
+            <div class="calculator-card rounded-2xl shadow-2xl p-6 md:p-8 mb-8">
+                <form id="tdeeForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Personal Information -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Personal Information</h3>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                                <div class="flex space-x-4">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="gender" value="male" checked class="mr-2 text-blue-600">
+                                        <span>Male</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="gender" value="female" class="mr-2 text-blue-600">
+                                        <span>Female</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="age" class="block text-sm font-medium text-gray-700 mb-2">Age (years)</label>
+                                <input type="number" id="age" min="1" max="120" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="height" class="block text-sm font-medium text-gray-700 mb-2">Height (cm)</label>
+                                <input type="number" id="height" min="50" max="300" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="weight" class="block text-sm font-medium text-gray-700 mb-2">Weight (kg)</label>
+                                <input type="number" id="weight" min="20" max="500" step="0.1" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        <!-- Activity Level -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Activity Level</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="activity" value="1.2" checked class="mt-1 mr-3 text-blue-600">
+                                    <div>
+                                        <div class="font-medium">Sedentary</div>
+                                        <div class="text-sm text-gray-600">Little or no exercise</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="activity" value="1.375" class="mt-1 mr-3 text-blue-600">
+                                    <div>
+                                        <div class="font-medium">Lightly Active</div>
+                                        <div class="text-sm text-gray-600">Light exercise 1-3 days/week</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="activity" value="1.55" class="mt-1 mr-3 text-blue-600">
+                                    <div>
+                                        <div class="font-medium">Moderately Active</div>
+                                        <div class="text-sm text-gray-600">Moderate exercise 3-5 days/week</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="activity" value="1.725" class="mt-1 mr-3 text-blue-600">
+                                    <div>
+                                        <div class="font-medium">Very Active</div>
+                                        <div class="text-sm text-gray-600">Hard exercise 6-7 days/week</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <input type="radio" name="activity" value="1.9" class="mt-1 mr-3 text-blue-600">
+                                    <div>
+                                        <div class="font-medium">Extremely Active</div>
+                                        <div class="text-sm text-gray-600">Very hard exercise/physical job</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-8 rounded-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                        Calculate TDEE
+                    </button>
+                </form>
+                <!-- Results -->
+                <div id="results" class="hidden mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Your Results</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-600 mb-1">BMR (Basal Metabolic Rate)</div>
+                            <div id="bmrResult" class="text-3xl font-bold result-highlight">0</div>
+                            <div class="text-sm text-gray-600">calories/day</div>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-600 mb-1">TDEE (Total Daily Energy Expenditure)</div>
+                            <div id="tdeeResult" class="text-3xl font-bold result-highlight">0</div>
+                            <div class="text-sm text-gray-600">calories/day</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid md:grid-cols-3 gap-4 text-center">
+                        <div class="p-3 bg-white rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-600">Weight Loss</div>
+                            <div id="weightLoss" class="text-lg font-semibold text-red-600">0</div>
+                            <div class="text-xs text-gray-500">-500 cal/day</div>
+                        </div>
+                        <div class="p-3 bg-white rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-600">Maintenance</div>
+                            <div id="maintenance" class="text-lg font-semibold text-green-600">0</div>
+                            <div class="text-xs text-gray-500">TDEE</div>
+                        </div>
+                        <div class="p-3 bg-white rounded-lg shadow-sm">
+                            <div class="text-sm text-gray-600">Weight Gain</div>
+                            <div id="weightGain" class="text-lg font-semibold text-blue-600">0</div>
+                            <div class="text-xs text-gray-500">+500 cal/day</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Description and Instructions -->
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="calculator-card rounded-2xl shadow-xl p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">What is TDEE?</h2>
+                    <p class="text-gray-600 mb-4">
+                        Total Daily Energy Expenditure (TDEE) is the total number of calories you burn in a day, including your Basal Metabolic Rate (BMR) and calories burned through physical activity.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        TDEE is calculated by multiplying your BMR by an activity factor that corresponds to your lifestyle and exercise habits. This gives you a more accurate picture of your daily caloric needs.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2">Key Components:</h4>
+                        <ul class="text-sm text-blue-700 space-y-1">
+                            <li>• BMR: Calories burned at rest</li>
+                            <li>• Activity: Calories from exercise</li>
+                            <li>• TEF: Thermal effect of food</li>
+                            <li>• NEAT: Non-exercise activity</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="calculator-card rounded-2xl shadow-xl p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</div>
+                            <p class="text-gray-600">Enter your personal information (gender, age, height, weight)</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</div>
+                            <p class="text-gray-600">Select your activity level based on your weekly exercise routine</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</div>
+                            <p class="text-gray-600">Click "Calculate TDEE" to see your results</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">4</div>
+                            <p class="text-gray-600">Use the recommendations for weight loss, maintenance, or gain</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Additional Information -->
+            <div class="calculator-card rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Understanding Your Results</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-red-600 mb-2">Weight Loss</h3>
+                        <p class="text-gray-600 text-sm">
+                            To lose weight, consume 500 calories less than your TDEE. This creates a deficit that typically results in losing 1 pound per week.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-green-600 mb-2">Maintenance</h3>
+                        <p class="text-gray-600 text-sm">
+                            To maintain your current weight, consume calories equal to your TDEE. This balances energy intake with energy expenditure.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-blue-600 mb-2">Weight Gain</h3>
+                        <p class="text-gray-600 text-sm">
+                            To gain weight, consume 500 calories more than your TDEE. This surplus typically results in gaining 1 pound per week.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('tdeeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Get form values
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById('age').value);
+            const height = parseInt(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const activity = parseFloat(document.querySelector('input[name="activity"]:checked').value);
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+            // Calculate TDEE
+            const tdee = bmr * activity;
+            // Calculate calorie recommendations
+            const weightLoss = Math.round(tdee - 500);
+            const maintenance = Math.round(tdee);
+            const weightGain = Math.round(tdee + 500);
+            // Display results
+            document.getElementById('bmrResult').textContent = Math.round(bmr);
+            document.getElementById('tdeeResult').textContent = Math.round(tdee);
+            document.getElementById('weightLoss').textContent = weightLoss;
+            document.getElementById('maintenance').textContent = maintenance;
+            document.getElementById('weightGain').textContent = weightGain;
+            // Show results with animation
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.classList.add('fade-in');
+            // Scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+        // Add input validation
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value < 0) this.value = 0;
+            });
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="bmr-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔥</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMR Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Basal metabolic rate</div>
+                    </div>
+                </a>
+                <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🍎</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                    </div>
+                </a>
+                <a href="macro_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🥗</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Macro Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate macronutrients</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

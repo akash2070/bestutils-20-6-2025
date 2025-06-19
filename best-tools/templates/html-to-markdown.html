@@ -1,0 +1,444 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML to Markdown Converter - Convert HTML Code to Markdown</title>
+    <meta name="description" content="Convert HTML code to Markdown with our free online HTML to Markdown converter. Easily transform HTML tags to Markdown syntax for simplified formatting.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="multi-calc-container">
+        <h1>HTML to Markdown Converter</h1>
+        <div class="multi-calc-tool">
+            <div class="multi-calc-description">
+                <p>Our HTML to Markdown converter helps you transform HTML code into Markdown format. Markdown is a lightweight markup language with plain text formatting syntax, designed to be easily converted to HTML and many other formats. This tool is useful for content writers, developers, and anyone who wants to simplify HTML content into a more readable and easier-to-edit format.</p>
+            </div>
+            <!-- Ad placeholder -->
+            <div id="ads">Advertisement Space</div>
+            <div class="multi-calc-form">
+                <div class="multi-calc-form-group">
+                    <label for="html-input">Enter HTML Code:</label>
+                    <textarea id="html-input" class="multi-calc-input" style="min-height: 200px; width: 100%; resize: vertical; font-family: monospace;"></textarea>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <button id="convert-html-btn" class="multi-calc-button">Convert to Markdown</button>
+                    <button id="clear-html-btn" class="multi-calc-button secondary">Clear HTML</button>
+                </div>
+                <div id="html-converter-error" style="color: red; display: none;"></div>
+                <div class="multi-calc-form-group">
+                    <label for="markdown-output">Markdown Result:</label>
+                    <textarea id="markdown-output" class="multi-calc-input" style="min-height: 200px; width: 100%; resize: vertical; font-family: monospace;" readonly></textarea>
+                </div>
+                <div style="text-align: right;">
+                    <button id="copy-markdown-btn" class="multi-calc-button secondary">Copy Markdown</button>
+                </div>
+            </div>
+            <div id="copy-notification" style="display: none; background-color: #2ecc71; color: white; padding: 10px; text-align: center; margin-top: 10px; border-radius: 4px;">
+                Markdown copied to clipboard!
+            </div>
+            <div style="margin-top: 20px; background-color: #f5f5f5; padding: 15px; border-radius: 6px;">
+                <h4>Supported HTML Elements:</h4>
+                <table style="width: 100%; margin-top: 10px; border-collapse: collapse;">
+                    <tr>
+                        <th style="text-align: left; padding: 5px; border-bottom: 1px solid #ddd;">HTML</th>
+                        <th style="text-align: left; padding: 5px; border-bottom: 1px solid #ddd;">Markdown</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;h1&gt;Heading&lt;/h1&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;"># Heading</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;h2&gt;Heading&lt;/h2&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">## Heading</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;strong&gt;Bold&lt;/strong&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">**Bold**</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;em&gt;Italic&lt;/em&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">*Italic*</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;a href="url"&gt;Link&lt;/a&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">[Link](url)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">* Item</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;ol&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ol&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">1. Item</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;blockquote&gt;Quote&lt;/blockquote&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">> Quote</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;pre&gt;&lt;code&gt;Code&lt;/code&gt;&lt;/pre&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">```<br>Code<br>```</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">&lt;hr&gt;</td>
+                        <td style="padding: 5px; border-bottom: 1px solid #ddd;">---</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const htmlInput = document.getElementById('html-input');
+        const markdownOutput = document.getElementById('markdown-output');
+        const convertHtmlBtn = document.getElementById('convert-html-btn');
+        const clearHtmlBtn = document.getElementById('clear-html-btn');
+        const copyMarkdownBtn = document.getElementById('copy-markdown-btn');
+        const htmlConverterError = document.getElementById('html-converter-error');
+        const copyNotification = document.getElementById('copy-notification');
+        if (!htmlInput || !markdownOutput || !convertHtmlBtn || !clearHtmlBtn || 
+            !copyMarkdownBtn || !htmlConverterError || !copyNotification) return;
+        // Convert HTML to Markdown
+        convertHtmlBtn.addEventListener('click', function() {
+            const html = htmlInput.value.trim();
+            if (!html) {
+                showError('Please enter HTML to convert.');
+                return;
+            }
+            try {
+                const markdown = convertHtmlToMarkdown(html);
+                markdownOutput.value = markdown;
+                hideError();
+            } catch (error) {
+                showError('Error converting HTML to Markdown: ' + error.message);
+            }
+        });
+        // Clear HTML input
+        clearHtmlBtn.addEventListener('click', function() {
+            htmlInput.value = '';
+            markdownOutput.value = '';
+            hideError();
+            htmlInput.focus();
+        });
+        // Copy Markdown to clipboard
+        copyMarkdownBtn.addEventListener('click', function() {
+            if (!markdownOutput.value) {
+                showError('No Markdown to copy.');
+                return;
+            }
+            markdownOutput.select();
+            document.execCommand('copy');
+            // Show notification
+            copyNotification.style.display = 'block';
+            // Hide notification after 2 seconds
+            setTimeout(() => {
+                copyNotification.style.display = 'none';
+            }, 2000);
+        });
+        // Show error message
+        function showError(message) {
+            htmlConverterError.textContent = message;
+            htmlConverterError.style.display = 'block';
+        }
+        // Hide error message
+        function hideError() {
+            htmlConverterError.textContent = '';
+            htmlConverterError.style.display = 'none';
+        }
+        // Function to convert HTML to Markdown
+        function convertHtmlToMarkdown(html) {
+            // Create a temporary element to parse the HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html.trim();
+            // Convert to Markdown
+            return parseNode(tempDiv);
+            // Recursive function to parse HTML nodes
+            function parseNode(node) {
+                let markdown = '';
+                // Process all child nodes
+                for (const childNode of node.childNodes) {
+                    if (childNode.nodeType === Node.TEXT_NODE) {
+                        // Text node
+                        markdown += childNode.textContent;
+                    } else if (childNode.nodeType === Node.ELEMENT_NODE) {
+                        // Element node
+                        const tagName = childNode.tagName.toLowerCase();
+                        switch (tagName) {
+                            case 'h1':
+                                markdown += '# ' + parseNode(childNode) + '\n\n';
+                                break;
+                            case 'h2':
+                                markdown += '## ' + parseNode(childNode) + '\n\n';
+                                break;
+                            case 'h3':
+                                markdown += '### ' + parseNode(childNode) + '\n\n';
+                                break;
+                            case 'h4':
+                                markdown += '#### ' + parseNode(childNode) + '\n\n';
+                                break;
+                            case 'h5':
+                                markdown += '##### ' + parseNode(childNode) + '\n\n';
+                                break;
+                            case 'h6':
+                                markdown += '###### ' + parseNode(childNode) + '\n\n';
+                                break;
+                            case 'p':
+                                markdown += parseNode(childNode) + '\n\n';
+                                break;
+                            case 'br':
+                                markdown += '\n';
+                                break;
+                            case 'strong':
+                            case 'b':
+                                markdown += '**' + parseNode(childNode) + '**';
+                                break;
+                            case 'em':
+                            case 'i':
+                                markdown += '*' + parseNode(childNode) + '*';
+                                break;
+                            case 'a':
+                                const href = childNode.getAttribute('href') || '';
+                                markdown += '[' + parseNode(childNode) + '](' + href + ')';
+                                break;
+                            case 'img':
+                                const src = childNode.getAttribute('src') || '';
+                                const alt = childNode.getAttribute('alt') || '';
+                                markdown += '![' + alt + '](' + src + ')';
+                                break;
+                            case 'code':
+                                if (childNode.parentNode.tagName.toLowerCase() === 'pre') {
+                                    // Code block
+                                    markdown += '```\n' + childNode.textContent + '\n```\n\n';
+                                } else {
+                                    // Inline code
+                                    markdown += '`' + childNode.textContent + '`';
+                                }
+                                break;
+                            case 'pre':
+                                if (childNode.firstChild && childNode.firstChild.tagName && 
+                                    childNode.firstChild.tagName.toLowerCase() === 'code') {
+                                    // Already handled by the code case
+                                    markdown += parseNode(childNode);
+                                } else {
+                                    markdown += '```\n' + childNode.textContent + '\n```\n\n';
+                                }
+                                break;
+                            case 'blockquote':
+                                // Split by lines and add '> ' to each line
+                                const quoteContent = parseNode(childNode).split('\n')
+                                    .map(line => '> ' + line)
+                                    .join('\n');
+                                markdown += quoteContent + '\n\n';
+                                break;
+                            case 'ul':
+                            case 'ol':
+                                markdown += parseList(childNode, tagName === 'ol') + '\n';
+                                break;
+                            case 'hr':
+                                markdown += '---\n\n';
+                                break;
+                            case 'table':
+                                markdown += parseTable(childNode) + '\n\n';
+                                break;
+                            default:
+                                // For other elements, just process their children
+                                markdown += parseNode(childNode);
+                        }
+                    }
+                }
+                return markdown;
+            }
+            // Function to parse lists
+            function parseList(listNode, isOrdered, indent = '') {
+                let markdown = '';
+                let itemCount = 0;
+                for (const childNode of listNode.childNodes) {
+                    if (childNode.nodeType === Node.ELEMENT_NODE) {
+                        const tagName = childNode.tagName.toLowerCase();
+                        if (tagName === 'li') {
+                            itemCount++;
+                            const prefix = isOrdered ? `${indent}${itemCount}. ` : `${indent}* `;
+                            // Check if li contains a nested list
+                            let hasNestedList = false;
+                            let itemContent = '';
+                            for (const liChild of childNode.childNodes) {
+                                if (liChild.nodeType === Node.ELEMENT_NODE) {
+                                    const liChildTag = liChild.tagName.toLowerCase();
+                                    if (liChildTag === 'ul' || liChildTag === 'ol') {
+                                        hasNestedList = true;
+                                        // Process content before the nested list
+                                        const beforeList = childNode.cloneNode(true);
+                                        // Remove the nested list
+                                        Array.from(beforeList.querySelectorAll('ul, ol')).forEach(el => el.remove());
+                                        itemContent += parseNode(beforeList);
+                                        // Add the nested list
+                                        const nestedIndent = indent + '    ';
+                                        itemContent += '\n' + parseList(liChild, liChildTag === 'ol', nestedIndent);
+                                    }
+                                }
+                            }
+                            if (!hasNestedList) {
+                                itemContent = parseNode(childNode);
+                            }
+                            markdown += prefix + itemContent.trim() + '\n';
+                        }
+                    }
+                }
+                return markdown;
+            }
+            // Function to parse tables
+            function parseTable(tableNode) {
+                let markdown = '';
+                const rows = tableNode.querySelectorAll('tr');
+                const headerRow = rows[0];
+                if (!headerRow) return markdown;
+                // Get header cells
+                const headerCells = headerRow.querySelectorAll('th, td');
+                const headerTexts = Array.from(headerCells).map(cell => parseNode(cell).trim() || ' ');
+                // Create header row
+                markdown += '| ' + headerTexts.join(' | ') + ' |\n';
+                // Create separator row
+                markdown += '| ' + headerTexts.map(() => '---').join(' | ') + ' |\n';
+                // Create data rows
+                for (let i = 1; i < rows.length; i++) {
+                    const cells = rows[i].querySelectorAll('td');
+                    const cellTexts = Array.from(cells).map(cell => parseNode(cell).trim() || ' ');
+                    if (cellTexts.length > 0) {
+                        markdown += '| ' + cellTexts.join(' | ') + ' |\n';
+                    }
+                }
+                return markdown;
+            }
+        }
+    });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔄</span>
+                Related Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="markdown-to-html-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📝</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Markdown to HTML</div><div style="font-size: 0.85rem; color: #6b7280;">Convert Markdown to HTML</div></div>
+                </a>
+                <a href="html-beautifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">✨</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">HTML Beautifier</div><div style="font-size: 0.85rem; color: #6b7280;">Format HTML code</div></div>
+                </a>
+                <a href="html-minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🗜️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">HTML Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify HTML code</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert all units</div></div>
+                </a>
+                <a href="currency-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💱</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Currency Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert currencies</div></div>
+                </a>
+                <a href="text-case-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔤</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Text Case Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert text cases</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

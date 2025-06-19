@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>File Size Estimator - Calculate File Sizes for Different Content Types</title>
+    <meta name="description" content="Estimate file sizes for text documents, images, audio, and video with our free online file size calculator. Plan storage and bandwidth requirements.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="multi-calc-container">
+        <h1>File Size Estimator</h1>
+        
+        <div class="multi-calc-tool">
+            <div class="multi-calc-description">
+                <p>Our File Size Estimator helps you calculate approximate file sizes for different types of content. Whether you're planning storage requirements, estimating bandwidth needs, or preparing for data transfers, this tool provides quick estimates for text documents, images, audio recordings, and video files based on their parameters. Understand how much space your content will require before creating it.</p>
+            </div>
+            
+            <!-- Ad placeholder -->
+            <div id="ads">Advertisement Space</div>
+            
+            <div class="multi-calc-form">
+                <div class="multi-calc-form-group">
+                    <label for="file-type">Content Type:</label>
+                    <select id="file-type" class="multi-calc-input">
+                        <option value="text">Text / Document</option>
+                        <option value="image">Image / Photo</option>
+                        <option value="audio">Audio / Music</option>
+                        <option value="video">Video</option>
+                        <option value="database">Database</option>
+                    </select>
+                </div>
+                
+                <!-- Text Parameters -->
+                <div id="text-params" class="file-params">
+                    <div class="multi-calc-form-group">
+                        <label for="text-words">Number of Words:</label>
+                        <input type="number" id="text-words" min="0" value="1000" class="multi-calc-input">
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="text-format">File Format:</label>
+                        <select id="text-format" class="multi-calc-input">
+                            <option value="plain">Plain Text (.txt)</option>
+                            <option value="rich" selected>Rich Text / Word (.docx)</option>
+                            <option value="pdf">PDF Document</option>
+                            <option value="html">HTML Document</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label>Includes:</label>
+                        <div style="margin-top: 5px;">
+                            <input type="checkbox" id="text-formatting">
+                            <label for="text-formatting">Formatting (bold, italic, colors)</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="text-images">
+                            <label for="text-images">Images/Graphics</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="text-tables">
+                            <label for="text-tables">Tables/Charts</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image Parameters -->
+                <div id="image-params" class="file-params" style="display: none;">
+                    <div class="multi-calc-form-group">
+                        <label for="image-width">Width (pixels):</label>
+                        <input type="number" id="image-width" min="1" value="1920" class="multi-calc-input">
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="image-height">Height (pixels):</label>
+                        <input type="number" id="image-height" min="1" value="1080" class="multi-calc-input">
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="image-format">File Format:</label>
+                        <select id="image-format" class="multi-calc-input">
+                            <option value="jpg" selected>JPEG (.jpg)</option>
+                            <option value="png">PNG (.png)</option>
+                            <option value="gif">GIF (.gif)</option>
+                            <option value="tiff">TIFF (.tiff)</option>
+                            <option value="raw">RAW</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="image-quality">Quality/Compression:</label>
+                        <select id="image-quality" class="multi-calc-input">
+                            <option value="low">Low (High Compression)</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High (Low Compression)</option>
+                            <option value="lossless">Lossless</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Audio Parameters -->
+                <div id="audio-params" class="file-params" style="display: none;">
+                    <div class="multi-calc-form-group">
+                        <label for="audio-duration">Duration (minutes):</label>
+                        <input type="number" id="audio-duration" min="0.1" step="0.1" value="3.5" class="multi-calc-input">
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="audio-format">File Format:</label>
+                        <select id="audio-format" class="multi-calc-input">
+                            <option value="mp3" selected>MP3</option>
+                            <option value="aac">AAC</option>
+                            <option value="wav">WAV (Uncompressed)</option>
+                            <option value="flac">FLAC (Lossless)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="audio-bitrate">Bitrate:</label>
+                        <select id="audio-bitrate" class="multi-calc-input">
+                            <option value="96">Low (96 kbps)</option>
+                            <option value="128">Standard (128 kbps)</option>
+                            <option value="192" selected>High Quality (192 kbps)</option>
+                            <option value="320">Audiophile (320 kbps)</option>
+                            <option value="1411">CD Quality (1,411 kbps)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="audio-channels">Channels:</label>
+                        <select id="audio-channels" class="multi-calc-input">
+                            <option value="mono">Mono (1 channel)</option>
+                            <option value="stereo" selected>Stereo (2 channels)</option>
+                            <option value="5.1">5.1 Surround</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Video Parameters -->
+                <div id="video-params" class="file-params" style="display: none;">
+                    <div class="multi-calc-form-group">
+                        <label for="video-duration">Duration (minutes):</label>
+                        <input type="number" id="video-duration" min="0.1" step="0.1" value="5" class="multi-calc-input">
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="video-resolution">Resolution:</label>
+                        <select id="video-resolution" class="multi-calc-input">
+                            <option value="720p">HD (1280x720)</option>
+                            <option value="1080p" selected>Full HD (1920x1080)</option>
+                            <option value="1440p">QHD (2560x1440)</option>
+                            <option value="4k">4K (3840x2160)</option>
+                            <option value="8k">8K (7680x4320)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="video-format">File Format:</label>
+                        <select id="video-format" class="multi-calc-input">
+                            <option value="mp4" selected>MP4 (H.264)</option>
+                            <option value="h265">MP4 (H.265/HEVC)</option>
+                            <option value="webm">WebM (VP9)</option>
+                            <option value="av1">AV1</option>
+                            <option value="raw">Uncompressed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="video-framerate">Frame Rate:</label>
+                        <select id="video-framerate" class="multi-calc-input">
+                            <option value="24">24 fps</option>
+                            <option value="30" selected>30 fps</option>
+                            <option value="60">60 fps</option>
+                            <option value="120">120 fps</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="video-bitrate">Quality:</label>
+                        <select id="video-bitrate" class="multi-calc-input">
+                            <option value="low">Low (Lower Bitrate)</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High (Higher Bitrate)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Database Parameters -->
+                <div id="database-params" class="file-params" style="display: none;">
+                    <div class="multi-calc-form-group">
+                        <label for="db-records">Number of Records:</label>
+                        <input type="number" id="db-records" min="1" value="10000" class="multi-calc-input">
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="db-fields">Fields per Record:</label>
+                        <input type="number" id="db-fields" min="1" value="10" class="multi-calc-input">
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label for="db-type">Data Types:</label>
+                        <select id="db-type" class="multi-calc-input">
+                            <option value="simple" selected>Simple (mostly text/numbers)</option>
+                            <option value="mixed">Mixed (includes dates, boolean)</option>
+                            <option value="complex">Complex (includes BLOBs/multimedia)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="multi-calc-form-group">
+                        <label>Includes:</label>
+                        <div style="margin-top: 5px;">
+                            <input type="checkbox" id="db-indexes" checked>
+                            <label for="db-indexes">Indexes</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="db-relations">
+                            <label for="db-relations">Relations/Foreign Keys</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="file-size-estimator-error" style="color: red; display: none; margin: 15px 0;"></div>
+                
+                <button id="estimate-size-btn" class="multi-calc-button">Estimate File Size</button>
+            </div>
+            
+            <div id="file-size-result" class="multi-calc-result">
+                <h3>Estimated File Size:</h3>
+                
+                <div style="margin-top: 15px; text-align: center;">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: #3498db;" id="estimated-size">0 KB</div>
+                    <div style="color: #666; margin-top: 5px;" id="size-range">Range: 0 KB - 0 KB</div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4>Size Comparisons:</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="background-color: #f5f5f5; padding: 10px; border-radius: 6px; text-align: center;">
+                                <div style="margin-bottom: 5px;">Email Attachment:</div>
+                                <div id="email-compatibility" style="font-weight: bold; color: #2ecc71;">✓ Good</div>
+                            </div>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="background-color: #f5f5f5; padding: 10px; border-radius: 6px; text-align: center;">
+                                <div style="margin-bottom: 5px;">Mobile Data:</div>
+                                <div id="mobile-compatibility" style="font-weight: bold; color: #2ecc71;">✓ Good</div>
+                            </div>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="background-color: #f5f5f5; padding: 10px; border-radius: 6px; text-align: center;">
+                                <div style="margin-bottom: 5px;">Download Time (4G):</div>
+                                <div id="download-time" style="font-weight: bold;">< 1 second</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; background-color: #f5f5f5; padding: 15px; border-radius: 6px; font-size: 0.9em;">
+                    <p><strong>Note:</strong> This is an estimate based on typical compression rates and file characteristics. Actual file sizes may vary depending on specific content and compression algorithms.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div style="margin-top: 30px; padding: 20px; background: #e6f3ff; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">How to Use the File Size Estimator</h2>
+            <ol style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Select File Type:</strong> Choose from Text, Image, Audio, Video, or Database</li>
+                <li><strong>Enter Parameters:</strong> Fill in the specific parameters for your chosen file type</li>
+                <li><strong>Configure Options:</strong> Set quality, format, and additional features as needed</li>
+                <li><strong>Estimate Size:</strong> Click "Estimate File Size" to calculate the projected file size</li>
+                <li><strong>Review Results:</strong> See estimated size, range, and compatibility indicators</li>
+                <li><strong>Plan Accordingly:</strong> Use the information for storage, bandwidth, or sharing decisions</li>
+            </ol>
+        </div>
+
+        <!-- Tips Section -->
+        <div style="margin-top: 20px; padding: 20px; background: #f0fff4; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">File Size Estimation Tips</h2>
+            <ul style="line-height: 1.8; color: #555; padding-left: 20px;">
+                <li><strong>Storage Planning:</strong> Estimate storage requirements for projects and backups</li>
+                <li><strong>Bandwidth Calculation:</strong> Plan data transfer times and costs</li>
+                <li><strong>Email Compatibility:</strong> Check if files will fit within email attachment limits</li>
+                <li><strong>Mobile Optimization:</strong> Ensure files are suitable for mobile data usage</li>
+                <li><strong>Compression Benefits:</strong> Compare different formats to optimize file sizes</li>
+                <li><strong>Quality vs Size:</strong> Balance quality settings with file size requirements</li>
+                <li><strong>Batch Processing:</strong> Estimate total sizes for multiple files or large datasets</li>
+            </ul>
+        </div>
+
+        <!-- Additional Information -->
+        <div style="margin-top: 20px; padding: 20px; background: #fff5f5; border-radius: 8px;">
+            <h2 style="color: #2d3748; margin-bottom: 15px;">File Size Information</h2>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Estimation Accuracy:</strong> Results are based on industry-standard compression rates and typical file characteristics.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Compression Variability:</strong> Actual sizes may vary ±20-30% depending on content complexity and compression algorithms.
+            </p>
+            <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+                <strong>Format Efficiency:</strong> Modern formats (H.265, AV1, WebP) offer better compression than legacy formats.
+            </p>
+            <p style="line-height: 1.6; color: #555;">
+                <strong>Use Cases:</strong> Perfect for project planning, storage budgeting, and bandwidth estimation.
+            </p>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileType = document.getElementById('file-type');
+        const estimateSizeBtn = document.getElementById('estimate-size-btn');
+        const fileSizeResult = document.getElementById('file-size-result');
+        const estimatedSize = document.getElementById('estimated-size');
+        const sizeRange = document.getElementById('size-range');
+        const emailCompatibility = document.getElementById('email-compatibility');
+        const mobileCompatibility = document.getElementById('mobile-compatibility');
+        const downloadTime = document.getElementById('download-time');
+        const errorElement = document.getElementById('file-size-estimator-error');
+        
+        if (!fileType || !estimateSizeBtn) return;
+        
+        // Show/hide parameter sections based on file type
+        fileType.addEventListener('change', function() {
+            // Hide all parameter sections
+            document.querySelectorAll('.file-params').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show the selected section
+            const selectedType = this.value;
+            document.getElementById(`${selectedType}-params`).style.display = 'block';
+        });
+        
+        // Hide results initially
+        fileSizeResult.style.display = 'none';
+        
+        // Estimate file size button click handler
+        estimateSizeBtn.addEventListener('click', function() {
+            const selectedType = fileType.value;
+            let sizeInBytes = 0;
+            let minSizeInBytes = 0;
+            let maxSizeInBytes = 0;
+            
+            hideError();
+            
+            try {
+                switch (selectedType) {
+                    case 'text':
+                        const textResult = estimateTextSize();
+                        sizeInBytes = textResult.average;
+                        minSizeInBytes = textResult.min;
+                        maxSizeInBytes = textResult.max;
+                        break;
+                    case 'image':
+                        const imageResult = estimateImageSize();
+                        sizeInBytes = imageResult.average;
+                        minSizeInBytes = imageResult.min;
+                        maxSizeInBytes = imageResult.max;
+                        break;
+                    case 'audio':
+                        const audioResult = estimateAudioSize();
+                        sizeInBytes = audioResult.average;
+                        minSizeInBytes = audioResult.min;
+                        maxSizeInBytes = audioResult.max;
+                        break;
+                    case 'video':
+                        const videoResult = estimateVideoSize();
+                        sizeInBytes = videoResult.average;
+                        minSizeInBytes = videoResult.min;
+                        maxSizeInBytes = videoResult.max;
+                        break;
+                    case 'database':
+                        const dbResult = estimateDatabaseSize();
+                        sizeInBytes = dbResult.average;
+                        minSizeInBytes = dbResult.min;
+                        maxSizeInBytes = dbResult.max;
+                        break;
+                }
+                
+                // Format and display size
+                estimatedSize.textContent = formatFileSize(sizeInBytes);
+                sizeRange.textContent = `Range: ${formatFileSize(minSizeInBytes)} - ${formatFileSize(maxSizeInBytes)}`;
+                
+                // Update compatibility indicators
+                updateCompatibilityIndicators(sizeInBytes);
+                
+                // Show results
+                fileSizeResult.style.display = 'block';
+                fileSizeResult.classList.add('visible');
+                
+                // Scroll to results
+                fileSizeResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } catch (error) {
+                showError('Error calculating file size: ' + error.message);
+            }
+        });
+        
+        // Text file size estimator
+        function estimateTextSize() {
+            const words = parseInt(document.getElementById('text-words').value, 10);
+            const format = document.getElementById('text-format').value;
+            const hasFormatting = document.getElementById('text-formatting').checked;
+            const hasImages = document.getElementById('text-images').checked;
+            const hasTables = document.getElementById('text-tables').checked;
+            
+            if (isNaN(words) || words < 0) {
+                throw new Error('Please enter a valid number of words.');
+            }
+            
+            // Average bytes per word in plain text
+            const bytesPerWord = 6; // Including spaces and punctuation
+            let baseSize = words * bytesPerWord;
+            
+            // Format multipliers
+            let formatMultiplier = 1;
+            switch (format) {
+                case 'plain':
+                    formatMultiplier = 1;
+                    break;
+                case 'rich':
+                    formatMultiplier = 1.5;
+                    break;
+                case 'pdf':
+                    formatMultiplier = 2;
+                    break;
+                case 'html':
+                    formatMultiplier = 1.8;
+                    break;
+            }
+            
+            // Calculate base size with format
+            let size = baseSize * formatMultiplier;
+            
+            // Add extras
+            if (hasFormatting) size *= 1.2;
+            if (hasTables) size *= 1.3;
+            
+            // Images have a more significant impact
+            if (hasImages) {
+                // Assume an average of one image per 500 words, 50KB per image
+                const estimatedImages = Math.max(1, Math.round(words / 500));
+                size += estimatedImages * 50 * 1024;
+            }
+            
+            // Calculate min/max range (±20%)
+            const minSize = size * 0.8;
+            const maxSize = size * 1.2;
+            
+            return {
+                average: size,
+                min: minSize,
+                max: maxSize
+            };
+        }
+        
+        // Image file size estimator
+        function estimateImageSize() {
+            const width = parseInt(document.getElementById('image-width').value, 10);
+            const height = parseInt(document.getElementById('image-height').value, 10);
+            const format = document.getElementById('image-format').value;
+            const quality = document.getElementById('image-quality').value;
+            
+            if (isNaN(width) || width <= 0 || isNaN(height) || height <= 0) {
+                throw new Error('Please enter valid dimensions for the image.');
+            }
+            
+            // Calculate raw pixel count
+            const pixels = width * height;
+            
+            // Bytes per pixel varies by format and quality
+            let bytesPerPixel = 3; // Default RGB (3 bytes)
+            
+            // Compression factor by format and quality
+            let compressionFactor = 1;
+            
+            switch (format) {
+                case 'jpg':
+                    switch (quality) {
+                        case 'low': compressionFactor = 0.1; break;
+                        case 'medium': compressionFactor = 0.2; break;
+                        case 'high': compressionFactor = 0.3; break;
+                        case 'lossless': compressionFactor = 0.8; break;
+                    }
+                    break;
+                case 'png':
+                    bytesPerPixel = 4; // RGB + Alpha
+                    switch (quality) {
+                        case 'low': compressionFactor = 0.3; break;
+                        case 'medium': compressionFactor = 0.5; break;
+                        case 'high': compressionFactor = 0.7; break;
+                        case 'lossless': compressionFactor = 0.8; break;
+                    }
+                    break;
+                case 'gif':
+                    bytesPerPixel = 1; // Indexed color
+                    compressionFactor = 0.7;
+                    break;
+                case 'tiff':
+                    bytesPerPixel = 4; // RGB + Alpha
+                    switch (quality) {
+                        case 'low': compressionFactor = 0.5; break;
+                        case 'medium': compressionFactor = 0.7; break;
+                        case 'high': compressionFactor = 0.9; break;
+                        case 'lossless': compressionFactor = 1; break;
+                    }
+                    break;
+                case 'raw':
+                    bytesPerPixel = 6; // Higher color depth
+                    compressionFactor = 1; // No compression
+                    break;
+            }
+            
+            // Calculate base size
+            const size = pixels * bytesPerPixel * compressionFactor;
+            
+            // Calculate min/max range (±30% for compression variability)
+            const minSize = size * 0.7;
+            const maxSize = size * 1.3;
+            
+            return {
+                average: size,
+                min: minSize,
+                max: maxSize
+            };
+        }
+        
+        // Audio file size estimator
+        function estimateAudioSize() {
+            const duration = parseFloat(document.getElementById('audio-duration').value);
+            const format = document.getElementById('audio-format').value;
+            const bitrate = parseInt(document.getElementById('audio-bitrate').value, 10);
+            const channels = document.getElementById('audio-channels').value;
+            
+            if (isNaN(duration) || duration <= 0) {
+                throw new Error('Please enter a valid duration.');
+            }
+            
+            // Convert minutes to seconds
+            const durationSeconds = duration * 60;
+            
+            // Adjust bitrate based on channels
+            let channelMultiplier = 1;
+            switch (channels) {
+                case 'mono': channelMultiplier = 1; break;
+                case 'stereo': channelMultiplier = 1; break; // Already accounted for in standard bitrates
+                case '5.1': channelMultiplier = 3; break; // 6 channels vs 2
+            }
+            
+            // Calculate size in bytes
+            // Size = Bitrate (bits per second) * Duration (seconds) / 8 (bits to bytes)
+            let size = (bitrate * 1000 * channelMultiplier * durationSeconds) / 8;
+            
+            // Format-specific adjustments
+            let formatMultiplier = 1;
+            switch (format) {
+                case 'mp3': formatMultiplier = 1; break; // Reference format
+                case 'aac': formatMultiplier = 0.8; break; // Better compression than MP3
+                case 'wav': formatMultiplier = 5; break; // Uncompressed
+                case 'flac': formatMultiplier = 1.5; break; // Lossless but compressed
+            }
+            
+            size *= formatMultiplier;
+            
+            // Calculate min/max range (±15%)
+            const minSize = size * 0.85;
+            const maxSize = size * 1.15;
+            
+            return {
+                average: size,
+                min: minSize,
+                max: maxSize
+            };
+        }
+        
+        // Video file size estimator
+        function estimateVideoSize() {
+            const duration = parseFloat(document.getElementById('video-duration').value);
+            const resolution = document.getElementById('video-resolution').value;
+            const format = document.getElementById('video-format').value;
+            const framerate = parseInt(document.getElementById('video-framerate').value, 10);
+            const quality = document.getElementById('video-bitrate').value;
+            
+            if (isNaN(duration) || duration <= 0) {
+                throw new Error('Please enter a valid duration.');
+            }
+            
+            // Convert minutes to seconds
+            const durationSeconds = duration * 60;
+            
+            // Base bitrate based on resolution (in Mbps)
+            let baseBitrateMap = {
+                '720p': 5,
+                '1080p': 8,
+                '1440p': 16,
+                '4k': 35,
+                '8k': 80
+            };
+            
+            let baseBitrate = baseBitrateMap[resolution];
+            
+            // Adjust for framerate
+            let framerateMultiplier = framerate / 30;
+            
+            // Adjust for quality setting
+            let qualityMultiplier = 1;
+            switch (quality) {
+                case 'low': qualityMultiplier = 0.6; break;
+                case 'medium': qualityMultiplier = 1; break;
+                case 'high': qualityMultiplier = 1.5; break;
+            }
+            
+            // Adjust for codec/format efficiency
+            let formatMultiplier = 1;
+            switch (format) {
+                case 'mp4': formatMultiplier = 1; break; // H.264 reference
+                case 'h265': formatMultiplier = 0.6; break; // H.265 is ~40% more efficient
+                case 'webm': formatMultiplier = 0.7; break; // VP9 is ~30% more efficient
+                case 'av1': formatMultiplier = 0.5; break; // AV1 is ~50% more efficient
+                case 'raw': formatMultiplier = 10; break; // Uncompressed is much larger
+            }
+            
+            // Calculate bitrate in bits per second
+            const bitrate = baseBitrate * 1024 * 1024 * framerateMultiplier * qualityMultiplier * formatMultiplier;
+            
+            // Calculate size in bytes (bitrate * duration / 8)
+            const size = (bitrate * durationSeconds) / 8;
+            
+            // Calculate min/max range (±25% for video variability)
+            const minSize = size * 0.75;
+            const maxSize = size * 1.25;
+            
+            return {
+                average: size,
+                min: minSize,
+                max: maxSize
+            };
+        }
+        
+        // Database file size estimator
+        function estimateDatabaseSize() {
+            const records = parseInt(document.getElementById('db-records').value, 10);
+            const fields = parseInt(document.getElementById('db-fields').value, 10);
+            const dataType = document.getElementById('db-type').value;
+            const hasIndexes = document.getElementById('db-indexes').checked;
+            const hasRelations = document.getElementById('db-relations').checked;
+            
+            if (isNaN(records) || records <= 0 || isNaN(fields) || fields <= 0) {
+                throw new Error('Please enter valid numbers for records and fields.');
+            }
+            
+            // Average bytes per field based on data type
+            let bytesPerField = 0;
+            switch (dataType) {
+                case 'simple': bytesPerField = 20; break; // Mostly text, integers
+                case 'mixed': bytesPerField = 40; break; // Mix of types
+                case 'complex': bytesPerField = 100; break; // Includes some BLOBs/large fields
+            }
+            
+            // Base size calculation
+            let size = records * fields * bytesPerField;
+            
+            // Add overhead for database structure
+            size *= 1.1; // 10% overhead
+            
+            // Add index size if applicable
+            if (hasIndexes) {
+                // Indexes typically add ~20% for a few indexed fields
+                size *= 1.2;
+            }
+            
+            // Add relational overhead if applicable
+            if (hasRelations) {
+                // Relations add both index overhead and joining tables
+                size *= 1.15;
+            }
+            
+            // Calculate min/max range (±25%)
+            const minSize = size * 0.75;
+            const maxSize = size * 1.25;
+            
+            return {
+                average: size,
+                min: minSize,
+                max: maxSize
+            };
+        }
+        
+        // Update compatibility indicators
+        function updateCompatibilityIndicators(sizeInBytes) {
+            // Email compatibility (typically 25MB limit)
+            const emailLimit = 25 * 1024 * 1024;
+            if (sizeInBytes <= emailLimit) {
+                emailCompatibility.textContent = '✓ Good';
+                emailCompatibility.style.color = '#2ecc71';
+            } else {
+                emailCompatibility.textContent = '✗ Too large';
+                emailCompatibility.style.color = '#e74c3c';
+            }
+            
+            // Mobile data compatibility
+            if (sizeInBytes <= 5 * 1024 * 1024) {
+                mobileCompatibility.textContent = '✓ Good';
+                mobileCompatibility.style.color = '#2ecc71';
+            } else if (sizeInBytes <= 50 * 1024 * 1024) {
+                mobileCompatibility.textContent = '⚠ Moderate';
+                mobileCompatibility.style.color = '#f39c12';
+            } else {
+                mobileCompatibility.textContent = '✗ Heavy';
+                mobileCompatibility.style.color = '#e74c3c';
+            }
+            
+            // Download time (assuming 4G speed of ~10 Mbps)
+            const speedBps = 10 * 1024 * 1024 / 8; // 10 Mbps in bytes per second
+            const seconds = sizeInBytes / speedBps;
+            
+            if (seconds < 1) {
+                downloadTime.textContent = '< 1 second';
+            } else if (seconds < 60) {
+                downloadTime.textContent = `${Math.round(seconds)} seconds`;
+            } else {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.round(seconds % 60);
+                downloadTime.textContent = `${minutes} min ${remainingSeconds} sec`;
+            }
+        }
+        
+        // Format file size in human-readable format
+        function formatFileSize(bytes) {
+            if (bytes < 1024) {
+                return bytes.toFixed(0) + ' B';
+            } else if (bytes < 1024 * 1024) {
+                return (bytes / 1024).toFixed(1) + ' KB';
+            } else if (bytes < 1024 * 1024 * 1024) {
+                return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+            } else {
+                return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
+            }
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+        
+        // Hide error message
+        function hideError() {
+            errorElement.textContent = '';
+            errorElement.style.display = 'none';
+        }
+    });
+    </script>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">📏</span>
+                Related File & Calculation Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="file-hash-generator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">File Hash Generator</div><div style="font-size: 0.85rem; color: #6b7280;">Generate file hashes</div></div>
+                </a>
+                <a href="bandwidth_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Bandwidth Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate bandwidth</div></div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert units</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular File & Text Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="word-counter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📝</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Word Counter</div><div style="font-size: 0.85rem; color: #6b7280;">Count words & characters</div></div>
+                </a>
+                <a href="text_analyzer.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Text Analyzer</div><div style="font-size: 0.85rem; color: #6b7280;">Analyze text content</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+

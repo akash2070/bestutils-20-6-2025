@@ -1,0 +1,520 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take-Home Paycheck Calculator | Calculate Net Pay After Taxes | BESTUTILS</title>
+    <meta name="description" content="Free take-home paycheck calculator to estimate your net pay after federal taxes, state taxes, and deductions. Calculate your actual salary take-home amount instantly.">
+    <meta name="keywords" content="take home calculator, paycheck calculator, net pay calculator, salary calculator, tax calculator, after tax income">
+    <meta name="author" content="BESTUTILS">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/take_home_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/take_home_calculator.html">
+    <meta property="og:title" content="Take-Home Paycheck Calculator | Calculate Net Pay After Taxes | BestUtils">
+    <meta property="og:description" content="Calculate your net take-home pay after taxes and deductions with our free paycheck calculator.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/take-home-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/take_home_calculator.html">
+    <meta name="twitter:title" content="Take-Home Paycheck Calculator | Calculate Net Pay After Taxes | BestUtils">
+    <meta name="twitter:description" content="Calculate your net take-home pay after taxes and deductions with our free paycheck calculator.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/take-home-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Take-Home Paycheck Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Take-Home Paycheck Calculator",
+        "description": "Free take home pay calculator to calculate net salary after taxes, deductions, and withholdings for accurate paycheck estimation.",
+        "url": "https://bestutils.com/templates/take_home_calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom input styling */
+        .input-group {
+            position: relative;
+        }
+        .input-label {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6B7280;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+        .input-field:focus + .input-label,
+        .input-field:not(:placeholder-shown) + .input-label {
+            top: -8px;
+            left: 8px;
+            font-size: 12px;
+            color: #3B82F6;
+            background: white;
+            padding: 0 4px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header with Logo -->
+    <header class="pt-8">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Page Title -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Take-Home Paycheck Calculator</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Calculate your net take-home pay after federal taxes, state taxes, and deductions. Get an accurate estimate of your actual paycheck amount.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6">Paycheck Calculator</h2>
+                <form id="paycheckForm" class="space-y-6">
+                    <!-- Annual Salary -->
+                    <div class="input-group">
+                        <input type="number" id="annualSalary" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder=" " required>
+                        <label for="annualSalary" class="input-label">Annual Salary ($)</label>
+                    </div>
+                    <!-- Pay Frequency -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Pay Frequency</label>
+                        <select id="payFrequency" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="26">Bi-weekly (26 pay periods)</option>
+                            <option value="24">Semi-monthly (24 pay periods)</option>
+                            <option value="12">Monthly (12 pay periods)</option>
+                            <option value="52">Weekly (52 pay periods)</option>
+                        </select>
+                    </div>
+                    <!-- Filing Status -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Filing Status</label>
+                        <select id="filingStatus" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="single">Single</option>
+                            <option value="marriedJoint">Married Filing Jointly</option>
+                            <option value="marriedSeparate">Married Filing Separately</option>
+                            <option value="headOfHousehold">Head of Household</option>
+                        </select>
+                    </div>
+                    <!-- State -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                        <select id="state" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="0">No State Tax</option>
+                            <option value="3">Low Tax State (3%)</option>
+                            <option value="5">Medium Tax State (5%)</option>
+                            <option value="7">High Tax State (7%)</option>
+                            <option value="9">Very High Tax State (9%)</option>
+                        </select>
+                    </div>
+                    <!-- Additional Deductions -->
+                    <div class="input-group">
+                        <input type="number" id="additionalDeductions" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder=" " value="0">
+                        <label for="additionalDeductions" class="input-label">Additional Monthly Deductions ($)</label>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 shadow-md hover:shadow-lg">
+                        Calculate Take-Home Pay
+                    </button>
+                </form>
+            </div>
+            <!-- Results -->
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6">Your Take-Home Pay</h2>
+                <div id="results" class="hidden fade-in">
+                    <div class="space-y-4">
+                        <!-- Annual Results -->
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-blue-900 mb-2">Annual</h3>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <span class="text-gray-600">Gross Pay:</span>
+                                    <p class="font-semibold" id="annualGross">$0</p>
+                                </div>
+                                <div>
+                                    <span class="text-gray-600">Net Pay:</span>
+                                    <p class="font-semibold text-blue-700" id="annualNet">$0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Per Paycheck Results -->
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-green-900 mb-2">Per Paycheck</h3>
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <span class="text-gray-600">Gross Pay:</span>
+                                    <p class="font-semibold" id="paycheckGross">$0</p>
+                                </div>
+                                <div>
+                                    <span class="text-gray-600">Net Pay:</span>
+                                    <p class="font-semibold text-green-700" id="paycheckNet">$0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Deductions Breakdown -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Annual Deductions</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Federal Tax:</span>
+                                    <span class="font-semibold" id="federalTax">$0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>State Tax:</span>
+                                    <span class="font-semibold" id="stateTax">$0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>FICA (Social Security & Medicare):</span>
+                                    <span class="font-semibold" id="ficaTax">$0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Additional Deductions:</span>
+                                    <span class="font-semibold" id="additionalDeductionsTotal">$0</span>
+                                </div>
+                                <hr class="my-2">
+                                <div class="flex justify-between font-semibold">
+                                    <span>Total Deductions:</span>
+                                    <span id="totalDeductions">$0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="placeholder" class="text-center text-gray-500 py-8">
+                    <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                    <p>Enter your salary details to see your take-home pay calculation</p>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Instructions -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mt-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">How to Use the Take-Home Paycheck Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Step-by-Step Instructions</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                        <li>Enter your annual gross salary (before taxes and deductions)</li>
+                        <li>Select your pay frequency (how often you get paid)</li>
+                        <li>Choose your tax filing status</li>
+                        <li>Select your state tax rate category</li>
+                        <li>Add any additional monthly deductions (health insurance, 401k, etc.)</li>
+                        <li>Click "Calculate Take-Home Pay" to see your results</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Understanding Your Results</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li><strong>Gross Pay:</strong> Your salary before any deductions</li>
+                        <li><strong>Net Pay:</strong> Your actual take-home amount after all deductions</li>
+                        <li><strong>Federal Tax:</strong> Income tax owed to the federal government</li>
+                        <li><strong>State Tax:</strong> Income tax owed to your state (if applicable)</li>
+                        <li><strong>FICA:</strong> Social Security (6.2%) and Medicare (1.45%) taxes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- About This Tool -->
+        <div class="bg-blue-50 rounded-xl p-6 md:p-8 mt-8">
+            <h2 class="text-2xl font-semibold text-blue-900 mb-4">About This Take-Home Pay Calculator</h2>
+            <p class="text-blue-800 mb-4">
+                Our take-home paycheck calculator helps you estimate your net pay after federal taxes, state taxes, and other deductions. This tool is perfect for budgeting, salary negotiations, or planning major financial decisions.
+            </p>
+            <p class="text-blue-800 mb-4">
+                The calculator uses current tax brackets and standard deduction amounts to provide accurate estimates. However, actual results may vary based on your specific tax situation, including itemized deductions, tax credits, and other factors.
+            </p>
+            <div class="bg-white p-4 rounded-lg">
+                <h3 class="font-semibold text-blue-900 mb-2">Disclaimer</h3>
+                <p class="text-sm text-blue-700">
+                    This calculator provides estimates for educational purposes only. Actual tax calculations may differ based on your complete financial situation. Consult with a tax professional for personalized advice.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('paycheckForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateTakeHome();
+        });
+        function calculateTakeHome() {
+            const annualSalary = parseFloat(document.getElementById('annualSalary').value) || 0;
+            const payFrequency = parseInt(document.getElementById('payFrequency').value);
+            const filingStatus = document.getElementById('filingStatus').value;
+            const stateRate = parseFloat(document.getElementById('state').value) / 100;
+            const additionalDeductions = parseFloat(document.getElementById('additionalDeductions').value) || 0;
+            if (annualSalary <= 0) {
+                alert('Please enter a valid annual salary');
+                return;
+            }
+            // Calculate federal tax (simplified progressive tax)
+            let federalTax = 0;
+            const standardDeduction = filingStatus === 'marriedJoint' ? 27700 : 13850;
+            const taxableIncome = Math.max(0, annualSalary - standardDeduction);
+            // Simplified tax brackets for 2024
+            if (taxableIncome > 0) {
+                const brackets = filingStatus === 'marriedJoint' ? 
+                    [[22275, 0.10], [89450, 0.12], [190750, 0.22], [364200, 0.24], [462500, 0.32], [693750, 0.35], [Infinity, 0.37]] :
+                    [[11125, 0.10], [44725, 0.12], [95375, 0.22], [182050, 0.24], [231250, 0.32], [578125, 0.35], [Infinity, 0.37]];
+                let remainingIncome = taxableIncome;
+                let prevBracket = 0;
+                for (let [limit, rate] of brackets) {
+                    const taxableAtThisRate = Math.min(remainingIncome, limit - prevBracket);
+                    federalTax += taxableAtThisRate * rate;
+                    remainingIncome -= taxableAtThisRate;
+                    prevBracket = limit;
+                    if (remainingIncome <= 0) break;
+                }
+            }
+            // Calculate state tax
+            const stateTax = annualSalary * stateRate;
+            // Calculate FICA
+            const socialSecurity = Math.min(annualSalary, 160200) * 0.062; // 2024 SS wage base
+            const medicare = annualSalary * 0.0145;
+            const ficaTax = socialSecurity + medicare;
+            // Calculate additional deductions (annual)
+            const annualAdditionalDeductions = additionalDeductions * 12;
+            // Calculate totals
+            const totalDeductions = federalTax + stateTax + ficaTax + annualAdditionalDeductions;
+            const annualNet = annualSalary - totalDeductions;
+            const paycheckGross = annualSalary / payFrequency;
+            const paycheckNet = annualNet / payFrequency;
+            // Display results
+            document.getElementById('annualGross').textContent = '$' + annualSalary.toLocaleString();
+            document.getElementById('annualNet').textContent = '$' + Math.round(annualNet).toLocaleString();
+            document.getElementById('paycheckGross').textContent = '$' + Math.round(paycheckGross).toLocaleString();
+            document.getElementById('paycheckNet').textContent = '$' + Math.round(paycheckNet).toLocaleString();
+            document.getElementById('federalTax').textContent = '$' + Math.round(federalTax).toLocaleString();
+            document.getElementById('stateTax').textContent = '$' + Math.round(stateTax).toLocaleString();
+            document.getElementById('ficaTax').textContent = '$' + Math.round(ficaTax).toLocaleString();
+            document.getElementById('additionalDeductionsTotal').textContent = '$' + Math.round(annualAdditionalDeductions).toLocaleString();
+            document.getElementById('totalDeductions').textContent = '$' + Math.round(totalDeductions).toLocaleString();
+            // Show results
+            document.getElementById('placeholder').classList.add('hidden');
+            document.getElementById('results').classList.remove('hidden');
+        }
+        // Auto-calculate on input change
+        document.querySelectorAll('#paycheckForm input, #paycheckForm select').forEach(element => {
+            element.addEventListener('change', () => {
+                if (document.getElementById('annualSalary').value) {
+                    calculateTakeHome();
+                }
+            });
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="salary-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💵</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Salary Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate salary conversions</div></div>
+                </a>
+                <a href="income-tax-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧾</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Income Tax Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate income tax</div></div>
+                </a>
+                <a href="budget_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Budget Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan your budget</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Famous Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+                <a href="401k-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">401k Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan 401k contributions</div></div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

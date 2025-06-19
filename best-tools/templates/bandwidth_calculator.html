@@ -1,0 +1,727 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandwidth Calculator | BestUtils</title>
+    <meta name="description" content="Free online bandwidth calculator tool. Easy to use and accurate calculations.">
+    <meta name="keywords" content="bandwidth calculator, calculator, tool, free online calculator">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Bandwidth Calculator | BestUtils">
+    <meta property="og:description" content="Free online bandwidth calculator tool. Easy to use and accurate calculations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/bandwidth_calculator.html">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 1rem 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            opacity: 0.8;
+        }
+        .back-link::before {
+            content: "←";
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* Multi-calc styles */
+        .multi-calc-container {
+            max-width: 100%;
+        }
+        .multi-calc-tool {
+            background: white;
+            border-radius: 10px;
+            padding: 0;
+        }
+        .multi-calc-description {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 2rem;
+        }
+        .multi-calc-description p {
+            margin: 0;
+            color: #495057;
+            line-height: 1.6;
+        }
+        .multi-calc-form {
+            margin-bottom: 2rem;
+        }
+        .multi-calc-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .multi-calc-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        .multi-calc-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .multi-calc-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .multi-calc-button {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .multi-calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        .multi-calc-button.secondary {
+            background: #6c757d;
+            width: auto;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        .multi-calc-result {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .multi-calc-result h3 {
+            margin-top: 0;
+            color: #495057;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .multi-calc-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #f5c6cb;
+        }
+        .multi-calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .multi-calc-table th,
+        .multi-calc-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .multi-calc-table th {
+            background: #e9ecef;
+            font-weight: 600;
+            color: #495057;
+        }
+        #ads {
+            background: #e9ecef;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">Back to All Tools</a>
+            <h1>Bandwidth Calculator</h1>
+            <p>Free online bandwidth calculator tool. Easy to use and accurate calculations.</p>
+        </div>
+        <div class="content">
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandwidth Calculator - Network Speed & Data Transfer Calculator | BESTUTILS</title>
+    <meta name="description" content="Calculate bandwidth, data transfer time, and network speed requirements. Free online bandwidth calculator for download/upload speeds and data usage planning.">
+    <meta name="keywords" content="bandwidth calculator, network speed calculator, data transfer calculator, internet speed, download time calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/bandwidth-calculator.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .speed-indicator {
+            background: linear-gradient(90deg, #ef4444 0%, #f97316 25%, #eab308 50%, #22c55e 75%, #06b6d4 100%);
+            height: 8px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .speed-pointer {
+            position: absolute;
+            top: -4px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 2px solid #374151;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            transition: left 0.3s ease;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="site-logo-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                    <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                </svg>
+                <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+            </div>
+            <div class="text-center mt-4">
+                <h1 class="text-4xl font-bold mb-2">Bandwidth Calculator</h1>
+                <p class="text-xl opacity-90">Network Speed & Data Transfer Calculator</p>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Calculator Tabs -->
+        <div class="max-w-4xl mx-auto mb-8">
+            <div class="flex flex-wrap justify-center gap-2 mb-6">
+                <button onclick="showTab('transfer')" id="transferTab" class="tab-btn bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">
+                    Transfer Time
+                </button>
+                <button onclick="showTab('bandwidth')" id="bandwidthTab" class="tab-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-semibold">
+                    Bandwidth Required
+                </button>
+                <button onclick="showTab('converter')" id="converterTab" class="tab-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-semibold">
+                    Speed Converter
+                </button>
+            </div>
+            <!-- Transfer Time Calculator -->
+            <div id="transferCalculator" class="bg-white rounded-2xl card-shadow p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Data Transfer Time Calculator</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">File Size</label>
+                            <div class="flex gap-2">
+                                <input type="number" id="fileSize" placeholder="Enter file size" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" min="0">
+                                <select id="fileSizeUnit" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="KB">KB</option>
+                                    <option value="MB">MB</option>
+                                    <option value="GB">GB</option>
+                                    <option value="TB">TB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Connection Speed</label>
+                            <div class="flex gap-2">
+                                <input type="number" id="connectionSpeed" placeholder="Enter speed" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" min="0">
+                                <select id="speedUnit" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="Kbps">Kbps</option>
+                                    <option value="Mbps">Mbps</option>
+                                    <option value="Gbps">Gbps</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="calculateTransferTime()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                            Calculate Transfer Time
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div id="transferResult" class="p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
+                            <div class="text-gray-500 text-center">Enter file size and connection speed</div>
+                        </div>
+                        <div class="speed-indicator">
+                            <div id="speedPointer" class="speed-pointer" style="left: 0%"></div>
+                        </div>
+                        <div class="text-xs text-gray-500 text-center">Connection Speed Indicator</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bandwidth Required Calculator -->
+            <div id="bandwidthCalculator" class="bg-white rounded-2xl card-shadow p-8 hidden">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Bandwidth Requirement Calculator</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Data Amount</label>
+                            <div class="flex gap-2">
+                                <input type="number" id="dataAmount" placeholder="Enter data amount" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" min="0">
+                                <select id="dataUnit" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="KB">KB</option>
+                                    <option value="MB">MB</option>
+                                    <option value="GB">GB</option>
+                                    <option value="TB">TB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Time Period</label>
+                            <div class="flex gap-2">
+                                <input type="number" id="timePeriod" placeholder="Enter time" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" min="0">
+                                <select id="timeUnit" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="seconds">Seconds</option>
+                                    <option value="minutes">Minutes</option>
+                                    <option value="hours">Hours</option>
+                                    <option value="days">Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="calculateBandwidth()" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                            Calculate Bandwidth Required
+                        </button>
+                    </div>
+                    <div class="space-y-4">
+                        <div id="bandwidthResult" class="p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
+                            <div class="text-gray-500 text-center">Enter data amount and time period</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="max-w-4xl mx-auto mt-8 bg-white rounded-2xl card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">About Bandwidth Calculator</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Our free bandwidth calculator helps you determine data transfer times, required bandwidth, and network speed conversions. Whether you're planning network infrastructure, estimating download times, or optimizing data usage, this tool provides accurate calculations for all your bandwidth needs.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                Calculate transfer times for files, determine bandwidth requirements for streaming or data transfer, and convert between different speed units with our comprehensive bandwidth calculation tools.
+            </p>
+        </div>
+        <!-- How to Use Section -->
+        <div class="max-w-4xl mx-auto mt-6 bg-white rounded-2xl card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">How to Use the Bandwidth Calculator</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="space-y-3">
+                    <h3 class="text-lg font-semibold text-blue-600">Transfer Time Calculator</h3>
+                    <ol class="text-sm text-gray-600 space-y-1">
+                        <li>1. Enter file size and select unit (KB, MB, GB, TB)</li>
+                        <li>2. Enter connection speed and select unit (Kbps, Mbps, Gbps)</li>
+                        <li>3. Click "Calculate Transfer Time" for results</li>
+                    </ol>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="text-lg font-semibold text-green-600">Bandwidth Required</h3>
+                    <ol class="text-sm text-gray-600 space-y-1">
+                        <li>1. Enter data amount and select unit</li>
+                        <li>2. Enter time period and select unit</li>
+                        <li>3. Click "Calculate Bandwidth Required"</li>
+                    </ol>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="text-lg font-semibold text-purple-600">Speed Converter</h3>
+                    <ol class="text-sm text-gray-600 space-y-1">
+                        <li>1. Enter speed value</li>
+                        <li>2. Select input and output units</li>
+                        <li>3. Get instant conversion results</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- Tips Section -->
+        <div class="max-w-4xl mx-auto mt-6 bg-white rounded-2xl card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Bandwidth Tips & Information</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Understanding Bandwidth</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• <strong>Bandwidth:</strong> Maximum data transfer rate of a network connection</li>
+                        <li>• <strong>Throughput:</strong> Actual data transfer rate achieved in practice</li>
+                        <li>• <strong>Latency:</strong> Time delay in data transmission</li>
+                        <li>• <strong>Bits vs Bytes:</strong> 8 bits = 1 byte (important for calculations)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Practical Applications</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• <strong>Streaming:</strong> Calculate bandwidth for video/audio streaming</li>
+                        <li>• <strong>File Transfers:</strong> Estimate download/upload times</li>
+                        <li>• <strong>Network Planning:</strong> Size network infrastructure</li>
+                        <li>• <strong>Data Usage:</strong> Monitor and plan data consumption</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </main>
+        <script>
+        function showTab(tabName) {
+            // Hide all calculators
+            document.getElementById('transferCalculator').classList.add('hidden');
+            document.getElementById('bandwidthCalculator').classList.add('hidden');
+            // Reset all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            // Show selected calculator and highlight tab
+            if (tabName === 'transfer') {
+                document.getElementById('transferCalculator').classList.remove('hidden');
+                document.getElementById('transferTab').classList.remove('bg-gray-200', 'text-gray-700');
+                document.getElementById('transferTab').classList.add('bg-blue-600', 'text-white');
+            } else if (tabName === 'bandwidth') {
+                document.getElementById('bandwidthCalculator').classList.remove('hidden');
+                document.getElementById('bandwidthTab').classList.remove('bg-gray-200', 'text-gray-700');
+                document.getElementById('bandwidthTab').classList.add('bg-blue-600', 'text-white');
+            }
+        }
+        function calculateTransferTime() {
+            const fileSize = parseFloat(document.getElementById('fileSize').value);
+            const fileSizeUnit = document.getElementById('fileSizeUnit').value;
+            const speed = parseFloat(document.getElementById('connectionSpeed').value);
+            const speedUnit = document.getElementById('speedUnit').value;
+            if (!fileSize || !speed) {
+                document.getElementById('transferResult').innerHTML = '<div class="text-red-500 text-center">Please enter both file size and connection speed</div>';
+                return;
+            }
+            // Convert file size to bytes
+            let fileSizeBytes = fileSize;
+            switch(fileSizeUnit) {
+                case 'KB': fileSizeBytes *= 1024; break;
+                case 'MB': fileSizeBytes *= 1024 * 1024; break;
+                case 'GB': fileSizeBytes *= 1024 * 1024 * 1024; break;
+                case 'TB': fileSizeBytes *= 1024 * 1024 * 1024 * 1024; break;
+            }
+            // Convert speed to bits per second
+            let speedBps = speed;
+            switch(speedUnit) {
+                case 'Kbps': speedBps *= 1000; break;
+                case 'Mbps': speedBps *= 1000000; break;
+                case 'Gbps': speedBps *= 1000000000; break;
+            }
+            // Calculate transfer time in seconds
+            const transferTimeSeconds = (fileSizeBytes * 8) / speedBps;
+            // Format time
+            let timeString = '';
+            if (transferTimeSeconds < 60) {
+                timeString = `${transferTimeSeconds.toFixed(1)} seconds`;
+            } else if (transferTimeSeconds < 3600) {
+                timeString = `${(transferTimeSeconds / 60).toFixed(1)} minutes`;
+            } else {
+                timeString = `${(transferTimeSeconds / 3600).toFixed(1)} hours`;
+            }
+            document.getElementById('transferResult').innerHTML = `
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-600">${timeString}</div>
+                    <div class="text-sm text-gray-500 mt-1">Transfer Time</div>
+                </div>
+            `;
+        }
+        function calculateBandwidth() {
+            const dataAmount = parseFloat(document.getElementById('dataAmount').value);
+            const dataUnit = document.getElementById('dataUnit').value;
+            const timePeriod = parseFloat(document.getElementById('timePeriod').value);
+            const timeUnit = document.getElementById('timeUnit').value;
+            if (!dataAmount || !timePeriod) {
+                document.getElementById('bandwidthResult').innerHTML = '<div class="text-red-500 text-center">Please enter both data amount and time period</div>';
+                return;
+            }
+            // Convert data to bytes
+            let dataBytes = dataAmount;
+            switch(dataUnit) {
+                case 'KB': dataBytes *= 1024; break;
+                case 'MB': dataBytes *= 1024 * 1024; break;
+                case 'GB': dataBytes *= 1024 * 1024 * 1024; break;
+                case 'TB': dataBytes *= 1024 * 1024 * 1024 * 1024; break;
+            }
+            // Convert time to seconds
+            let timeSeconds = timePeriod;
+            switch(timeUnit) {
+                case 'minutes': timeSeconds *= 60; break;
+                case 'hours': timeSeconds *= 3600; break;
+                case 'days': timeSeconds *= 86400; break;
+            }
+            // Calculate bandwidth in bits per second
+            const bandwidthBps = (dataBytes * 8) / timeSeconds;
+            // Format bandwidth
+            let bandwidthString = '';
+            if (bandwidthBps < 1000) {
+                bandwidthString = `${bandwidthBps.toFixed(1)} bps`;
+            } else if (bandwidthBps < 1000000) {
+                bandwidthString = `${(bandwidthBps / 1000).toFixed(1)} Kbps`;
+            } else if (bandwidthBps < 1000000000) {
+                bandwidthString = `${(bandwidthBps / 1000000).toFixed(1)} Mbps`;
+            } else {
+                bandwidthString = `${(bandwidthBps / 1000000000).toFixed(1)} Gbps`;
+            }
+            document.getElementById('bandwidthResult').innerHTML = `
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-green-600">${bandwidthString}</div>
+                    <div class="text-sm text-gray-500 mt-1">Required Bandwidth</div>
+                </div>
+            `;
+        }
+        </script>
+        <div class="footer">
+            <p>Powered by <a href="index.html">BestUtils</a> - Free Online Calculators & Tools</p>
+        </div>
+    </div>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">📊</span>
+                Related Network & Performance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="speed-test.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Speed Test</div><div style="font-size: 0.85rem; color: #6b7280;">Test internet speed</div></div>
+                </a>
+                <a href="subnet-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🌐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Subnet Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate network subnets</div></div>
+                </a>
+                <a href="file-size-estimator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📏</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">File Size Estimator</div><div style="font-size: 0.85rem; color: #6b7280;">Estimate file sizes</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Technical & Calculation Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="ip-lookup.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔍</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">IP Lookup</div><div style="font-size: 0.85rem; color: #6b7280;">Lookup IP information</div></div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert units</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,857 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gfr Calculator | BestUtils</title>
+    <meta name="description" content="Free online gfr calculator tool. Easy to use and accurate calculations.">
+    <meta name="keywords" content="gfr calculator, glomerular filtration rate, kidney function, CKD-EPI, medical calculator, nephrology, creatinine">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/gfr_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/gfr_calculator.html">
+    <meta property="og:title" content="GFR Calculator - Glomerular Filtration Rate Calculator | BestUtils">
+    <meta property="og:description" content="Calculate your Glomerular Filtration Rate (GFR) to assess kidney function with our free medical calculator using CKD-EPI equation.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/gfr-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/gfr_calculator.html">
+    <meta name="twitter:title" content="GFR Calculator - Glomerular Filtration Rate Calculator | BestUtils">
+    <meta name="twitter:description" content="Calculate your Glomerular Filtration Rate (GFR) to assess kidney function with our free medical calculator using CKD-EPI equation.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/gfr-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils GFR Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GFR Calculator",
+        "description": "Free Glomerular Filtration Rate (GFR) calculator to assess kidney function using CKD-EPI equation for medical and health monitoring.",
+        "url": "https://bestutils.com/templates/gfr_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 1rem 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+            opacity: 0.8;
+        }
+        .back-link::before {
+            content: "←";
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        .content {
+            padding: 2rem;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* Multi-calc styles */
+        .multi-calc-container {
+            max-width: 100%;
+        }
+        .multi-calc-tool {
+            background: white;
+            border-radius: 10px;
+            padding: 0;
+        }
+        .multi-calc-description {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 2rem;
+        }
+        .multi-calc-description p {
+            margin: 0;
+            color: #495057;
+            line-height: 1.6;
+        }
+        .multi-calc-form {
+            margin-bottom: 2rem;
+        }
+        .multi-calc-form-group {
+            margin-bottom: 1.5rem;
+        }
+        .multi-calc-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+        .multi-calc-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .multi-calc-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        .multi-calc-button {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .multi-calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        .multi-calc-button.secondary {
+            background: #6c757d;
+            width: auto;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        .multi-calc-result {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        .multi-calc-result h3 {
+            margin-top: 0;
+            color: #495057;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .multi-calc-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #f5c6cb;
+        }
+        .multi-calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .multi-calc-table th,
+        .multi-calc-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .multi-calc-table th {
+            background: #e9ecef;
+            font-weight: 600;
+            color: #495057;
+        }
+        #ads {
+            background: #e9ecef;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 1rem 0;
+            color: #6c757d;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">Back to All Tools</a>
+            <h1>Gfr Calculator</h1>
+            <p>Free online gfr calculator tool. Easy to use and accurate calculations.</p>
+        </div>
+        <div class="content">
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFR Calculator - Kidney Function Assessment | BESTUTILS</title>
+    <meta name="description" content="Free GFR (Glomerular Filtration Rate) calculator using CKD-EPI equation. Assess kidney function with accurate eGFR calculation. Easy-to-use tool for healthcare professionals and patients.">
+    <meta name="keywords" content="GFR calculator, eGFR, kidney function, CKD-EPI, glomerular filtration rate, chronic kidney disease, creatinine">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="GFR Calculator - Kidney Function Assessment Tool">
+    <meta property="og:description" content="Calculate your estimated Glomerular Filtration Rate (eGFR) using the CKD-EPI equation. Free, accurate, and easy-to-use kidney function assessment tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/gfr-calculator">
+    <link rel="canonical" href="https://bestutils.com/gfr-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            transition: all 0.3s ease;
+        }
+        .calculator-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .stage-normal { background-color: #10b981; }
+        .stage-mild { background-color: #f59e0b; }
+        .stage-moderate { background-color: #ef4444; }
+        .stage-severe { background-color: #dc2626; }
+        .stage-kidney-failure { background-color: #7c2d12; }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header with Logo -->
+    <header class="py-6">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 pb-12">
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                GFR Calculator
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Calculate your estimated Glomerular Filtration Rate (eGFR) using the CKD-EPI equation to assess kidney function
+            </p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <!-- Calculator Card -->
+            <div class="calculator-card bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <svg class="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                    GFR Calculator
+                </h2>
+                <form id="gfrForm">
+                    <div class="space-y-6">
+                        <!-- Age Input -->
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 mb-2">Age (years)</label>
+                            <input type="number" id="age" name="age" min="18" max="120" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                placeholder="Enter age">
+                        </div>
+                        <!-- Gender Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" value="male" required class="mr-2 text-blue-500">
+                                    <span>Male</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" value="female" required class="mr-2 text-blue-500">
+                                    <span>Female</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Race Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Race</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="race" value="black" required class="mr-2 text-blue-500">
+                                    <span>Black/African American</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="race" value="other" required class="mr-2 text-blue-500">
+                                    <span>Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Creatinine Input -->
+                        <div>
+                            <label for="creatinine" class="block text-sm font-medium text-gray-700 mb-2">Serum Creatinine</label>
+                            <div class="flex space-x-2">
+                                <input type="number" id="creatinine" name="creatinine" step="0.01" min="0.1" max="20" required
+                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                    placeholder="Enter creatinine level">
+                                <select id="creatinineUnit" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <option value="mg/dL">mg/dL</option>
+                                    <option value="μmol/L">μmol/L</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Calculate Button -->
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                            Calculate GFR
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- Result Card -->
+            <div class="space-y-6">
+                <div id="resultCard" class="result-card rounded-2xl shadow-xl p-8 hidden">
+                    <h3 class="text-2xl font-bold mb-4">Your GFR Result</h3>
+                    <div class="text-center">
+                        <div class="text-5xl font-bold mb-2" id="gfrValue">--</div>
+                        <div class="text-lg opacity-90 mb-4">mL/min/1.73m²</div>
+                        <div class="inline-block px-4 py-2 rounded-full text-sm font-medium" id="stageLabel">
+                            CKD Stage
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-white bg-opacity-20 rounded-lg">
+                        <h4 class="font-semibold mb-2">Interpretation:</h4>
+                        <p id="interpretation" class="text-sm opacity-90"></p>
+                    </div>
+                </div>
+                <!-- CKD Stages Reference -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">CKD Stages Reference</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-green-100">
+                            <div>
+                                <div class="font-medium">Stage 1: Normal/High</div>
+                                <div class="text-sm text-gray-600">≥90 mL/min/1.73m²</div>
+                            </div>
+                            <div class="w-4 h-4 rounded-full stage-normal"></div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-yellow-100">
+                            <div>
+                                <div class="font-medium">Stage 2: Mild</div>
+                                <div class="text-sm text-gray-600">60-89 mL/min/1.73m²</div>
+                            </div>
+                            <div class="w-4 h-4 rounded-full stage-mild"></div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-orange-100">
+                            <div>
+                                <div class="font-medium">Stage 3: Moderate</div>
+                                <div class="text-sm text-gray-600">30-59 mL/min/1.73m²</div>
+                            </div>
+                            <div class="w-4 h-4 rounded-full stage-moderate"></div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-red-100">
+                            <div>
+                                <div class="font-medium">Stage 4: Severe</div>
+                                <div class="text-sm text-gray-600">15-29 mL/min/1.73m²</div>
+                            </div>
+                            <div class="w-4 h-4 rounded-full stage-severe"></div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-lg bg-red-200">
+                            <div>
+                                <div class="font-medium">Stage 5: Kidney Failure</div>
+                                <div class="text-sm text-gray-600"><15 mL/min/1.73m²</div>
+                            </div>
+                            <div class="w-4 h-4 rounded-full stage-kidney-failure"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Information Sections -->
+        <div class="max-w-4xl mx-auto mt-12 space-y-8">
+            <!-- About GFR -->
+            <section class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">What is GFR?</h2>
+                <div class="prose prose-lg max-w-none text-gray-600">
+                    <p class="mb-4">
+                        The Glomerular Filtration Rate (GFR) is a measure of how well your kidneys are filtering waste and excess water from your blood. It's expressed in milliliters per minute per 1.73 square meters of body surface area (mL/min/1.73m²).
+                    </p>
+                    <p class="mb-4">
+                        GFR is the best overall indicator of kidney function and is used to diagnose and monitor chronic kidney disease (CKD). A normal GFR is typically 90 mL/min/1.73m² or higher.
+                    </p>
+                    <p>
+                        This calculator uses the CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration) equation, which is considered the most accurate method for estimating GFR based on serum creatinine levels.
+                    </p>
+                </div>
+            </section>
+            <!-- How to Use -->
+            <section class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">How to Use This Calculator</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Required Information:</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span><strong>Age:</strong> Your current age in years</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span><strong>Gender:</strong> Male or Female</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span><strong>Race:</strong> Black/African American or Other</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span><strong>Serum Creatinine:</strong> Lab result in mg/dL or μmol/L</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Steps to Calculate:</h3>
+                        <ol class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-medium mr-3">1</span>
+                                <span>Enter your age in years</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-medium mr-3">2</span>
+                                <span>Select your gender</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-medium mr-3">3</span>
+                                <span>Choose your race category</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-medium mr-3">4</span>
+                                <span>Enter serum creatinine level and select units</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-medium mr-3">5</span>
+                                <span>Click "Calculate GFR" to get your result</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            <!-- Important Notes -->
+            <section class="bg-white rounded-2xl shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Important Notes</h2>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-6">
+                    <div class="flex">
+                        <svg class="w-6 h-6 text-yellow-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-medium text-yellow-800">Medical Disclaimer</h3>
+                            <p class="mt-2 text-yellow-700">
+                                This calculator is for educational purposes only and should not replace professional medical advice. Always consult with your healthcare provider for interpretation of your results and treatment decisions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Limitations:</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Less accurate in certain populations (elderly, very muscular, or amputees)</li>
+                            <li>• May not be accurate during acute kidney injury</li>
+                            <li>• Creatinine levels can be affected by diet and muscle mass</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">When to Consult a Doctor:</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• GFR below 60 mL/min/1.73m²</li>
+                            <li>• Declining GFR over time</li>
+                            <li>• Symptoms of kidney disease</li>
+                            <li>• High blood pressure or diabetes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        // GFR Calculator Logic
+        document.getElementById('gfrForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Get form values
+            const age = parseFloat(document.getElementById('age').value);
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const race = document.querySelector('input[name="race"]:checked').value;
+            const creatinine = parseFloat(document.getElementById('creatinine').value);
+            const creatinineUnit = document.getElementById('creatinineUnit').value;
+            // Convert creatinine to mg/dL if needed
+            let creatinineMgDl = creatinine;
+            if (creatinineUnit === 'μmol/L') {
+                creatinineMgDl = creatinine / 88.42; // Convert μmol/L to mg/dL
+            }
+            // Calculate GFR using CKD-EPI equation
+            let gfr = calculateGFR(age, gender, race, creatinineMgDl);
+            // Display result
+            displayResult(gfr);
+        });
+        function calculateGFR(age, gender, race, creatinine) {
+            // CKD-EPI equation constants
+            const A = gender === 'female' ? -0.329 : -0.411;
+            const B = gender === 'female' ? -1.209 : -1.209;
+            const kappa = gender === 'female' ? 0.7 : 0.9;
+            const alpha = gender === 'female' ? -0.329 : -0.411;
+            // Calculate GFR
+            let gfr;
+            const minValue = Math.min(creatinine / kappa, 1);
+            const maxValue = Math.max(creatinine / kappa, 1);
+            if (gender === 'female') {
+                if (creatinine <= 0.7) {
+                    gfr = 144 * Math.pow(creatinine / 0.7, -0.329) * Math.pow(0.993, age);
+                } else {
+                    gfr = 144 * Math.pow(creatinine / 0.7, -1.209) * Math.pow(0.993, age);
+                }
+            } else {
+                if (creatinine <= 0.9) {
+                    gfr = 141 * Math.pow(creatinine / 0.9, -0.411) * Math.pow(0.993, age);
+                } else {
+                    gfr = 141 * Math.pow(creatinine / 0.9, -1.209) * Math.pow(0.993, age);
+                }
+            }
+            // Adjust for race
+            if (race === 'black') {
+                gfr = gfr * 1.159;
+            }
+            return Math.round(gfr);
+        }
+        function displayResult(gfr) {
+            const resultCard = document.getElementById('resultCard');
+            const gfrValue = document.getElementById('gfrValue');
+            const stageLabel = document.getElementById('stageLabel');
+            const interpretation = document.getElementById('interpretation');
+            // Update GFR value
+            gfrValue.textContent = gfr;
+            // Determine CKD stage and interpretation
+            let stage, stageText, stageClass, interpretationText;
+            if (gfr >= 90) {
+                stage = 1;
+                stageText = "Stage 1: Normal/High";
+                stageClass = "stage-normal";
+                interpretationText = "Your kidney function is normal or high. Continue maintaining a healthy lifestyle.";
+            } else if (gfr >= 60) {
+                stage = 2;
+                stageText = "Stage 2: Mild CKD";
+                stageClass = "stage-mild";
+                interpretationText = "Mild decrease in kidney function. Monitor regularly and maintain healthy habits.";
+            } else if (gfr >= 30) {
+                stage = 3;
+                stageText = "Stage 3: Moderate CKD";
+                stageClass = "stage-moderate";
+                interpretationText = "Moderate decrease in kidney function. Consult your doctor for management strategies.";
+            } else if (gfr >= 15) {
+                stage = 4;
+                stageText = "Stage 4: Severe CKD";
+                stageClass = "stage-severe";
+                interpretationText = "Severe decrease in kidney function. Close monitoring and treatment planning needed.";
+            } else {
+                stage = 5;
+                stageText = "Stage 5: Kidney Failure";
+                stageClass = "stage-kidney-failure";
+                interpretationText = "Kidney failure. Dialysis or transplant may be needed. Consult your nephrologist immediately.";
+            }
+            // Update display
+            stageLabel.textContent = stageText;
+            stageLabel.className = `inline-block px-4 py-2 rounded-full text-sm font-medium ${stageClass}`;
+        </div>
+        <!-- Internal Linking Section -->
+        <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+            <!-- Related Health Tools -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                    Related Health Tools
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">⚖️</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                        </div>
+                    </a>
+                    <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🔥</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                        </div>
+                    </a>
+                    <a href="bac_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🩺</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">BAC Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Blood alcohol content</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- You Might Also Like -->
+            <div>
+                <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                    <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                    You Might Also Like
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <a href="age-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🎂</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Age Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate age precisely</div>
+                        </div>
+                    </a>
+                    <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">📊</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                        </div>
+                    </a>
+                    <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                        <span style="font-size: 1.5rem;">🔄</span>
+                        <div>
+                            <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                            <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Powered by <a href="index.html">BestUtils</a> - Free Online Calculators & Tools</p>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

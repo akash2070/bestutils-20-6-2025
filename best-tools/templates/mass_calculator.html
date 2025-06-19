@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mass Calculator - Convert Weight Units Online | BESTUTILS</title>
+    <meta name="description" content="Free online mass calculator to convert between different weight units including grams, kilograms, pounds, ounces, stones, and tons. Easy-to-use weight conversion tool.">
+    <meta name="keywords" content="mass calculator, weight converter, unit converter, grams to kilograms, pounds to kilograms, weight conversion, mass conversion">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Mass Calculator - Convert Weight Units Online | BESTUTILS">
+    <meta property="og:description" content="Free online mass calculator to convert between different weight units including grams, kilograms, pounds, ounces, stones, and tons.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/mass-calculator">
+    <link rel="canonical" href="https://bestutils.com/mass-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-group {
+            transition: all 0.3s ease;
+        }
+        .input-group:focus-within {
+            transform: translateY(-2px);
+        }
+        .result-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="p-4">
+    <!-- Logo -->
+    <div class="site-logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+        </svg>
+        <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+    </div>
+    <div class="max-w-4xl mx-auto">
+        <!-- Main Calculator -->
+        <div class="calculator-card p-6 mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 text-center mb-2">Mass Calculator</h1>
+            <p class="text-gray-600 text-center mb-6">Convert between different weight and mass units instantly</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Input Section -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-4">Convert From</h2>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Enter Value</label>
+                        <input type="number" id="inputValue" placeholder="Enter mass value" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" 
+                               step="any">
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">From Unit</label>
+                        <select id="fromUnit" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="kg">Kilogram (kg)</option>
+                            <option value="g">Gram (g)</option>
+                            <option value="mg">Milligram (mg)</option>
+                            <option value="lb">Pound (lb)</option>
+                            <option value="oz">Ounce (oz)</option>
+                            <option value="stone">Stone</option>
+                            <option value="ton">Metric Ton</option>
+                            <option value="usTon">US Ton</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">To Unit</label>
+                        <select id="toUnit" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="g">Gram (g)</option>
+                            <option value="kg">Kilogram (kg)</option>
+                            <option value="mg">Milligram (mg)</option>
+                            <option value="lb">Pound (lb)</option>
+                            <option value="oz">Ounce (oz)</option>
+                            <option value="stone">Stone</option>
+                            <option value="ton">Metric Ton</option>
+                            <option value="usTon">US Ton</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateMass()" 
+                            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+                        Calculate
+                    </button>
+                </div>
+                <!-- Result Section -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-4">Result</h2>
+                    <div id="result" class="result-display">
+                        <div class="text-2xl font-bold mb-2">Enter values to calculate</div>
+                        <div class="text-blue-100">Your conversion result will appear here</div>
+                    </div>
+                    <!-- Quick Conversion Table -->
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <h3 class="font-semibold text-gray-700 mb-3">Quick Reference</h3>
+                        <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                            <div>1 kg = 1000 g</div>
+                            <div>1 lb = 453.59 g</div>
+                            <div>1 oz = 28.35 g</div>
+                            <div>1 stone = 6.35 kg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="calculator-card p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About Mass Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Our Mass Calculator is a versatile online tool designed to help you convert between different units of mass and weight quickly and accurately. Whether you're a student, professional, or just need to convert cooking measurements, this calculator handles all common mass units with precision.
+            </p>
+            <p class="text-gray-600 mb-4">
+                The calculator supports conversions between metric units (grams, kilograms, milligrams, metric tons) and imperial units (pounds, ounces, stones, US tons), making it perfect for international use or when working with different measurement systems.
+            </p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Supported Units</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h4 class="font-medium text-gray-700 mb-2">Metric Units:</h4>
+                    <ul class="text-gray-600 space-y-1">
+                        <li>• Milligram (mg)</li>
+                        <li>• Gram (g)</li>
+                        <li>• Kilogram (kg)</li>
+                        <li>• Metric Ton</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium text-gray-700 mb-2">Imperial Units:</h4>
+                    <ul class="text-gray-600 space-y-1">
+                        <li>• Ounce (oz)</li>
+                        <li>• Pound (lb)</li>
+                        <li>• Stone</li>
+                        <li>• US Ton</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="calculator-card p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the Mass Calculator</h2>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Enter the Value</h3>
+                        <p class="text-gray-600">Type the mass value you want to convert in the input field. You can enter decimal numbers for precise calculations.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Select Source Unit</h3>
+                        <p class="text-gray-600">Choose the unit of the value you entered from the "From Unit" dropdown menu.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Select Target Unit</h3>
+                        <p class="text-gray-600">Choose the unit you want to convert to from the "To Unit" dropdown menu.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Get Results</h3>
+                        <p class="text-gray-600">Click the "Calculate" button to see the conversion result. The calculator provides accurate conversions with proper formatting.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">💡 Pro Tips:</h3>
+                <ul class="text-blue-700 space-y-1">
+                    <li>• Use decimal points for precise measurements (e.g., 2.5 kg)</li>
+                    <li>• The calculator automatically handles very large and very small numbers</li>
+                    <li>• Results are rounded to appropriate decimal places for readability</li>
+                    <li>• Perfect for cooking, science, shipping, and fitness calculations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Conversion factors to grams
+        const conversionFactors = {
+            mg: 0.001,
+            g: 1,
+            kg: 1000,
+            lb: 453.59237,
+            oz: 28.349523125,
+            stone: 6350.29318,
+            ton: 1000000,
+            usTon: 907184.74
+        };
+        function calculateMass() {
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            const resultDiv = document.getElementById('result');
+            if (isNaN(inputValue) || inputValue === '') {
+                resultDiv.innerHTML = `
+                    <div class="text-2xl font-bold mb-2 text-red-200">Invalid Input</div>
+                    <div class="text-red-100">Please enter a valid number</div>
+                `;
+                return;
+            }
+            // Convert to grams first, then to target unit
+            const grams = inputValue * conversionFactors[fromUnit];
+            const result = grams / conversionFactors[toUnit];
+            // Format result based on magnitude
+            let formattedResult;
+            if (result >= 1000000 || result <= 0.001) {
+                formattedResult = result.toExponential(4);
+            } else if (result >= 1000) {
+                formattedResult = result.toLocaleString('en-US', {maximumFractionDigits: 2});
+            } else {
+                formattedResult = result.toFixed(6).replace(/\.?0+$/, '');
+            }
+            const unitNames = {
+                mg: 'milligrams',
+                g: 'grams',
+                kg: 'kilograms',
+                lb: 'pounds',
+                oz: 'ounces',
+                stone: 'stones',
+                ton: 'metric tons',
+                usTon: 'US tons'
+            };
+            resultDiv.innerHTML = `
+                <div class="text-3xl font-bold mb-2">${formattedResult}</div>
+                <div class="text-blue-100 text-lg">${unitNames[toUnit]}</div>
+                <div class="text-blue-200 text-sm mt-2">${inputValue} ${unitNames[fromUnit]} = ${formattedResult} ${unitNames[toUnit]}</div>
+            `;
+        }
+        // Real-time calculation
+        document.getElementById('inputValue').addEventListener('input', calculateMass);
+        document.getElementById('fromUnit').addEventListener('change', calculateMass);
+        document.getElementById('toUnit').addEventListener('change', calculateMass);
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔬</span>
+                Related Science Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="density_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔬</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Density Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate density</div></div>
+                </a>
+                <a href="volume_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Volume Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate volume</div></div>
+                </a>
+                <a href="molecular_weight_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧪</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Molecular Weight Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate molecular weight</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

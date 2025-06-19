@@ -1,0 +1,623 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Type Calculator - Ectomorph, Mesomorph, Endomorph | BESTUTILS</title>
+    <meta name="description" content="Discover your body type (somatotype) with our comprehensive calculator. Determine if you're an ectomorph, mesomorph, or endomorph for personalized fitness and nutrition plans.">
+    <meta name="keywords" content="body type calculator, somatotype, ectomorph, mesomorph, endomorph, body composition, fitness assessment, metabolism type">
+    <meta name="robots" content="index, follow">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/body-type-calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/body-type-calculator.html">
+    <meta property="og:title" content="Body Type Calculator - Ectomorph, Mesomorph, Endomorph | BestUtils">
+    <meta property="og:description" content="Discover your body type (somatotype) with our comprehensive calculator. Determine if you're an ectomorph, mesomorph, or endomorph for personalized fitness and nutrition plans.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/body-type-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/body-type-calculator.html">
+    <meta name="twitter:title" content="Body Type Calculator - Ectomorph, Mesomorph, Endomorph | BestUtils">
+    <meta name="twitter:description" content="Discover your body type (somatotype) with our comprehensive calculator. Determine if you're an ectomorph, mesomorph, or endomorph for personalized fitness and nutrition plans.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/body-type-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Body Type Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Body Type Calculator",
+        "description": "Free body type calculator to determine if you're an ectomorph, mesomorph, or endomorph with personalized fitness and diet recommendations.",
+        "url": "https://bestutils.com/templates/body-type-calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .calculator-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .question-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .option-btn {
+            width: 100%;
+            padding: 1rem;
+            text-align: left;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .option-btn:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+        }
+        .option-btn.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 100%;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .body-type-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 1rem;
+            height: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        .progress-fill {
+            background: #3b82f6;
+            height: 100%;
+            border-radius: 1rem;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="calculator-container p-6 mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 text-center mb-2">🏋️ Body Type Calculator</h1>
+            <p class="text-gray-600 text-center mb-6">Discover your somatotype to optimize your fitness and nutrition strategy</p>
+            <div id="questionnaire">
+                <!-- Question 1: Build -->
+                <div class="question-card">
+                    <h3 class="text-lg font-semibold mb-3">1. How would you describe your natural build?</h3>
+                    <button class="option-btn" onclick="selectOption(1, 'ecto')" data-question="1" data-type="ecto">
+                        <strong>Naturally thin and lean</strong><br>
+                        <small class="text-gray-600">Narrow shoulders, small frame, difficulty gaining weight</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(1, 'meso')" data-question="1" data-type="meso">
+                        <strong>Naturally muscular and athletic</strong><br>
+                        <small class="text-gray-600">Broad shoulders, medium frame, gains muscle easily</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(1, 'endo')" data-question="1" data-type="endo">
+                        <strong>Naturally stocky and round</strong><br>
+                        <small class="text-gray-600">Wide hips, larger frame, gains weight easily</small>
+                    </button>
+                </div>
+                <!-- Question 2: Metabolism -->
+                <div class="question-card">
+                    <h3 class="text-lg font-semibold mb-3">2. How would you describe your metabolism?</h3>
+                    <button class="option-btn" onclick="selectOption(2, 'ecto')" data-question="2" data-type="ecto">
+                        <strong>Very fast</strong><br>
+                        <small class="text-gray-600">Can eat a lot without gaining weight</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(2, 'meso')" data-question="2" data-type="meso">
+                        <strong>Moderate</strong><br>
+                        <small class="text-gray-600">Weight changes predictably with diet and exercise</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(2, 'endo')" data-question="2" data-type="endo">
+                        <strong>Slow</strong><br>
+                        <small class="text-gray-600">Gain weight easily, lose weight slowly</small>
+                    </button>
+                </div>
+                <!-- Question 3: Weight Gain -->
+                <div class="question-card">
+                    <h3 class="text-lg font-semibold mb-3">3. When you gain weight, where do you notice it first?</h3>
+                    <button class="option-btn" onclick="selectOption(3, 'ecto')" data-question="3" data-type="ecto">
+                        <strong>I rarely gain weight</strong><br>
+                        <small class="text-gray-600">If I do, it's distributed evenly</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(3, 'meso')" data-question="3" data-type="meso">
+                        <strong>Arms and legs</strong><br>
+                        <small class="text-gray-600">Muscle development is noticeable</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(3, 'endo')" data-question="3" data-type="endo">
+                        <strong>Midsection and hips</strong><br>
+                        <small class="text-gray-600">Tend to carry weight in the torso</small>
+                    </button>
+                </div>
+                <!-- Question 4: Exercise Response -->
+                <div class="question-card">
+                    <h3 class="text-lg font-semibold mb-3">4. How does your body respond to exercise?</h3>
+                    <button class="option-btn" onclick="selectOption(4, 'ecto')" data-question="4" data-type="ecto">
+                        <strong>Hard to build muscle</strong><br>
+                        <small class="text-gray-600">Need high-intensity, consistent training</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(4, 'meso')" data-question="4" data-type="meso">
+                        <strong>Build muscle easily</strong><br>
+                        <small class="text-gray-600">See results quickly with regular training</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(4, 'endo')" data-question="4" data-type="endo">
+                        <strong>Build muscle but retain fat</strong><br>
+                        <small class="text-gray-600">Need cardio focus to see muscle definition</small>
+                    </button>
+                </div>
+                <!-- Question 5: Bone Structure -->
+                <div class="question-card">
+                    <h3 class="text-lg font-semibold mb-3">5. How would you describe your bone structure?</h3>
+                    <button class="option-btn" onclick="selectOption(5, 'ecto')" data-question="5" data-type="ecto">
+                        <strong>Small and delicate</strong><br>
+                        <small class="text-gray-600">Narrow wrists and ankles</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(5, 'meso')" data-question="5" data-type="meso">
+                        <strong>Medium and strong</strong><br>
+                        <small class="text-gray-600">Proportional wrists and ankles</small>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(5, 'endo')" data-question="5" data-type="endo">
+                        <strong>Large and thick</strong><br>
+                        <small class="text-gray-600">Wide wrists and ankles</small>
+                    </button>
+                </div>
+                <button onclick="calculateBodyType()" class="calculate-btn">Calculate My Body Type</button>
+            </div>
+            <!-- Results -->
+            <div id="results" style="display: none;">
+                <div class="result-card">
+                    <div class="body-type-icon" id="bodyTypeIcon">🏋️</div>
+                    <h2 class="text-2xl font-bold mb-2" id="bodyTypeName">Your Body Type</h2>
+                    <p class="text-lg mb-4" id="bodyTypeDescription">Description</p>
+                    <div class="grid grid-cols-3 gap-4 mt-6">
+                        <div class="text-center">
+                            <h4 class="font-semibold mb-2">Ectomorph</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="ectoProgress" style="width: 0%"></div>
+                            </div>
+                            <span id="ectoPercent" class="text-sm">0%</span>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="font-semibold mb-2">Mesomorph</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="mesoProgress" style="width: 0%"></div>
+                            </div>
+                            <span id="mesoPercent" class="text-sm">0%</span>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="font-semibold mb-2">Endomorph</h4>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="endoProgress" style="width: 0%"></div>
+                            </div>
+                            <span id="endoPercent" class="text-sm">0%</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recommendations -->
+                <div class="calculator-container p-6 mt-6">
+                    <h3 class="text-xl font-bold mb-4">📋 Personalized Recommendations</h3>
+                    <div id="recommendations"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="calculator-container p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Understanding Body Types (Somatotypes)</h2>
+            <p class="text-gray-600 mb-4">
+                Body type classification, or somatotyping, was developed by psychologist William Sheldon in the 1940s. This system categorizes human physiques into three main types based on bone structure, muscle mass distribution, and fat storage patterns.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6 mt-6">
+                <div class="text-center">
+                    <div class="text-4xl mb-2">🥖</div>
+                    <h3 class="font-bold text-lg mb-2">Ectomorph</h3>
+                    <p class="text-sm text-gray-600">Naturally thin, fast metabolism, difficulty gaining weight, long limbs, narrow frame</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl mb-2">💪</div>
+                    <h3 class="font-bold text-lg mb-2">Mesomorph</h3>
+                    <p class="text-sm text-gray-600">Naturally muscular, athletic build, gains muscle easily, broad shoulders, efficient metabolism</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl mb-2">🍎</div>
+                    <h3 class="font-bold text-lg mb-2">Endomorph</h3>
+                    <p class="text-sm text-gray-600">Naturally stocky, slower metabolism, gains weight easily, wider hips, rounder physique</p>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use -->
+        <div class="calculator-container p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the Body Type Calculator</h2>
+            <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</span>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Answer All Questions</h3>
+                        <p class="text-gray-600">Complete all 5 questions honestly based on your natural tendencies and body characteristics.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</span>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Consider Your Natural State</h3>
+                        <p class="text-gray-600">Think about your body without the influence of extreme dieting or intensive training.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</span>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Review Your Results</h3>
+                        <p class="text-gray-600">Most people are a combination of types. Check your percentages to understand your unique blend.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">4</span>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Apply Recommendations</h3>
+                        <p class="text-gray-600">Use the personalized fitness and nutrition advice to optimize your health and fitness goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const answers = {};
+        function selectOption(question, type) {
+            // Remove selected class from all options in this question
+            const questionOptions = document.querySelectorAll(`[data-question="${question}"]`);
+            questionOptions.forEach(btn => btn.classList.remove('selected'));
+            // Add selected class to clicked option
+            event.target.classList.add('selected');
+            // Store answer
+            answers[question] = type;
+        }
+        function calculateBodyType() {
+            if (Object.keys(answers).length < 5) {
+                alert('Please answer all questions before calculating your body type.');
+                return;
+            }
+            // Count votes for each type
+            const scores = { ecto: 0, meso: 0, endo: 0 };
+            Object.values(answers).forEach(answer => scores[answer]++);
+            // Calculate percentages
+            const total = Object.values(scores).reduce((sum, val) => sum + val, 0);
+            const percentages = {
+                ecto: Math.round((scores.ecto / total) * 100),
+                meso: Math.round((scores.meso / total) * 100),
+                endo: Math.round((scores.endo / total) * 100)
+            };
+            // Determine dominant type
+            const dominantType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            displayResults(dominantType, percentages, scores);
+        }
+        function displayResults(dominantType, percentages, scores) {
+            const typeInfo = {
+                ecto: {
+                    name: 'Ectomorph',
+                    icon: '🥖',
+                    description: 'You have a naturally lean build with a fast metabolism'
+                },
+                meso: {
+                    name: 'Mesomorph', 
+                    icon: '💪',
+                    description: 'You have a naturally athletic build that responds well to exercise'
+                },
+                endo: {
+                    name: 'Endomorph',
+                    icon: '🍎', 
+                    description: 'You have a naturally stocky build with efficient energy storage'
+                }
+            };
+            // Update result display
+            document.getElementById('bodyTypeIcon').textContent = typeInfo[dominantType].icon;
+            document.getElementById('bodyTypeName').textContent = typeInfo[dominantType].name;
+            document.getElementById('bodyTypeDescription').textContent = typeInfo[dominantType].description;
+            // Update progress bars
+            document.getElementById('ectoProgress').style.width = percentages.ecto + '%';
+            document.getElementById('mesoProgress').style.width = percentages.meso + '%';
+            document.getElementById('endoProgress').style.width = percentages.endo + '%';
+            document.getElementById('ectoPercent').textContent = percentages.ecto + '%';
+            document.getElementById('mesoPercent').textContent = percentages.meso + '%';
+            document.getElementById('endoPercent').textContent = percentages.endo + '%';
+            // Generate recommendations
+            generateRecommendations(dominantType, percentages);
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        function generateRecommendations(dominantType, percentages) {
+            const recommendations = {
+                ecto: {
+                    diet: 'Focus on calorie-dense foods, frequent meals, healthy fats, and complex carbs. Don\'t fear carbohydrates!',
+                    exercise: 'Emphasize strength training with compound movements. Limit cardio to maintain weight. Rest between workouts.',
+                    lifestyle: 'Prioritize sleep and stress management. Your high metabolism requires adequate recovery time.'
+                },
+                meso: {
+                    diet: 'Balanced macronutrients work best. Moderate protein, complex carbs, and healthy fats. Adjust portions based on goals.',
+                    exercise: 'Mix strength training and cardio. You respond well to varied workouts and can build muscle efficiently.',
+                    lifestyle: 'Maintain consistent routines. Your body adapts well to structured diet and exercise programs.'
+                },
+                endo: {
+                    diet: 'Focus on portion control, high protein, lots of vegetables, and limit refined carbs. Time carbs around workouts.',
+                    exercise: 'Prioritize cardio for fat loss, but include strength training to build metabolically active muscle.',
+                    lifestyle: 'Stay consistent with routine. Track food intake and consider intermittent fasting approaches.'
+                }
+            };
+            const rec = recommendations[dominantType];
+            const recDiv = document.getElementById('recommendations');
+            recDiv.innerHTML = `
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-800 mb-2">🍽️ Nutrition</h4>
+                        <p class="text-sm text-gray-700">${rec.diet}</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-green-800 mb-2">🏃 Exercise</h4>
+                        <p class="text-sm text-gray-700">${rec.exercise}</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-purple-800 mb-2">💤 Lifestyle</h4>
+                        <p class="text-sm text-gray-700">${rec.lifestyle}</p>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+                <a href="body-fat-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Body Fat Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body fat percentage</div>
+                    </div>
+                </a>
+                <a href="ideal-weight-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🎯</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Ideal Weight Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Find your ideal weight</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

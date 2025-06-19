@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Food Calorie Calculator for Weight Loss</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .calculator-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .food-categories {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .calorie-tracker {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .category {
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .category-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .category-content {
+            display: none;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .category-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .food-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .food-item:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-item.selected {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border-color: #ff6b6b;
+        }
+
+        .food-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .food-details {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .food-item.selected .food-details {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #5a67d8;
+            transform: scale(1.1);
+        }
+
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .tracker-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .total-calories {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .total-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .selected-foods {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .selected-food {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .weight-loss-info {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .calorie-tracker {
+                position: static;
+            }
+            
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇮🇳 Indian Food Calorie Calculator</h1>
+            <p>Plan your weight loss journey with traditional Indian foods</p>
+        </div>
+
+        <div class="calculator-section">
+            <div class="food-categories">
+                <input type="text" class="search-box" placeholder="🔍 Search for foods..." id="searchBox">
+                
+                <div class="category" data-category="grains">
+                    <div class="category-header" onclick="toggleCategory('grains')">
+                        <span><span class="emoji">🌾</span>Grains & Cereals</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="category-content" id="grains-content">
+                        <div class="food-grid" id="grains-grid"></div>
+                    </div>
+                </div>
+
+                <div class="category" data-category="pulses">
+                    <div class="category-header" onclick="toggleCategory('pulses')">
+                        <span><span class="emoji">🫘</span>Pulses & Legumes</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="category-content" id="pulses-content">
+                        <div class="food-grid" id="pulses-grid"></div>
+                    </div>
+                </div>
+
+                <div class="category" data-category="vegetables">
+                    <div class="category-header" onclick="toggleCategory('vegetables')">
+                        <span><span class="emoji">🥬</span>Vegetables</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="category-content" id="vegetables-content">
+                        <div class="food-grid" id="vegetables-grid"></div>
+                    </div>
+                </div>
+
+                <div class="category" data-category="fruits">
+                    <div class="category-header" onclick="toggleCategory('fruits')">
+                        <span><span class="emoji">🍎</span>Fruits</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="category-content" id="fruits-content">
+                        <div class="food-grid" id="fruits-grid"></div>
+                    </div>
+                </div>
+
+                <div class="category" data-category="dairy">
+                    <div class="category-header" onclick="toggleCategory('dairy')">
+                        <span><span class="emoji">🥛</span>Dairy Products</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="category-content" id="dairy-content">
+                        <div class="food-grid" id="dairy-grid"></div>
+                    </div>
+                </div>
+
+                <div class="category" data-category="spices">
+                    <div class="category-header" onclick="toggleCategory('spices')">
+                        <span><span class="emoji">🌶️</span>Spices & Condiments</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="category-content" id="spices-content">
+                        <div class="food-grid" id="spices-grid"></div>
+                    </div>
+                </div>
+
+                <div class="category" data-category="oils">
+                    <div class="category-header" onclick="toggleCategory('oils')">
+                        <span><span class="emoji">🛢️</span>Oils & Fats</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="category-content" id="oils-content">
+                        <div class="food-grid" id="oils-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calorie-tracker">
+                <div class="tracker-header">
+                    <h2>🎯 Daily Calorie Tracker</h2>
+                </div>
+                
+                <div class="total-calories">
+                    <div class="total-number" id="totalCalories">0</div>
+                    <div>Total Calories</div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalProtein">0g</div>
+                            <div class="stat-label">Protein</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalCarbs">0g</div>
+                            <div class="stat-label">Carbs</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalFats">0g</div>
+                            <div class="stat-label">Fats</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="selected-foods" id="selectedFoods">
+                    <p style="text-align: center; color: #666; font-style: italic;">Select foods to see them here</p>
+                </div>
+
+                <div class="weight-loss-info" id="weightLossInfo">
+                    <strong>💡 Weight Loss Tip:</strong>
+                    <p>For healthy weight loss, aim for 1200-1500 calories per day for women and 1500-1800 for men, depending on activity level.</p>
+                </div>
+
+                <button class="clear-btn" onclick="clearAll()">🗑️ Clear All</button>
+                
+                <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="showNutritionalTips()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 15px; cursor: pointer; font-size: 12px;">💡 Get Tips</button>
+                    <button onclick="generateMealPlan()" style="background: #17a2b8; color: white; border: none; padding: 8px 16px; border-radius: 15px; cursor: pointer; font-size: 12px;">📋 Meal Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Indian food database with calories per 100g
+        const indianFoods = {
+            grains: [
+                {name: "Basmati Rice (cooked)", calories: 130, protein: 2.7, carbs: 28, fats: 0.3, unit: "100g"},
+                {name: "Brown Rice (cooked)", calories: 112, protein: 2.6, carbs: 23, fats: 0.9, unit: "100g"},
+                {name: "Wheat Flour (Atta)", calories: 340, protein: 12, carbs: 72, fats: 1.7, unit: "100g"},
+                {name: "Roti/Chapati", calories: 120, protein: 3.1, carbs: 18, fats: 3.7, unit: "1 piece"},
+                {name: "Naan", calories: 262, protein: 9, carbs: 45, fats: 5, unit: "1 piece"},
+                {name: "Paratha (plain)", calories: 320, protein: 6, carbs: 36, fats: 16, unit: "1 piece"},
+                {name: "Idli", calories: 58, protein: 2, carbs: 8, fats: 2, unit: "1 piece"},
+                {name: "Dosa (plain)", calories: 168, protein: 4, carbs: 25, fats: 6, unit: "1 piece"},
+                {name: "Upma", calories: 150, protein: 4, carbs: 20, fats: 6, unit: "100g"},
+                {name: "Poha", calories: 110, protein: 3, carbs: 20, fats: 2, unit: "100g"}
+            ],
+            pulses: [
+                {name: "Moong Dal (cooked)", calories: 104, protein: 7, carbs: 19, fats: 0.4, unit: "100g"},
+                {name: "Toor Dal (cooked)", calories: 118, protein: 8.2, carbs: 22, fats: 0.7, unit: "100g"},
+                {name: "Chana Dal (cooked)", calories: 104, protein: 8, carbs: 20, fats: 1.3, unit: "100g"},
+                {name: "Masoor Dal (cooked)", calories: 116, protein: 9, carbs: 20, fats: 0.4, unit: "100g"},
+                {name: "Urad Dal (cooked)", calories: 105, protein: 7.5, carbs: 18, fats: 0.5, unit: "100g"},
+                {name: "Rajma (cooked)", calories: 140, protein: 8.7, carbs: 22.8, fats: 0.5, unit: "100g"},
+                {name: "Chole/Chickpeas (cooked)", calories: 164, protein: 8.9, carbs: 27, fats: 2.6, unit: "100g"},
+                {name: "Black Gram (cooked)", calories: 105, protein: 7.5, carbs: 18, fats: 0.5, unit: "100g"}
+            ],
+            vegetables: [
+                {name: "Spinach (Palak)", calories: 23, protein: 2.9, carbs: 3.6, fats: 0.4, unit: "100g"},
+                {name: "Cauliflower (Gobi)", calories: 25, protein: 1.9, carbs: 5, fats: 0.3, unit: "100g"},
+                {name: "Cabbage (Patta Gobi)", calories: 25, protein: 1.3, carbs: 6, fats: 0.1, unit: "100g"},
+                {name: "Brinjal (Baingan)", calories: 25, protein: 1, carbs: 6, fats: 0.2, unit: "100g"},
+                {name: "Okra (Bhindi)", calories: 33, protein: 1.9, carbs: 7, fats: 0.2, unit: "100g"},
+                {name: "Bottle Gourd (Lauki)", calories: 14, protein: 0.6, carbs: 3.4, fats: 0.02, unit: "100g"},
+                {name: "Bitter Gourd (Karela)", calories: 17, protein: 1, carbs: 3.7, fats: 0.2, unit: "100g"},
+                {name: "Potato (Aloo)", calories: 77, protein: 2, carbs: 17, fats: 0.1, unit: "100g"},
+                {name: "Tomato", calories: 18, protein: 0.9, carbs: 3.9, fats: 0.2, unit: "100g"},
+                {name: "Onion (Pyaz)", calories: 40, protein: 1.1, carbs: 9.3, fats: 0.1, unit: "100g"},
+                {name: "Carrot (Gajar)", calories: 41, protein: 0.9, carbs: 10, fats: 0.2, unit: "100g"},
+                {name: "Green Beans", calories: 35, protein: 1.8, carbs: 8, fats: 0.2, unit: "100g"}
+            ],
+            fruits: [
+                {name: "Mango (Aam)", calories: 60, protein: 0.8, carbs: 15, fats: 0.4, unit: "100g"},
+                {name: "Apple (Seb)", calories: 52, protein: 0.3, carbs: 14, fats: 0.2, unit: "100g"},
+                {name: "Banana (Kela)", calories: 89, protein: 1.1, carbs: 23, fats: 0.3, unit: "100g"},
+                {name: "Orange (Santra)", calories: 47, protein: 0.9, carbs: 12, fats: 0.1, unit: "100g"},
+                {name: "Papaya (Papita)", calories: 43, protein: 0.5, carbs: 11, fats: 0.3, unit: "100g"},
+                {name: "Guava (Amrud)", calories: 68, protein: 2.6, carbs: 14, fats: 1, unit: "100g"},
+                {name: "Pomegranate (Anar)", calories: 83, protein: 1.7, carbs: 19, fats: 1.2, unit: "100g"},
+                {name: "Grapes (Angoor)", calories: 62, protein: 0.6, carbs: 16, fats: 0.2, unit: "100g"},
+                {name: "Watermelon (Tarbooz)", calories: 30, protein: 0.6, carbs: 8, fats: 0.2, unit: "100g"},
+                {name: "Coconut (Nariyal)", calories: 354, protein: 3.3, carbs: 15, fats: 33, unit: "100g"}
+            ],
+            dairy: [
+                {name: "Milk (Whole)", calories: 42, protein: 3.4, carbs: 5, fats: 1, unit: "100ml"},
+                {name: "Milk (Toned)", calories: 58, protein: 3.2, carbs: 4.7, fats: 3, unit: "100ml"},
+                {name: "Curd/Yogurt (Dahi)", calories: 60, protein: 3.1, carbs: 4.7, fats: 4.3, unit: "100g"},
+                {name: "Paneer", calories: 265, protein: 18.3, carbs: 6.2, fats: 20.8, unit: "100g"},
+                {name: "Ghee", calories: 900, protein: 0, carbs: 0, fats: 100, unit: "100g"},
+                {name: "Butter", calories: 717, protein: 0.9, carbs: 0.1, fats: 81, unit: "100g"},
+                {name: "Buttermilk (Chaas)", calories: 40, protein: 3.1, carbs: 4.8, fats: 0.9, unit: "100ml"},
+                {name: "Lassi (Sweet)", calories: 89, protein: 2.3, carbs: 13, fats: 3.5, unit: "100ml"}
+            ],
+            spices: [
+                {name: "Turmeric (Haldi)", calories: 312, protein: 9.7, carbs: 67, fats: 3.2, unit: "100g"},
+                {name: "Red Chili Powder", calories: 282, protein: 13.5, carbs: 57, fats: 14.2, unit: "100g"},
+                {name: "Coriander Powder", calories: 279, protein: 12.4, carbs: 52, fats: 4.8, unit: "100g"},
+                {name: "Cumin (Jeera)", calories: 375, protein: 17.8, carbs: 44.2, fats: 22.3, unit: "100g"},
+                {name: "Garam Masala", calories: 379, protein: 14.3, carbs: 50, fats: 15.8, unit: "100g"},
+                {name: "Ginger (Adrak)", calories: 80, protein: 1.8, carbs: 18, fats: 0.8, unit: "100g"},
+                {name: "Garlic (Lahsun)", calories: 149, protein: 6.4, carbs: 33, fats: 0.5, unit: "100g"},
+                {name: "Tamarind (Imli)", calories: 239, protein: 2.8, carbs: 62.5, fats: 0.6, unit: "100g"}
+            ],
+            oils: [
+                {name: "Mustard Oil", calories: 884, protein: 0, carbs: 0, fats: 100, unit: "100ml"},
+                {name: "Coconut Oil", calories: 862, protein: 0, carbs: 0, fats: 100, unit: "100ml"},
+                {name: "Sesame Oil (Til)", calories: 884, protein: 0, carbs: 0, fats: 100, unit: "100ml"},
+                {name: "Groundnut Oil", calories: 884, protein: 0, carbs: 0, fats: 100, unit: "100ml"},
+                {name: "Sunflower Oil", calories: 884, protein: 0, carbs: 0, fats: 100, unit: "100ml"}
+            ]
+        };
+
+        let selectedFoods = [];
+        let totalCalories = 0;
+        let totalProtein = 0;
+        let totalCarbs = 0;
+        let totalFats = 0;
+
+        // Initialize the application
+        function init() {
+            renderAllCategories();
+            setupSearch();
+        }
+
+        function renderAllCategories() {
+            Object.keys(indianFoods).forEach(category => {
+                renderCategory(category);
+            });
+        }
+
+        function renderCategory(categoryName) {
+            const grid = document.getElementById(`${categoryName}-grid`);
+            grid.innerHTML = '';
+            
+            indianFoods[categoryName].forEach((food, index) => {
+                const foodElement = createFoodElement(food, categoryName, index);
+                grid.appendChild(foodElement);
+            });
+        }
+
+        function createFoodElement(food, category, index) {
+            const div = document.createElement('div');
+            div.className = 'food-item';
+            div.dataset.category = category;
+            div.dataset.index = index;
+            
+            div.innerHTML = `
+                <div class="food-name">${food.name}</div>
+                <div class="food-details">
+                    ${food.calories} cal per ${food.unit}<br>
+                    P: ${food.protein}g | C: ${food.carbs}g | F: ${food.fats}g
+                </div>
+                <div class="quantity-controls" style="display: none;">
+                    <button class="quantity-btn" onclick="changeQuantity('${category}', ${index}, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1" onchange="updateQuantity('${category}', ${index}, this.value)">
+                    <button class="quantity-btn" onclick="changeQuantity('${category}', ${index}, 1)">+</button>
+                </div>
+            `;
+            
+            div.onclick = () => toggleFoodSelection(div, food, category, index);
+            return div;
+        }
+
+        function toggleFoodSelection(element, food, category, index) {
+            const isSelected = element.classList.contains('selected');
+            
+            if (isSelected) {
+                // Remove from selection
+                element.classList.remove('selected');
+                element.querySelector('.quantity-controls').style.display = 'none';
+                removeFromSelected(category, index);
+            } else {
+                // Add to selection
+                element.classList.add('selected');
+                element.querySelector('.quantity-controls').style.display = 'flex';
+                addToSelected(food, category, index, 1);
+            }
+        }
+
+        function addToSelected(food, category, index, quantity) {
+            const existingIndex = selectedFoods.findIndex(item => 
+                item.category === category && item.index === index
+            );
+            
+            if (existingIndex === -1) {
+                selectedFoods.push({
+                    ...food,
+                    category,
+                    index,
+                    quantity: quantity
+                });
+            } else {
+                selectedFoods[existingIndex].quantity = quantity;
+            }
+            
+            updateTracker();
+        }
+
+        function removeFromSelected(category, index) {
+            selectedFoods = selectedFoods.filter(item => 
+                !(item.category === category && item.index === index)
+            );
+            updateTracker();
+        }
+
+        function changeQuantity(category, index, change) {
+            const input = document.querySelector(`[data-category="${category}"][data-index="${index}"] .quantity-input`);
+            const newValue = Math.max(1, parseInt(input.value) + change);
+            input.value = newValue;
+            updateQuantity(category, index, newValue);
+        }
+
+        function updateQuantity(category, index, quantity) {
+            const food = selectedFoods.find(item => 
+                item.category === category && item.index === index
+            );
+            
+            if (food) {
+                food.quantity = parseInt(quantity);
+                updateTracker();
+            }
+        }
+
+        function updateTracker() {
+            calculateTotals();
+            renderSelectedFoods();
+            updateWeightLossInfo();
+        }
+
+        function calculateTotals() {
+            totalCalories = selectedFoods.reduce((sum, food) => 
+                sum + (food.calories * food.quantity), 0
+            );
+            
+            totalProtein = selectedFoods.reduce((sum, food) => 
+                sum + (food.protein * food.quantity), 0
+            );
+            
+            totalCarbs = selectedFoods.reduce((sum, food) => 
+                sum + (food.carbs * food.quantity), 0
+            );
+            
+            totalFats = selectedFoods.reduce((sum, food) => 
+                sum + (food.fats * food.quantity), 0
+            );
+            
+            document.getElementById('totalCalories').textContent = Math.round(totalCalories);
+            document.getElementById('totalProtein').textContent = Math.round(totalProtein) + 'g';
+            document.getElementById('totalCarbs').textContent = Math.round(totalCarbs) + 'g';
+            document.getElementById('totalFats').textContent = Math.round(totalFats) + 'g';
+        }
+
+        function renderSelectedFoods() {
+            const container = document.getElementById('selectedFoods');
+            
+            if (selectedFoods.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">Select foods to see them here</p>';
+                return;
+            }
+            
+            container.innerHTML = selectedFoods.map((food, idx) => `
+                <div class="selected-food">
+                    <div>
+                        <strong>${food.name}</strong><br>
+                        <small>${food.quantity} × ${food.unit} = ${Math.round(food.calories * food.quantity)} cal</small>
+                    </div>
+                    <button class="remove-btn" onclick="removeFoodFromTracker(${idx})">×</button>
+                </div>
+            `).join('');
+        }
+
+        function removeFoodFromTracker(index) {
+            const food = selectedFoods[index];
+            
+            // Remove visual selection from food item
+            const foodElement = document.querySelector(`[data-category="${food.category}"][data-index="${food.index}"]`);
+            if (foodElement) {
+                foodElement.classList.remove('selected');
+                foodElement.querySelector('.quantity-controls').style.display = 'none';
+            }
+            
+            // Remove from selected foods array
+            selectedFoods.splice(index, 1);
+            updateTracker();
+        }
+
+        function updateWeightLossInfo() {
+            const infoDiv = document.getElementById('weightLossInfo');
+            let message = '';
+            
+            if (totalCalories === 0) {
+                message = '<strong>💡 Weight Loss Tip:</strong><p>For healthy weight loss, aim for 1200-1500 calories per day for women and 1500-1800 for men, depending on activity level.</p>';
+            } else if (totalCalories < 1200) {
+                message = '<strong>⚠️ Too Low:</strong><p>Your calorie intake is very low. Consider adding more nutritious foods to meet minimum daily requirements.</p>';
+            } else if (totalCalories <= 1500) {
+                message = '<strong>✅ Great for Weight Loss:</strong><p>Your calorie intake is in the ideal range for sustainable weight loss!</p>';
+            } else if (totalCalories <= 1800) {
+                message = '<strong>👍 Moderate Range:</strong><p>Good for maintenance or slow weight loss, depending on your activity level.</p>';
+            } else {
+                message = '<strong>📈 Higher Range:</strong><p>Consider reducing portion sizes or choosing lower-calorie alternatives for weight loss.</p>';
+            }
+            
+            infoDiv.innerHTML = message;
+        }
+
+        function toggleCategory(categoryName) {
+            const content = document.getElementById(`${categoryName}-content`);
+            const header = content.previousElementSibling;
+            const arrow = header.querySelector('span:last-child');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                arrow.textContent = '▼';
+            } else {
+                content.classList.add('active');
+                arrow.textContent = '▲';
+            }
+        }
+
+        function setupSearch() {
+            const searchBox = document.getElementById('searchBox');
+            searchBox.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                filterFoods(query);
+            });
+        }
+
+        function filterFoods(query) {
+            if (!query) {
+                // Show all foods if search is empty
+                Object.keys(indianFoods).forEach(category => {
+                    const items = document.querySelectorAll(`#${category}-grid .food-item`);
+                    items.forEach(item => item.style.display = 'block');
+                });
+                return;
+            }
+            
+            Object.keys(indianFoods).forEach(category => {
+                const items = document.querySelectorAll(`#${category}-grid .food-item`);
+                items.forEach(item => {
+                    const foodName = item.querySelector('.food-name').textContent.toLowerCase();
+                    if (foodName.includes(query)) {
+                        item.style.display = 'block';
+                        // Auto-expand category if it has matching results
+                        const content = document.getElementById(`${category}-content`);
+                        if (!content.classList.contains('active')) {
+                            toggleCategory(category);
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all selected foods?')) {
+                // Remove visual selection from all food items
+                document.querySelectorAll('.food-item.selected').forEach(item => {
+                    item.classList.remove('selected');
+                    item.querySelector('.quantity-controls').style.display = 'none';
+                });
+                
+                // Clear arrays and totals
+                selectedFoods = [];
+                totalCalories = 0;
+                totalProtein = 0;
+                totalCarbs = 0;
+                totalFats = 0;
+                
+                // Update display
+                updateTracker();
+            }
+        }
+
+        // Meal planning suggestions
+        function getMealSuggestions() {
+            const suggestions = {
+                breakfast: [
+                    "2 Idli + 1 cup Sambar + 1 tsp Coconut chutney (≈180 cal)",
+                    "1 bowl Upma + 1 cup Buttermilk (≈190 cal)",
+                    "2 Roti + 1 bowl Dal + 1 tsp Ghee (≈350 cal)",
+                    "1 bowl Poha + 1 cup Green tea (≈110 cal)"
+                ],
+                lunch: [
+                    "1 cup Rice + 1 cup Dal + Mixed vegetables + Curd (≈400 cal)",
+                    "2 Roti + Rajma curry + Salad (≈380 cal)",
+                    "1 Dosa + Sambar + Coconut chutney (≈250 cal)",
+                    "Quinoa pulao + Raita + Papad (≈350 cal)"
+                ],
+                dinner: [
+                    "2 Roti + Palak paneer + Cucumber salad (≈400 cal)",
+                    "1 bowl Khichdi + Curd + Pickle (≈300 cal)",
+                    "Grilled vegetables + 1 cup Dal + 1 Roti (≈350 cal)",
+                    "Vegetable soup + 2 Roti + Small bowl curd (≈320 cal)"
+                ]
+            };
+            
+            return suggestions;
+        }
+
+        // Add nutritional tips
+        function showNutritionalTips() {
+            const tips = [
+                "🥗 Fill half your plate with vegetables for maximum nutrition and fewer calories",
+                "🍽️ Use smaller plates to control portion sizes naturally",
+                "🥛 Include protein in every meal to maintain muscle mass during weight loss",
+                "🌶️ Spices like turmeric, ginger, and garlic boost metabolism naturally",
+                "💧 Drink water before meals to help with portion control",
+                "🥨 Choose whole grains over refined grains for better satiety",
+                "🕐 Eat slowly and mindfully to recognize fullness cues",
+                "🍇 Fresh fruits are better than fruit juices for weight management"
+            ];
+            
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            alert(randomTip);
+        }
+
+        // Add meal planning feature
+        function generateMealPlan() {
+            const targetCalories = prompt("Enter your target daily calories (e.g., 1400):");
+            if (!targetCalories || isNaN(targetCalories)) return;
+            
+            const target = parseInt(targetCalories);
+            const breakfast = Math.round(target * 0.25); // 25% for breakfast
+            const lunch = Math.round(target * 0.35);     // 35% for lunch  
+            const dinner = Math.round(target * 0.30);    // 30% for dinner
+            const snacks = target - breakfast - lunch - dinner; // Remaining for snacks
+            
+            const plan = `
+🌅 BREAKFAST (${breakfast} cal):
+• 2 Idli + Sambar
+• OR 1 bowl Upma + Buttermilk
+• OR 2 Roti + Dal
+
+🌞 LUNCH (${lunch} cal):
+• 1 cup Rice + Dal + Vegetables + Curd
+• OR 2 Roti + Sabzi + Salad
+• OR Khichdi + Raita
+
+🌙 DINNER (${dinner} cal):
+• 2 Roti + Palak + Salad
+• OR Soup + 1 Roti + Vegetables
+• OR Dal + Vegetables + 1 Roti
+
+🍎 SNACKS (${snacks} cal):
+• Fruits, nuts, or healthy snacks
+
+Total: ${target} calories
+            `;
+            
+            alert(plan);
+        }
+
+        // Initialize when page loads
+        window.onload = init;
+    </script>
+</body>
+</html>

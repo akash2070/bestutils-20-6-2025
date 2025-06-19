@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stair Calculator - Calculate Rise, Run & Steps | BESTUTILS</title>
+    <meta name="description" content="Free stair calculator to determine rise, run, number of steps, and stair dimensions. Perfect for construction, DIY projects, and building codes compliance.">
+    <meta name="keywords" content="stair calculator, stair dimensions, rise run calculator, step calculator, building stairs, construction calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/stair-calculator">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/stair-calculator">
+    <meta property="og:title" content="Stair Calculator - Calculate Rise, Run & Steps | BESTUTILS">
+    <meta property="og:description" content="Free stair calculator to determine rise, run, number of steps, and stair dimensions. Perfect for construction, DIY projects, and building codes compliance.">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bestutils.com/stair-calculator">
+    <meta property="twitter:title" content="Stair Calculator - Calculate Rise, Run & Steps | BESTUTILS">
+    <meta property="twitter:description" content="Free stair calculator to determine rise, run, number of steps, and stair dimensions. Perfect for construction, DIY projects, and building codes compliance.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-group {
+            transition: all 0.3s ease;
+        }
+        .input-group:hover {
+            transform: translateY(-2px);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            animation: fadeInUp 0.5s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .stair-diagram {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .calculator-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header with Logo -->
+    <header class="pt-6 pb-4">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Main Title -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">🏗️ Stair Calculator</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Calculate perfect stair dimensions for your construction project. Get rise, run, number of steps, and ensure building code compliance.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Calculator Input -->
+            <div class="calculator-card">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">📐 Enter Measurements</h2>
+                <div class="space-y-6">
+                    <div class="input-group bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <label class="block text-white font-medium mb-2">Total Height (inches)</label>
+                        <input type="number" id="totalHeight" class="w-full px-4 py-3 rounded-lg border-0 bg-white/20 text-white placeholder-white/70 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="e.g., 108" step="0.1">
+                        <p class="text-white/80 text-sm mt-1">Vertical distance from floor to floor</p>
+                    </div>
+                    <div class="input-group bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <label class="block text-white font-medium mb-2">Total Run (inches) - Optional</label>
+                        <input type="number" id="totalRun" class="w-full px-4 py-3 rounded-lg border-0 bg-white/20 text-white placeholder-white/70 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="e.g., 120" step="0.1">
+                        <p class="text-white/80 text-sm mt-1">Horizontal distance (leave blank for automatic calculation)</p>
+                    </div>
+                    <div class="input-group bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <label class="block text-white font-medium mb-2">Preferred Riser Height (inches)</label>
+                        <input type="number" id="riserHeight" class="w-full px-4 py-3 rounded-lg border-0 bg-white/20 text-white placeholder-white/70 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="7.5" value="7.5" step="0.1" min="6" max="8">
+                        <p class="text-white/80 text-sm mt-1">Recommended: 6-8 inches (7.5 is ideal)</p>
+                    </div>
+                    <div class="input-group bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                        <label class="block text-white font-medium mb-2">Preferred Tread Depth (inches)</label>
+                        <input type="number" id="treadDepth" class="w-full px-4 py-3 rounded-lg border-0 bg-white/20 text-white placeholder-white/70 focus:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/50" placeholder="10" value="10" step="0.1" min="9" max="12">
+                        <p class="text-white/80 text-sm mt-1">Recommended: 9-12 inches (10-11 is ideal)</p>
+                    </div>
+                    <button onclick="calculateStairs()" class="w-full bg-white text-purple-600 font-bold py-4 px-6 rounded-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg">
+                        🧮 Calculate Stairs
+                    </button>
+                </div>
+            </div>
+            <!-- Results -->
+            <div id="results" class="hidden">
+                <div class="result-card rounded-lg p-6 text-white">
+                    <h2 class="text-2xl font-bold mb-6 text-center">📊 Calculation Results</h2>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-white/20 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold" id="numSteps">-</div>
+                            <div class="text-sm opacity-90">Number of Steps</div>
+                        </div>
+                        <div class="bg-white/20 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold" id="actualRiser">-</div>
+                            <div class="text-sm opacity-90">Actual Riser (in)</div>
+                        </div>
+                        <div class="bg-white/20 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold" id="actualTread">-</div>
+                            <div class="text-sm opacity-90">Actual Tread (in)</div>
+                        </div>
+                        <div class="bg-white/20 rounded-lg p-4 text-center">
+                            <div class="text-2xl font-bold" id="totalRunResult">-</div>
+                            <div class="text-sm opacity-90">Total Run (in)</div>
+                        </div>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4 mb-4">
+                        <h3 class="font-bold mb-2">📐 Key Measurements:</h3>
+                        <div id="measurements" class="space-y-1 text-sm"></div>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <h3 class="font-bold mb-2">✅ Code Compliance:</h3>
+                        <div id="compliance" class="space-y-1 text-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Tool Description -->
+        <div class="mt-12 bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About the Stair Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">🎯 What This Tool Does</h3>
+                    <p class="text-gray-600 mb-4">
+                        Our stair calculator helps you determine the optimal dimensions for any staircase project. Whether you're building new stairs or renovating existing ones, this tool ensures your stairs are safe, comfortable, and compliant with building codes.
+                    </p>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">🔧 Key Features</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>• Calculate number of steps needed</li>
+                        <li>• Determine optimal rise and run</li>
+                        <li>• Check building code compliance</li>
+                        <li>• Adjust for preferred measurements</li>
+                        <li>• Mobile-friendly interface</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">📏 How to Use</h3>
+                    <ol class="text-gray-600 space-y-3">
+                        <li><strong>1. Measure Total Height:</strong> Measure the vertical distance from the lower floor to the upper floor.</li>
+                        <li><strong>2. Enter Preferences:</strong> Input your preferred riser height (6-8 inches) and tread depth (9-12 inches).</li>
+                        <li><strong>3. Optional Total Run:</strong> If you have space constraints, enter the maximum horizontal distance available.</li>
+                        <li><strong>4. Calculate:</strong> Click the calculate button to get your results.</li>
+                        <li><strong>5. Review Results:</strong> Check the calculated dimensions and code compliance.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- Building Code Information -->
+        <div class="mt-8 bg-blue-50 rounded-lg p-6">
+            <h3 class="text-xl font-semibold text-blue-800 mb-4">📋 Building Code Guidelines</h3>
+            <div class="grid md:grid-cols-3 gap-6 text-sm">
+                <div>
+                    <h4 class="font-semibold text-blue-700 mb-2">Riser Height</h4>
+                    <p class="text-blue-600">Maximum: 7¾ inches<br>Minimum: 4 inches<br>Variation: ⅜ inch max</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-blue-700 mb-2">Tread Depth</h4>
+                    <p class="text-blue-600">Minimum: 10 inches<br>Recommended: 11 inches<br>Variation: ⅜ inch max</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-blue-700 mb-2">Headroom</h4>
+                    <p class="text-blue-600">Minimum: 6'8" (80 inches)<br>Measured vertically<br>From tread nosing</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculateStairs() {
+            const totalHeight = parseFloat(document.getElementById('totalHeight').value);
+            const totalRun = parseFloat(document.getElementById('totalRun').value) || null;
+            const preferredRiser = parseFloat(document.getElementById('riserHeight').value) || 7.5;
+            const preferredTread = parseFloat(document.getElementById('treadDepth').value) || 10;
+            if (!totalHeight || totalHeight <= 0) {
+                alert('Please enter a valid total height.');
+                return;
+            }
+            // Calculate number of risers (steps + 1)
+            let numRisers = Math.round(totalHeight / preferredRiser);
+            // Ensure minimum number of risers
+            if (numRisers < 2) numRisers = 2;
+            // Calculate actual riser height
+            const actualRiser = totalHeight / numRisers;
+            // Number of treads (steps)
+            const numSteps = numRisers - 1;
+            // Calculate tread depth
+            let actualTread = preferredTread;
+            let calculatedTotalRun = numSteps * actualTread;
+            // If total run is specified, adjust tread depth
+            if (totalRun && totalRun > 0) {
+                actualTread = totalRun / numSteps;
+                calculatedTotalRun = totalRun;
+            }
+            // Display results
+            document.getElementById('numSteps').textContent = numSteps;
+            document.getElementById('actualRiser').textContent = actualRiser.toFixed(2);
+            document.getElementById('actualTread').textContent = actualTread.toFixed(2);
+            document.getElementById('totalRunResult').textContent = calculatedTotalRun.toFixed(1);
+            // Detailed measurements
+            const measurements = [
+                `Total Height: ${totalHeight}" (${(totalHeight/12).toFixed(1)}')`,
+                `Total Run: ${calculatedTotalRun.toFixed(1)}" (${(calculatedTotalRun/12).toFixed(1)}')`,
+                `Number of Risers: ${numRisers}`,
+                `Number of Treads: ${numSteps}`,
+                `Stair Angle: ${Math.atan(actualRiser/actualTread) * (180/Math.PI).toFixed(1)}°`
+            ];
+            document.getElementById('measurements').innerHTML = measurements.map(m => `<div>• ${m}</div>`).join('');
+            // Code compliance check
+            const compliance = [];
+            if (actualRiser <= 7.75 && actualRiser >= 4) {
+                compliance.push('<div class="text-green-200">✅ Riser height compliant (4" - 7¾")</div>');
+            } else {
+                compliance.push('<div class="text-red-200">❌ Riser height not compliant</div>');
+            }
+            if (actualTread >= 10) {
+                compliance.push('<div class="text-green-200">✅ Tread depth compliant (≥10")</div>');
+            } else {
+                compliance.push('<div class="text-red-200">❌ Tread depth too small</div>');
+            }
+            // 2R + T rule (should be between 24-25 inches)
+            const rule2RT = (2 * actualRiser) + actualTread;
+            if (rule2RT >= 24 && rule2RT <= 25) {
+                compliance.push('<div class="text-green-200">✅ 2R+T rule compliant (24"-25")</div>');
+            } else {
+                compliance.push('<div class="text-yellow-200">⚠️ 2R+T rule: ' + rule2RT.toFixed(1) + '" (ideal: 24-25")</div>');
+            }
+            document.getElementById('compliance').innerHTML = compliance.join('');
+            // Show results
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateStairs();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🪜</span>
+                Related Construction & Building Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="roofing-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏠</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Roofing Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate roofing materials</div></div>
+                </a>
+                <a href="concrete-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏗️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Concrete Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate concrete needed</div></div>
+                </a>
+                <a href="square_footage_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Square Footage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate area measurements</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Measurement & Design Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="triangle-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Triangle Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate triangle properties</div></div>
+                </a>
+                <a href="slope_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Slope Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate slope & grade</div></div>
+                </a>
+                <a href="area_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📏</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Area Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate areas</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us | BestUtils</title>
+    <meta name="description" content="Contact BestUtils for questions, feedback, or support.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f7f9fb;
+            margin: 0;
+            color: #222;
+        }
+        .container {
+            max-width: 480px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 36px 28px 28px 28px;
+        }
+        h1 {
+            text-align: center;
+            color: #4f8cff;
+            margin-bottom: 8px;
+        }
+        p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 28px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #cfd8dc;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f7f9fb;
+            resize: vertical;
+        }
+        button {
+            background: linear-gradient(90deg, #4f8cff 0%, #38c6d9 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #38c6d9 0%, #4f8cff 100%);
+        }
+        .success-message {
+            background: #eaf4ff;
+            color: #2074d4;
+            border-radius: 6px;
+            padding: 14px;
+            text-align: center;
+            margin-top: 18px;
+            display: none;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 24px 8px;
+                padding: 18px 8px 16px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Have a question, suggestion, or need support? Fill out the form below and we'll get back to you soon!</p>
+        <form id="contactForm" autocomplete="off">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="success-message" id="successMessage">
+            Thank you for contacting us! Your message has been sent.<br>We'll respond as soon as possible.
+        </div>
+        <p style="font-size:0.95em;color:#888;margin-top:30px;text-align:center;">Your email address will not be shared or displayed.</p>
+    </div>
+    <script>
+        // This is a frontend-only demo. To actually send emails, backend integration is required.
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate successful submission
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+

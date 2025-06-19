@@ -1,0 +1,675 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistor Color Code Calculator - BESTUTILS.COM</title>
+    <meta name="description" content="Easily determine the resistance value and tolerance of a resistor based on its color bands. Supports 4-band and 5-band resistors. Essential tool for electronics enthusiasts and professionals.">
+    <meta name="keywords" content="resistor color code calculator, resistor calculator, ohms calculator, resistor bands, electronics calculator, 4 band resistor, 5 band resistor, BESTUTILS.COM">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        /* Logo styling - Copied from previous calculator for consistency */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 1.5rem;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-top: 1rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        /* End of Logo styling */
+        .calculator-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .input-group {
+            margin-bottom: 1rem; /* Adjusted margin */
+        }
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #4A5568;
+        }
+        .select-field {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #CBD5E0;
+            border-radius: 0.375rem;
+            background-color: white;
+            appearance: none; /* For custom arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M10 12.586l-4.293-4.293a1 1 0 011.414-1.414L10 10.758l3.879-3.879a1 1 0 111.414 1.414L10 12.586z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.25em;
+        }
+        .select-field:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        .results-card {
+            background-color: #F0F9FF;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 2rem;
+            border: 1px solid #BFDBFE;
+        }
+        .results-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1E40AF;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .result-text {
+            font-size: 1.125rem; /* Tailwind's text-lg */
+            text-align: center;
+            color: #1D4ED8; /* Tailwind's blue-700 */
+            font-weight: 500;
+        }
+        .result-text strong {
+            font-weight: 700;
+            font-size: 1.5rem; /* Tailwind's text-2xl */
+        }
+        .info-section {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+        .info-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 1rem;
+        }
+        .info-text {
+            color: #4B5563;
+            line-height: 1.6;
+        }
+        .info-text p, .info-text ul, .info-text ol {
+            margin-bottom: 1rem;
+        }
+        .info-text h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1F2937;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .info-text ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+        .info-text li {
+            margin-bottom: 0.25rem;
+        }
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            color: #6B7280;
+            font-size: 0.875rem;
+        }
+        /* Resistor visualization */
+        .resistor-body {
+            width: 200px; /* Fixed width for the resistor body */
+            height: 60px;
+            background-color: #FDE68A; /* Light tan/yellow, common resistor body color */
+            border: 2px solid #CA8A04; /* Darker border for definition */
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-around; /* Distribute bands evenly */
+            padding: 0 10px; /* Padding inside the resistor body */
+            margin: 1rem auto; /* Center the resistor */
+        }
+        .resistor-lead {
+            width: 50px;
+            height: 4px;
+            background-color: #A1A1AA; /* Gray for leads */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: -1; /* Behind the body */
+        }
+        .resistor-lead.left {
+            left: -40px; /* Position left lead */
+        }
+        .resistor-lead.right {
+            right: -40px; /* Position right lead */
+        }
+        .resistor-band {
+            width: 12px; /* Width of each color band */
+            height: 100%;
+            background-color: #D1D5DB; /* Default gray for unselected bands */
+        }
+         /* Specific band styling for spacing */
+        #band1Visual, #band2Visual, #band3Visual, #band4Visual, #band5Visual {
+            /* Bands will be colored by JS */
+        }
+        #band4Visual { margin-left: 10px; } /* Extra space before tolerance band */
+        #band5Visual { /* For 5-band, this is temperature coefficient or another digit */ }
+        /* Color mapping for select options and bands */
+        .color-black { background-color: black !important; color: white !important; }
+        .color-brown { background-color: #A52A2A !important; color: white !important; } /* SaddleBrown */
+        .color-red { background-color: #FF0000 !important; color: white !important; } /* Red */
+        .color-orange { background-color: #FFA500 !important; color: black !important; } /* Orange */
+        .color-yellow { background-color: #FFFF00 !important; color: black !important; } /* Yellow */
+        .color-green { background-color: #008000 !important; color: white !important; } /* Green */
+        .color-blue { background-color: #0000FF !important; color: white !important; } /* Blue */
+        .color-violet { background-color: #EE82EE !important; color: white !important; } /* Violet */
+        .color-gray { background-color: #808080 !important; color: white !important; } /* Gray */
+        .color-white { background-color: #FFFFFF !important; color: black !important; border: 1px solid #ccc; } /* White */
+        .color-gold { background-color: #FFD700 !important; color: black !important; } /* Gold */
+        .color-silver { background-color: #C0C0C0 !important; color: black !important; } /* Silver */
+        .color-none { background-color: #F3F4F6 !important; color: black !important; } /* Light gray for 'None' */
+        /* Style for select options */
+        select option.bg-black { background-color: black; color: white; }
+        select option.bg-brown { background-color: #A52A2A; color: white; }
+        select option.bg-red { background-color: #FF0000; color: white; }
+        select option.bg-orange { background-color: #FFA500; color: black; }
+        select option.bg-yellow { background-color: #FFFF00; color: black; }
+        select option.bg-green { background-color: #008000; color: white; }
+        select option.bg-blue { background-color: #0000FF; color: white; }
+        select option.bg-violet { background-color: #EE82EE; color: white; }
+        select option.bg-gray { background-color: #808080; color: white; }
+        select option.bg-white { background-color: #FFFFFF; color: black; }
+        select option.bg-gold { background-color: #FFD700; color: black; }
+        select option.bg-silver { background-color: #C0C0C0; color: black; }
+        select option.bg-none { background-color: #F3F4F6; color: black; }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="flex flex-col min-h-screen">
+    <div class="site-logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+        </svg>
+        <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+    </div>
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">Resistor Color Code Calculator</h1>
+        <div class="calculator-card max-w-2xl mx-auto">
+            <div class="input-group mb-6">
+                <label for="resistorType" class="input-label">Number of Bands:</label>
+                <select id="resistorType" class="select-field">
+                    <option value="4">4 Bands (Digit, Digit, Multiplier, Tolerance)</option>
+                    <option value="5">5 Bands (Digit, Digit, Digit, Multiplier, Tolerance)</option>
+                    </select>
+            </div>
+            <div class="resistor-body" id="resistorVisualBody">
+                <div class="resistor-lead left"></div>
+                <div class="resistor-band" id="band1Visual"></div>
+                <div class="resistor-band" id="band2Visual"></div>
+                <div class="resistor-band" id="band3Visual"></div>
+                <div class="resistor-band" id="band4Visual"></div> <div class="resistor-band hidden" id="band5Visual"></div> <div class="resistor-lead right"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                <div class="input-group">
+                    <label for="band1" class="input-label">Band 1 (1st Digit)</label>
+                    <select id="band1" class="select-field">
+                        </select>
+                </div>
+                <div class="input-group">
+                    <label for="band2" class="input-label">Band 2 (2nd Digit)</label>
+                    <select id="band2" class="select-field">
+                        </select>
+                </div>
+                <div class="input-group" id="band3Group">
+                    <label for="band3" class="input-label" id="band3Label">Multiplier</label>
+                    <select id="band3" class="select-field">
+                        </select>
+                </div>
+                <div class="input-group" id="band4Group">
+                    <label for="band4" class="input-label" id="band4Label">Tolerance</label>
+                    <select id="band4" class="select-field">
+                        </select>
+                </div>
+                <div class="input-group hidden" id="band5Group">
+                    <label for="band5" class="input-label" id="band5Label">Tolerance</label>
+                    <select id="band5" class="select-field">
+                        </select>
+                </div>
+                <!-- Band 6 (TempCo for 6 band) - Future Feature
+                <div class="input-group hidden" id="band6Group">
+                    <label for="band6" class="input-label" id="band6Label">Temp. Coeff.</label>
+                    <select id="band6" class="select-field">
+                    </select>
+                </div>
+                -->
+            </div>
+            <div id="results" class="results-card hidden">
+                <h3 class="results-title">Resistor Value</h3>
+                <p class="result-text" id="resultValue">Value: <strong>0 Ω</strong> &nbsp;&nbsp; Tolerance: <strong>&plusmn;0%</strong></p>
+                <p class="result-text mt-2 text-sm" id="resultRange">Range: N/A</p>
+            </div>
+             <div id="errorMessage" class="mt-4 p-3 bg-red-100 text-red-700 border border-red-300 rounded-md hidden"></div>
+        </div>
+        <div class="info-section max-w-2xl mx-auto">
+            <h2 class="info-title">About Our Resistor Color Code Calculator</h2>
+            <div class="info-text">
+                <p>Resistors are fundamental components in electronic circuits, and their values are typically indicated by a series of colored bands. Our Resistor Color Code Calculator helps you quickly and accurately decode these bands to determine the resistance value and tolerance of a resistor.</p>
+                <p>This tool supports standard 4-band and 5-band resistors. For 6-band resistors, the sixth band usually indicates the temperature coefficient, which is a more advanced parameter not covered by this basic calculator but may be added in the future.</p>
+                <h3>Understanding the Bands:</h3>
+                <ul>
+                    <li><strong>4-Band Resistors:</strong>
+                        <ul>
+                            <li><strong>Band 1:</strong> First significant digit.</li>
+                            <li><strong>Band 2:</strong> Second significant digit.</li>
+                            <li><strong>Band 3:</strong> Multiplier (power of 10).</li>
+                            <li><strong>Band 4:</strong> Tolerance (accuracy, e.g., &plusmn;5%).</li>
+                        </ul>
+                    </li>
+                    <li><strong>5-Band Resistors (Precision Resistors):</strong>
+                        <ul>
+                            <li><strong>Band 1:</strong> First significant digit.</li>
+                            <li><strong>Band 2:</strong> Second significant digit.</li>
+                            <li><strong>Band 3:</strong> Third significant digit.</li>
+                            <li><strong>Band 4:</strong> Multiplier (power of 10).</li>
+                            <li><strong>Band 5:</strong> Tolerance.</li>
+                        </ul>
+                    </li>
+                </ul>
+                 <p>The color codes follow a standard mnemonic, often remembered as "Big Boys Race Our Young Girls But Violet Generally Wins" (Black, Brown, Red, Orange, Yellow, Green, Blue, Violet, Gray, White) for digits 0-9.</p>
+            </div>
+            <h2 class="info-title mt-8">How to Use This Calculator</h2>
+            <div class="info-text">
+                <ol class="list-decimal ml-6 space-y-2">
+                    <li><strong>Select Resistor Type:</strong> Choose whether your resistor has 4 or 5 bands using the dropdown menu at the top. The calculator interface will adjust accordingly.</li>
+                    <li><strong>Select Colors for Each Band:</strong> For each band on your resistor (starting from the band closest to one end), select the corresponding color from the dropdown menus. The resistor image will update to reflect your selections.
+                        <ul>
+                            <li>The bands are typically read from left to right, with the tolerance band (often gold or silver) being on the right. If there's a larger gap before the last band, that last band is usually the tolerance band.</li>
+                        </ul>
+                    </li>
+                    <li><strong>View Results:</strong> The calculated resistance value (in Ohms, kOhms, or MOhms) and the tolerance percentage will be displayed automatically. The possible range (minimum and maximum resistance based on tolerance) will also be shown.</li>
+                    <li><strong>Interpret the Value:</strong> For example, a result of "Value: <strong>4.7 kΩ</strong> &nbsp;&nbsp; Tolerance: <strong>&plusmn;5%</strong>" means the resistor has a nominal value of 4700 Ohms, with an acceptable range of &plusmn;5% of that value.</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        &copy; <span id="currentYear"></span> BESTUTILS.COM - Your Source for Free Online Utilities. All Rights Reserved.
+    </footer>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const resistorTypeSelect = document.getElementById('resistorType');
+        const band1Select = document.getElementById('band1');
+        const band2Select = document.getElementById('band2');
+        const band3Select = document.getElementById('band3');
+        const band4Select = document.getElementById('band4');
+        const band5Select = document.getElementById('band5');
+        const band3Group = document.getElementById('band3Group');
+        const band4Group = document.getElementById('band4Group');
+        const band5Group = document.getElementById('band5Group');
+        const band3Label = document.getElementById('band3Label');
+        const band4Label = document.getElementById('band4Label');
+        // const band5Label = document.getElementById('band5Label'); // Not strictly needed as it's always tolerance for 5-band
+        const band1Visual = document.getElementById('band1Visual');
+        const band2Visual = document.getElementById('band2Visual');
+        const band3Visual = document.getElementById('band3Visual');
+        const band4Visual = document.getElementById('band4Visual');
+        const band5Visual = document.getElementById('band5Visual');
+        const resultsDiv = document.getElementById('results');
+        const resultValueEl = document.getElementById('resultValue');
+        const resultRangeEl = document.getElementById('resultRange');
+        const errorMessageDiv = document.getElementById('errorMessage');
+        const colorMap = {
+            black:  { value: 0, multiplier: 1, tolerance: null, cssClass: 'color-black', hex: '#000000'},
+            brown:  { value: 1, multiplier: 10, tolerance: 1, cssClass: 'color-brown', hex: '#A52A2A'},
+            red:    { value: 2, multiplier: 100, tolerance: 2, cssClass: 'color-red', hex: '#FF0000'},
+            orange: { value: 3, multiplier: 1000, tolerance: null, cssClass: 'color-orange', hex: '#FFA500'},
+            yellow: { value: 4, multiplier: 10000, tolerance: null, cssClass: 'color-yellow', hex: '#FFFF00'},
+            green:  { value: 5, multiplier: 100000, tolerance: 0.5, cssClass: 'color-green', hex: '#008000'},
+            blue:   { value: 6, multiplier: 1000000, tolerance: 0.25, cssClass: 'color-blue', hex: '#0000FF'},
+            violet: { value: 7, multiplier: 10000000, tolerance: 0.1, cssClass: 'color-violet', hex: '#EE82EE'},
+            gray:   { value: 8, multiplier: null, tolerance: 0.05, cssClass: 'color-gray', hex: '#808080'}, // Gray is also sometimes a multiplier 10^8, but less common for digits
+            white:  { value: 9, multiplier: null, tolerance: null, cssClass: 'color-white', hex: '#FFFFFF'}, // White is also sometimes a multiplier 10^9
+            gold:   { value: null, multiplier: 0.1, tolerance: 5, cssClass: 'color-gold', hex: '#FFD700'},
+            silver: { value: null, multiplier: 0.01, tolerance: 10, cssClass: 'color-silver', hex: '#C0C0C0'},
+            none:   { value: null, multiplier: null, tolerance: 20, cssClass: 'color-none', hex: '#F3F4F6'} // For tolerance if no band
+        };
+        const digitColors = ['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'gray', 'white'];
+        const multiplierColors = ['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'gold', 'silver']; // Removed gray, white as primary multipliers for simplicity
+        const toleranceColors4Band = ['gold', 'silver', 'none', 'brown', 'red', 'green', 'blue', 'violet', 'gray']; // 'none' for 20%
+        const toleranceColors5Band = ['brown', 'red', 'green', 'blue', 'violet', 'gray', 'gold', 'silver']; // No 'none' typically for 5-band precision
+        function populateSelect(selectElement, colorsArray, type) {
+            selectElement.innerHTML = ''; // Clear existing options
+            colorsArray.forEach(colorName => {
+                const option = document.createElement('option');
+                option.value = colorName;
+                option.textContent = colorName.charAt(0).toUpperCase() + colorName.slice(1);
+                if (colorMap[colorName]) {
+                    option.classList.add(colorMap[colorName].cssClass.replace('color-', 'bg-')); // For select option background
+                }
+                selectElement.appendChild(option);
+            });
+        }
+        function updateVisualBand(bandVisualElement, colorName) {
+            // Remove all existing color classes
+            Object.values(colorMap).forEach(c => {
+                if(c.cssClass) bandVisualElement.classList.remove(c.cssClass);
+            });
+            // Add new color class
+            if (colorMap[colorName] && colorMap[colorName].hex) {
+                bandVisualElement.style.backgroundColor = colorMap[colorName].hex;
+            } else {
+                 bandVisualElement.style.backgroundColor = '#D1D5DB'; // Default if color not found
+            }
+        }
+        function updateSelectBackground(selectElement) {
+            const selectedColorName = selectElement.value;
+             // Remove all existing color classes from the select element itself
+            Object.values(colorMap).forEach(c => {
+                if(c.cssClass) selectElement.classList.remove(c.cssClass);
+            });
+            if (colorMap[selectedColorName] && colorMap[selectedColorName].cssClass) {
+                selectElement.classList.add(colorMap[selectedColorName].cssClass);
+            }
+        }
+        function setupBands() {
+            const type = resistorTypeSelect.value;
+            populateSelect(band1Select, digitColors, 'digit');
+            populateSelect(band2Select, digitColors, 'digit');
+            updateSelectBackground(band1Select);
+            updateSelectBackground(band2Select);
+            if (type === '4') {
+                band3Label.textContent = 'Multiplier';
+                populateSelect(band3Select, multiplierColors, 'multiplier');
+                band4Label.textContent = 'Tolerance';
+                populateSelect(band4Select, toleranceColors4Band, 'tolerance');
+                band3Group.classList.remove('md:col-start-auto'); // Reset grid positioning if needed
+                band5Group.classList.add('hidden');
+                band5Visual.classList.add('hidden');
+                band3Visual.classList.remove('hidden'); // Ensure 3rd band is visible for 4-band (it's multiplier)
+                updateSelectBackground(band3Select);
+                updateSelectBackground(band4Select);
+            } else if (type === '5') {
+                populateSelect(band3Select, digitColors, 'digit'); // Band 3 is a digit
+                band3Label.textContent = '3rd Digit';
+                populateSelect(band4Select, multiplierColors, 'multiplier');
+                band4Label.textContent = 'Multiplier';
+                populateSelect(band5Select, toleranceColors5Band, 'tolerance');
+                // band5Label.textContent = 'Tolerance'; // Already set in HTML
+                band3Group.classList.remove('md:col-start-auto');
+                band5Group.classList.remove('hidden');
+                band5Visual.classList.remove('hidden');
+                band3Visual.classList.remove('hidden'); // Ensure 3rd band is visible (it's a digit)
+                updateSelectBackground(band3Select);
+                updateSelectBackground(band4Select);
+                updateSelectBackground(band5Select);
+            }
+            calculateResistance(); // Recalculate when type changes
+        }
+        function formatOhms(ohms) {
+            if (ohms >= 1000000) {
+                return (ohms / 1000000).toFixed(2).replace(/\.00$/, '') + ' MΩ';
+            } else if (ohms >= 1000) {
+                return (ohms / 1000).toFixed(2).replace(/\.00$/, '') + ' kΩ';
+            } else {
+                return ohms.toFixed(2).replace(/\.00$/, '') + ' Ω';
+            }
+        }
+        function calculateResistance() {
+            errorMessageDiv.classList.add('hidden');
+            errorMessageDiv.textContent = '';
+            const type = resistorTypeSelect.value;
+            const b1Color = band1Select.value;
+            const b2Color = band2Select.value;
+            updateVisualBand(band1Visual, b1Color);
+            updateVisualBand(band2Visual, b2Color);
+            updateSelectBackground(band1Select);
+            updateSelectBackground(band2Select);
+            let val1 = colorMap[b1Color]?.value;
+            let val2 = colorMap[b2Color]?.value;
+            let val3, multiplierVal, toleranceVal;
+            if (val1 === null || val1 === undefined || val2 === null || val2 === undefined) {
+                errorMessageDiv.textContent = "Please select valid colors for the first two bands.";
+                errorMessageDiv.classList.remove('hidden');
+                resultsDiv.classList.add('hidden');
+                return;
+            }
+            if (type === '4') {
+                const multiplierColor = band3Select.value;
+                const toleranceColor = band4Select.value;
+                updateVisualBand(band3Visual, multiplierColor);
+                updateVisualBand(band4Visual, toleranceColor);
+                updateSelectBackground(band3Select);
+                updateSelectBackground(band4Select);
+                multiplierVal = colorMap[multiplierColor]?.multiplier;
+                toleranceVal = colorMap[toleranceColor]?.tolerance;
+                if (multiplierVal === null || multiplierVal === undefined || toleranceVal === null || toleranceVal === undefined) {
+                     errorMessageDiv.textContent = "Please select valid multiplier and tolerance colors.";
+                     errorMessageDiv.classList.remove('hidden');
+                     resultsDiv.classList.add('hidden');
+                     return;
+                }
+                const baseValue = (val1 * 10 + val2) * multiplierVal;
+                displayResults(baseValue, toleranceVal);
+            } else if (type === '5') {
+                const b3Color = band3Select.value; // 3rd digit
+                const multiplierColor = band4Select.value;
+                const toleranceColor = band5Select.value;
+                updateVisualBand(band3Visual, b3Color);
+                updateVisualBand(band4Visual, multiplierColor);
+                updateVisualBand(band5Visual, toleranceColor);
+                updateSelectBackground(band3Select);
+                updateSelectBackground(band4Select);
+                updateSelectBackground(band5Select);
+                val3 = colorMap[b3Color]?.value;
+                multiplierVal = colorMap[multiplierColor]?.multiplier;
+                toleranceVal = colorMap[toleranceColor]?.tolerance;
+                if (val3 === null || val3 === undefined || multiplierVal === null || multiplierVal === undefined || toleranceVal === null || toleranceVal === undefined) {
+                     errorMessageDiv.textContent = "Please select valid colors for all bands.";
+                     errorMessageDiv.classList.remove('hidden');
+                     resultsDiv.classList.add('hidden');
+                     return;
+                }
+                const baseValue = (val1 * 100 + val2 * 10 + val3) * multiplierVal;
+                displayResults(baseValue, toleranceVal);
+            }
+        }
+        function displayResults(baseValue, tolerancePercent) {
+            const formattedValue = formatOhms(baseValue);
+            resultValueEl.innerHTML = `Value: <strong>${formattedValue}</strong> &nbsp;&nbsp; Tolerance: <strong>&plusmn;${tolerancePercent}%</strong>`;
+            const toleranceDecimal = tolerancePercent / 100;
+            const minVal = baseValue * (1 - toleranceDecimal);
+            const maxVal = baseValue * (1 + toleranceDecimal);
+            resultRangeEl.textContent = `Range: ${formatOhms(minVal)} to ${formatOhms(maxVal)}`;
+            resultsDiv.classList.remove('hidden');
+        }
+        // Event Listeners
+        resistorTypeSelect.addEventListener('change', setupBands);
+        [band1Select, band2Select, band3Select, band4Select, band5Select].forEach(sel => {
+            sel.addEventListener('change', calculateResistance);
+        });
+        // Initial Setup
+        setupBands(); // Populate selects and set initial state based on default resistor type
+        // Set default selections for a common resistor, e.g., Brown-Black-Orange-Gold (10k Ohm 5%) for 4-band
+        if (resistorTypeSelect.value === '4') {
+            band1Select.value = 'brown';
+            band2Select.value = 'black';
+            band3Select.value = 'orange'; // Multiplier
+            band4Select.value = 'gold';   // Tolerance
+        } else { // Default for 5-band e.g. Brown-Black-Black-Red-Brown (100 Ohm * 100, 1%) => 10k Ohm 1%
+            band1Select.value = 'brown';
+            band2Select.value = 'black';
+            band3Select.value = 'black'; // 3rd digit
+            band4Select.value = 'red'; // Multiplier
+            band5Select.value = 'brown'; // Tolerance
+        }
+        calculateResistance(); // Calculate with default values
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔌</span>
+                Related Electrical & Electronics Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="ohms-law-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Ohm's Law Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate electrical values</div></div>
+                </a>
+                <a href="electricity_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Electricity Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate electrical costs</div></div>
+                </a>
+                <a href="voltage_drop_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Voltage Drop Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate voltage drops</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Engineering & Science Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert units</div></div>
+                </a>
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔢</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Simple calculations</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

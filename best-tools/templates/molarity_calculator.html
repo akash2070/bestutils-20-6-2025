@@ -1,0 +1,444 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molarity Calculator - Calculate Molarity, Moles, and Volume | BestUtils</title>
+    <meta name="description" content="Free online molarity calculator to calculate molarity (mol/L), moles, molecular weight, and volume. Perfect for chemistry students and professionals. Easy-to-use with step-by-step calculations.">
+    <meta name="keywords" content="molarity calculator, molar concentration, chemistry calculator, moles calculator, solution concentration, chemistry tools">
+    <meta name="author" content="BestUtils">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bestutils.com/molarity-calculator.html">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Molarity Calculator - Calculate Molarity, Moles, and Volume">
+    <meta property="og:description" content="Free online molarity calculator for chemistry calculations. Calculate molarity, moles, molecular weight, and volume instantly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/molarity-calculator.html">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Molarity Calculator - BestUtils">
+    <meta name="twitter:description" content="Calculate molarity, moles, and volume with our free chemistry calculator.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-group {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            color: #374151;
+            font-weight: 500;
+        }
+        .input-field:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #3B82F6;
+            background: white;
+        }
+        .result-card {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .formula-display {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .calculator-card {
+                padding: 1.5rem;
+            }
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .info-section {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="calculator-card">
+            <h1 class="text-3xl font-bold text-center mb-2">Molarity Calculator</h1>
+            <p class="text-center text-blue-100 mb-6">Calculate molarity, moles, molecular weight, and volume</p>
+            <div class="formula-display">
+                <div class="text-lg font-semibold mb-2">Formula: M = n / V</div>
+                <div class="text-sm">Molarity (M) = Moles (n) / Volume in Liters (V)</div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="input-group">
+                    <label class="block text-sm font-medium mb-2">Molarity (M)</label>
+                    <input type="number" id="molarity" class="input-field" placeholder="Enter molarity in mol/L" step="0.001">
+                    <div class="text-xs text-blue-100 mt-1">Concentration in mol/L</div>
+                </div>
+                <div class="input-group">
+                    <label class="block text-sm font-medium mb-2">Moles (n)</label>
+                    <input type="number" id="moles" class="input-field" placeholder="Enter number of moles" step="0.001">
+                    <div class="text-xs text-blue-100 mt-1">Amount of substance in mol</div>
+                </div>
+                <div class="input-group">
+                    <label class="block text-sm font-medium mb-2">Volume (V)</label>
+                    <div class="flex">
+                        <input type="number" id="volume" class="input-field rounded-r-none" placeholder="Enter volume" step="0.001">
+                        <select id="volumeUnit" class="bg-white text-gray-700 px-3 rounded-r-md border-l border-gray-300">
+                            <option value="L">L</option>
+                            <option value="mL">mL</option>
+                        </select>
+                    </div>
+                    <div class="text-xs text-blue-100 mt-1">Volume of solution</div>
+                </div>
+                <div class="input-group">
+                    <label class="block text-sm font-medium mb-2">Mass (optional)</label>
+                    <input type="number" id="mass" class="input-field" placeholder="Enter mass in grams" step="0.001">
+                    <div class="text-xs text-blue-100 mt-1">Mass of solute in grams</div>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <button onclick="calculateMolarity()" class="btn-primary mr-4">Calculate</button>
+                <button onclick="clearAll()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-md font-semibold">Clear All</button>
+            </div>
+            <div id="results" class="hidden">
+                <div class="result-card">
+                    <h3 class="text-xl font-bold mb-3">Results</h3>
+                    <div id="resultContent" class="space-y-2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Information Section -->
+        <div class="info-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About Molarity Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Our molarity calculator is a powerful tool designed for chemistry students, researchers, and professionals who need to calculate solution concentrations quickly and accurately. Molarity is one of the most important concepts in chemistry, representing the concentration of a solution.
+            </p>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">What is Molarity?</h3>
+            <p class="text-gray-600 mb-4">
+                Molarity (M) is defined as the number of moles of solute dissolved in one liter of solution. It's expressed in units of mol/L or simply M. This measurement is crucial for preparing solutions with precise concentrations in laboratory settings.
+            </p>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">How to Use This Calculator</h3>
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                    <li><strong>Enter Known Values:</strong> Input any two of the three values (molarity, moles, or volume)</li>
+                    <li><strong>Choose Units:</strong> Select appropriate units (L or mL for volume)</li>
+                    <li><strong>Optional Mass:</strong> If you know the mass of solute, enter it for additional calculations</li>
+                    <li><strong>Calculate:</strong> Click "Calculate" to get your results</li>
+                    <li><strong>View Results:</strong> The calculator will show the missing value(s) and provide step-by-step calculations</li>
+                </ol>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Features</h3>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-800 mb-2">✓ Multiple Calculations</h4>
+                    <p class="text-sm text-green-700">Calculate molarity, moles, volume, or molecular weight</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">✓ Unit Conversion</h4>
+                    <p class="text-sm text-blue-700">Automatic conversion between L and mL</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">✓ Step-by-Step</h4>
+                    <p class="text-sm text-purple-700">Clear calculation steps and explanations</p>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-orange-800 mb-2">✓ Mobile Friendly</h4>
+                    <p class="text-sm text-orange-700">Works perfectly on all devices</p>
+                </div>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Common Applications</h3>
+            <ul class="list-disc list-inside space-y-1 text-gray-600 mb-4">
+                <li>Preparing laboratory solutions with specific concentrations</li>
+                <li>Dilution calculations for stock solutions</li>
+                <li>Converting between different concentration units</li>
+                <li>Quality control in pharmaceutical and chemical industries</li>
+                <li>Educational purposes in chemistry courses</li>
+            </ul>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4">
+                <div class="flex">
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700">
+                            <strong>Tip:</strong> Always double-check your units and ensure you're using the correct molecular weight when working with mass calculations. Remember that molarity changes with temperature as solution volume can expand or contract.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculateMolarity() {
+            const molarity = parseFloat(document.getElementById('molarity').value) || null;
+            const moles = parseFloat(document.getElementById('moles').value) || null;
+            let volume = parseFloat(document.getElementById('volume').value) || null;
+            const volumeUnit = document.getElementById('volumeUnit').value;
+            const mass = parseFloat(document.getElementById('mass').value) || null;
+            // Convert volume to liters if in mL
+            if (volume && volumeUnit === 'mL') {
+                volume = volume / 1000;
+            }
+            let results = [];
+            let hasValidCalculation = false;
+            // Calculate based on available inputs
+            if (molarity && volume && !moles) {
+                const calculatedMoles = molarity * volume;
+                results.push(`Moles (n) = ${calculatedMoles.toFixed(4)} mol`);
+                results.push(`Calculation: ${molarity} M × ${volume} L = ${calculatedMoles.toFixed(4)} mol`);
+                hasValidCalculation = true;
+            }
+            if (moles && volume && !molarity) {
+                const calculatedMolarity = moles / volume;
+                results.push(`Molarity (M) = ${calculatedMolarity.toFixed(4)} mol/L`);
+                results.push(`Calculation: ${moles} mol ÷ ${volume} L = ${calculatedMolarity.toFixed(4)} M`);
+                hasValidCalculation = true;
+            }
+            if (molarity && moles && !volume) {
+                const calculatedVolume = moles / molarity;
+                results.push(`Volume (V) = ${calculatedVolume.toFixed(4)} L`);
+                results.push(`Volume (V) = ${(calculatedVolume * 1000).toFixed(2)} mL`);
+                results.push(`Calculation: ${moles} mol ÷ ${molarity} M = ${calculatedVolume.toFixed(4)} L`);
+                hasValidCalculation = true;
+            }
+            // If mass is provided, calculate molecular weight
+            if (mass && moles) {
+                const molecularWeight = mass / moles;
+                results.push(`Molecular Weight = ${molecularWeight.toFixed(2)} g/mol`);
+                results.push(`Calculation: ${mass} g ÷ ${moles} mol = ${molecularWeight.toFixed(2)} g/mol`);
+            }
+            if (hasValidCalculation) {
+                const resultDiv = document.getElementById('results');
+                const resultContent = document.getElementById('resultContent');
+                resultContent.innerHTML = results.map(result => `<div class="text-lg">${result}</div>`).join('');
+                resultDiv.classList.remove('hidden');
+                // Scroll to results
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Please enter at least two values to perform a calculation.');
+            }
+        }
+        function clearAll() {
+            document.getElementById('molarity').value = '';
+            document.getElementById('moles').value = '';
+            document.getElementById('volume').value = '';
+            document.getElementById('mass').value = '';
+            document.getElementById('volumeUnit').value = 'L';
+            document.getElementById('results').classList.add('hidden');
+        }
+        // Allow Enter key to trigger calculation
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateMolarity();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧪</span>
+                Related Chemistry Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="molecular_weight_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧪</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Molecular Weight Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate molecular weight</div></div>
+                </a>
+                <a href="density_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔬</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Density Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate density</div></div>
+                </a>
+                <a href="mass_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Mass Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate mass</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

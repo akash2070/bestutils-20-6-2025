@@ -1,0 +1,723 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Calculator - Online Matrix Operations | BESTUTILS</title>
+    <meta name="description" content="Free online matrix calculator for addition, subtraction, multiplication, determinant, inverse, and transpose operations. Easy-to-use matrix math tool with step-by-step solutions.">
+    <meta name="keywords" content="matrix calculator, free matrix calculator online, matrix operations, matrix multiplication calculator, determinant calculator, matrix inverse calculator, transpose matrix calculator, linear algebra calculator, matrix addition calculator, matrix subtraction calculator, bestutils">
+    <meta name="author" content="BestUtils">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/matrix_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/matrix_calculator.html">
+    <meta property="og:title" content="Matrix Calculator - Online Matrix Operations | BestUtils">
+    <meta property="og:description" content="Free online matrix calculator for addition, subtraction, multiplication, determinant, inverse, and transpose operations. Easy-to-use matrix math tool with step-by-step solutions.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/matrix-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/matrix_calculator.html">
+    <meta name="twitter:title" content="Matrix Calculator - Online Matrix Operations | BestUtils">
+    <meta name="twitter:description" content="Free online matrix calculator for addition, subtraction, multiplication, determinant, inverse, and transpose operations. Easy-to-use matrix math tool with step-by-step solutions.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/matrix-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Matrix Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Matrix Calculator",
+        "description": "Free online matrix calculator for performing matrix operations including addition, subtraction, multiplication, determinant calculation, matrix inverse, and transpose with step-by-step solutions.",
+        "url": "https://bestutils.com/templates/matrix_calculator.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .matrix-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .matrix-input:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .matrix-container {
+            display: inline-block;
+            padding: 20px;
+            border: 3px solid #374151;
+            border-left: 6px solid #374151;
+            border-right: 6px solid #374151;
+            border-radius: 8px;
+            background: #f9fafb;
+        }
+        .result-matrix {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .matrix-input {
+                width: 45px;
+                height: 35px;
+                font-size: 12px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="p-4">
+    <!-- Logo -->
+    <div class="site-logo-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+        </svg>
+        <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+    </div>
+    <div class="max-w-6xl mx-auto">
+        <!-- Main Calculator -->
+        <div class="calculator-card p-6 mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 text-center mb-2">Matrix Calculator</h1>
+            <p class="text-gray-600 text-center mb-6">Perform matrix operations including addition, multiplication, determinant, and more</p>
+            <!-- Matrix Size Controls -->
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Matrix A Size</label>
+                    <div class="flex space-x-2">
+                        <select id="matrixARows" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <span class="flex items-center">×</span>
+                        <select id="matrixACols" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Operation</label>
+                    <select id="operation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <option value="add">A + B</option>
+                        <option value="subtract">A - B</option>
+                        <option value="multiply">A × B</option>
+                        <option value="determinant">Determinant of A</option>
+                        <option value="transpose">Transpose of A</option>
+                        <option value="inverse">Inverse of A</option>
+                    </select>
+                </div>
+                <div id="matrixBSizeControls">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Matrix B Size</label>
+                    <div class="flex space-x-2">
+                        <select id="matrixBRows" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <span class="flex items-center">×</span>
+                        <select id="matrixBCols" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Matrix Input Section -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-6">
+                <!-- Matrix A -->
+                <div class="text-center">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Matrix A</h3>
+                    <div class="flex justify-center">
+                        <div class="matrix-container">
+                            <div id="matrixA"></div>
+                        </div>
+                    </div>
+                    <button onclick="fillRandomA()" class="mt-3 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
+                        Random Values
+                    </button>
+                </div>
+                <!-- Matrix B -->
+                <div class="text-center" id="matrixBSection">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Matrix B</h3>
+                    <div class="flex justify-center">
+                        <div class="matrix-container">
+                            <div id="matrixB"></div>
+                        </div>
+                    </div>
+                    <button onclick="fillRandomB()" class="mt-3 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
+                        Random Values
+                    </button>
+                </div>
+            </div>
+            <!-- Calculate Button -->
+            <div class="text-center mb-6">
+                <button onclick="calculateMatrix()" 
+                        class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+                    Calculate
+                </button>
+            </div>
+            <!-- Result Section -->
+            <div id="result" class="result-matrix text-center" style="display: none;">
+                <h3 class="text-xl font-bold mb-4">Result</h3>
+                <div id="resultContent"></div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="calculator-card p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About Matrix Calculator</h2>
+            <p class="text-gray-600 mb-4">
+                Our Matrix Calculator is a comprehensive tool for performing various matrix operations. Whether you're a student learning linear algebra, an engineer working with transformations, or a researcher dealing with complex mathematical computations, this calculator provides accurate and instant results for all common matrix operations.
+            </p>
+            <p class="text-gray-600 mb-4">
+                The calculator supports matrices up to 4×4 size and can perform operations including matrix addition, subtraction, multiplication, determinant calculation, matrix transpose, and matrix inverse. All calculations are performed with high precision to ensure accurate results.
+            </p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Supported Operations</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <h4 class="font-medium text-gray-700 mb-2">Basic Operations:</h4>
+                    <ul class="text-gray-600 space-y-1">
+                        <li>• Matrix Addition (A + B)</li>
+                        <li>• Matrix Subtraction (A - B)</li>
+                        <li>• Matrix Multiplication (A × B)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium text-gray-700 mb-2">Advanced Operations:</h4>
+                    <ul class="text-gray-600 space-y-1">
+                        <li>• Determinant Calculation</li>
+                        <li>• Matrix Transpose</li>
+                        <li>• Matrix Inverse</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="calculator-card p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the Matrix Calculator</h2>
+            <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Set Matrix Dimensions</h3>
+                        <p class="text-gray-600">Choose the size of your matrices using the dropdown menus. Matrix A and B can have different sizes depending on the operation.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Select Operation</h3>
+                        <p class="text-gray-600">Choose the mathematical operation you want to perform from the operation dropdown menu.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Enter Matrix Values</h3>
+                        <p class="text-gray-600">Fill in the values for your matrices. You can enter integers, decimals, or fractions. Use the "Random Values" button for quick testing.</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Calculate Results</h3>
+                        <p class="text-gray-600">Click the "Calculate" button to perform the operation and see the result matrix displayed below.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">💡 Important Notes:</h3>
+                <ul class="text-blue-700 space-y-1">
+                    <li>• For multiplication: Matrix A columns must equal Matrix B rows</li>
+                    <li>• For addition/subtraction: Both matrices must have the same dimensions</li>
+                    <li>• Determinant and inverse are only available for square matrices</li>
+                    <li>• Empty cells are treated as zero values</li>
+                    <li>• Results are rounded to 4 decimal places for readability</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        let matrixA = [];
+        let matrixB = [];
+        // Initialize matrices
+        function initializeMatrices() {
+            const aRows = parseInt(document.getElementById('matrixARows').value);
+            const aCols = parseInt(document.getElementById('matrixACols').value);
+            const bRows = parseInt(document.getElementById('matrixBRows').value);
+            const bCols = parseInt(document.getElementById('matrixBCols').value);
+            createMatrixInputs('matrixA', aRows, aCols);
+            createMatrixInputs('matrixB', bRows, bCols);
+            updateMatrixBVisibility();
+        }
+        function createMatrixInputs(containerId, rows, cols) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            for (let i = 0; i < rows; i++) {
+                const row = document.createElement('div');
+                row.className = 'flex justify-center space-x-2 mb-2';
+                for (let j = 0; j < cols; j++) {
+                    const input = document.createElement('input');
+                    input.type = 'number';
+                    input.className = 'matrix-input';
+                    input.step = 'any';
+                    input.placeholder = '0';
+                    input.id = `${containerId}_${i}_${j}`;
+                    row.appendChild(input);
+                }
+                container.appendChild(row);
+            }
+        }
+        function updateMatrixBVisibility() {
+            const operation = document.getElementById('operation').value;
+            const matrixBSection = document.getElementById('matrixBSection');
+            const matrixBSizeControls = document.getElementById('matrixBSizeControls');
+            if (['determinant', 'transpose', 'inverse'].includes(operation)) {
+                matrixBSection.style.display = 'none';
+                matrixBSizeControls.style.display = 'none';
+            } else {
+                matrixBSection.style.display = 'block';
+                matrixBSizeControls.style.display = 'block';
+            }
+        }
+        function getMatrixValues(matrixId, rows, cols) {
+            const matrix = [];
+            for (let i = 0; i < rows; i++) {
+                const row = [];
+                for (let j = 0; j < cols; j++) {
+                    const input = document.getElementById(`${matrixId}_${i}_${j}`);
+                    const value = parseFloat(input.value) || 0;
+                    row.push(value);
+                }
+                matrix.push(row);
+            }
+            return matrix;
+        }
+        function fillRandomA() {
+            const rows = parseInt(document.getElementById('matrixARows').value);
+            const cols = parseInt(document.getElementById('matrixACols').value);
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const input = document.getElementById(`matrixA_${i}_${j}`);
+                    input.value = Math.floor(Math.random() * 20) - 10; // Random numbers from -10 to 9
+                }
+            }
+        }
+        function fillRandomB() {
+            const rows = parseInt(document.getElementById('matrixBRows').value);
+            const cols = parseInt(document.getElementById('matrixBCols').value);
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const input = document.getElementById(`matrixB_${i}_${j}`);
+                    input.value = Math.floor(Math.random() * 20) - 10; // Random numbers from -10 to 9
+                }
+            }
+        }
+        function calculateMatrix() {
+            const operation = document.getElementById('operation').value;
+            const aRows = parseInt(document.getElementById('matrixARows').value);
+            const aCols = parseInt(document.getElementById('matrixACols').value);
+            matrixA = getMatrixValues('matrixA', aRows, aCols);
+            let result;
+            let resultHTML = '';
+            try {
+                switch (operation) {
+                    case 'add':
+                        const bRowsAdd = parseInt(document.getElementById('matrixBRows').value);
+                        const bColsAdd = parseInt(document.getElementById('matrixBCols').value);
+                        matrixB = getMatrixValues('matrixB', bRowsAdd, bColsAdd);
+                        result = addMatrices(matrixA, matrixB);
+                        resultHTML = displayMatrix(result);
+                        break;
+                    case 'subtract':
+                        const bRowsSub = parseInt(document.getElementById('matrixBRows').value);
+                        const bColsSub = parseInt(document.getElementById('matrixBCols').value);
+                        matrixB = getMatrixValues('matrixB', bRowsSub, bColsSub);
+                        result = subtractMatrices(matrixA, matrixB);
+                        resultHTML = displayMatrix(result);
+                        break;
+                    case 'multiply':
+                        const bRowsMul = parseInt(document.getElementById('matrixBRows').value);
+                        const bColsMul = parseInt(document.getElementById('matrixBCols').value);
+                        matrixB = getMatrixValues('matrixB', bRowsMul, bColsMul);
+                        result = multiplyMatrices(matrixA, matrixB);
+                        resultHTML = displayMatrix(result);
+                        break;
+                    case 'determinant':
+                        if (aRows !== aCols) {
+                            throw new Error('Determinant can only be calculated for square matrices');
+                        }
+                        result = calculateDeterminant(matrixA);
+                        resultHTML = `<div class="text-3xl font-bold">${result.toFixed(4)}</div>`;
+                        break;
+                    case 'transpose':
+                        result = transposeMatrix(matrixA);
+                        resultHTML = displayMatrix(result);
+                        break;
+                    case 'inverse':
+                        if (aRows !== aCols) {
+                            throw new Error('Inverse can only be calculated for square matrices');
+                        }
+                        result = inverseMatrix(matrixA);
+                        resultHTML = displayMatrix(result);
+                        break;
+                }
+                document.getElementById('resultContent').innerHTML = resultHTML;
+                document.getElementById('result').style.display = 'block';
+            } catch (error) {
+                document.getElementById('resultContent').innerHTML = `
+                    <div class="text-red-200 text-lg font-semibold">Error</div>
+                    <div class="text-red-100 mt-2">${error.message}</div>
+                `;
+                document.getElementById('result').style.display = 'block';
+            }
+        }
+        function addMatrices(a, b) {
+            if (a.length !== b.length || a[0].length !== b[0].length) {
+                throw new Error('Matrices must have the same dimensions for addition');
+            }
+            const result = [];
+            for (let i = 0; i < a.length; i++) {
+                const row = [];
+                for (let j = 0; j < a[0].length; j++) {
+                    row.push(a[i][j] + b[i][j]);
+                }
+                result.push(row);
+            }
+            return result;
+        }
+        function subtractMatrices(a, b) {
+            if (a.length !== b.length || a[0].length !== b[0].length) {
+                throw new Error('Matrices must have the same dimensions for subtraction');
+            }
+            const result = [];
+            for (let i = 0; i < a.length; i++) {
+                const row = [];
+                for (let j = 0; j < a[0].length; j++) {
+                    row.push(a[i][j] - b[i][j]);
+                }
+                result.push(row);
+            }
+            return result;
+        }
+        function multiplyMatrices(a, b) {
+            if (a[0].length !== b.length) {
+                throw new Error('Number of columns in Matrix A must equal number of rows in Matrix B');
+            }
+            const result = [];
+            for (let i = 0; i < a.length; i++) {
+                const row = [];
+                for (let j = 0; j < b[0].length; j++) {
+                    let sum = 0;
+                    for (let k = 0; k < a[0].length; k++) {
+                        sum += a[i][k] * b[k][j];
+                    }
+                    row.push(sum);
+                }
+                result.push(row);
+            }
+            return result;
+        }
+        function calculateDeterminant(matrix) {
+            const n = matrix.length;
+            if (n === 1) return matrix[0][0];
+            if (n === 2) return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+            let det = 0;
+            for (let i = 0; i < n; i++) {
+                const minor = getMinor(matrix, 0, i);
+                det += Math.pow(-1, i) * matrix[0][i] * calculateDeterminant(minor);
+            }
+            return det;
+        }
+        function getMinor(matrix, row, col) {
+            const minor = [];
+            for (let i = 0; i < matrix.length; i++) {
+                if (i === row) continue;
+                const newRow = [];
+                for (let j = 0; j < matrix[0].length; j++) {
+                    if (j === col) continue;
+                    newRow.push(matrix[i][j]);
+                }
+                minor.push(newRow);
+            }
+            return minor;
+        }
+        function transposeMatrix(matrix) {
+            const result = [];
+            for (let i = 0; i < matrix[0].length; i++) {
+                const row = [];
+                for (let j = 0; j < matrix.length; j++) {
+                    row.push(matrix[j][i]);
+                }
+                result.push(row);
+            }
+            return result;
+        }
+        function inverseMatrix(matrix) {
+            const det = calculateDeterminant(matrix);
+            if (Math.abs(det) < 1e-10) {
+                throw new Error('Matrix is singular (determinant = 0) and cannot be inverted');
+            }
+            const n = matrix.length;
+            const adjugate = getAdjugate(matrix);
+            const result = [];
+            for (let i = 0; i < n; i++) {
+                const row = [];
+                for (let j = 0; j < n; j++) {
+                    row.push(adjugate[i][j] / det);
+                }
+                result.push(row);
+            }
+            return result;
+        }
+        function getAdjugate(matrix) {
+            const n = matrix.length;
+            const adjugate = [];
+            for (let i = 0; i < n; i++) {
+                const row = [];
+                for (let j = 0; j < n; j++) {
+                    const minor = getMinor(matrix, i, j);
+                    const cofactor = Math.pow(-1, i + j) * calculateDeterminant(minor);
+                    row.push(cofactor);
+                }
+                adjugate.push(row);
+            }
+            return transposeMatrix(adjugate);
+        }
+        function displayMatrix(matrix) {
+            let html = '<div class="matrix-container bg-white text-gray-800">';
+            for (let i = 0; i < matrix.length; i++) {
+                html += '<div class="flex justify-center space-x-4 mb-2">';
+                for (let j = 0; j < matrix[0].length; j++) {
+                    const value = typeof matrix[i][j] === 'number' ? matrix[i][j].toFixed(4).replace(/\.?0+$/, '') : matrix[i][j];
+                    html += `<div class="w-16 text-center font-mono">${value}</div>`;
+                }
+                html += '</div>';
+            }
+            html += '</div>';
+            return html;
+        }
+        // Event listeners
+        document.getElementById('matrixARows').addEventListener('change', initializeMatrices);
+        document.getElementById('matrixACols').addEventListener('change', initializeMatrices);
+        document.getElementById('matrixBRows').addEventListener('change', initializeMatrices);
+        document.getElementById('matrixBCols').addEventListener('change', initializeMatrices);
+        document.getElementById('operation').addEventListener('change', updateMatrixBVisibility);
+        // Initialize on load
+        initializeMatrices();
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔢</span>
+                Related Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="algebra-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Algebra Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Solve algebraic equations</div></div>
+                </a>
+                <a href="linear_equations_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Linear Equations Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Solve linear systems</div></div>
+                </a>
+                <a href="determinant_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔢</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Determinant Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate matrix determinant</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced mathematical functions</div></div>
+                </a>
+                <a href="statistics_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Statistics Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Statistical calculations</div></div>
+                </a>
+                <a href="calculus_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">∫</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Calculus Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Derivatives and integrals</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

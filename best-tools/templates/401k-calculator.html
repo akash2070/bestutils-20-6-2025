@@ -1,0 +1,352 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Primary SEO Meta Tags -->
+  <title>401k Calculator - Plan Your Retirement Savings | BestUtils</title>
+  <meta name="title" content="401k Calculator - Plan Your Retirement Savings | BestUtils">
+  <meta name="description" content="Free 401k calculator to estimate your retirement savings. Calculate future value of your 401k with contributions and expected returns. Plan your retirement effectively.">
+  <meta name="keywords" content="401k calculator, free 401k calculator, free online 401k calculator, free 401k retirement calculator, how much should i have in my 401k, 401k calculator by age, retirement calculator, 401k savings calculator, bestutils">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://bestutils.com/templates/401k-calculator.html">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bestutils.com/templates/401k-calculator.html">
+  <meta property="og:title" content="401k Calculator - Plan Your Retirement Savings | BestUtils">
+  <meta property="og:description" content="Free 401k calculator to estimate your retirement savings. Calculate future value of your 401k with contributions and expected returns.">
+  <meta property="og:image" content="https://bestutils.com/assets/images/401k-calculator-og.jpg">
+  <meta property="og:site_name" content="BestUtils">
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bestutils">
+  <meta name="twitter:creator" content="@bestutils">
+  <meta name="twitter:url" content="https://bestutils.com/templates/401k-calculator.html">
+  <meta name="twitter:title" content="401k Calculator - Plan Your Retirement Savings | BestUtils">
+  <meta name="twitter:description" content="Free 401k calculator to estimate your retirement savings. Calculate future value of your 401k with contributions and expected returns.">
+  <meta name="twitter:image" content="https://bestutils.com/assets/images/401k-calculator-twitter.jpg">
+  <meta name="twitter:image:alt" content="BestUtils 401k Calculator">
+  <!-- Additional SEO Meta Tags -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="BestUtils">
+  <meta name="language" content="English">
+  <!-- Favicon -->
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "401k Calculator",
+      "description": "Free 401k retirement calculator to estimate future savings value based on current savings, annual contributions, and expected returns.",
+      "url": "https://bestutils.com/templates/401k-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "permissions": "browser",
+      "isAccessibleForFree": true,
+      "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+      },
+      "publisher": {
+          "@type": "Organization",
+          "name": "BestUtils",
+          "url": "https://bestutils.com"
+      }
+  }
+  </script>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 24px; }
+    h1 { text-align: center; color: #2d3748; font-size: 2rem; margin-bottom: 16px; }
+    label { display: block; margin: 12px 0 6px; color: #555; }
+    input { width: calc(100% - 22px); padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
+    button { padding: 12px 20px; font-size: 1rem; border: none; border-radius: 6px; background: #3182ce; color: #fff; cursor: pointer; transition: background 0.2s; margin-top: 16px; }
+    button:hover { background: #2b6cb0; }
+    .result { margin-top: 20px; padding: 16px; background: #e2e8f0; border-radius: 6px; font-size: 1.2rem; text-align: center; }
+  </style>
+</head>
+<body>
+  <header style="display:flex;align-items:center;justify-content:center;padding:24px 0 0 0;">
+    <span style="font-size:2rem;font-weight:700;color:#222;letter-spacing:1px;">BEST<span style="color:#3182ce;">UTILS</span></span>
+  </header>
+  <div class="container">
+    <h1>401k Calculator</h1>
+    <label for="current-age">Current Age:</label>
+    <input type="number" id="current-age" placeholder="Enter your current age">
+    <label for="retirement-age">Retirement Age:</label>
+    <input type="number" id="retirement-age" placeholder="Enter your desired retirement age">
+    <label for="current-savings">Current 401k Savings ($):</label>
+    <input type="number" id="current-savings" placeholder="Enter your current 401k savings">
+    <label for="annual-contribution">Annual Contribution ($):</label>
+    <input type="number" id="annual-contribution" placeholder="Enter your annual contribution">
+    <label for="annual-return">Expected Annual Return (%):</label>
+    <input type="number" id="annual-return" placeholder="Enter expected annual return">
+    <button onclick="calculate401k()">Calculate</button>
+    <div class="result" id="result"></div>
+    <!-- Description Section -->
+    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+      <h2 style="color: #2d3748; margin-bottom: 15px;">About 401k Calculator</h2>
+      <p style="line-height: 1.6; color: #555; margin-bottom: 15px;">
+        Our free 401k calculator helps you estimate how much your retirement savings will grow over time. By inputting your current age, retirement age, current savings, annual contributions, and expected return rate, you can project your 401k balance at retirement and plan accordingly.
+      </p>
+      <p style="line-height: 1.6; color: #555;">
+        This tool uses compound interest calculations to show how your contributions and employer matches can grow significantly over time, helping you make informed decisions about your retirement planning.
+      </p>
+    </div>
+    <!-- How to Use Section -->
+    <div style="margin-top: 20px; padding: 20px; background: #e6f3ff; border-radius: 8px;">
+      <h2 style="color: #2d3748; margin-bottom: 15px;">How to Use the 401k Calculator</h2>
+      <ol style="line-height: 1.8; color: #555; padding-left: 20px;">
+        <li><strong>Enter Your Current Age:</strong> Input your current age in years</li>
+        <li><strong>Set Retirement Age:</strong> Enter the age you plan to retire (typically 65-67)</li>
+        <li><strong>Current 401k Savings:</strong> Enter your current 401k balance in dollars</li>
+        <li><strong>Annual Contribution:</strong> Input your yearly contribution amount (including employer match)</li>
+        <li><strong>Expected Annual Return:</strong> Enter expected return rate (historical average is 7-10%)</li>
+        <li><strong>Calculate:</strong> Click the calculate button to see your projected retirement savings</li>
+      </ol>
+    </div>
+    <!-- Tips Section -->
+    <div style="margin-top: 20px; padding: 20px; background: #f0fff4; border-radius: 8px;">
+      <h2 style="color: #2d3748; margin-bottom: 15px;">401k Planning Tips</h2>
+      <ul style="line-height: 1.8; color: #555; padding-left: 20px;">
+        <li><strong>Maximize Employer Match:</strong> Always contribute enough to get your full employer match - it's free money!</li>
+        <li><strong>Increase Contributions Annually:</strong> Try to increase your contribution by 1-2% each year</li>
+        <li><strong>Start Early:</strong> The power of compound interest means starting early makes a huge difference</li>
+        <li><strong>Consider Roth 401k:</strong> If available, consider splitting between traditional and Roth contributions</li>
+        <li><strong>Review Regularly:</strong> Check and adjust your investment allocation annually</li>
+        <li><strong>Don't Cash Out:</strong> Avoid early withdrawals to prevent penalties and lost growth</li>
+        <li><strong>Catch-up Contributions:</strong> If you're 50+, take advantage of additional catch-up contribution limits</li>
+      </ul>
+    </div>
+    <!-- Additional Information -->
+    <div style="margin-top: 20px; padding: 20px; background: #fff5f5; border-radius: 8px;">
+      <h2 style="color: #2d3748; margin-bottom: 15px;">Important Considerations</h2>
+      <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+        <strong>Contribution Limits (2024):</strong> The annual contribution limit is $23,000, with an additional $7,500 catch-up contribution for those 50 and older.
+      </p>
+      <p style="line-height: 1.6; color: #555; margin-bottom: 10px;">
+        <strong>Investment Risk:</strong> Returns are not guaranteed and will vary based on market conditions and your investment choices.
+      </p>
+      <p style="line-height: 1.6; color: #555;">
+        <strong>Inflation Impact:</strong> Consider inflation when planning - your future dollars may have less purchasing power than today's dollars.
+      </p>
+    </div>
+  </div>
+  <footer style="text-align:center;padding:16px 0;color:#777;font-size:0.9rem;">
+    &copy; 2023 BestUtils. All rights reserved.
+  </footer>
+  <script>
+    function calculate401k() {
+      const currentAge = parseInt(document.getElementById('current-age').value);
+      const retirementAge = parseInt(document.getElementById('retirement-age').value);
+      const currentSavings = parseFloat(document.getElementById('current-savings').value);
+      const annualContribution = parseFloat(document.getElementById('annual-contribution').value);
+      const annualReturn = parseFloat(document.getElementById('annual-return').value) / 100;
+      const yearsToGrow = retirementAge - currentAge;
+      let futureValue = currentSavings;
+      for (let i = 0; i < yearsToGrow; i++) {
+        futureValue += annualContribution;
+        futureValue *= (1 + annualReturn);
+      }
+      document.getElementById('result').textContent = `Estimated 401k Savings at Retirement: $${futureValue.toFixed(2)}`;
+    }
+  </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Finance Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#3b82f6'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div>
+                    </div>
+                </a>
+                <a href="ira-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#3b82f6'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">💼</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">IRA Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Individual retirement account</div>
+                    </div>
+                </a>
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#3b82f6'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(59,130,246,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Investment Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="loan-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Loan Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate loan payments</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏦</span>
+                Related Retirement & Investment Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="ira-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">IRA Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate IRA contributions</div></div>
+                </a>
+                <a href="roth_ira_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Roth IRA Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate Roth IRA benefits</div></div>
+                </a>
+                <a href="pension_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Pension Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate pension benefits</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan retirement savings</div></div>
+                </a>
+                <a href="compound-interest-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💰</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Compound Interest Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate compound growth</div></div>
+                </a>
+                <a href="savings_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Savings Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate savings growth</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

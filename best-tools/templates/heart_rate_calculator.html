@@ -1,0 +1,640 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Heart Rate Calculator | Find Your Optimal Heart Rate Zones | BESTUTILS</title>
+    <meta name="description" content="Free target heart rate calculator to determine your optimal heart rate zones for fat burning, cardio, and peak performance. Calculate your maximum heart rate and training zones.">
+    <meta name="keywords" content="target heart rate calculator, heart rate zones, maximum heart rate, cardio zones, fat burning zone, fitness calculator">
+    <meta name="author" content="BESTUTILS">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/heart_rate_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/heart_rate_calculator.html">
+    <meta property="og:title" content="Target Heart Rate Calculator | Find Your Optimal Heart Rate Zones | BestUtils">
+    <meta property="og:description" content="Calculate your target heart rate zones for optimal workout performance and fat burning with our free heart rate calculator.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/heart-rate-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/heart_rate_calculator.html">
+    <meta name="twitter:title" content="Target Heart Rate Calculator | Find Your Optimal Heart Rate Zones | BestUtils">
+    <meta name="twitter:description" content="Calculate your target heart rate zones for optimal workout performance and fat burning with our free heart rate calculator.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/heart-rate-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Heart Rate Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Heart Rate Calculator",
+        "description": "Free heart rate calculator to determine target heart rate zones for exercise, fitness training, and cardiovascular health monitoring.",
+        "url": "https://bestutils.com/templates/heart_rate_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        /* Custom input styling */
+        .input-group {
+            position: relative;
+        }
+        .input-label {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6B7280;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+        .input-field:focus + .input-label,
+        .input-field:not(:placeholder-shown) + .input-label {
+            top: -8px;
+            left: 8px;
+            font-size: 12px;
+            color: #3B82F6;
+            background: white;
+            padding: 0 4px;
+        }
+        /* Heart rate zones colors */
+        .zone-recovery { background: linear-gradient(135deg, #E5F3FF, #CCE7FF); }
+        .zone-fat-burn { background: linear-gradient(135deg, #E8F5E8, #D4F1D4); }
+        .zone-aerobic { background: linear-gradient(135deg, #FFF2CC, #FFE4B3); }
+        .zone-anaerobic { background: linear-gradient(135deg, #FFE5CC, #FFD1B3); }
+        .zone-max { background: linear-gradient(135deg, #FFE5E5, #FFD1D1); }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header with Logo -->
+    <header class="pt-8">
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Page Title -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Target Heart Rate Calculator</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Calculate your optimal heart rate zones for different types of exercise and fitness goals. Find your fat-burning zone, cardio zone, and maximum heart rate.</p>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Calculator Form -->
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                    <svg class="w-6 h-6 text-red-500 mr-2 pulse-animation" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    Heart Rate Calculator
+                </h2>
+                <form id="heartRateForm" class="space-y-6">
+                    <!-- Age -->
+                    <div class="input-group">
+                        <input type="number" id="age" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder=" " required min="10" max="100">
+                        <label for="age" class="input-label">Age (years)</label>
+                    </div>
+                    <!-- Resting Heart Rate -->
+                    <div class="input-group">
+                        <input type="number" id="restingHR" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder=" " min="40" max="120">
+                        <label for="restingHR" class="input-label">Resting Heart Rate (optional)</label>
+                    </div>
+                    <!-- Fitness Level -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Fitness Level</label>
+                        <select id="fitnessLevel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="beginner">Beginner (just starting)</option>
+                            <option value="intermediate">Intermediate (regular exercise)</option>
+                            <option value="advanced">Advanced (high-intensity training)</option>
+                            <option value="athlete">Athlete (competitive level)</option>
+                        </select>
+                    </div>
+                    <!-- Gender -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="gender" value="male" class="text-blue-600 focus:ring-blue-500" checked>
+                                <span class="ml-2">Male</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="gender" value="female" class="text-blue-600 focus:ring-blue-500">
+                                <span class="ml-2">Female</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-red-700 transition duration-200 shadow-md hover:shadow-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        Calculate Heart Rate Zones
+                    </button>
+                </form>
+            </div>
+            <!-- Results -->
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-6">Your Heart Rate Zones</h2>
+                <div id="results" class="hidden fade-in">
+                    <!-- Maximum Heart Rate -->
+                    <div class="bg-gradient-to-r from-red-50 to-pink-50 p-4 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold text-red-900 mb-2">Maximum Heart Rate</h3>
+                        <p class="text-3xl font-bold text-red-700" id="maxHR">0 BPM</p>
+                        <p class="text-sm text-red-600 mt-1">The highest heart rate you should reach during exercise</p>
+                    </div>
+                    <!-- Heart Rate Zones -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <!-- Zone 1: Recovery -->
+                        <div class="zone-recovery p-4 rounded-lg border border-blue-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-semibold text-blue-900">Zone 1: Recovery</h4>
+                                <span class="text-sm text-blue-700 font-medium">50-60%</span>
+                            </div>
+                            <p class="text-2xl font-bold text-blue-800 mb-2" id="zone1">0-0 BPM</p>
+                            <p class="text-sm text-blue-700">Active recovery, warm-up, cool-down</p>
+                        </div>
+                        <!-- Zone 2: Fat Burning -->
+                        <div class="zone-fat-burn p-4 rounded-lg border border-green-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-semibold text-green-900">Zone 2: Fat Burning</h4>
+                                <span class="text-sm text-green-700 font-medium">60-70%</span>
+                            </div>
+                            <p class="text-2xl font-bold text-green-800 mb-2" id="zone2">0-0 BPM</p>
+                            <p class="text-sm text-green-700">Optimal for fat burning and endurance</p>
+                        </div>
+                        <!-- Zone 3: Aerobic -->
+                        <div class="zone-aerobic p-4 rounded-lg border border-yellow-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-semibold text-yellow-900">Zone 3: Aerobic</h4>
+                                <span class="text-sm text-yellow-700 font-medium">70-80%</span>
+                            </div>
+                            <p class="text-2xl font-bold text-yellow-800 mb-2" id="zone3">0-0 BPM</p>
+                            <p class="text-sm text-yellow-700">Cardiovascular fitness improvement</p>
+                        </div>
+                        <!-- Zone 4: Anaerobic -->
+                        <div class="zone-anaerobic p-4 rounded-lg border border-orange-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-semibold text-orange-900">Zone 4: Anaerobic</h4>
+                                <span class="text-sm text-orange-700 font-medium">80-90%</span>
+                            </div>
+                            <p class="text-2xl font-bold text-orange-800 mb-2" id="zone4">0-0 BPM</p>
+                            <p class="text-sm text-orange-700">High-intensity training, lactate threshold</p>
+                        </div>
+                        <!-- Zone 5: Maximum -->
+                        <div class="zone-max p-4 rounded-lg border border-red-200 md:col-span-2">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-semibold text-red-900">Zone 5: Maximum Effort</h4>
+                                <span class="text-sm text-red-700 font-medium">90-100%</span>
+                            </div>
+                            <p class="text-2xl font-bold text-red-800 mb-2" id="zone5">0-0 BPM</p>
+                            <p class="text-sm text-red-700">Maximum effort, sprint intervals, very short duration</p>
+                        </div>
+                    </div>
+                    <!-- Additional Info -->
+                    <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-2">Recommended Training Distribution</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
+                            <div class="text-center">
+                                <div class="font-semibold text-blue-700">Zone 1-2</div>
+                                <div class="text-gray-600">80% of training</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-semibold text-yellow-700">Zone 3</div>
+                                <div class="text-gray-600">10% of training</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-semibold text-orange-700">Zone 4-5</div>
+                                <div class="text-gray-600">10% of training</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="placeholder" class="text-center text-gray-500 py-12">
+                    <svg class="mx-auto h-16 w-16 text-gray-400 mb-4 pulse-animation" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <p class="text-lg">Enter your age to calculate your target heart rate zones</p>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Instructions -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mt-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">How to Use the Target Heart Rate Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Step-by-Step Instructions</h3>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
+                        <li>Enter your age (required for maximum heart rate calculation)</li>
+                        <li>Add your resting heart rate if known (optional but more accurate)</li>
+                        <li>Select your current fitness level</li>
+                        <li>Choose your gender for more precise calculations</li>
+                        <li>Click "Calculate Heart Rate Zones" to see your results</li>
+                        <li>Use the zones to guide your workout intensity</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">How to Measure Your Heart Rate</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Use a fitness tracker or heart rate monitor for real-time data</li>
+                        <li>Check your pulse at your wrist or neck for 15 seconds, multiply by 4</li>
+                        <li>Use smartphone apps with camera-based heart rate detection</li>
+                        <li>Many gym machines display heart rate when you grip the sensors</li>
+                        <li>For resting heart rate, measure first thing in the morning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Training Zone Guide -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mt-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">Training Zone Guide</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="zone-recovery p-4 rounded-lg border border-blue-200">
+                    <h3 class="font-semibold text-blue-900 mb-2">Recovery Zone (50-60%)</h3>
+                    <p class="text-sm text-blue-800 mb-3">Very light intensity, comfortable conversation pace</p>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>• Active recovery days</li>
+                        <li>• Warm-up and cool-down</li>
+                        <li>• Walking or light cycling</li>
+                        <li>• Helps with recovery</li>
+                    </ul>
+                </div>
+                <div class="zone-fat-burn p-4 rounded-lg border border-green-200">
+                    <h3 class="font-semibold text-green-900 mb-2">Fat Burning Zone (60-70%)</h3>
+                    <p class="text-sm text-green-800 mb-3">Light to moderate intensity, can still talk easily</p>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>• Optimal for fat burning</li>
+                        <li>• Long, steady workouts</li>
+                        <li>• Base endurance building</li>
+                        <li>• Most training time here</li>
+                    </ul>
+                </div>
+                <div class="zone-aerobic p-4 rounded-lg border border-yellow-200">
+                    <h3 class="font-semibold text-yellow-900 mb-2">Aerobic Zone (70-80%)</h3>
+                    <p class="text-sm text-yellow-800 mb-3">Moderate to vigorous, talking becomes difficult</p>
+                    <ul class="text-sm text-yellow-700 space-y-1">
+                        <li>• Improves cardiovascular fitness</li>
+                        <li>• Increases aerobic capacity</li>
+                        <li>• Tempo runs and rides</li>
+                        <li>• Sustainable for 20-60 minutes</li>
+                    </ul>
+                </div>
+                <div class="zone-anaerobic p-4 rounded-lg border border-orange-200">
+                    <h3 class="font-semibold text-orange-900 mb-2">Anaerobic Zone (80-90%)</h3>
+                    <p class="text-sm text-orange-800 mb-3">Hard intensity, can only speak a few words</p>
+                    <ul class="text-sm text-orange-700 space-y-1">
+                        <li>• Lactate threshold training</li>
+                        <li>• Improves speed and power</li>
+                        <li>• Interval training</li>
+                        <li>• Sustainable for 2-10 minutes</li>
+                    </ul>
+                </div>
+                <div class="zone-max p-4 rounded-lg border border-red-200 md:col-span-2 lg:col-span-1">
+                    <h3 class="font-semibold text-red-900 mb-2">Maximum Zone (90-100%)</h3>
+                    <p class="text-sm text-red-800 mb-3">Very hard, cannot speak</p>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>• Maximum effort</li>
+                        <li>• Sprint intervals</li>
+                        <li>• Neuromuscular power</li>
+                        <li>• 30 seconds to 2 minutes max</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- About This Tool -->
+        <div class="bg-red-50 rounded-xl p-6 md:p-8 mt-8">
+            <h2 class="text-2xl font-semibold text-red-900 mb-4">About This Heart Rate Calculator</h2>
+            <p class="text-red-800 mb-4">
+                Our target heart rate calculator uses scientifically-backed formulas to determine your optimal training zones. The calculator employs both the basic age-based formula (220 - age) and the more accurate Karvonen method when resting heart rate is provided.
+            </p>
+            <p class="text-red-800 mb-4">
+                Heart rate training zones help you exercise at the right intensity for your fitness goals, whether you want to burn fat, improve endurance, or increase performance. Training in different zones provides different physiological benefits.
+            </p>
+            <div class="bg-white p-4 rounded-lg">
+                <h3 class="font-semibold text-red-900 mb-2">Important Notes</h3>
+                <ul class="text-sm text-red-700 space-y-1">
+                    <li>• These are estimates - individual variations exist</li>
+                    <li>• Consult a doctor before starting intense exercise programs</li>
+                    <li>• Heart rate can be affected by medications, caffeine, and stress</li>
+                    <li>• Use perceived exertion alongside heart rate for best results</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('heartRateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            calculateHeartRateZones();
+        });
+        function calculateHeartRateZones() {
+            const age = parseInt(document.getElementById('age').value);
+            const restingHR = parseInt(document.getElementById('restingHR').value) || null;
+            const fitnessLevel = document.getElementById('fitnessLevel').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            if (!age || age < 10 || age > 100) {
+                alert('Please enter a valid age between 10 and 100');
+                return;
+            }
+            // Calculate maximum heart rate with slight adjustment for gender and fitness level
+            let maxHR = 220 - age;
+            // Adjust for gender (women typically have slightly higher max HR)
+            if (gender === 'female') {
+                maxHR += 2;
+            }
+            // Adjust for fitness level
+            const fitnessAdjustments = {
+                'beginner': -5,
+                'intermediate': 0,
+                'advanced': 3,
+                'athlete': 5
+            };
+            maxHR += fitnessAdjustments[fitnessLevel] || 0;
+            // If resting HR is provided, use Karvonen method for more accuracy
+            let zone1Min, zone1Max, zone2Min, zone2Max, zone3Min, zone3Max, zone4Min, zone4Max, zone5Min, zone5Max;
+            if (restingHR) {
+                // Karvonen method: Target HR = (Max HR - Resting HR) × %Intensity + Resting HR
+                const hrReserve = maxHR - restingHR;
+                zone1Min = Math.round(hrReserve * 0.50 + restingHR);
+                zone1Max = Math.round(hrReserve * 0.60 + restingHR);
+                zone2Min = Math.round(hrReserve * 0.60 + restingHR);
+                zone2Max = Math.round(hrReserve * 0.70 + restingHR);
+                zone3Min = Math.round(hrReserve * 0.70 + restingHR);
+                zone3Max = Math.round(hrReserve * 0.80 + restingHR);
+                zone4Min = Math.round(hrReserve * 0.80 + restingHR);
+                zone4Max = Math.round(hrReserve * 0.90 + restingHR);
+                zone5Min = Math.round(hrReserve * 0.90 + restingHR);
+                zone5Max = maxHR;
+            } else {
+                // Simple percentage method
+                zone1Min = Math.round(maxHR * 0.50);
+                zone1Max = Math.round(maxHR * 0.60);
+                zone2Min = Math.round(maxHR * 0.60);
+                zone2Max = Math.round(maxHR * 0.70);
+                zone3Min = Math.round(maxHR * 0.70);
+                zone3Max = Math.round(maxHR * 0.80);
+                zone4Min = Math.round(maxHR * 0.80);
+                zone4Max = Math.round(maxHR * 0.90);
+                zone5Min = Math.round(maxHR * 0.90);
+                zone5Max = maxHR;
+            }
+            // Display results
+            document.getElementById('maxHR').textContent = maxHR + ' BPM';
+            document.getElementById('zone1').textContent = zone1Min + '-' + zone1Max + ' BPM';
+            document.getElementById('zone2').textContent = zone2Min + '-' + zone2Max + ' BPM';
+            document.getElementById('zone3').textContent = zone3Min + '-' + zone3Max + ' BPM';
+            document.getElementById('zone4').textContent = zone4Min + '-' + zone4Max + ' BPM';
+            document.getElementById('zone5').textContent = zone5Min + '-' + zone5Max + ' BPM';
+            // Show results
+            document.getElementById('placeholder').classList.add('hidden');
+            document.getElementById('results').classList.remove('hidden');
+        }
+        // Auto-calculate on input change
+        document.querySelectorAll('#heartRateForm input, #heartRateForm select').forEach(element => {
+            element.addEventListener('change', () => {
+                if (document.getElementById('age').value) {
+                    calculateHeartRateZones();
+                }
+            });
+        });
+        // Initial calculation if age is provided
+        document.getElementById('age').addEventListener('input', () => {
+            if (document.getElementById('age').value) {
+                calculateHeartRateZones();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔥</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                    </div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+                <a href="sleep_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">😴</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Sleep Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate optimal sleep time</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="age-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🎂</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Age Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate age precisely</div>
+                    </div>
+                </a>
+                <a href="stopwatch.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⏱️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Stopwatch</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Online stopwatch timer</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

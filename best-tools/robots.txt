@@ -1,0 +1,87 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl all content
+Allow: /templates/
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /index.html
+Allow: /bestutils_homepage.html
+Allow: /sitemap.html
+Allow: /privacy-policy.html
+Allow: /terms-conditions.html
+Allow: /templates/about-us.html
+Allow: /templates/contact-us.html
+
+# Primary XML Sitemap location (SEO optimized)
+Sitemap: https://bestutils.com/sitemap.xml
+
+# Secondary HTML Sitemap for users
+Sitemap: https://bestutils.com/sitemap.html
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Specific directives for major search engines (optimized for ranking)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Block access to sensitive files and directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.log$
+Disallow: /*.tmp$
+Disallow: /*.bak$
+
+# Explicitly allow high-priority calculator pages for better indexing
+Allow: /templates/bmi-calculator.html
+Allow: /templates/mortgage-calculator.html
+Allow: /templates/loan-calculator.html
+Allow: /templates/percentage-calculator.html
+Allow: /templates/compound-interest-calculator.html
+Allow: /templates/calorie-calculator.html
+Allow: /templates/currency-converter.html
+Allow: /templates/unit-converter.html
+Allow: /templates/password-generator.html
+Allow: /templates/qr-code-generator.html
+Allow: /templates/word-counter.html
+Allow: /templates/basic-calculator.html
+Allow: /templates/scientific-calculator.html
+Allow: /templates/age-calculator.html
+Allow: /templates/date-calculator.html
+
+# Allow all template files (220+ calculators and tools)
+Allow: /templates/*.html
+
+# SEO Enhancement: Additional sitemap references
+Sitemap: https://bestutils.com/sitemap.xml
+
+# Notes for search engines:
+# - This site contains 220+ free online calculators and tools
+# - All content is freely accessible and optimized for search
+# - Regular updates with fresh content and new tools
+# - Mobile-responsive design for all devices
+# - Fast loading times and excellent user experience

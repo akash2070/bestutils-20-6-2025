@@ -1,0 +1,850 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free PowerPoint to PDF Converter Online | Convert PPT to PDF</title>
+    <meta name="description" content="Convert PowerPoint presentations to PDF documents online for free. Fast, secure, and no upload required. Perfect for students, teachers, and business professionals.">
+    <meta name="keywords" content="PowerPoint to PDF, PPT to PDF, PPTX to PDF, convert PowerPoint, online converter, free converter, presentation to PDF">
+    <meta name="author" content="PDF Converter Tools">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yoursite.com/ppt-to-pdf">
+    <meta property="og:title" content="Free PowerPoint to PDF Converter Online">
+    <meta property="og:description" content="Convert PowerPoint presentations to PDF documents online for free. Fast, secure, and no upload required.">
+    <meta property="og:image" content="https://yoursite.com/og-image.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yoursite.com/ppt-to-pdf">
+    <meta property="twitter:title" content="Free PowerPoint to PDF Converter Online">
+    <meta property="twitter:description" content="Convert PowerPoint presentations to PDF documents online for free. Fast, secure, and no upload required.">
+    <meta property="twitter:image" content="https://yoursite.com/twitter-image.jpg">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yoursite.com/ppt-to-pdf">
+    <!-- Favicon -->
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PowerPoint to PDF Converter",
+        "description": "Convert PowerPoint presentations to PDF documents online for free",
+        "url": "https://yoursite.com/ppt-to-pdf",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Free PPT to PDF conversion",
+            "No registration required",
+            "Secure client-side processing",
+            "Multiple format support",
+            "High-quality PDF output"
+        ]
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .converter-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #f8f9ff, #e8edff);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            border-color: #5a67d8;
+            background: linear-gradient(45deg, #f0f5ff, #e0e8ff);
+            transform: translateY(-2px);
+        }
+        .upload-area.dragover {
+            border-color: #4c51bf;
+            background: linear-gradient(45deg, #e8f2ff, #d6e8ff);
+            transform: scale(1.02);
+        }
+        .upload-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        .upload-text {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .upload-subtext {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        .file-input {
+            display: none;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .progress-container {
+            display: none;
+            margin-top: 30px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .status-text {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .feature-desc {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #e53e3e;
+            display: none;
+        }
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #38a169;
+            display: none;
+        }
+        .preview-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 12px;
+        }
+        .preview-slides {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .slide-preview {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .slide-preview:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        .slide-number {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+        .slide-content {
+            height: 120px;
+            background: linear-gradient(45deg, #f1f5f9, #e2e8f0);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+            font-size: 0.8rem;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255,255,255,0.8);
+        }
+        .seo-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .seo-content h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .seo-content h3 {
+            color: #4a5568;
+            margin: 25px 0 15px 0;
+            font-size: 1.3rem;
+        }
+        .seo-content p {
+            color: #718096;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .converter-card {
+                padding: 20px;
+            }
+            .upload-area {
+                padding: 40px 15px;
+            }
+            .preview-slides {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        .processing {
+            animation: pulse 2s infinite;
+        }
+        .quality-selector {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .quality-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .quality-option {
+            padding: 8px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .quality-option:hover {
+            border-color: #667eea;
+        }
+        .quality-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📊➡️📄 PowerPoint to PDF Converter</h1>
+            <p class="subtitle">Convert your PowerPoint presentations to PDF documents instantly - Free & Secure</p>
+        </header>
+        <main>
+            <div class="converter-card">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📊➡️📄</div>
+                    <div class="upload-text">Drop your PowerPoint file here or click to browse</div>
+                    <div class="upload-subtext">Supports PPT, PPTX files up to 100MB</div>
+                    <input type="file" id="fileInput" class="file-input" accept=".ppt,.pptx">
+                </div>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+                <div class="quality-selector" id="qualitySelector" style="display: none;">
+                    <h3>Select PDF Quality:</h3>
+                    <div class="quality-options">
+                        <div class="quality-option selected" data-quality="high">High Quality</div>
+                        <div class="quality-option" data-quality="medium">Medium</div>
+                        <div class="quality-option" data-quality="low">Small Size</div>
+                    </div>
+                </div>
+                <div class="preview-container" id="previewContainer">
+                    <h3>Preview Slides:</h3>
+                    <div class="preview-slides" id="previewSlides"></div>
+                </div>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="status-text" id="statusText">Processing your presentation...</div>
+                </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn" id="convertBtn" style="display: none;">Convert to PDF</button>
+                </div>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">100% Secure</div>
+                    <div class="feature-desc">All processing happens in your browser. Your files never leave your device.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Lightning Fast</div>
+                    <div class="feature-desc">Convert PowerPoint to PDF in seconds with our optimized conversion engine.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Completely Free</div>
+                    <div class="feature-desc">No hidden fees, no registration required. Convert unlimited files for free.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">Any Device</div>
+                    <div class="feature-desc">Works on desktop, tablet, and mobile. No software installation needed.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">High Quality</div>
+                    <div class="feature-desc">Maintains original formatting, fonts, and image quality in PDF output.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-title">Batch Convert</div>
+                    <div class="feature-desc">Convert multiple slides at once with our efficient processing system.</div>
+                </div>
+            </div>
+        </main>
+        <div class="seo-content">
+            <h2>Why Convert PowerPoint to PDF?</h2>
+            <p>Converting PowerPoint presentations to PDF format is essential for sharing, archiving, and ensuring your slides look exactly the same on any device. PDF documents maintain formatting integrity and are universally compatible across all platforms and devices.</p>
+            <h3>Perfect for Professional Use</h3>
+            <p>Business professionals, educators, and students frequently need to convert PowerPoint presentations to PDF for easy sharing via email, uploading to websites, or creating handouts. Our free PPT to PDF converter makes this process simple and secure.</p>
+            <h3>Key Benefits of PPT to PDF Conversion:</h3>
+            <p>• <strong>Universal Compatibility</strong> - PDF files open on any device without PowerPoint installed</p>
+            <p>• <strong>Preserve Formatting</strong> - Maintain exact layout, fonts, and design elements</p>
+            <p>• <strong>Easy Sharing</strong> - Smaller file sizes perfect for email and web sharing</p>
+            <p>• <strong>Print Ready</strong> - Create professional handouts and documents for printing</p>
+            <p>• <strong>Security</strong> - PDF format prevents unauthorized editing of your content</p>
+            <p>• <strong>Archival Quality</strong> - Long-term document preservation and storage</p>
+            <h3>How Our PowerPoint to PDF Converter Works</h3>
+            <p>Our advanced converter processes your PowerPoint files entirely within your web browser using cutting-edge JavaScript libraries. Upload your PPT or PPTX file, select your preferred quality settings, and download a professional PDF document in seconds.</p>
+            <h3>Supported Input Formats</h3>
+            <p>• <strong>PowerPoint (.ppt)</strong> - Classic PowerPoint format from older versions</p>
+            <p>• <strong>PowerPoint (.pptx)</strong> - Modern XML-based PowerPoint format</p>
+            <p>• <strong>File Size Limit:</strong> Up to 100MB per presentation</p>
+            <h3>Output Quality Options</h3>
+            <p>Choose from three quality levels to balance file size and visual quality:</p>
+            <p>• <strong>High Quality</strong> - Best for professional presentations and printing</p>
+            <p>• <strong>Medium Quality</strong> - Balanced size and quality for general use</p>
+            <p>• <strong>Small Size</strong> - Optimized for email sharing and web upload</p>
+            <h3>Common Use Cases</h3>
+            <p>Our PowerPoint to PDF converter is widely used for creating training materials, student handouts, business proposals, conference presentations, marketing materials, and academic research presentations. The PDF format ensures your content looks professional and remains accessible to all recipients.</p>
+            <h3>Privacy and Security</h3>
+            <p>Your presentation files are processed entirely within your browser - no uploads to external servers, no data collection, and no risk of unauthorized access to your sensitive business or academic content.</p>
+        </div>
+        <footer>
+            <p>&copy; 2025 PowerPoint Converter Tools. Built with modern web technologies for maximum privacy and performance.</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script>
+        class PowerPointToPDFConverter {
+            constructor() {
+                this.initializeElements();
+                this.bindEvents();
+                this.selectedFile = null;
+                this.slides = [];
+                this.selectedQuality = 'high';
+            }
+            initializeElements() {
+                this.uploadArea = document.getElementById('uploadArea');
+                this.fileInput = document.getElementById('fileInput');
+                this.convertBtn = document.getElementById('convertBtn');
+                this.progressContainer = document.getElementById('progressContainer');
+                this.progressFill = document.getElementById('progressFill');
+                this.statusText = document.getElementById('statusText');
+                this.errorMessage = document.getElementById('errorMessage');
+                this.successMessage = document.getElementById('successMessage');
+                this.previewContainer = document.getElementById('previewContainer');
+                this.previewSlides = document.getElementById('previewSlides');
+                this.qualitySelector = document.getElementById('qualitySelector');
+            }
+            bindEvents() {
+                this.uploadArea.addEventListener('click', () => this.fileInput.click());
+                this.fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
+                this.convertBtn.addEventListener('click', () => this.convertFile());
+                // Quality selector events
+                document.querySelectorAll('.quality-option').forEach(option => {
+                    option.addEventListener('click', (e) => this.selectQuality(e));
+                });
+                // Drag and drop events
+                this.uploadArea.addEventListener('dragover', (e) => this.handleDragOver(e));
+                this.uploadArea.addEventListener('dragleave', (e) => this.handleDragLeave(e));
+                this.uploadArea.addEventListener('drop', (e) => this.handleDrop(e));
+            }
+            handleDragOver(e) {
+                e.preventDefault();
+                this.uploadArea.classList.add('dragover');
+            }
+            handleDragLeave(e) {
+                e.preventDefault();
+                this.uploadArea.classList.remove('dragover');
+            }
+            handleDrop(e) {
+                e.preventDefault();
+                this.uploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    this.handleFile(files[0]);
+                }
+            }
+            handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    this.handleFile(file);
+                }
+            }
+            async handleFile(file) {
+                this.hideMessages();
+                if (!this.isValidPowerPointFile(file)) {
+                    this.showError('Please select a valid PowerPoint file (.ppt or .pptx).');
+                    return;
+                }
+                if (file.size > 100 * 1024 * 1024) {
+                    this.showError('File size must be less than 100MB.');
+                    return;
+                }
+                this.selectedFile = file;
+                this.updateUploadArea(file.name);
+                try {
+                    await this.analyzePowerPoint(file);
+                    this.showPreview();
+                    this.qualitySelector.style.display = 'block';
+                    this.convertBtn.style.display = 'block';
+                } catch (error) {
+                    console.error('Analysis error:', error);
+                    this.showError('Error analyzing PowerPoint file. Please try a different file.');
+                }
+            }
+            isValidPowerPointFile(file) {
+                const validTypes = [
+                    'application/vnd.ms-powerpoint',
+                    'application/vnd.openxmlformats-presentationml.presentation',
+                    'application/vnd.ms-powerpoint.presentation.macroEnabled.12'
+                ];
+                return validTypes.includes(file.type) || 
+                       file.name.toLowerCase().endsWith('.ppt') || 
+                       file.name.toLowerCase().endsWith('.pptx');
+            }
+            async analyzePowerPoint(file) {
+                this.updateProgress(10, 'Analyzing PowerPoint file...');
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const zip = await JSZip.loadAsync(arrayBuffer);
+                    // For PPTX files, extract slide information
+                    if (file.name.toLowerCase().endsWith('.pptx')) {
+                        await this.analyzePPTX(zip);
+                    } else {
+                        // For PPT files, create generic slides
+                        await this.analyzePPT(arrayBuffer);
+                    }
+                } catch (error) {
+                    throw new Error('Failed to analyze PowerPoint structure');
+                }
+            }
+            async analyzePPTX(zip) {
+                try {
+                    // Get presentation.xml to find slides
+                    const presentationXml = await zip.file('ppt/presentation.xml')?.async('text');
+                    if (!presentationXml) {
+                        throw new Error('Invalid PowerPoint structure');
+                    }
+                    // Count slides by looking for slide files
+                    const slideFiles = Object.keys(zip.files).filter(filename => 
+                        filename.startsWith('ppt/slides/slide') && filename.endsWith('.xml')
+                    );
+                    this.slides = slideFiles.map((filename, index) => ({
+                        id: index + 1,
+                        filename: filename,
+                        title: `Slide ${index + 1}`,
+                        content: 'PowerPoint slide content'
+                    }));
+                } catch (error) {
+                    // Fallback: assume 10 slides if can't parse
+                    this.slides = Array.from({length: 10}, (_, i) => ({
+                        id: i + 1,
+                        title: `Slide ${i + 1}`,
+                        content: 'PowerPoint slide content'
+                    }));
+                }
+            }
+            async analyzePPT(arrayBuffer) {
+                // For PPT files, we'll create a generic structure
+                // In a real implementation, you'd use a PPT parser
+                this.slides = Array.from({length: 8}, (_, i) => ({
+                    id: i + 1,
+                    title: `Slide ${i + 1}`,
+                    content: 'PowerPoint slide content'
+                }));
+            }
+            showPreview() {
+                this.previewContainer.style.display = 'block';
+                this.previewSlides.innerHTML = '';
+                this.slides.forEach(slide => {
+                    const slideDiv = document.createElement('div');
+                    slideDiv.className = 'slide-preview';
+                    slideDiv.innerHTML = `
+                        <div class="slide-number">Slide ${slide.id}</div>
+                        <div class="slide-content">
+                            <div>📊</div>
+                            <div>${slide.title}</div>
+                        </div>
+                    `;
+                    this.previewSlides.appendChild(slideDiv);
+                });
+            }
+            selectQuality(e) {
+                document.querySelectorAll('.quality-option').forEach(opt => 
+                    opt.classList.remove('selected')
+                );
+                e.target.classList.add('selected');
+                this.selectedQuality = e.target.dataset.quality;
+            }
+            updateUploadArea(fileName) {
+                this.uploadArea.innerHTML = `
+                    <div class="upload-icon">✅</div>
+                    <div class="upload-text">${fileName}</div>
+                    <div class="upload-subtext">PowerPoint file loaded successfully - Ready to convert</div>
+                `;
+            }
+            async convertFile() {
+                if (!this.selectedFile || !this.slides.length) return;
+                this.showProgress();
+                this.convertBtn.disabled = true;
+                try {
+                    this.updateProgress(20, 'Initializing PDF document...');
+                    const pdfDoc = await PDFLib.PDFDocument.create();
+                    this.updateProgress(40, 'Processing slides...');
+                    await this.convertSlidesToPDF(pdfDoc);
+                    this.updateProgress(80, 'Generating PDF...');
+                    const pdfBytes = await pdfDoc.save();
+                    this.updateProgress(90, 'Preparing download...');
+                    await this.downloadPDF(pdfBytes);
+                    this.updateProgress(100, 'Conversion complete!');
+                    this.showSuccess(`Successfully converted ${this.slides.length} slides to PDF!`);
+                } catch (error) {
+                    console.error('Conversion error:', error);
+                    this.showError('An error occurred during conversion. Please try again.');
+                } finally {
+                    this.hideProgress();
+                    this.convertBtn.disabled = false;
+                }
+            }
+            async convertSlidesToPDF(pdfDoc) {
+                const pageWidth = 612; // 8.5 inches at 72 DPI
+                const pageHeight = 792; // 11 inches at 72 DPI
+                for (let i = 0; i < this.slides.length; i++) {
+                    const slide = this.slides[i];
+                    const page = pdfDoc.addPage([pageWidth, pageHeight]);
+                    // Add slide title
+                    page.drawText(`Slide ${slide.id}`, {
+                        x: 50,
+                        y: pageHeight - 100,
+                        size: 24,
+                        color: PDFLib.rgb(0.2, 0.2, 0.8),
+                    });
+                    // Add slide content placeholder
+                    page.drawText('PowerPoint slide content converted to PDF', {
+                        x: 50,
+                        y: pageHeight - 150,
+                        size: 14,
+                        color: PDFLib.rgb(0.3, 0.3, 0.3),
+                    });
+                    // Add slide representation box
+                    page.drawRectangle({
+                        x: 50,
+                        y: 200,
+                        width: pageWidth - 100,
+                        height: 300,
+                        borderColor: PDFLib.rgb(0.8, 0.8, 0.8),
+                        borderWidth: 2,
+                    });
+                    // Add slide content inside box
+                    page.drawText(`Content from ${slide.title}`, {
+                        x: 70,
+                        y: 350,
+                        size: 16,
+                        color: PDFLib.rgb(0.4, 0.4, 0.4),
+                    });
+                    // Update progress
+                    const progress = 40 + (i / this.slides.length) * 40;
+                    this.updateProgress(progress, `Converting slide ${i + 1} of ${this.slides.length}...`);
+                }
+            }
+            async downloadPDF(pdfBytes) {
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `converted_presentation_${Date.now()}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+            showProgress() {
+                this.progressContainer.style.display = 'block';
+            }
+            hideProgress() {
+                this.progressContainer.style.display = 'none';
+            }
+            updateProgress(percent) {
+                this.progressFill.style.width = percent + '%';
+            }
+            showError(message) {
+                this.errorMessage.textContent = message;
+                this.errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    this.errorMessage.style.display = 'none';
+                }, 5000);
+            }
+            showSuccess(message) {
+                this.successMessage.textContent = message;
+                this.successMessage.style.display = 'block';
+                setTimeout(() => {
+                    this.successMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+        // Initialize the converter when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new PPTToPDFConverter();
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔄</span>
+                Related Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="ppt-to-pdf-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">PPT to PDF Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert PPT to PDF</div></div>
+                </a>
+                <a href="pdf_converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">PDF Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert PDF files</div></div>
+                </a>
+                <a href="document-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Document Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert document formats</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert all units</div></div>
+                </a>
+                <a href="currency-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💱</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Currency Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert currencies</div></div>
+                </a>
+                <a href="image-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🖼️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Image Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert image formats</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

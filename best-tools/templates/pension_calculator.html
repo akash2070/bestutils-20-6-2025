@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension Calculator - Plan Your Retirement | BESTUTILS</title>
+    <meta name="description" content="Free pension calculator to estimate your retirement savings. Calculate monthly contributions, compound interest, and plan your financial future with our easy-to-use retirement planning tool.">
+    <meta name="keywords" content="pension calculator, retirement calculator, retirement planning, pension savings, retirement funds, financial planning">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Pension Calculator - Plan Your Retirement | BESTUTILS">
+    <meta property="og:description" content="Calculate your pension savings and plan for retirement with our comprehensive pension calculator tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/pension-calculator">
+    <link rel="canonical" href="https://bestutils.com/pension-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .input-group {
+            transition: all 0.3s ease;
+        }
+        .input-group:focus-within {
+            transform: translateY(-2px);
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4">
+    <div class="container mx-auto max-w-4xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Pension Calculator</h1>
+            <p class="text-xl text-white opacity-90">Plan your retirement and calculate your pension savings</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Calculator Form -->
+            <div class="glass-card rounded-2xl p-6 shadow-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Calculate Your Pension</h2>
+                <form id="pensionForm" class="space-y-6">
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Age</label>
+                        <input type="number" id="currentAge" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="25" min="18" max="65" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Retirement Age</label>
+                        <input type="number" id="retirementAge" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="65" min="50" max="75" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Pension Savings ($)</label>
+                        <input type="number" id="currentSavings" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="10000" min="0" step="100" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Contribution ($)</label>
+                        <input type="number" id="monthlyContribution" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="500" min="0" step="50" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Expected Annual Return (%)</label>
+                        <input type="number" id="annualReturn" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="7" min="0" max="20" step="0.1" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Inflation Rate (%)</label>
+                        <input type="number" id="inflationRate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="3" min="0" max="10" step="0.1" required>
+                    </div>
+                    <button type="submit" class="calculate-btn w-full text-white font-bold py-4 px-6 rounded-lg shadow-lg">
+                        Calculate Pension
+                    </button>
+                </form>
+            </div>
+            <!-- Results -->
+            <div class="space-y-6">
+                <div id="results" class="hidden">
+                    <div class="result-card rounded-2xl p-6 text-white shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-4">Your Pension Projection</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center py-2 border-b border-white/20">
+                                <span class="font-medium">Years to Retirement:</span>
+                                <span id="yearsToRetirement" class="text-xl font-bold"></span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-white/20">
+                                <span class="font-medium">Total Contributions:</span>
+                                <span id="totalContributions" class="text-xl font-bold"></span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-white/20">
+                                <span class="font-medium">Final Pension Value:</span>
+                                <span id="finalValue" class="text-2xl font-bold"></span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-white/20">
+                                <span class="font-medium">Real Value (Inflation Adj.):</span>
+                                <span id="realValue" class="text-xl font-bold"></span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="font-medium">Monthly Retirement Income:</span>
+                                <span id="monthlyIncome" class="text-xl font-bold"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- How to Use Guide -->
+                <div class="glass-card rounded-2xl p-6 shadow-2xl">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">How to Use This Calculator</h3>
+                    <div class="space-y-3 text-gray-700">
+                        <div class="flex items-start space-x-3">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">1</span>
+                            <p><strong>Enter your current age</strong> and planned retirement age</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">2</span>
+                            <p><strong>Input your current savings</strong> amount in your pension fund</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">3</span>
+                            <p><strong>Set monthly contribution</strong> you plan to make</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">4</span>
+                            <p><strong>Estimate annual return</strong> (typically 5-8% for balanced portfolios)</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">5</span>
+                            <p><strong>Set inflation rate</strong> to see real purchasing power</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="mt-12 glass-card rounded-2xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">About the Pension Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-gray-700">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">What is a Pension Calculator?</h3>
+                    <p class="mb-4">A pension calculator is a financial planning tool that helps you estimate how much money you'll have saved for retirement based on your current savings, regular contributions, and expected investment returns. It takes into account the power of compound interest and inflation to give you a realistic picture of your retirement funds.</p>
+                    <h3 class="text-xl font-semibold mb-4">Key Features:</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Compound interest calculations</li>
+                        <li>Inflation adjustment for real value</li>
+                        <li>Monthly retirement income estimation</li>
+                        <li>Total contribution tracking</li>
+                        <li>Years to retirement countdown</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Why Use This Tool?</h3>
+                    <p class="mb-4">Planning for retirement is crucial for financial security. This calculator helps you understand whether your current savings plan will meet your retirement goals and allows you to adjust your contributions accordingly.</p>
+                    <h3 class="text-xl font-semibold mb-4">Tips for Better Planning:</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Start contributing early to maximize compound growth</li>
+                        <li>Increase contributions with salary raises</li>
+                        <li>Consider employer matching programs</li>
+                        <li>Diversify your retirement portfolio</li>
+                        <li>Review and adjust your plan annually</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('pensionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const currentAge = parseFloat(document.getElementById('currentAge').value);
+            const retirementAge = parseFloat(document.getElementById('retirementAge').value);
+            const currentSavings = parseFloat(document.getElementById('currentSavings').value);
+            const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value);
+            const annualReturn = parseFloat(document.getElementById('annualReturn').value) / 100;
+            const inflationRate = parseFloat(document.getElementById('inflationRate').value) / 100;
+            if (retirementAge <= currentAge) {
+                alert('Retirement age must be greater than current age');
+                return;
+            }
+            const yearsToRetirement = retirementAge - currentAge;
+            const monthsToRetirement = yearsToRetirement * 12;
+            const monthlyReturn = annualReturn / 12;
+            // Calculate future value with compound interest
+            let futureValue = currentSavings * Math.pow(1 + annualReturn, yearsToRetirement);
+            // Add monthly contributions with compound interest
+            if (monthlyReturn > 0) {
+                const futureValueAnnuity = monthlyContribution * ((Math.pow(1 + monthlyReturn, monthsToRetirement) - 1) / monthlyReturn);
+                futureValue += futureValueAnnuity;
+            } else {
+                futureValue += monthlyContribution * monthsToRetirement;
+            }
+            const totalContributions = currentSavings + (monthlyContribution * monthsToRetirement);
+            const realValue = futureValue / Math.pow(1 + inflationRate, yearsToRetirement);
+            const monthlyIncome = realValue / (25 * 12); // Using 4% withdrawal rule
+            // Display results
+            document.getElementById('yearsToRetirement').textContent = yearsToRetirement + ' years';
+            document.getElementById('totalContributions').textContent = '$' + totalContributions.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('finalValue').textContent = '$' + futureValue.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('realValue').textContent = '$' + realValue.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('monthlyIncome').textContent = '$' + monthlyIncome.toLocaleString(undefined, {maximumFractionDigits: 0});
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">💰</span>
+                Related Finance Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="retirement-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Retirement Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan for retirement</div></div>
+                </a>
+                <a href="social_security_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏛️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Social Security Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Estimate social security benefits</div></div>
+                </a>
+                <a href="401k-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🏦</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">401k Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Plan 401k contributions</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="investment-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Investment Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate investment returns</div></div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div></div>
+                </a>
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">BMI Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

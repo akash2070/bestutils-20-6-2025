@@ -1,0 +1,726 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Minifier - Compress and Format JSON Online | BESTUTILS</title>
+    <meta name="description" content="Free online JSON minifier tool to compress, format, and validate JSON data. Reduce file size, beautify JSON, and optimize your JSON for web applications and APIs.">
+    <meta name="keywords" content="json minifier, free json minifier online, json compressor, json formatter, json beautifier, json validator, json optimizer, compress json, format json, minify json, bestutils">
+    <meta name="author" content="BestUtils">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/json_minifier.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/json_minifier.html">
+    <meta property="og:title" content="JSON Minifier - Compress and Format JSON Online | BestUtils">
+    <meta property="og:description" content="Free online JSON minifier tool to compress, format, and validate JSON data. Reduce file size, beautify JSON, and optimize your JSON for web applications and APIs.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/json-minifier-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/json_minifier.html">
+    <meta name="twitter:title" content="JSON Minifier - Compress and Format JSON Online | BestUtils">
+    <meta name="twitter:description" content="Free online JSON minifier tool to compress, format, and validate JSON data. Reduce file size, beautify JSON, and optimize your JSON for web applications and APIs.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/json-minifier-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils JSON Minifier">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "JSON Minifier",
+        "description": "Free JSON minifier tool for compressing and minifying JSON data by removing unnecessary whitespace and reducing file size for better performance.",
+        "url": "https://bestutils.com/templates/json_minifier.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Logo styling */
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .tool-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .textarea-container {
+            position: relative;
+        }
+        
+        .json-textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background: #F9FAFB;
+        }
+        
+        .json-textarea:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: white;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #10B981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+        }
+        
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-danger {
+            background: #EF4444;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+        }
+        
+        .btn-danger:hover {
+            background: #DC2626;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+        }
+        
+        .btn-copy {
+            background: #8B5CF6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+        }
+        
+        .btn-copy:hover {
+            background: #7C3AED;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        .stats-box {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+        
+        .error-box {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+        
+        .char-counter {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 12px;
+            color: #6B7280;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+            .json-textarea {
+                min-height: 250px;
+                font-size: 12px;
+            }
+            .btn-primary, .btn-secondary, .btn-danger, .btn-copy {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+                margin: 0.25rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="tool-container p-6 md:p-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2 text-center">JSON Minifier & Formatter</h1>
+            <p class="text-gray-600 text-center mb-8">Compress, format, and validate your JSON data with ease</p>
+
+            <!-- Control Buttons -->
+            <div class="flex flex-wrap justify-center mb-6">
+                <button class="btn-primary" onclick="minifyJSON()">📦 Minify JSON</button>
+                <button class="btn-secondary" onclick="beautifyJSON()">✨ Beautify JSON</button>
+                <button class="btn-copy" onclick="copyToClipboard()">📋 Copy Result</button>
+                <button class="btn-danger" onclick="clearAll()">🗑️ Clear All</button>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Input Section -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3">Input JSON</h2>
+                    <div class="textarea-container">
+                        <textarea 
+                            id="inputJSON" 
+                            class="json-textarea" 
+                            placeholder="Paste your JSON here..."
+                            oninput="updateCharCount('input')">{
+  "name": "John Doe",
+  "age": 30,
+  "email": "john.doe@example.com",
+  "address": {
+    "street": "123 Main St",
+    "city": "New York",
+    "zipCode": "10001"
+  },
+  "hobbies": ["reading", "traveling", "photography"],
+  "isActive": true
+}</textarea>
+                        <div class="char-counter" id="inputCharCount">0 characters</div>
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-3">Output JSON</h2>
+                    <div class="textarea-container">
+                        <textarea 
+                            id="outputJSON" 
+                            class="json-textarea" 
+                            placeholder="Processed JSON will appear here..."
+                            readonly
+                            oninput="updateCharCount('output')"></textarea>
+                        <div class="char-counter" id="outputCharCount">0 characters</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status and Stats -->
+            <div id="statusArea"></div>
+        </div>
+
+        <!-- Description Section -->
+        <div class="mt-8 bg-white rounded-lg p-6 shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">What is JSON Minification?</h2>
+            <p class="text-gray-600 mb-4">
+                JSON minification is the process of removing unnecessary whitespace, line breaks, and indentation from JSON data 
+                to reduce file size and improve loading performance. This is especially useful for web applications, APIs, and 
+                data transmission where bandwidth and speed matter.
+            </p>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">How to Use This JSON Minifier</h3>
+            <div class="space-y-3 text-gray-600">
+                <div class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">1</span>
+                    <p><strong>Paste JSON:</strong> Copy and paste your JSON data into the input textarea on the left.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">2</span>
+                    <p><strong>Choose Action:</strong> Click "Minify JSON" to compress or "Beautify JSON" to format with proper indentation.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">3</span>
+                    <p><strong>Copy Result:</strong> Use "Copy Result" to copy the processed JSON to your clipboard.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">4</span>
+                    <p><strong>View Stats:</strong> See compression statistics and validation results below the textareas.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div class="p-4 bg-green-50 border-l-4 border-green-400">
+                    <h4 class="font-semibold text-green-800 mb-2">✅ Benefits of JSON Minification</h4>
+                    <ul class="text-sm text-green-700 space-y-1">
+                        <li>• Reduces file size by 15-30% on average</li>
+                        <li>• Faster data transmission and loading</li>
+                        <li>• Lower bandwidth usage</li>
+                        <li>• Improved web application performance</li>
+                        <li>• Better mobile user experience</li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-blue-50 border-l-4 border-blue-400">
+                    <h4 class="font-semibold text-blue-800 mb-2">🛠️ Additional Features</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>• Real-time JSON validation</li>
+                        <li>• Character count tracking</li>
+                        <li>• Compression ratio calculation</li>
+                        <li>• Error highlighting and detection</li>
+                        <li>• One-click copy to clipboard</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400">
+                <h4 class="font-semibold text-yellow-800 mb-2">💡 Pro Tips</h4>
+                <ul class="text-sm text-yellow-700 space-y-1">
+                    <li>• Use minified JSON for production environments</li>
+                    <li>• Keep beautified JSON for development and debugging</li>
+                    <li>• Validate JSON before minifying to avoid errors</li>
+                    <li>• Consider using JSON compression for very large datasets</li>
+                    <li>• Test minified JSON in your application before deployment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize character counts on page load
+        window.onload = function() {
+            updateCharCount('input');
+            updateCharCount('output');
+        };
+
+        function updateCharCount(type) {
+            const textarea = document.getElementById(type === 'input' ? 'inputJSON' : 'outputJSON');
+            const counter = document.getElementById(type === 'input' ? 'inputCharCount' : 'outputCharCount');
+            const count = textarea.value.length;
+            counter.textContent = `${count.toLocaleString()} characters`;
+        }
+
+        function minifyJSON() {
+            const input = document.getElementById('inputJSON').value.trim();
+            const output = document.getElementById('outputJSON');
+            const statusArea = document.getElementById('statusArea');
+
+            if (!input) {
+                showStatus('error', 'Please enter JSON data to minify.');
+                return;
+            }
+
+            try {
+                // Parse and stringify to minify
+                const parsed = JSON.parse(input);
+                const minified = JSON.stringify(parsed);
+                
+                output.value = minified;
+                updateCharCount('output');
+                
+                // Calculate compression stats
+                const originalSize = input.length;
+                const minifiedSize = minified.length;
+                const savings = originalSize - minifiedSize;
+                const percentage = originalSize > 0 ? ((savings / originalSize) * 100).toFixed(1) : 0;
+                
+                showStatus('success', `JSON minified successfully! Reduced from ${originalSize.toLocaleString()} to ${minifiedSize.toLocaleString()} characters. Space saved: ${savings.toLocaleString()} characters (${percentage}%)`);
+                
+            } catch (error) {
+                showStatus('error', `Invalid JSON: ${error.message}`);
+                output.value = '';
+                updateCharCount('output');
+            }
+        }
+
+        function beautifyJSON() {
+            const input = document.getElementById('inputJSON').value.trim();
+            const output = document.getElementById('outputJSON');
+            const statusArea = document.getElementById('statusArea');
+
+            if (!input) {
+                showStatus('error', 'Please enter JSON data to beautify.');
+                return;
+            }
+
+            try {
+                // Parse and stringify with indentation
+                const parsed = JSON.parse(input);
+                const beautified = JSON.stringify(parsed, null, 2);
+                
+                output.value = beautified;
+                updateCharCount('output');
+                
+                // Calculate expansion stats
+                const originalSize = input.length;
+                const beautifiedSize = beautified.length;
+                const expansion = beautifiedSize - originalSize;
+                const percentage = originalSize > 0 ? ((expansion / originalSize) * 100).toFixed(1) : 0;
+                
+                showStatus('success', `JSON beautified successfully! Expanded from ${originalSize.toLocaleString()} to ${beautifiedSize.toLocaleString()} characters. Added: ${expansion.toLocaleString()} characters (${percentage}% increase)`);
+                
+            } catch (error) {
+                showStatus('error', `Invalid JSON: ${error.message}`);
+                output.value = '';
+                updateCharCount('output');
+            }
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('outputJSON');
+            
+            if (!output.value.trim()) {
+                showStatus('error', 'No output to copy. Please process some JSON first.');
+                return;
+            }
+
+            // Use the modern Clipboard API if available
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(output.value).then(() => {
+                    showStatus('success', 'JSON copied to clipboard successfully!');
+                }).catch(err => {
+                    fallbackCopyToClipboard(output);
+                });
+            } else {
+                fallbackCopyToClipboard(output);
+            }
+        }
+
+        function fallbackCopyToClipboard(textarea) {
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                showStatus('success', 'JSON copied to clipboard successfully!');
+            } catch (err) {
+                showStatus('error', 'Failed to copy to clipboard. Please copy manually.');
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('inputJSON').value = '';
+            document.getElementById('outputJSON').value = '';
+            document.getElementById('statusArea').innerHTML = '';
+            updateCharCount('input');
+            updateCharCount('output');
+            showStatus('success', 'All content cleared successfully!');
+        }
+
+        function showStatus(type, message) {
+            const statusArea = document.getElementById('statusArea');
+            let className = '';
+            let icon = '';
+            
+            switch(type) {
+                case 'success':
+                    className = 'success-box';
+                    icon = '✅';
+                    break;
+                case 'error':
+                    className = 'error-box';
+                    icon = '❌';
+                    break;
+                case 'info':
+                    className = 'stats-box';
+                    icon = 'ℹ️';
+                    break;
+            }
+            
+            statusArea.innerHTML = `
+                <div class="${className}">
+                    <div class="flex items-center">
+                        <span class="text-xl mr-2">${icon}</span>
+                        <span class="font-semibold">${message}</span>
+                    </div>
+                </div>
+            `;
+            
+            // Auto-hide success messages after 3 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    statusArea.innerHTML = '';
+                }, 3000);
+            }
+        }
+
+        // Add paste event listener for better UX
+        document.getElementById('inputJSON').addEventListener('paste', function() {
+            setTimeout(() => {
+                updateCharCount('input');
+            }, 10);
+        });
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'm':
+                        e.preventDefault();
+                        minifyJSON();
+                        break;
+                    case 'b':
+                        e.preventDefault();
+                        beautifyJSON();
+                        break;
+                    case 'k':
+                        e.preventDefault();
+                        clearAll();
+                        break;
+                }
+            }
+        });
+    </script>
+
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🔄</span>
+                Related Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="json-to-xml-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">JSON to XML Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert JSON to XML</div></div>
+                </a>
+                <a href="xml-minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🗜️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">XML Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify XML code</div></div>
+                </a>
+                <a href="html-minifier.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🗜️</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">HTML Minifier</div><div style="font-size: 0.85rem; color: #6b7280;">Minify HTML code</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                Popular Conversion Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Unit Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert all units</div></div>
+                </a>
+                <a href="currency-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">💱</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Currency Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert currencies</div></div>
+                </a>
+                <a href="xml-to-json-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📄</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">XML to JSON Converter</div><div style="font-size: 0.85rem; color: #6b7280;">Convert XML to JSON</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+

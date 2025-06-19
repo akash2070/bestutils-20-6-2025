@@ -1,0 +1,590 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI & Overweight Calculator - Check Your Health Status | BESTUTILS</title>
+    <meta name="description" content="Calculate your BMI and determine if you're overweight, underweight, or at a healthy weight. Free online calculator with detailed health recommendations.">
+    <meta name="keywords" content="overweight calculator, free overweight calculator online, am i overweight calculator, obesity calculator, weight status calculator, bmi overweight calculator, overweight bmi calculator, healthy weight calculator, weight category calculator, overweight checker, obesity checker, weight classification calculator, overweight assessment tool, weight health calculator, overweight diagnosis calculator, weight range calculator, bestutils">
+    <meta name="author" content="BESTUTILS">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/overweight_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/overweight_calculator.html">
+    <meta property="og:title" content="BMI & Overweight Calculator - Check Your Health Status | BestUtils">
+    <meta property="og:description" content="Calculate your BMI and determine if you're overweight, underweight, or at a healthy weight. Free online calculator with health recommendations.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/overweight-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/overweight_calculator.html">
+    <meta name="twitter:title" content="BMI & Overweight Calculator - Check Your Health Status | BestUtils">
+    <meta name="twitter:description" content="Calculate your BMI and determine if you're overweight, underweight, or at a healthy weight. Free online calculator with health recommendations.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/overweight-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils Overweight Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Overweight Calculator",
+        "description": "Free overweight calculator to determine if you're overweight using BMI and other health metrics with personalized health recommendations.",
+        "url": "https://bestutils.com/templates/overweight_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .calculate-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .result-card {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .underweight { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
+        .normal { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+        .overweight { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .obese { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+        .bmi-scale {
+            display: flex;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .bmi-scale div {
+            flex: 1;
+        }
+        .scale-underweight { background: #3b82f6; }
+        .scale-normal { background: #10b981; }
+        .scale-overweight { background: #f59e0b; }
+        .scale-obese { background: #ef4444; }
+        .bmi-indicator {
+            position: relative;
+            height: 30px;
+            margin: 0.5rem 0;
+        }
+        .indicator-arrow {
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 16px solid #1f2937;
+            transform: translateX(-50%);
+        }
+        .unit-toggle {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+            margin-bottom: 1rem;
+        }
+        .unit-btn {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .unit-btn.active {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-center">Overweight Calculator</h1>
+        <!-- Main Calculator -->
+        <div class="calculator-card p-6 md:p-8 mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-2">BMI & Overweight Calculator</h1>
+            <p class="text-gray-600 text-center mb-8">Calculate your Body Mass Index and determine your weight status</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="unit-toggle">
+                        <button class="unit-btn active" onclick="setUnit('metric')">Metric (kg/cm)</button>
+                        <button class="unit-btn" onclick="setUnit('imperial')">Imperial (lbs/ft)</button>
+                    </div>
+                    <!-- Metric Inputs -->
+                    <div id="metricInputs">
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Height (cm)</label>
+                            <input type="number" id="heightCm" class="input-field" placeholder="Enter height in cm" min="50" max="300" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Weight (kg)</label>
+                            <input type="number" id="weightKg" class="input-field" placeholder="Enter weight in kg" min="10" max="500" step="0.1">
+                        </div>
+                    </div>
+                    <!-- Imperial Inputs -->
+                    <div id="imperialInputs" style="display: none;">
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Height</label>
+                            <div class="flex space-x-2">
+                                <input type="number" id="heightFt" class="input-field" placeholder="Feet" min="1" max="10">
+                                <input type="number" id="heightIn" class="input-field" placeholder="Inches" min="0" max="11">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Weight (lbs)</label>
+                            <input type="number" id="weightLbs" class="input-field" placeholder="Enter weight in lbs" min="20" max="1000" step="0.1">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Age (Optional)</label>
+                        <input type="number" id="age" class="input-field" placeholder="Enter your age" min="1" max="120">
+                    </div>
+                    <div class="input-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Gender (Optional)</label>
+                        <select id="gender" class="input-field">
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <button class="calculate-btn" onclick="calculateBMI()">Calculate BMI</button>
+                </div>
+                <div>
+                    <div id="result" style="display: none;" class="result-card">
+                        <h3 class="text-xl font-bold mb-2">Your BMI Result</h3>
+                        <div class="text-4xl font-bold mb-2" id="bmiValue">0</div>
+                        <div class="text-lg font-medium mb-4" id="bmiCategory">Normal Weight</div>
+                        <div class="bmi-scale">
+                            <div class="scale-underweight"></div>
+                            <div class="scale-normal"></div>
+                            <div class="scale-overweight"></div>
+                            <div class="scale-obese"></div>
+                        </div>
+                        <div class="bmi-indicator">
+                            <div class="indicator-arrow" id="bmiArrow"></div>
+                        </div>
+                        <div class="text-xs opacity-90 mb-4">
+                            <span>Underweight</span>
+                            <span class="float-right">Obese</span>
+                        </div>
+                        <div id="weightRange" class="text-sm opacity-90"></div>
+                    </div>
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2">📊 BMI Categories</h4>
+                        <div class="text-sm space-y-2">
+                            <div class="flex justify-between">
+                                <span>Underweight:</span>
+                                <span class="font-medium">&lt; 18.5</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Normal weight:</span>
+                                <span class="font-medium">18.5 - 24.9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Overweight:</span>
+                                <span class="font-medium">25.0 - 29.9</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Obese:</span>
+                                <span class="font-medium">≥ 30.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="recommendations" style="display: none;" class="mt-6 p-4 bg-green-50 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2">💡 Health Recommendations</h4>
+                        <div id="recommendationText" class="text-sm text-green-700"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="calculator-card p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">What is BMI and How Does it Determine Overweight?</h2>
+            <p class="text-gray-600 mb-4">
+                Body Mass Index (BMI) is a widely used screening tool that calculates your body fat based on your height and weight. 
+                It helps determine whether you're underweight, at a normal weight, overweight, or obese, which can indicate potential health risks.
+            </p>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">BMI Formula</h3>
+            <div class="bg-gray-50 p-4 rounded-lg mb-4 text-center">
+                <strong>BMI = weight (kg) ÷ height (m)²</strong><br>
+                <span class="text-sm text-gray-600">or</span><br>
+                <strong>BMI = (weight (lbs) ÷ height (inches)²) × 703</strong>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Understanding Your BMI Categories</h3>
+            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-semibold text-blue-800">Underweight (BMI &lt; 18.5)</h4>
+                    <p class="text-sm text-blue-700 mt-1">May indicate malnutrition, eating disorders, or other health issues. Consider consulting a healthcare provider.</p>
+                </div>
+                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <h4 class="font-semibold text-green-800">Normal Weight (BMI 18.5-24.9)</h4>
+                    <p class="text-sm text-green-700 mt-1">Indicates a healthy weight range with lower risk of chronic diseases.</p>
+                </div>
+                <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                    <h4 class="font-semibold text-orange-800">Overweight (BMI 25.0-29.9)</h4>
+                    <p class="text-sm text-orange-700 mt-1">May increase risk of heart disease, diabetes, and other health conditions.</p>
+                </div>
+                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                    <h4 class="font-semibold text-red-800">Obese (BMI ≥ 30.0)</h4>
+                    <p class="text-sm text-red-700 mt-1">Significantly increases risk of serious health problems including cardiovascular disease.</p>
+                </div>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Limitations of BMI</h3>
+            <ul class="text-gray-600 space-y-2">
+                <li>• <strong>Doesn't distinguish between muscle and fat:</strong> Athletes may have high BMI due to muscle mass</li>
+                <li>• <strong>Age and gender variations:</strong> Body composition changes with age and differs between genders</li>
+                <li>• <strong>Ethnicity differences:</strong> Different ethnic groups may have varying health risks at the same BMI</li>
+                <li>• <strong>Body fat distribution:</strong> Doesn't account for where fat is stored (belly vs. hips)</li>
+            </ul>
+        </div>
+        <!-- How to Use Section -->
+        <div class="calculator-card p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use This BMI Calculator</h2>
+            <div class="space-y-4 text-gray-600">
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                    <div>
+                        <strong>Choose Your Units:</strong> Select between Metric (kg/cm) or Imperial (lbs/ft-in) units based on your preference.
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                    <div>
+                        <strong>Enter Your Height:</strong> Input your height in centimeters or feet and inches. Be as accurate as possible.
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                    <div>
+                        <strong>Enter Your Weight:</strong> Input your current weight in kilograms or pounds.
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                    <div>
+                        <strong>Optional Information:</strong> Add your age and gender for more personalized recommendations.
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">5</div>
+                    <div>
+                        <strong>Calculate & Review:</strong> Click calculate to see your BMI, category, and personalized health recommendations.
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                <h4 class="font-semibold text-yellow-800 mb-2">⚠️ Important Health Disclaimer:</h4>
+                <ul class="text-sm text-yellow-700 space-y-1">
+                    <li>• BMI is a screening tool, not a diagnostic tool</li>
+                    <li>• Consult healthcare professionals for comprehensive health assessment</li>
+                    <li>• Consider other factors like waist circumference, muscle mass, and overall health</li>
+                    <li>• This calculator is for adults aged 18 and older</li>
+                    <li>• Results may not be accurate for pregnant women, athletes, or elderly individuals</li>
+                </ul>
+            </div>
+            <div class="mt-6 p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                <h4 class="font-semibold text-green-800 mb-2">🎯 Tips for Healthy Weight Management:</h4>
+                <ul class="text-sm text-green-700 space-y-1">
+                    <li>• Focus on balanced nutrition with whole foods</li>
+                    <li>• Include regular physical activity (150+ minutes per week)</li>
+                    <li>• Stay hydrated and get adequate sleep</li>
+                    <li>• Set realistic, sustainable weight goals</li>
+                    <li>• Monitor progress through multiple metrics, not just weight</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentUnit = 'metric';
+        function setUnit(unit) {
+            currentUnit = unit;
+            document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            if (unit === 'metric') {
+                document.getElementById('metricInputs').style.display = 'block';
+                document.getElementById('imperialInputs').style.display = 'none';
+            } else {
+                document.getElementById('metricInputs').style.display = 'none';
+                document.getElementById('imperialInputs').style.display = 'block';
+            }
+        }
+        function calculateBMI() {
+            let height, weight;
+            if (currentUnit === 'metric') {
+                height = parseFloat(document.getElementById('heightCm').value);
+                weight = parseFloat(document.getElementById('weightKg').value);
+                if (!height || !weight || height <= 0 || weight <= 0) {
+                    alert('Please enter valid height and weight values');
+                    return;
+                }
+                height = height / 100; // Convert cm to meters
+            } else {
+                const heightFt = parseFloat(document.getElementById('heightFt').value);
+                const heightIn = parseFloat(document.getElementById('heightIn').value) || 0;
+                weight = parseFloat(document.getElementById('weightLbs').value);
+                if (!heightFt || !weight || heightFt <= 0 || weight <= 0) {
+                    alert('Please enter valid height and weight values');
+                    return;
+                }
+                height = ((heightFt * 12) + heightIn) * 0.0254; // Convert to meters
+                weight = weight * 0.453592; // Convert lbs to kg
+            }
+            const bmi = weight / (height * height);
+            const roundedBMI = Math.round(bmi * 10) / 10;
+            displayResults(roundedBMI, weight, height);
+        }
+        function displayResults(bmi, weightKg, heightM) {
+            document.getElementById('bmiValue').textContent = bmi;
+            let category, categoryClass, recommendations;
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                categoryClass = 'underweight';
+                recommendations = 'Consider consulting a healthcare provider about healthy weight gain strategies. Focus on nutrient-dense foods and strength training.';
+            } else if (bmi >= 18.5 && bmi < 25) {
+                category = 'Normal Weight';
+                categoryClass = 'normal';
+                recommendations = 'Great job maintaining a healthy weight! Continue with balanced nutrition and regular physical activity.';
+            } else if (bmi >= 25 && bmi < 30) {
+                category = 'Overweight';
+                categoryClass = 'overweight';
+                recommendations = 'Consider adopting healthier eating habits and increasing physical activity. Even a 5-10% weight loss can improve health significantly.';
+            } else {
+                category = 'Obese';
+                categoryClass = 'obese';
+                recommendations = 'Consult with healthcare professionals for a comprehensive weight management plan. Focus on gradual, sustainable lifestyle changes.';
+            }
+            document.getElementById('bmiCategory').textContent = category;
+            const resultCard = document.getElementById('result');
+            resultCard.className = `result-card ${categoryClass}`;
+            resultCard.style.display = 'block';
+            // Position BMI indicator arrow
+            let arrowPosition;
+            if (bmi < 18.5) arrowPosition = (bmi / 18.5) * 25;
+            else if (bmi < 25) arrowPosition = 25 + ((bmi - 18.5) / 6.5) * 25;
+            else if (bmi < 30) arrowPosition = 50 + ((bmi - 25) / 5) * 25;
+            else arrowPosition = 75 + Math.min(((bmi - 30) / 10) * 25, 25);
+            arrowPosition = Math.min(Math.max(arrowPosition, 0), 100);
+            document.getElementById('bmiArrow').style.left = arrowPosition + '%';
+            // Calculate healthy weight range
+            const minHealthyWeight = 18.5 * (heightM * heightM);
+            const maxHealthyWeight = 24.9 * (heightM * heightM);
+            let weightRangeText;
+            if (currentUnit === 'metric') {
+                weightRangeText = `Healthy weight range: ${Math.round(minHealthyWeight * 10) / 10} - ${Math.round(maxHealthyWeight * 10) / 10} kg`;
+            } else {
+                const minLbs = Math.round(minHealthyWeight * 2.20462 * 10) / 10;
+                const maxLbs = Math.round(maxHealthyWeight * 2.20462 * 10) / 10;
+                weightRangeText = `Healthy weight range: ${minLbs} - ${maxLbs} lbs`;
+            }
+            document.getElementById('weightRange').textContent = weightRangeText;
+            document.getElementById('recommendationText').textContent = recommendations;
+            document.getElementById('recommendations').style.display = 'block';
+        }
+        // Allow Enter key to calculate
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateBMI();
+            }
+        });
+    </script>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

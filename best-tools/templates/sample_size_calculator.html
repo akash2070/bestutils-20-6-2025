@@ -1,0 +1,577 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Sample Size Calculator - Statistical Power & Survey Planning | BESTUTILS</title>
+    <meta name="description" content="Calculate required sample size for surveys, research studies, and statistical analysis. Free online tool with confidence intervals, margin of error, and population size calculations.">
+    <meta name="keywords" content="sample size calculator, statistical sample size, survey sample size, research methodology, confidence interval, margin of error, population size">
+    <meta name="author" content="BESTUTILS">
+    <meta property="og:title" content="Free Sample Size Calculator - Statistical Power & Survey Planning">
+    <meta property="og:description" content="Calculate required sample size for surveys and research studies with confidence intervals and margin of error calculations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/sample-size-calculator">
+    <link rel="canonical" href="https://bestutils.com/sample-size-calculator">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-field {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .btn-calculate {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .result-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        .info-tooltip {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            position: absolute;
+            z-index: 10;
+            top: -2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip-trigger:hover .info-tooltip {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8">
+    <div class="container mx-auto px-4 max-w-5xl">
+        <!-- Logo -->
+        <div class="site-logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+            </svg>
+            <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+        </div>
+        <!-- Main Calculator -->
+        <div class="calculator-card p-8 mb-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sample Size Calculator</h1>
+                <p class="text-gray-600 text-lg">Calculate required sample size for surveys, research studies, and statistical analysis</p>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Input Section -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="input-group">
+                            <label for="populationSize" class="block text-sm font-medium text-gray-700 mb-2">
+                                Population Size
+                                <span class="tooltip-trigger relative">
+                                    <span class="text-blue-500 cursor-help ml-1">ⓘ</span>
+                                    <div class="info-tooltip">Total number of people in your target group</div>
+                                </span>
+                            </label>
+                            <input type="number" id="populationSize" class="input-field w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="e.g., 10000" value="10000">
+                            <div class="text-xs text-gray-500 mt-1">Leave blank for infinite population</div>
+                        </div>
+                        <div class="input-group">
+                            <label for="confidenceLevel" class="block text-sm font-medium text-gray-700 mb-2">
+                                Confidence Level
+                                <span class="tooltip-trigger relative">
+                                    <span class="text-blue-500 cursor-help ml-1">ⓘ</span>
+                                    <div class="info-tooltip">How confident you want to be in your results</div>
+                                </span>
+                            </label>
+                            <select id="confidenceLevel" class="input-field w-full px-4 py-3 rounded-lg focus:outline-none">
+                                <option value="90">90% (Z = 1.645)</option>
+                                <option value="95" selected>95% (Z = 1.96)</option>
+                                <option value="99">99% (Z = 2.576)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="marginOfError" class="block text-sm font-medium text-gray-700 mb-2">
+                                Margin of Error (%)
+                                <span class="tooltip-trigger relative">
+                                    <span class="text-blue-500 cursor-help ml-1">ⓘ</span>
+                                    <div class="info-tooltip">Acceptable range of sampling error</div>
+                                </span>
+                            </label>
+                            <input type="number" id="marginOfError" class="input-field w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="5" value="5" min="0.1" max="50" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="expectedProportion" class="block text-sm font-medium text-gray-700 mb-2">
+                                Expected Proportion (%)
+                                <span class="tooltip-trigger relative">
+                                    <span class="text-blue-500 cursor-help ml-1">ⓘ</span>
+                                    <div class="info-tooltip">Expected percentage of responses (use 50% if unknown)</div>
+                                </span>
+                            </label>
+                            <input type="number" id="expectedProportion" class="input-field w-full px-4 py-3 rounded-lg focus:outline-none" placeholder="50" value="50" min="1" max="99">
+                        </div>
+                    </div>
+                    <button onclick="calculateSampleSize()" class="btn-calculate w-full py-3 px-6 text-white font-semibold rounded-lg">
+                        Calculate Sample Size
+                    </button>
+                    <!-- Quick Settings -->
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-3">Quick Settings</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                            <button onclick="setPreset('survey')" class="text-sm bg-white p-2 rounded hover:bg-blue-50 transition-colors">
+                                Standard Survey
+                            </button>
+                            <button onclick="setPreset('research')" class="text-sm bg-white p-2 rounded hover:bg-blue-50 transition-colors">
+                                Academic Research
+                            </button>
+                            <button onclick="setPreset('market')" class="text-sm bg-white p-2 rounded hover:bg-blue-50 transition-colors">
+                                Market Research
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Result Section -->
+                <div class="lg:col-span-1">
+                    <div id="resultSection" class="hidden">
+                        <div class="result-card">
+                            <h3 class="text-xl font-semibold mb-4">Required Sample Size</h3>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold mb-2" id="sampleSizeResult">0</div>
+                                <div class="text-sm opacity-90 mb-4">participants needed</div>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="opacity-90">Confidence Level:</span>
+                                    <span id="resultConfidence">95%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="opacity-90">Margin of Error:</span>
+                                    <span id="resultMargin">±5%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="opacity-90">Population:</span>
+                                    <span id="resultPopulation">10,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sample Size Ranges -->
+                    <div class="bg-white p-4 rounded-lg mt-4 shadow-sm">
+                        <h4 class="font-semibold text-gray-800 mb-3">Typical Sample Sizes</h4>
+                        <div class="space-y-2 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Small survey:</span>
+                                <span class="font-medium">100-300</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Medium survey:</span>
+                                <span class="font-medium">300-1,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Large survey:</span>
+                                <span class="font-medium">1,000+</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Academic research:</span>
+                                <span class="font-medium">30-500</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="bg-white rounded-xl p-8 mb-8 shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">About the Sample Size Calculator</h2>
+            <div class="prose prose-gray max-w-none">
+                <p class="text-gray-600 mb-4">
+                    Our sample size calculator helps researchers, marketers, and analysts determine the optimal number of 
+                    participants needed for surveys, studies, and statistical analysis. Get accurate sample size calculations 
+                    based on your population size, desired confidence level, and margin of error.
+                </p>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Features:</h3>
+                <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6">
+                    <li>Calculate sample size for finite and infinite populations</li>
+                    <li>Multiple confidence levels (90%, 95%, 99%)</li>
+                    <li>Customizable margin of error and expected proportion</li>
+                    <li>Quick preset configurations for common scenarios</li>
+                    <li>Real-time calculations with detailed explanations</li>
+                    <li>Mobile-friendly responsive design</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">Statistical Formula:</h3>
+                <p class="text-gray-600 mb-4">
+                    Our calculator uses the standard statistical formula for sample size determination:
+                </p>
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <code class="text-sm">
+                        n = (Z² × p × (1-p)) / E²<br>
+                        Where: Z = Z-score, p = expected proportion, E = margin of error
+                    </code>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">How to Use the Sample Size Calculator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Instructions:</h3>
+                    <ol class="list-decimal list-inside space-y-3 text-gray-600">
+                        <li><strong>Enter Population Size:</strong> Total number of people in your target group (leave blank for infinite population)</li>
+                        <li><strong>Select Confidence Level:</strong> Choose how confident you want to be in your results (95% is standard)</li>
+                        <li><strong>Set Margin of Error:</strong> Acceptable range of sampling error (typically 3-5%)</li>
+                        <li><strong>Expected Proportion:</strong> Estimated percentage of responses (use 50% if unknown for maximum sample size)</li>
+                        <li><strong>Click Calculate:</strong> Get your required sample size instantly</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Understanding the Parameters:</h3>
+                    <div class="space-y-4 text-gray-600">
+                        <div>
+                            <strong>Confidence Level:</strong>
+                            <ul class="list-disc list-inside ml-4 mt-1 space-y-1">
+                                <li>90% - Less stringent, smaller sample needed</li>
+                                <li>95% - Standard for most research</li>
+                                <li>99% - Very stringent, larger sample needed</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>Margin of Error:</strong>
+                            <p class="ml-4 mt-1">Lower percentage = more precise results but larger sample needed</p>
+                        </div>
+                        <div>
+                            <strong>Expected Proportion:</strong>
+                            <p class="ml-4 mt-1">50% gives the maximum sample size (most conservative estimate)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 p-6 bg-blue-50 rounded-lg">
+                <h3 class="text-lg font-semibold text-blue-800 mb-3">Sample Size Tips:</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-blue-700">
+                    <div>
+                        <h4 class="font-medium mb-2">For Surveys:</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Use 95% confidence level</li>
+                            <li>• 3-5% margin of error is typical</li>
+                            <li>• Consider response rates (30-50% typical)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-medium mb-2">For Research:</h4>
+                        <ul class="text-sm space-y-1">
+                            <li>• Consider statistical power analysis</li>
+                            <li>• Account for potential dropouts</li>
+                            <li>• Check institutional requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getZScore(confidenceLevel) {
+            const zScores = {
+                90: 1.645,
+                95: 1.96,
+                99: 2.576
+            };
+            return zScores[confidenceLevel] || 1.96;
+        }
+        function calculateSampleSize() {
+            const populationSize = parseInt(document.getElementById('populationSize').value) || null;
+            const confidenceLevel = parseInt(document.getElementById('confidenceLevel').value);
+            const marginOfError = parseFloat(document.getElementById('marginOfError').value) / 100;
+            const expectedProportion = parseFloat(document.getElementById('expectedProportion').value) / 100;
+            // Validation
+            if (!marginOfError || marginOfError <= 0 || marginOfError >= 1) {
+                alert('Please enter a valid margin of error (0.1% - 50%)');
+                return;
+            }
+            if (!expectedProportion || expectedProportion <= 0 || expectedProportion >= 1) {
+                alert('Please enter a valid expected proportion (1% - 99%)');
+                return;
+            }
+            const zScore = getZScore(confidenceLevel);
+            const p = expectedProportion;
+            const e = marginOfError;
+            // Calculate sample size for infinite population
+            let sampleSize = (Math.pow(zScore, 2) * p * (1 - p)) / Math.pow(e, 2);
+            // Adjust for finite population if specified
+            if (populationSize && populationSize > 0) {
+                sampleSize = sampleSize / (1 + ((sampleSize - 1) / populationSize));
+            }
+            // Round up to nearest integer
+            sampleSize = Math.ceil(sampleSize);
+            // Display results
+            document.getElementById('sampleSizeResult').textContent = sampleSize.toLocaleString();
+            document.getElementById('resultConfidence').textContent = confidenceLevel + '%';
+            document.getElementById('resultMargin').textContent = '±' + (marginOfError * 100).toFixed(1) + '%';
+            document.getElementById('resultPopulation').textContent = populationSize ? populationSize.toLocaleString() : 'Infinite';
+            document.getElementById('resultSection').classList.remove('hidden');
+            // Add recommendation
+            let recommendation = '';
+            if (sampleSize < 30) {
+                recommendation = 'Small sample - consider increasing for better reliability';
+            } else if (sampleSize < 100) {
+                recommendation = 'Adequate sample size for basic analysis';
+            } else if (sampleSize < 1000) {
+                recommendation = 'Good sample size for reliable results';
+            } else {
+                recommendation = 'Large sample - excellent for detailed analysis';
+            }
+            // Show additional info
+            setTimeout(() => {
+                if (confirm(`Required sample size: ${sampleSize.toLocaleString()} participants\n\n${recommendation}\n\nWould you like to see detailed breakdown?`)) {
+                    showDetailedBreakdown(sampleSize, zScore, p, e, populationSize);
+                }
+            }, 500);
+        }
+        function showDetailedBreakdown(n, z, p, e, N) {
+            const breakdown = `
+Sample Size Calculation Breakdown:
+Formula: n = (Z² × p × (1-p)) / E²${N ? '\nAdjusted for finite population' : ''}
+Parameters:
+• Z-score: ${z}
+• Expected proportion (p): ${(p * 100).toFixed(1)}%
+• Margin of error (E): ${(e * 100).toFixed(1)}%
+• Population size: ${N ? N.toLocaleString() : 'Infinite'}
+Calculation:
+• Z² = ${z.toFixed(3)}² = ${(z * z).toFixed(3)}
+• p × (1-p) = ${p.toFixed(3)} × ${(1-p).toFixed(3)} = ${(p * (1-p)).toFixed(6)}
+• E² = ${e.toFixed(3)}² = ${(e * e).toFixed(6)}
+Result: ${n.toLocaleString()} participants needed
+            `;
+            alert(breakdown);
+        }
+        function setPreset(type) {
+            switch(type) {
+                case 'survey':
+                    document.getElementById('populationSize').value = '10000';
+                    document.getElementById('confidenceLevel').value = '95';
+                    document.getElementById('marginOfError').value = '5';
+                    document.getElementById('expectedProportion').value = '50';
+                    break;
+                case 'research':
+                    document.getElementById('populationSize').value = '500';
+                    document.getElementById('confidenceLevel').value = '95';
+                    document.getElementById('marginOfError').value = '3';
+                    document.getElementById('expectedProportion').value = '50';
+                    break;
+                case 'market':
+                    document.getElementById('populationSize').value = '50000';
+                    document.getElementById('confidenceLevel').value = '95';
+                    document.getElementById('marginOfError').value = '4';
+                    document.getElementById('expectedProportion').value = '30';
+                    break;
+            }
+            calculateSampleSize();
+        }
+        // Auto-calculate when inputs change
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', () => {
+                if (document.getElementById('resultSection').classList.contains('hidden') === false) {
+                    calculateSampleSize();
+                }
+            });
+        });
+        // Initialize with default calculation
+        calculateSampleSize();
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #3b82f6; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">📊</span>
+                Related Statistical Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="pvalue_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">P-Value Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Statistical significance testing</div></div>
+                </a>
+                <a href="z-score-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Z-Score Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Standard score calculations</div></div>
+                </a>
+                <a href="standard-deviation-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Standard Deviation Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Measure data variability</div></div>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🧮</span>
+                Popular Math Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="basic-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Basic Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Basic arithmetic</div></div>
+                </a>
+                <a href="scientific-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">🧮</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Scientific Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Advanced calculations</div></div>
+                </a>
+                <a href="statistics_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div><div style="font-weight: 600; color: #1f2937;">Statistics Calculator</div><div style="font-size: 0.85rem; color: #6b7280;">Statistical calculations</div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

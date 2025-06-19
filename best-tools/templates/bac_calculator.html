@@ -1,0 +1,497 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary SEO Meta Tags -->
+    <title>BAC Calculator - Blood Alcohol Content Calculator | BestUtils</title>
+    <meta name="title" content="BAC Calculator - Blood Alcohol Content Calculator | BestUtils">
+    <meta name="description" content="Calculate your Blood Alcohol Content (BAC) with our free BAC calculator. Estimate alcohol levels based on drinks consumed, body weight, gender, and time elapsed.">
+    <meta name="keywords" content="BAC calculator, blood alcohol content, alcohol calculator, drink calculator, BAC estimation, alcohol level, responsible drinking">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bestutils.com/templates/bac_calculator.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bestutils.com/templates/bac_calculator.html">
+    <meta property="og:title" content="BAC Calculator - Blood Alcohol Content Calculator | BestUtils">
+    <meta property="og:description" content="Calculate your Blood Alcohol Content (BAC) with our free BAC calculator. Estimate alcohol levels based on drinks consumed, body weight, gender, and time elapsed.">
+    <meta property="og:image" content="https://bestutils.com/assets/images/bac-calculator-og.jpg">
+    <meta property="og:site_name" content="BestUtils">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bestutils">
+    <meta name="twitter:creator" content="@bestutils">
+    <meta name="twitter:url" content="https://bestutils.com/templates/bac_calculator.html">
+    <meta name="twitter:title" content="BAC Calculator - Blood Alcohol Content Calculator | BestUtils">
+    <meta name="twitter:description" content="Calculate your Blood Alcohol Content (BAC) with our free BAC calculator. Estimate alcohol levels based on drinks consumed, body weight, gender, and time elapsed.">
+    <meta name="twitter:image" content="https://bestutils.com/assets/images/bac-calculator-twitter.jpg">
+    <meta name="twitter:image:alt" content="BestUtils BAC Calculator">
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="author" content="BestUtils">
+    <meta name="language" content="English">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "BAC Calculator",
+        "description": "Free Blood Alcohol Content (BAC) calculator to estimate alcohol levels based on drinks consumed, body weight, gender, and time elapsed for responsible drinking.",
+        "url": "https://bestutils.com/templates/bac_calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "permissions": "browser",
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BestUtils",
+            "url": "https://bestutils.com"
+        }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .site-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #343A40;
+        }
+        .logo-text .highlight {
+            color: #3B82F6;
+        }
+        @media (max-width: 768px) {
+            .site-logo-container {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .site-logo-container svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .bac-result {
+            transition: all 0.3s ease;
+        }
+        .warning-high { background-color: #fee2e2; color: #991b1b; }
+        .warning-medium { background-color: #fef3c7; color: #92400e; }
+        .warning-low { background-color: #dcfce7; color: #166534; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="site-logo-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench-screwdriver text-blue-500">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                    <path d="M15.5 15.5a3.5 3.5 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                </svg>
+                <span class="logo-text">BEST<span class="highlight">UTILS</span></span>
+            </div>
+            <div class="text-center mt-4">
+                <h1 class="text-4xl font-bold mb-2">BAC Calculator</h1>
+                <p class="text-xl opacity-90">Blood Alcohol Content Calculator</p>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Calculator Card -->
+        <div class="max-w-2xl mx-auto bg-white rounded-2xl card-shadow p-8 mb-8">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Input Fields -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
+                        <select id="gender" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Body Weight</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="weight" placeholder="Enter weight" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" min="1">
+                            <select id="weightUnit" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="lbs">lbs</option>
+                                <option value="kg">kg</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Drinks</label>
+                        <input type="number" id="drinks" placeholder="Enter number of drinks" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" min="0" step="0.5">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Time Elapsed (hours)</label>
+                        <input type="number" id="timeElapsed" placeholder="Hours since first drink" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" min="0" step="0.25">
+                    </div>
+                </div>
+                <!-- Results -->
+                <div class="space-y-4">
+                    <button onclick="calculateBAC()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                        Calculate BAC
+                    </button>
+                    <div id="result" class="bac-result p-4 rounded-lg border-2 border-gray-200 text-center">
+                        <div class="text-gray-500">Enter your information and click calculate</div>
+                    </div>
+                    <div id="interpretation" class="text-sm text-gray-600"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Description Section -->
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl card-shadow p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About BAC Calculator</h2>
+            <p class="text-gray-600 mb-6">
+                The Blood Alcohol Content (BAC) Calculator helps estimate your blood alcohol concentration based on the number of drinks consumed, your body weight, gender, and the time elapsed since drinking. This tool uses the Widmark formula, which is widely accepted for BAC estimation.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Key Features</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Accurate BAC estimation using scientific formulas
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Supports both pounds and kilograms
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Gender-specific calculations
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Time-based alcohol metabolism
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Color-coded safety interpretations
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">BAC Levels Guide</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between p-2 bg-green-100 rounded">
+                            <span>0.00 - 0.03%</span>
+                            <span class="text-green-700">Minimal Effect</span>
+                        </div>
+                        <div class="flex justify-between p-2 bg-yellow-100 rounded">
+                            <span>0.04 - 0.07%</span>
+                            <span class="text-yellow-700">Mild Impairment</span>
+                        </div>
+                        <div class="flex justify-between p-2 bg-orange-100 rounded">
+                            <span>0.08 - 0.15%</span>
+                            <span class="text-orange-700">Legal Intoxication</span>
+                        </div>
+                        <div class="flex justify-between p-2 bg-red-100 rounded">
+                            <span>0.16%+</span>
+                            <span class="text-red-700">Severe Impairment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- How to Use Section -->
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl card-shadow p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How to Use the BAC Calculator</h2>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold mr-4 mt-1">1</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Select Your Gender</h3>
+                        <p class="text-gray-600">Choose male or female as this affects alcohol distribution in the body.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold mr-4 mt-1">2</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Enter Your Body Weight</h3>
+                        <p class="text-gray-600">Input your weight in pounds or kilograms. Higher body weight typically results in lower BAC.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold mr-4 mt-1">3</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Number of Drinks</h3>
+                        <p class="text-gray-600">Enter the total number of standard drinks consumed. One standard drink = 12oz beer (5% alcohol), 5oz wine (12% alcohol), or 1.5oz spirits (40% alcohol).</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold mr-4 mt-1">4</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Time Elapsed</h3>
+                        <p class="text-gray-600">Enter hours since you started drinking. The body metabolizes alcohol at about 0.015% BAC per hour.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold mr-4 mt-1">5</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Get Results</h3>
+                        <p class="text-gray-600">Click "Calculate BAC" to see your estimated blood alcohol content and safety interpretation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                <h4 class="font-semibold text-yellow-800 mb-2">⚠️ Important Disclaimer</h4>
+                <p class="text-yellow-700 text-sm">
+                    This calculator provides estimates only and should not be used to determine if you're safe to drive or operate machinery. Many factors affect BAC including food consumption, medications, and individual metabolism. Always use designated drivers or alternative transportation when drinking.
+                </p>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 BESTUTILS.com - Free Online Calculator Tools</p>
+        </div>
+    </footer>
+    <script>
+        function calculateBAC() {
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const weightUnit = document.getElementById('weightUnit').value;
+            const drinks = parseFloat(document.getElementById('drinks').value);
+            const timeElapsed = parseFloat(document.getElementById('timeElapsed').value);
+            if (!weight || !drinks || timeElapsed < 0) {
+                document.getElementById('result').innerHTML = '<div class="text-red-500">Please fill in all required fields</div>';
+                return;
+            }
+            // Convert weight to grams
+            let weightInGrams = weightUnit === 'kg' ? weight * 1000 : weight * 453.592;
+            // Gender constants for alcohol distribution
+            const genderConstant = gender === 'male' ? 0.68 : 0.55;
+            // Standard drink contains 14g of alcohol
+            const alcoholInGrams = drinks * 14;
+            // Widmark formula: BAC = (alcohol in grams / (body weight in grams × gender constant)) × 100
+            let bac = (alcoholInGrams / (weightInGrams * genderConstant)) * 100;
+            // Subtract alcohol metabolized over time (0.015% per hour)
+            bac = Math.max(0, bac - (timeElapsed * 0.015));
+            // Display result
+            const resultDiv = document.getElementById('result');
+            const interpretationDiv = document.getElementById('interpretation');
+            let className = 'warning-low';
+            let interpretation = 'Minimal or no impairment';
+            let safetyMessage = 'You should be fine to drive (but always use caution)';
+            if (bac >= 0.08) {
+                className = 'warning-high';
+                interpretation = 'Legally intoxicated';
+                safetyMessage = 'DO NOT drive or operate machinery';
+            } else if (bac >= 0.05) {
+                className = 'warning-medium';
+                interpretation = 'Mild to moderate impairment';
+                safetyMessage = 'Avoid driving - use alternative transportation';
+            } else if (bac >= 0.03) {
+                className = 'warning-medium';
+                interpretation = 'Slight impairment';
+                safetyMessage = 'Be cautious, consider alternative transportation';
+            }
+            resultDiv.className = `bac-result p-4 rounded-lg border-2 text-center ${className}`;
+            resultDiv.innerHTML = `
+                <div class="text-2xl font-bold mb-2">${bac.toFixed(3)}%</div>
+                <div class="font-semibold">${interpretation}</div>
+            `;
+            interpretationDiv.innerHTML = `
+                <div class="font-medium mb-1">${safetyMessage}</div>
+                <div class="text-xs">Remember: This is an estimate. Many factors affect actual BAC.</div>
+            `;
+        }
+        // Add enter key support
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculateBAC();
+            }
+        });
+    </script>
+    <!-- Internal Linking Section -->
+    <div style="margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 15px; border: 1px solid #e2e8f0;">
+        <!-- Related Health Tools -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #ef4444; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">🏥</span>
+                Related Health Tools
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="bmi-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">⚖️</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">BMI Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate body mass index</div>
+                    </div>
+                </a>
+                <a href="calorie-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔥</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Calorie Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate daily calories</div>
+                    </div>
+                </a>
+                <a href="sleep_calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#ef4444'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(239,68,68,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">😴</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Sleep Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate optimal sleep time</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- You Might Also Like -->
+        <div>
+            <h3 style="color: #059669; margin-bottom: 20px; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+                <span style="background: #10b981; color: white; padding: 8px 12px; border-radius: 8px; font-size: 1rem;">✨</span>
+                You Might Also Like
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <a href="age-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🎂</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Age Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate age precisely</div>
+                    </div>
+                </a>
+                <a href="percentage-calculator.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">📊</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Percentage Calculator</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Calculate percentages easily</div>
+                    </div>
+                </a>
+                <a href="unit-converter.html" style="display: flex; align-items: center; gap: 12px; padding: 16px; background: white; border-radius: 10px; text-decoration: none; color: #374151; border: 2px solid #e5e7eb; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1);" onmouseover="this.style.borderColor='#10b981'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(16,185,129,0.15)'" onmouseout="this.style.borderColor='#e5e7eb'; this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                    <span style="font-size: 1.5rem;">🔄</span>
+                    <div>
+                        <div style="font-weight: 600; color: #1f2937;">Unit Converter</div>
+                        <div style="font-size: 0.85rem; color: #6b7280;">Convert between units</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Comprehensive Footer -->
+    <footer style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); color: white; margin-top: 50px; padding: 40px 0 20px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <!-- Main Footer Content -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- Brand & Home Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l-8.3 8.3a1 1 0 0 0-.3 1.1l-2 5a1 1 0 0 0 1 1l5-2a1 1 0 0 0 1.1-.3l8.3-8.3a1 1 0 0 0 1.4 0Z"/>
+                            <path d="M15.5 15.5a3.5 3.5 0 1 1-4.95 0l6.75-6.75a3.5 3.5 0 0 1 0 4.95Z"/>
+                        </svg>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BEST<span style="color: #fbbf24;">UTILS</span></span>
+                    </div>
+                    <p style="margin-bottom: 15px; line-height: 1.6; opacity: 0.9;">Your ultimate destination for free online calculators, converters, and productivity tools. Trusted by millions worldwide.</p>
+                    <a href="../index.html" style="display: inline-block; background: #fbbf24; color: #1e3a8a; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">🏠 Back to Home</a>
+                </div>
+                <!-- Popular Calculators -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔥 Popular Calculators</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="bmi-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">BMI Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="mortgage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Mortgage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="loan-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Loan Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="percentage-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Percentage Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="compound-interest-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Compound Interest Calculator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="calorie-calculator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Calorie Calculator</a></li>
+                    </ul>
+                </div>
+                <!-- Top Converters -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🔄 Top Converters</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="currency-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Currency Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="unit-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Unit Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="pdf_converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">PDF Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="image-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Image Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="text-case-converter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Text Case Converter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="base64-encoder-decoder.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Base64 Encoder/Decoder</a></li>
+                    </ul>
+                </div>
+                <!-- Essential Tools -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 1.2rem; font-weight: 600; color: #fbbf24;">🛠️ Essential Tools</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="password-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Password Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="qr-code-generator.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">QR Code Generator</a></li>
+                        <li style="margin-bottom: 8px;"><a href="word-counter.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Word Counter</a></li>
+                        <li style="margin-bottom: 8px;"><a href="regex-tester.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Regex Tester</a></li>
+                        <li style="margin-bottom: 8px;"><a href="color-picker.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Color Picker</a></li>
+                        <li style="margin-bottom: 8px;"><a href="stopwatch.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Stopwatch</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+                    <span style="opacity: 0.9;">© 2024 BestUtils.com - All Rights Reserved</span>
+                    <a href="../privacy-policy.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Privacy Policy</a>
+                    <a href="../terms-of-use.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Terms & Conditions</a>
+                    <a href="contact-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">Contact Us</a>
+                    <a href="about-us.html" style="color: white; text-decoration: none; opacity: 0.9; transition: opacity 0.3s;">About Us</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="opacity: 0.9; font-size: 0.9rem;">Made with ❤️ for everyone</span>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Hover Effects -->
+        <style>
+            footer a:hover {
+                opacity: 1 !important;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 768px) {
+                footer div[style*="grid-template-columns"] {
+                    grid-template-columns: 1fr !important;
+                }
+                footer div[style*="justify-content: space-between"] {
+                    flex-direction: column !important;
+                    text-align: center !important;
+                }
+            }
+        </style>
+    </footer>
+</body>
+</html>

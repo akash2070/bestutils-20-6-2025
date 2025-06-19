@@ -1,0 +1,461 @@
+/**
+ * Multi Calculators - Main Stylesheet
+ * Version: 1.0.0
+ */
+
+/* Reset and Base Styles */
+.multi-calc-container * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    background-color: #f0f2f5; /* Light grey background for the page */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px; /* Add some padding around the main container */
+}
+
+.multi-calc-container {
+    max-width: 1200px;
+    margin: 20px auto; /* Centered with margin */
+    padding: 30px;
+    color: #2c3e50;
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 16px; /* Slightly larger border radius */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Softer, more pronounced shadow */
+}
+
+.multi-calc-container h1 {
+    font-size: 2.8rem; /* Slightly larger */
+    margin-bottom: 1.5rem;
+    color: #1a2b3c; /* Darker, more professional heading color */
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.multi-calc-container h1:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Wider underline */
+    height: 5px; /* Thicker underline */
+    background: linear-gradient(to right, #4e73df, #1cc88a); /* Updated gradient colors */
+    border-radius: 3px;
+}
+
+.multi-calc-container h2 {
+    font-size: 2rem;
+    margin: 2rem 0 1.3rem;
+    color: #1a2b3c;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.multi-calc-container h3 {
+    font-size: 1.6rem;
+    margin: 1.5rem 0 1rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.multi-calc-container p {
+    margin-bottom: 1.3rem;
+    font-size: 1rem; /* Standardized paragraph font size */
+    color: #4a5568;
+    line-height: 1.75;
+}
+
+/* Home Page Grid */
+.multi-calc-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f8f9fa; /* Light background for intro */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e9ecef;
+}
+
+.multi-calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Slightly larger min-width */
+    gap: 30px; /* Increased gap */
+    margin-top: 40px;
+}
+
+.multi-calc-grid-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #2c3e50;
+    min-height: 200px; /* Increased min-height */
+    border: 1px solid #e0e6ed;
+}
+
+.multi-calc-grid-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(78, 115, 223, 0.15); /* More prominent hover shadow */
+    border-color: #4e73df;
+}
+
+.multi-calc-grid-item svg {
+    width: 60px; /* Larger icons */
+    height: 60px;
+    margin-bottom: 20px;
+    color: #4e73df; /* Primary color for icons */
+    transition: color 0.3s ease;
+}
+
+.multi-calc-grid-item:hover svg {
+    color: #1cc88a; /* Secondary color on hover */
+}
+
+.multi-calc-grid-item h3 {
+    font-size: 1.25rem; /* Slightly larger grid item title */
+    margin: 0;
+    color: #1a2b3c;
+    font-weight: 600;
+}
+
+/* Tool Content Styles */
+.multi-calc-tool {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    padding: 35px;
+    margin-bottom: 40px;
+    border: 1px solid #e0e6ed;
+}
+
+.multi-calc-description {
+    margin-bottom: 2.5rem;
+    color: #4a5568;
+    line-height: 1.75;
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 5px solid #4e73df; /* Primary color for border */
+}
+
+/* Form Elements */
+.multi-calc-form {
+    margin-bottom: 3rem;
+}
+
+.multi-calc-form-group {
+    margin-bottom: 1.8rem;
+}
+
+.multi-calc-form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #1a2b3c;
+    font-size: 1rem;
+}
+
+.multi-calc-input,
+.multi-calc-form input[type="text"],
+.multi-calc-form input[type="number"],
+.multi-calc-form input[type="date"],
+.multi-calc-form input[type="email"],
+.multi-calc-form input[type="password"],
+.multi-calc-form select,
+.multi-calc-form textarea {
+    width: 100%;
+    padding: 14px 18px; /* Increased padding */
+    border: 1px solid #d1d9e6; /* Softer border color */
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fdfdff;
+    color: #2c3e50;
+}
+
+.multi-calc-input:focus,
+.multi-calc-form input[type="text"]:focus,
+.multi-calc-form input[type="number"]:focus,
+.multi-calc-form input[type="date"]:focus,
+.multi-calc-form input[type="email"]:focus,
+.multi-calc-form input[type="password"]:focus,
+.multi-calc-form select:focus,
+.multi-calc-form textarea:focus {
+    outline: none;
+    border-color: #4e73df;
+    box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.15);
+    background-color: #fff;
+}
+
+/* Buttons */
+.multi-calc-button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    background-color: #4e73df; /* Primary button color */
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(78, 115, 223, 0.2);
+}
+
+.multi-calc-button:hover {
+    background-color: #2e59d9; /* Darker shade on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(78, 115, 223, 0.3);
+}
+
+.multi-calc-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(78, 115, 223, 0.2);
+}
+
+.multi-calc-button.secondary {
+    background-color: #6c757d;
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+}
+
+.multi-calc-button.secondary:hover {
+    background-color: #5a6268;
+    box-shadow: 0 6px 15px rgba(108, 117, 125, 0.3);
+}
+
+/* Results Area */
+.multi-calc-result {
+    margin-top: 2.5rem;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.multi-calc-result h3 {
+    color: #1a2b3c;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.multi-calc-result p {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 0.8rem;
+}
+
+.multi-calc-result strong {
+    color: #4e73df;
+}
+
+/* Ad Placeholder - Basic Styling */
+#ads {
+    text-align: center;
+    padding: 20px;
+    margin: 25px auto;
+    background-color: #e9ecef;
+    border: 1px dashed #ced4da;
+    color: #6c757d;
+    border-radius: 8px;
+    max-width: 728px; /* Common ad width */
+}
+
+/* Footer (if you add one) */
+.multi-calc-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e6ed;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* AdSense placeholder */
+#ads {
+    margin: 25px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #edf2f7);
+    border: 1px dashed #cbd5e0;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #4a5568;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Error messages */
+.multi-calc-error,
+[id$="-error"] {
+    color: #e74c3c;
+    background-color: #fdedec;
+    padding: 12px 15px;
+    border-left: 4px solid #e74c3c;
+    border-radius: 5px;
+    margin: 15px 0;
+    font-size: 0.95rem;
+}
+
+/* Notification messages */
+.notification,
+#copy-notification {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.2);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Tables */
+.multi-calc-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 15px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.multi-calc-table th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.multi-calc-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e2e8f0;
+    background-color: #fff;
+}
+
+.multi-calc-table tr:last-child td {
+    border-bottom: none;
+}
+
+.multi-calc-table tr:nth-child(even) td {
+    background-color: #f8fafc;
+}
+
+/* Loading spinner */
+.multi-calc-spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(52, 152, 219, 0.2);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    animation: spin 1s ease-in-out infinite;
+    margin: 15px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Category Card Navigation Styles */
+.category-card {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.3s ease;
+}
+
+.category-header:hover {
+    background-color: #f8f9fa;
+}
+
+.category-tools {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tool-tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tool-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8 0%, #667eea 100%);
+}
+
+.category-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+.category-count {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.category-description {
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}

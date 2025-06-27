@@ -65,11 +65,13 @@
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
-        <loc>https://bestutils.com/templates/fuel_cost_calculator.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+        <url>
+              <loc>https://bestutils.com/templates/fuel_cost_calculator.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
+    
     <url>
         <loc>https://bestutils.com/templates/gas_mileage_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>

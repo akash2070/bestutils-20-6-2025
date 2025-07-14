@@ -134,11 +134,12 @@
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
-        <loc>https://www.bestutils.com/templates/loan-calculator.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+        <url>
+            <loc>https://www.bestutils.com/templates/loan-calculator.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
     <url>
         <loc>https://www.bestutils.com/templates/auto-loan-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
@@ -387,11 +388,12 @@
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
-        <loc>https://www.bestutils.com/templates/bmi-calculator.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
+        <url>
+            <loc>https://www.bestutils.com/templates/bmi-calculator.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.9</priority>
+        </url>
     <url>
         <loc>https://www.bestutils.com/templates/bmr-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
@@ -784,11 +786,12 @@
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
-        <loc>https://www.bestutils.com/templates/basic-calculator.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+        <url>
+            <loc>https://www.bestutils.com/templates/basic-calculator.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
     <url>
         <loc>https://www.bestutils.com/templates/scientific-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
@@ -1033,11 +1036,12 @@
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
         </url>
-        <loc>https://www.bestutils.com/templates/unit-converter.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+        <url>
+            <loc>https://www.bestutils.com/templates/unit-converter.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
     <url>
         <loc>https://www.bestutils.com/templates/currency-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
@@ -1142,11 +1146,12 @@
     </url>
 
     <!-- ================= CONSTRUCTION TOOLS ================= -->
-        <loc>https://www.bestutils.com/templates/concrete-calculator.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+        <url>
+            <loc>https://www.bestutils.com/templates/concrete-calculator.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
     <url>
         <loc>https://www.bestutils.com/templates/roofing-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
@@ -1191,11 +1196,12 @@
     </url>
 
     <!-- ================= UTILITIES TOOLS ================= -->
-        <loc>https://www.bestutils.com/templates/color-picker.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+        <url>
+            <loc>https://www.bestutils.com/templates/color-picker.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
     <url>
         <loc>https://www.bestutils.com/templates/image-resizer.html</loc>
         <lastmod>2025-06-06</lastmod>
@@ -1315,11 +1321,12 @@
     </url>
 
     <!-- ================= TEXT TOOLS ================= -->
-        <loc>https://www.bestutils.com/templates/word-counter.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
+        <url>
+            <loc>https://www.bestutils.com/templates/word-counter.html</loc>
+            <lastmod>2025-06-06</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
     <url>
         <loc>https://www.bestutils.com/templates/text_analyzer.html</loc>
         <lastmod>2025-06-06</lastmod>

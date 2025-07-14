@@ -6,7 +6,7 @@
     
     <!-- Homepage - Highest Priority -->
     <url>
-        <loc>https://bestutils.com/</loc>
+        <loc>https://www.bestutils.com/</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
@@ -14,21 +14,21 @@
     
     <!-- Legal Pages -->
     <url>
-        <loc>https://bestutils.com/privacy-policy.html</loc>
+        <loc>https://www.bestutils.com/privacy-policy.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     
     <url>
-        <loc>https://bestutils.com/about-us.html</loc>
+        <loc>https://www.bestutils.com/about-us.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
 
      <url>
-        <loc>https://bestutils.com/contact-us.html</loc>
+        <loc>https://www.bestutils.com/contact-us.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
@@ -36,50 +36,50 @@
 
     <!-- ================= AUTOMOTIVE TOOLS ================= -->
         <url>
-            <loc>https://bestutils.com/templates/auto_lease_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/auto_lease_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/speed-test.html</loc>
+            <loc>https://www.bestutils.com/templates/speed-test.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/speed_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/speed_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/typing-speed-test.html</loc>
+            <loc>https://www.bestutils.com/templates/typing-speed-test.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-              <loc>https://bestutils.com/templates/fuel_cost_calculator.html</loc>
+              <loc>https://www.bestutils.com/templates/fuel_cost_calculator.html</loc>
             <lastmod>2025-06-06</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
     
     <url>
-        <loc>https://bestutils.com/templates/gas_mileage_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/gas_mileage_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/mileage_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/mileage_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/tire-size-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/tire-size-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -87,270 +87,270 @@
 
     <!-- ================= FINANCE TOOLS ================= -->
         <url>
-            <loc>https://bestutils.com/templates/finance-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/finance-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/mortgage-amortization-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/mortgage-amortization-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/mortgage-calculator-uk.html</loc>
+            <loc>https://www.bestutils.com/templates/mortgage-calculator-uk.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/mortgage_payoff_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/mortgage_payoff_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/repayment-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/repayment-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/salary-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/salary-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/sales-tax-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/sales-tax-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/va-mortgage-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/va-mortgage-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
-        <loc>https://bestutils.com/templates/loan-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/loan-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/auto-loan-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/auto-loan-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/mortgage-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/mortgage-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/investment-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/investment-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/roi-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/roi-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/compound-interest-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/compound-interest-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/interest-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/interest-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/interest-rate-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/interest-rate-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/loan-emi-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/loan-emi-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/business_loan_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/business_loan_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/personal-loan-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/personal-loan-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/retirement-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/retirement-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/401k-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/401k-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/ira-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/ira-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/roth_ira_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/roth_ira_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/annuity-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/annuity-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/annuity-payout-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/annuity-payout-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pension_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/pension_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/income-tax-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/income-tax-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/income-tax-estimator.html</loc>
+        <loc>https://www.bestutils.com/templates/income-tax-estimator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/marriage_tax_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/marriage_tax_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/payback_period_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/payback_period_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/irr_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/irr_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/future_value_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/future_value_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/college_cost_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/college_cost_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/house_affordability_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/house_affordability_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/real-estate-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/real-estate-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/rental-property-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/rental-property-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/rent-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/rent-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/rent-vs-buy-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/rent-vs-buy-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/refinance-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/refinance-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/payment-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/payment-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/budget_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/budget_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/commission_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/commission_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/lease-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/lease-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/boat-loan-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/boat-loan-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/student_loan_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/student_loan_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -358,162 +358,162 @@
 
     <!-- ================= HEALTH TOOLS ================= -->
         <url>
-            <loc>https://bestutils.com/templates/army_body_fat_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/army_body_fat_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/body-type-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/body-type-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/molecular_weight_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/molecular_weight_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/sleep_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/sleep_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/tdee_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/tdee_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
-        <loc>https://bestutils.com/templates/bmi-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/bmi-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/bmr-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/bmr-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/body-fat-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/body-fat-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/healthy_weight_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/healthy_weight_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/ideal-weight-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/ideal-weight-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/lean_body_mass_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/lean_body_mass_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/overweight_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/overweight_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/anorexic-bmi-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/anorexic-bmi-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/heart_rate_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/heart_rate_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/calorie-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/calorie-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pregnancy-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/pregnancy-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pregnancy-conception-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/pregnancy-conception-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pregnancy_weight_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/pregnancy_weight_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/period_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/period_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/ovulation_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/ovulation_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/gfr_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/gfr_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/bac_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/bac_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/one_rep_max_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/one_rep_max_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/body-surface-area-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/body-surface-area-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/height_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/height_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/weight_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/weight_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/weight_watchers_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/weight_watchers_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -521,378 +521,378 @@
 
     <!-- ================= MATH TOOLS ================= -->
         <url>
-            <loc>https://bestutils.com/templates/amortization-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/amortization-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/apr-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/apr-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/average_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/average_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/bandwidth_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/bandwidth_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/cgpa-to-percentage.html</loc>
+            <loc>https://www.bestutils.com/templates/cgpa-to-percentage.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/conversion-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/conversion-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/density_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/density_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/depricialtion-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/depricialtion-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/dew_point_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/dew_point_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/gdp_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/gdp_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/golf_handicap_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/golf_handicap_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/gpa-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/gpa-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/grade-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/grade-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/gst-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/gst-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/half-life-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/half-life-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/heat_index_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/heat_index_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/hex_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/hex_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/horsepower_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/horsepower_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/inflation-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/inflation-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/love_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/love_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/macro_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/macro_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/margin_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/margin_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/mass_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/mass_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/molarity_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/molarity_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/ohms-law-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/ohms-law-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/pace-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/pace-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/percent_error_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/percent_error_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/percent_off_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/percent_off_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/permutation-combination-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/permutation-combination-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/resistor-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/resistor-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/rmd-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/rmd-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/sample_size_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/sample_size_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/savings_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/savings_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/simple_interest_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/simple_interest_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/sip-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/sip-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/slope_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/slope_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/social_security_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/social_security_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/take_home_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/take_home_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/tip_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/tip_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/vat-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/vat-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/voltage_drop_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/voltage_drop_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/volume_calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/volume_calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/wind-chill-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/wind-chill-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/z-score-calculator.html</loc>
+            <loc>https://www.bestutils.com/templates/z-score-calculator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
-        <loc>https://bestutils.com/templates/basic-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/basic-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/scientific-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/scientific-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/statistics_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/statistics_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/standard-deviation-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/standard-deviation-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/mean_median_mode_range_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/mean_median_mode_range_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/percentage-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/percentage-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/fraction-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/fraction-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/rounding_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/rounding_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/common_factor_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/common_factor_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/gcf-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/gcf-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/lcm-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/lcm-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/root_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/root_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/log_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/log_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/triangle-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/triangle-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/matrix_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/matrix_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/long_division_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/long_division_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/roman-numeral-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/roman-numeral-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/scientific_notation_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/scientific_notation_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pvalue_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/pvalue_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -902,362 +902,362 @@
        
         
         <url>
-            <loc>https://bestutils.com/templates/archive_converter.html</loc>
+            <loc>https://www.bestutils.com/templates/archive_converter.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/base64-encoder-decoder.html</loc>
+            <loc>https://www.bestutils.com/templates/base64-encoder-decoder.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/file-hash-generator.html</loc>
+            <loc>https://www.bestutils.com/templates/file-hash-generator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/file-size-estimator.html</loc>
+            <loc>https://www.bestutils.com/templates/file-size-estimator.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/html-beautifier.html</loc>
+            <loc>https://www.bestutils.com/templates/html-beautifier.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/html-minifier.html</loc>
+            <loc>https://www.bestutils.com/templates/html-minifier.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/image-to-base64.html</loc>
+            <loc>https://www.bestutils.com/templates/image-to-base64.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/image_converter_tool.html</loc>
+            <loc>https://www.bestutils.com/templates/image_converter_tool.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/ip-lookup.html</loc>
+            <loc>https://www.bestutils.com/templates/ip-lookup.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/jwt_debugger.html</loc>
+            <loc>https://www.bestutils.com/templates/jwt_debugger.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/mp3_volume_booster.html</loc>
+            <loc>https://www.bestutils.com/templates/mp3_volume_booster.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/pdf_compressor.html</loc>
+            <loc>https://www.bestutils.com/templates/pdf_compressor.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/pdf_excel_converter.html</loc>
+            <loc>https://www.bestutils.com/templates/pdf_excel_converter.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/regex-tester.html</loc>
+            <loc>https://www.bestutils.com/templates/regex-tester.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/resume_builder.html</loc>
+            <loc>https://www.bestutils.com/templates/resume_builder.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.9</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/resume_score_checker.html</loc>
+            <loc>https://www.bestutils.com/templates/resume_score_checker.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.9</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/sql_beautifier.html</loc>
+            <loc>https://www.bestutils.com/templates/sql_beautifier.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/sql_minifier.html</loc>
+            <loc>https://www.bestutils.com/templates/sql_minifier.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/video-converter.html</loc>
+            <loc>https://www.bestutils.com/templates/video-converter.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/video-to-audio-converter.html</loc>
+            <loc>https://www.bestutils.com/templates/video-to-audio-converter.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/video-to-gif-converter.html</loc>
+            <loc>https://www.bestutils.com/templates/video-to-gif-converter.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.7</priority>
         </url>
         <url>
-            <loc>https://bestutils.com/templates/word-to-pdf-converter.html</loc>
+            <loc>https://www.bestutils.com/templates/word-to-pdf-converter.html</loc>
             <lastmod>2025-06-19</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
         </url>
-        <loc>https://bestutils.com/templates/unit-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/unit-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/currency-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/currency-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pdf_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/pdf_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/image-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/image-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/video_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/video_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/audio_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/audio_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/document-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/document-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/html-to-markdown.html</loc>
+        <loc>https://www.bestutils.com/templates/html-to-markdown.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/json-to-xml-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/json-to-xml-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/xml-to-json-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/xml-to-json-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pdf-to-word-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/pdf-to-word-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pdf-to-image-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/pdf-to-image-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/pdf-to-ppt-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/pdf-to-ppt-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/image_pdf_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/image_pdf_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/image_svg_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/image_svg_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/raw_image_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/raw_image_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/heic_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/heic_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/resolution_converter.html</loc>
+        <loc>https://www.bestutils.com/templates/resolution_converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- ================= CONSTRUCTION TOOLS ================= -->
-        <loc>https://bestutils.com/templates/concrete-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/concrete-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/roofing-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/roofing-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/tile_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/tile_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/gravel_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/gravel_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/mulch_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/mulch_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/stair_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/stair_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/square_footage_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/square_footage_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/surface_area_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/surface_area_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- ================= UTILITIES TOOLS ================= -->
-        <loc>https://bestutils.com/templates/color-picker.html</loc>
+        <loc>https://www.bestutils.com/templates/color-picker.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/image-resizer.html</loc>
+        <loc>https://www.bestutils.com/templates/image-resizer.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/subnet-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/subnet-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/electricity_calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/electricity_calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/voice-recorder-tool.html</loc>
+        <loc>https://www.bestutils.com/templates/voice-recorder-tool.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/stopwatch.html</loc>
+        <loc>https://www.bestutils.com/templates/stopwatch.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/random-number-generator.html</loc>
+        <loc>https://www.bestutils.com/templates/random-number-generator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/uuid-generator.html</loc>
+        <loc>https://www.bestutils.com/templates/uuid-generator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/password-generator.html</loc>
+        <loc>https://www.bestutils.com/templates/password-generator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/qr-code-generator.html</loc>
+        <loc>https://www.bestutils.com/templates/qr-code-generator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/text-case-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/text-case-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/url-encoder-decoder.html</loc>
+        <loc>https://www.bestutils.com/templates/url-encoder-decoder.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -1266,92 +1266,92 @@
     <!-- ================= TIME & DATE TOOLS ================= -->
     <!-- (Missing time & date tools will be inserted here if any) -->
     <url>
-        <loc>https://bestutils.com/templates/age-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/age-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/date-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/date-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/date-difference-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/date-difference-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/time-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/time-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/time-duration-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/time-duration-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/time-zone-converter.html</loc>
+        <loc>https://www.bestutils.com/templates/time-zone-converter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/hours-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/hours-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/due-date-calculator.html</loc>
+        <loc>https://www.bestutils.com/templates/due-date-calculator.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <!-- ================= TEXT TOOLS ================= -->
-        <loc>https://bestutils.com/templates/word-counter.html</loc>
+        <loc>https://www.bestutils.com/templates/word-counter.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/text_analyzer.html</loc>
+        <loc>https://www.bestutils.com/templates/text_analyzer.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/essay-word-density-checker.html</loc>
+        <loc>https://www.bestutils.com/templates/essay-word-density-checker.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/online-signature-pad.html</loc>
+        <loc>https://www.bestutils.com/templates/online-signature-pad.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/json_minifier.html</loc>
+        <loc>https://www.bestutils.com/templates/json_minifier.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/xml-minifier.html</loc>
+        <loc>https://www.bestutils.com/templates/xml-minifier.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://bestutils.com/templates/xml-beautifier.html</loc>
+        <loc>https://www.bestutils.com/templates/xml-beautifier.html</loc>
         <lastmod>2025-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>

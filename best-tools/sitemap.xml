@@ -19,12 +19,6 @@
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-    <url>
-        <loc>https://bestutils.com/terms-conditions.html</loc>
-        <lastmod>2025-06-06</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
-    </url>
     
     <url>
         <loc>https://bestutils.com/about-us.html</loc>
